@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Responsive Banner Ads with HTML5 and CSS3</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="displayheight" content="31, 60, 90, 125, 250, 400, 600" />
+    <link rel="stylesheet" href="ad.css" />
+  </head>
+  <body>
+    <main class="carousel">
+      <section class="product-section">
+        <div class="bg-overlay"></div>
+        <img src="assets/product-1/product.png" alt="product-1" class="product-img" />
+        <div class="suggestions">
+          <div class="suggestions-wrapper">
+            <a href="https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/2167765914421169176" target="_blank">
+              <img src="assets/product-1/suggestion-1.png" alt="suggestion-1" class="suggestion" />
+            </a>
+            <a href="https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/7169382077361275352" target="_blank">
+              <img src="assets/product-1/suggestion-2.png" alt="suggestion-2" class="suggestion" />
+            </a>
+            <a href="https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/494399754107632726" target="_blank">
+              <img src="assets/product-1/suggestion-3.png" alt="suggestion-3" class="suggestion" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="product-section">
+        <div class="bg-overlay" style="background-color: green"></div>
+        <img src="assets/product-2/product.png" alt="product-1" class="product-img" loading="lazy" />
+        <div class="suggestions">
+          <div class="suggestions-wrapper">
+            <a href="https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/2167765914421169176" target="_blank">
+              <img src="assets/product-2/suggestion-1.png" alt="suggestion-1" class="suggestion" loading="lazy" />
+            </a>
+            <a href="https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/7169382077361275352" target="_blank">
+              <img src="assets/product-2/suggestion-2.png" alt="suggestion-2" class="suggestion" loading="lazy" />
+            </a>
+            <a href="https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/494399754107632726" target="_blank">
+              <img src="assets/product-2/suggestion-3.png" alt="suggestion-3" class="suggestion" loading="lazy" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="product-section">
+        <div class="bg-overlay" style="background-color: yellow"></div>
+        <img src="assets/product-3/product.png" alt="product-1" class="product-img" loading="lazy" />
+        <div class="suggestions">
+          <div class="suggestions-wrapper">
+            <a href="https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/2167765914421169176" target="_blank">
+              <img src="assets/product-3/suggestion-1.png" alt="suggestion-1" class="suggestion" loading="lazy" />
+            </a>
+            <a href="https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/7169382077361275352" target="_blank">
+              <img src="assets/product-3/suggestion-2.png" alt="suggestion-2" class="suggestion" loading="lazy" />
+            </a>
+            <a href="https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/494399754107632726" target="_blank">
+              <img src="assets/product-3/suggestion-3.png" alt="suggestion-3" class="suggestion" loading="lazy" />
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const carousel = document.querySelector('.carousel');
+        const slides = document.querySelectorAll('.product-section');
+        const numSlides = slides.length;
+        let interval;
+        const delay = 3; // seconds
+        let currentIndex = 0;
+
+        function showSlide(index) {
+          if (slides.length === 1) {
+            slides[0].classList.add('active');
+            return;
+          }
+
+          slides.forEach((slide, i) => {
+            slide.classList.remove('active', 'prev');
+            if (i === index) {
+              slide.classList.add('active');
+            } else if (i === (index - 1 + numSlides) % numSlides) {
+              slide.classList.add('prev');
+            }
+          });
+        }
+
+        function nextSlide() {
+          currentIndex = (currentIndex + 1) % numSlides;
+          showSlide(currentIndex);
+        }
+
+        function stopCarousel() {
+          clearInterval(interval);
+        }
+
+        function startCarousel() {
+          interval = setInterval(nextSlide, (delay + 1) * 1000);
+        }
+
+        if (slides.length > 1) {
+          carousel.addEventListener('mouseenter', stopCarousel);
+          carousel.addEventListener('mouseleave', startCarousel);
+        }
+
+        showSlide(currentIndex);
+        startCarousel();
+      });
+    </script>
+  </body>
+</html>

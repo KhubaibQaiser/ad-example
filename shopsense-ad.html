@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Partner Website</title>
+  </head>
+  <body onload="init();">
+    <div id="ad" style="width: 160px; height: 600px">
+      <iframe
+        src="ad.html"
+        name="shopsense-ad"
+        border="0"
+        scrolling="no"
+        allowtransparency="true"
+        width="100%"
+        height="100%"
+        style="border: 0"
+      ></iframe>
+    </div>
+
+    <script>
+      function init() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const width = urlParams.get('width');
+        const height = urlParams.get('height');
+        const ad = document.getElementById('ad');
+        if (ad) {
+          ad.style.width = width + 'px';
+          ad.style.height = height + 'px';
+        }
+      }
+    </script>
+  </body>
+</html>

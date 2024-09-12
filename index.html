@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Shopsense - Embeds</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <script type="text/javascript">
+      var adUnitSizes = {
+        Billboard: [970, 250],
+        SmartphoneBanner: [320, 50],
+        Leaderboard: [728, 90],
+        Pushdown: [970, 90],
+        Portrait: [300, 1050],
+        Skyscraper: [160, 600],
+        MediumRectangle: [300, 250],
+        '20x60': [20, 60],
+        MobilePhoneInterstitial: [640, 1136],
+        FeaturePhoneSmallBanner: [120, 20],
+        FeaturePhoneMediumBanner: [168, 28],
+        FeaturePhoneLargeBanner: [216, 36],
+      };
+
+      var DEFAULT_ADUNIT = 'Skyscraper';
+
+      function resize(variant) {
+        const size = adUnitSizes[variant];
+        var ad = document.getElementById('ad');
+        if (ad) {
+          ad.style.width = size[0] + 'px';
+          ad.style.height = size[1] + 'px';
+        }
+        const currentSelected = document.getElementsByClassName('selected');
+        if (currentSelected?.length > 0) {
+          currentSelected[0].classList.remove('selected');
+        }
+        document.getElementById(variant).classList.add('selected');
+      }
+    </script>
+    <style type="text/css">
+      body {
+        background: #eee;
+        width: 50%;
+      }
+      iframe {
+        border: 0;
+      }
+      #ad {
+        width: 160px;
+        height: 600px;
+      }
+      .selected {
+        color: red;
+      }
+    </style>
+  </head>
+  <body onload="initPage();">
+    <ul id="adunit-size-list"></ul>
+    <div id="ad" style="width: 160px; height: 600px">
+      <iframe
+        src="ad.html"
+        name="shopsense-ad"
+        border="0"
+        scrolling="no"
+        allowtransparency="true"
+        width="100%"
+        height="100%"
+        style="border: 0"
+      ></iframe>
+    </div>
+
+    <script>
+      function initPage() {
+        const adunitSizesContainer = document.getElementById('adunit-size-list');
+        for (let key in adUnitSizes) {
+          var size = adUnitSizes[key];
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          a.href = 'javascript:void(0);';
+          a.onclick = function () {
+            resize(key);
+          };
+          a.textContent = key + ': ' + size[0] + ' x ' + size[1];
+          a.id = key;
+          li.appendChild(a);
+          adunitSizesContainer.appendChild(li);
+        }
+
+        resize(DEFAULT_ADUNIT);
+      }
+    </script>
+  </body>
+</html>
