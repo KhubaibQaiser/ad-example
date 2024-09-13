@@ -1108,5 +1108,10 @@ main {
 }
 
 /* 1136 PIXELS HIGH */
-@media only screen and (height: 1094px) and (min-width: 615px) {
+@media only screen and (height: 600px) and (min-width: 160px) {
+  .bottom-highlight {
+    top: 70%;
+    transform: translateY(-50%);
+    bottom: unset;
+  }
 }
