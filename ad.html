@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="ad.css" />
   </head>
   <body>
-    <main class="carousel">
+    <main class="carousel hidden">
       <div class="main-bg"></div>
       <section class="product-section">
         <div class="bg-overlay-container" style="background-color: #f38e02">
@@ -124,6 +124,8 @@
 
         showSlide(currentIndex);
         startCarousel();
+
+        document.querySelector('.carousel').classList.remove('hidden');
       });
     </script>
   </body>
