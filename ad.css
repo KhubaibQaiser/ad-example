@@ -13,7 +13,7 @@ html {
 }
 
 .hidden {
-  display: none;
+  opacity: 0;
 }
 
 body {
@@ -34,6 +34,7 @@ main {
   -o-border-radius: calc(100vw * 0.058);
   border-radius: calc(100vw * 0.058);
   z-index: 1;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .main-bg {

@@ -125,7 +125,9 @@
         showSlide(currentIndex);
         startCarousel();
 
-        document.querySelector('.carousel').classList.remove('hidden');
+        setTimeout(() => {
+          document.querySelector('.carousel').classList.remove('hidden');
+        }, 500);
       });
     </script>
   </body>
