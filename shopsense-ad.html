@@ -21,12 +21,15 @@
     <script>
       function init() {
         const urlParams = new URLSearchParams(window.location.search);
-        const width = urlParams.get('width');
-        const height = urlParams.get('height');
-        const ad = document.getElementById('ad');
-        if (ad) {
-          ad.style.width = width + 'px';
-          ad.style.height = height + 'px';
+        if (urlParams.size > 0) {
+          const width = urlParams.get('width');
+          const height = urlParams.get('height');
+          const ad = document.getElementById('ad');
+
+          if (ad) {
+            ad.style.width = width + 'px';
+            ad.style.height = height + 'px';
+          }
         }
       }
     </script>

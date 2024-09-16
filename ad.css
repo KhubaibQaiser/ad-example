@@ -12,10 +12,6 @@ html {
   height: 100%;
 }
 
-.hidden {
-  opacity: 0;
-}
-
 body {
   font-family: Helvetica, Arial, sans-serif;
   width: 100%;
@@ -45,6 +41,28 @@ main {
   bottom: 0;
   z-index: -1;
   background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+.splash {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 9999;
+  padding: 24px;
+  display: flex;
+  opacity: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #f1f0f0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.splash.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .product-section {
@@ -88,12 +106,12 @@ main {
 }
 
 .bg-overlay {
-  flex: 0.9;
+  flex: 0.95;
   background: rgba(0, 0, 0, 0.1);
 }
 
 .bg-overlay-bottom {
-  flex: 0.1;
+  flex: 0.05;
 }
 
 .bg-overlay-blend {

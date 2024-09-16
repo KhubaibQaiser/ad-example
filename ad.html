@@ -2,15 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Responsive Banner Ads with HTML5 and CSS3</title>
+    <title>Shopsense - Embeds</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="displayheight" content="31, 60, 90, 125, 250, 400, 600" />
+    <meta name="displayheight" content="160, 1094" />
     <link rel="stylesheet" href="ad.css" />
   </head>
   <body>
-    <main class="carousel hidden">
+    <main class="carousel">
       <div class="main-bg"></div>
-      <section class="product-section">
+      <div id="products"></div>
+      <!-- <section class="product-section">
         <div class="bg-overlay-container" style="background-color: #f38e02">
           <div class="bg-overlay"></div>
           <div class="bg-overlay-bottom"></div>
@@ -30,57 +31,41 @@
             </a>
           </div>
         </div>
-      </section>
-
-      <section class="product-section">
-        <div class="bg-overlay-container" style="background-color: #fbd80e">
-          <div class="bg-overlay"></div>
-          <div class="bg-overlay-bottom"></div>
-        </div>
-        <div class="bg-overlay-blend"></div>
-        <img src="assets/product-2/product.png" alt="product-1" class="product-img" loading="lazy" />
-        <div class="suggestions">
-          <div class="suggestions-wrapper">
-            <a href="https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/2167765914421169176" target="_blank">
-              <img src="assets/product-2/suggestion-1.png" alt="suggestion-1" class="suggestion" loading="lazy" />
-            </a>
-            <a href="https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/7169382077361275352" target="_blank">
-              <img src="assets/product-2/suggestion-2.png" alt="suggestion-2" class="suggestion" loading="lazy" />
-            </a>
-            <a href="https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/494399754107632726" target="_blank">
-              <img src="assets/product-2/suggestion-3.png" alt="suggestion-3" class="suggestion" loading="lazy" />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section class="product-section">
-        <div class="bg-overlay-container" style="background-color: #0db3f3">
-          <div class="bg-overlay"></div>
-          <div class="bg-overlay-bottom"></div>
-        </div>
-        <div class="bg-overlay-blend"></div>
-        <img src="assets/product-3/product.png" alt="product-1" class="product-img" loading="lazy" />
-        <div class="suggestions">
-          <div class="suggestions-wrapper">
-            <a href="https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/2167765914421169176" target="_blank">
-              <img src="assets/product-3/suggestion-1.png" alt="suggestion-1" class="suggestion" loading="lazy" />
-            </a>
-            <a href="https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/7169382077361275352" target="_blank">
-              <img src="assets/product-3/suggestion-2.png" alt="suggestion-2" class="suggestion" loading="lazy" />
-            </a>
-            <a href="https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/494399754107632726" target="_blank">
-              <img src="assets/product-3/suggestion-3.png" alt="suggestion-3" class="suggestion" loading="lazy" />
-            </a>
-          </div>
-        </div>
-      </section>
+      </section>-->
 
       <div class="bottom-highlight"></div>
+
+      <div id="splash-img" class="splash">
+        <img src="logo.svg" width="100%" alt="Shopsense" />
+      </div>
     </main>
 
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
+      function getSuggestionElement(suggestion) {
+        return `<a href="${suggestion.url}" target="_blank"> <img src="${suggestion.img}" alt="${suggestion.name}" class="suggestion" /> </a>`;
+      }
+      function getProductElement({ product }) {
+        return `<section class="product-section"><div class="bg-overlay-container" style="background-color: ${product.bgColor}"> <div class="bg-overlay"></div> <div class="bg-overlay-bottom"></div> </div> <div class="bg-overlay-blend"></div> <img src="${product.img}" alt="${product.name}" class="product-img" /> <div class="suggestions"> <div class="suggestions-wrapper">{{suggestions-placeholder}}</div></div></section>`;
+      }
+
+      function generateAd(products) {
+        var productsStr = '';
+        products.forEach((product) => {
+          const productStr = getProductElement(product);
+          productsStr += productStr.replace('{{suggestions-placeholder}}', product.suggestions.map(getSuggestionElement).join(''));
+        });
+        document.getElementById('products').innerHTML = productsStr;
+      }
+
+      function initAds(adsData) {
+        generateAd(adsData);
+        initCarouse();
+        setTimeout(() => {
+          document.getElementById('splash-img').classList.add('hidden');
+        }, 1000);
+      }
+
+      function initCarouse() {
         const carousel = document.querySelector('.carousel');
         const slides = document.querySelectorAll('.product-section');
         const numSlides = slides.length;
@@ -124,10 +109,15 @@
 
         showSlide(currentIndex);
         startCarousel();
+      }
 
-        setTimeout(() => {
-          document.querySelector('.carousel').classList.remove('hidden');
-        }, 1000);
+      document.addEventListener('DOMContentLoaded', async () => {
+        await fetch('ad.json')
+          .then((response) => response.json())
+          .then(initAds)
+          .catch((error) => {
+            console.error('Error fetching data:', error);
+          });
       });
     </script>
   </body>
