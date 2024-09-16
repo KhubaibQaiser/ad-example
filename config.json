@@ -46,29 +46,5 @@
         "url": "https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/494399754107632726"
       }
     ]
-  },
-  {
-    "product": {
-      "name": "Bata",
-      "img": "assets/product-3/product.png",
-      "bgColor": "#0db3f3"
-    },
-    "suggestions": [
-      {
-        "name": "Adidas",
-        "img": "assets/product-3/suggestion-1.png",
-        "url": "https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/2167765914421169176"
-      },
-      {
-        "name": "Nike",
-        "img": "assets/product-3/suggestion-2.png",
-        "url": "https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/7169382077361275352"
-      },
-      {
-        "name": "Puma",
-        "img": "assets/product-3/suggestion-3.png",
-        "url": "https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/494399754107632726"
-      }
-    ]
   }
 ]

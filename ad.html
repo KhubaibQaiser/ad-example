@@ -11,30 +11,7 @@
     <main class="carousel">
       <div class="main-bg"></div>
       <div id="products"></div>
-      <!-- <section class="product-section">
-        <div class="bg-overlay-container" style="background-color: #f38e02">
-          <div class="bg-overlay"></div>
-          <div class="bg-overlay-bottom"></div>
-        </div>
-        <div class="bg-overlay-blend"></div>
-        <img src="assets/product-1/product.png" alt="product-1" class="product-img" />
-        <div class="suggestions">
-          <div class="suggestions-wrapper">
-            <a href="https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/2167765914421169176" target="_blank">
-              <img src="assets/product-1/suggestion-1.png" alt="suggestion-1" class="suggestion" />
-            </a>
-            <a href="https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/7169382077361275352" target="_blank">
-              <img src="assets/product-1/suggestion-2.png" alt="suggestion-2" class="suggestion" />
-            </a>
-            <a href="https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/494399754107632726" target="_blank">
-              <img src="assets/product-1/suggestion-3.png" alt="suggestion-3" class="suggestion" />
-            </a>
-          </div>
-        </div>
-      </section>-->
-
       <div class="bottom-highlight"></div>
-
       <div id="splash-img" class="splash">
         <img src="logo.svg" width="100%" alt="Shopsense" />
       </div>
@@ -112,7 +89,7 @@
       }
 
       document.addEventListener('DOMContentLoaded', async () => {
-        await fetch('ad.json')
+        await fetch('config.json')
           .then((response) => response.json())
           .then(initAds)
           .catch((error) => {
