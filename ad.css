@@ -210,3 +210,25 @@ main {
     gap: calc(100vh * 0.015);
   }
 }
+
+/* 1050 PIXELS HIGH */
+@media only screen and (height: 1050px) and (min-width: 300px) {
+  .bottom-highlight {
+    top: 70%;
+    transform: translateY(-50%);
+    bottom: unset;
+  }
+
+  .suggestions-wrapper {
+    gap: calc(100vh * 0.015);
+  }
+
+  .suggestions {
+    right: 6%;
+  }
+
+  .suggestions-wrapper a {
+    width: calc(100vw * 0.4);
+    height: calc(100vw * 0.4);
+  }
+}
