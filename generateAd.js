@@ -61,7 +61,7 @@ async function processImages(inputDir, outputDir) {
       if (['.jpg', '.jpeg', '.png', '.webp', '.tiff', '.gif', '.svg'].includes(ext)) {
         try {
           await sharp(inputPath)
-            .resize(320) // Resize to a width of 800px, maintaining aspect ratio
+            .resize(320) // Resize to a width of 320px, maintaining aspect ratio
             .webp({ quality: 80 }) // Convert to WebP format with 80% quality
             .toFile(outputPath.replace(ext, '.webp'));
         } catch (error) {
