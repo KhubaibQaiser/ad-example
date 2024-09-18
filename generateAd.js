@@ -96,9 +96,10 @@ async function generateFiles() {
   const assetsDir = 'assets';
   updateAssetPaths(data, assetsDir);
 
-  const outputDir = path.join(__dirname, data.slug);
+  const outputRootDir = 'ads';
+  const outputDir = path.join(__dirname, outputRootDir, data.slug);
   if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir);
+    fs.mkdirSync(outputDir, { recursive: true });
   }
 
   const html = renderTemplate(path.join(__dirname, 'template', 'index.html'), data);
@@ -121,7 +122,7 @@ async function generateFiles() {
     await processImages(dataAssetsDir, outputAssetsDir);
   }
 
-  console.log(`Ad has been generated successfully in the '${data.slug}' folder!`);
+  console.log(`Ad has been generated successfully in the '${outputRootDir}/${data.slug}' folder!`);
 }
 
 // Run the function
