@@ -1,58 +1,86 @@
-# Shopsense Ads (Embeds) Repository
+# Ad Generator
 
-This repository contains the code for generating and managing Shopsense Ads (Embeds). These embeds are designed to be used on various platforms and websites to display advertisements.
+This project is a templating engine that generates HTML, CSS, and JavaScript files for ads using data from a JSON file. It also processes images, resizing, compressing, and converting them to WebP format.
 
-## Technologies Used
+## Features
 
-The Ads repository utilizes the following technologies:
+- **Template Rendering**: Uses EJS to render HTML templates with data from a JSON file.
+- **Minification**: Minifies HTML, CSS, and JavaScript files.
+- **Image Processing**: Resizes, compresses, and converts images to WebP format, maintaining directory structure.
+- **Modular Code**: Organized into separate functions for better maintainability.
 
-- HTML: The markup language used for structuring the embeds.
-- CSS: The styling language used for customizing the appearance of the embeds.
-- JavaScript: The programming language used for adding interactivity and dynamic behavior to the embeds.
+## Prerequisites
 
-## Embed Generation
+- Node.js
+- npm (Node Package Manager)
 
-The embeds in this repository are generated using a combination of HTML, CSS, and JavaScript. They are designed to adhere to the specifications set by the Interactive Advertising Bureau (IAB), ensuring compatibility and consistency across different platforms.
+## Installation
 
-The `config.json` file plays a crucial role in dynamically generating ads in this repository. It contains the configuration settings and data that are used to populate the ads with relevant content.
+1. Clone the repository:
 
-Here's how the `config.json` file is used:
+   ```bash
+   git clone https://github.com/shopsense-ai/embeds.git
+   cd embeds
+   ```
 
-1. Customize Ad Content: Within each ad template, you can specify placeholders or variables that will be replaced with actual content when the ad is generated. These placeholders can include text, images, links, or any other HTML elements.
+2. Install the dependencies:
 
-2. Populate Data: The `config.json` file also contains a section where you can provide the data that will be used to populate the ad templates. This data can be static or dynamic, depending on your requirements. For example, you can include a list of products, their descriptions, and images to be displayed in the ads.
+   ```bash
+   npm install
+   ```
 
-3. Generate Ads: Using the ad templates and data from the `config.json` file, the code in this repository dynamically generates ads by replacing the placeholders in the templates with the corresponding content from the data. This ensures that each ad is unique and tailored to the specific advertising needs.
+## Usage
 
-By leveraging the `config.json` file, you can easily create and manage a wide variety of ads without modifying the underlying code. This allows for greater flexibility and scalability in your advertising campaigns.
+1. Place your data file (`data.json`) and assets (images) in the `data` directory. The assets can be in nested folders.
+2. Run the script to generate the output:
+   ```bash
+   node generateHtml.js
+   ```
 
-## Layouts
+### Note
 
-The repository provides different layouts for the embeds, allowing for flexibility and customization based on specific advertising requirements. These layouts are optimized for different screen sizes and devices, ensuring a seamless user experience.
+The template files (`index.html`, `style.css`, `script.js`) in the `template` directory are static and should not be changed.
 
-- ~~SmartphoneBanner: 320 x 50~~
-- ~~Leaderboard: 728 x 90~~
-- ~~Pushdown: 970 x 90~~
-- Portrait: 300 x 1050
-- Skyscraper: 160 x 600
-- ~~MediumRectangle: 300 x 250~~
-- ~~20x60: 20 x 60~~
-- MobilePhoneInterstitial: 640 x 1136
-- ~~FeaturePhoneSmallBanner: 120 x 20~~
-- ~~FeaturePhoneMediumBanner: 168 x 28~~
-- ~~FeaturePhoneLargeBanner: 216 x 36~~
+## Example
 
-## Getting Started
+Here is an example of how to structure your `data.json` file:
 
-To get started with using the embeds from this repository, follow these steps:
-
-1. Clone the repository to your local machine.
-2. Choose the desired layout from the available options.
-3. Customize the embed code as per your advertising needs.
-4. Integrate the embed code into your platform or website.
-
-For detailed instructions on how to use the embeds, please refer to the documentation provided in each layout folder.
+```json
+{
+  "slug": "sports-ad",
+  "products": [
+    {
+      "name": "Adidas",
+      "img": "assets/product-1/product.png",
+      "bgColor": "#f38e02",
+      "suggestions": [
+        {
+          "name": "Adidas",
+          "img": "assets/product-1/suggestion-1.png",
+          "url": "https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/2167765914421169176"
+        },
+        {
+          "name": "Nike",
+          "img": "assets/product-1/suggestion-2.png",
+          "url": "https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/7169382077361275352"
+        },
+        {
+          "name": "Puma",
+          "img": "assets/product-1/suggestion-3.png",
+          "url": "https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/494399754107632726"
+        }
+      ]
+    }
+  ]
+}
+```
 
 ## Contributing
 
-Contributions to the Shopsense Ads (Embeds) repository are welcome! If you have any suggestions, bug reports, or feature requests, please open an issue or submit a pull request.
+Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+Feel free to customize this further if needed. Let me know if there's anything else I can help with!

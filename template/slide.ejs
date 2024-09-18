@@ -1,0 +1,17 @@
+<section class="product-section">
+  <div class="bg-overlay-container" style="background-color: <%= product.bgColor %>">
+    <div class="bg-overlay"></div>
+    <div class="bg-overlay-bottom"></div>
+  </div>
+  <div class="bg-overlay-blend"></div>
+  <img src="<%= product.img %>" alt="<%= product.name %>" class="product-img" />
+  <div class="suggestions">
+    <div class="suggestions-wrapper">
+      <% product.suggestions.forEach(suggestion => { %>
+      <a href="<%= suggestion.url %>" target="_blank">
+        <img src="<%= suggestion.img %>" alt="<%= suggestion.name %>" class="suggestion" />
+      </a>
+      <% }) %>
+    </div>
+  </div>
+</section>

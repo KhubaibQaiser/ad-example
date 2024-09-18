@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="displayheight" content="600" />
+    <title><%= data.slug %></title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="carousel">
+      <div class="main-bg"></div>
+      <div id="products"><% data.products.forEach(item => { %> <%- include(__dirname + '/slide.ejs', { product: item }) %> <% }) %></div>
+      <div class="bottom-highlight"></div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
