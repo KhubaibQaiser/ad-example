@@ -8,7 +8,6 @@ const fsExtra = require('fs-extra');
 const sharp = require('sharp');
 const yargs = require('yargs/yargs');
 const { hideBin } = require('yargs/helpers');
-const schema = require('./data/validation-schema.js');
 
 // Parse command-line arguments
 const argv = yargs(hideBin(process.argv))
@@ -118,9 +117,10 @@ function updateAssetPaths(data, assetsDir) {
   updatePaths(data);
 }
 
-function validateData(_d, _s) {
+function validateData(_d) {
   const z = require('zod');
-  const validationResult = _s.safeParse(_d);
+  const schema = require(path.join(__dirname, 'data', 'schema.js'));
+  const validationResult = schema.safeParse(_d);
   if (!validationResult.success) {
     console.error('Validation errors:', validationResult.error);
     throw new Error(validationResult.error);
@@ -133,7 +133,7 @@ async function generateAd() {
     const dataPath = path.join(__dirname, 'data', 'data.json');
     const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
 
-    validateData(data, schema);
+    validateData(data);
 
     const assetsDir = 'assets';
     updateAssetPaths(data, assetsDir);
