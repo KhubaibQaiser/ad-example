@@ -1,4 +1,4 @@
-<section class="product-section" data-item="<%= JSON.stringify({ ...product, suggestions: undefined }) %>">
+<section class="product-section" data-item="<%= JSON.stringify({ ...product, index, suggestions: undefined }) %>">
   <div class="bg-overlay-container" style="background-color: <%= product.bgColor %>">
     <div class="bg-overlay"></div>
     <div class="bg-overlay-bottom"></div>
@@ -8,7 +8,7 @@
   <div class="suggestions">
     <div class="suggestions-wrapper">
       <% product.suggestions.forEach(suggestion => { %>
-      <a href="<%= suggestion.url %>" target="_blank" class="suggestion-item" data-item="<%= JSON.stringify(suggestion) %>">
+      <a href="<%= suggestion.url %>" target="_blank" class="suggestion-item" data-item="<%= JSON.stringify({...suggestion, index}) %>">
         <img src="<%= suggestion.img %>" alt="<%= suggestion.name %>" loading="lazy" class="suggestion" />
       </a>
       </a>

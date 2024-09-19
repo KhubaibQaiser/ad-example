@@ -10,7 +10,9 @@
   <body>
     <main class="carousel">
       <div class="main-bg"></div>
-      <div id="products"><% data.products.forEach(item => { %> <%- include(__dirname + '/slide.ejs', { product: item }) %> <% }) %></div>
+      <div id="products">
+        <% data.products.forEach((item, index) => { %> <%- include(__dirname + '/slide.ejs', { product: item, index: index }) %> <% }) %>
+      </div>
       <div class="bottom-highlight"></div>
     </main>
     <script src="script.js" defer></script>
