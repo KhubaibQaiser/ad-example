@@ -6,6 +6,23 @@ const Terser = require('terser');
 const path = require('path');
 const fsExtra = require('fs-extra');
 const sharp = require('sharp');
+const yargs = require('yargs/yargs');
+const { hideBin } = require('yargs/helpers');
+
+// Parse command-line arguments
+const argv = yargs(hideBin(process.argv))
+  .option('width', {
+    alias: 'w',
+    type: 'number',
+    description: 'Width for image resizing',
+    default: 320,
+  })
+  .option('quality', {
+    alias: 'q',
+    type: 'number',
+    description: 'Quality for image compression',
+    default: 80,
+  }).argv;
 
 // Function to read and render the template
 function renderTemplate(templatePath, data) {
@@ -47,7 +64,7 @@ async function minifyJs(jsPath) {
 }
 
 // Function to process images
-async function processImages(inputDir, outputDir) {
+async function processImages(inputDir, outputDir, width, quality) {
   const entries = fs.readdirSync(inputDir, { withFileTypes: true });
   for (const entry of entries) {
     const inputPath = path.join(inputDir, entry.name);
@@ -55,14 +72,14 @@ async function processImages(inputDir, outputDir) {
 
     if (entry.isDirectory()) {
       await fsExtra.ensureDir(outputPath);
-      await processImages(inputPath, outputPath);
+      await processImages(inputPath, outputPath, width, quality);
     } else {
       const ext = path.extname(entry.name).toLowerCase();
       if (['.jpg', '.jpeg', '.png', '.webp', '.tiff', '.gif', '.svg'].includes(ext)) {
         try {
           await sharp(inputPath)
-            .resize(320) // Resize to a width of 320px, maintaining aspect ratio
-            .webp({ quality: 80 }) // Convert to WebP format with 80% quality
+            .resize(width) // Resize to the specified width, maintaining aspect ratio
+            .webp({ quality }) // Convert to WebP format with the specified quality
             .toFile(outputPath.replace(ext, '.webp'));
         } catch (error) {
           console.error(`Error processing file ${inputPath}:`, error);
@@ -88,42 +105,48 @@ function updateAssetPaths(data, assetsDir) {
   updatePaths(data);
 }
 
-// Main function to generate files
-async function generateFiles() {
-  const dataPath = path.join(__dirname, 'data', 'data.json');
-  const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
+// Main function to generate ads
+async function generateAd() {
+  try {
+    const dataPath = path.join(__dirname, 'data', 'data.json');
+    const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
 
-  const assetsDir = 'assets';
-  updateAssetPaths(data, assetsDir);
+    const assetsDir = 'assets';
+    updateAssetPaths(data, assetsDir);
 
-  const outputRootDir = 'ads';
-  const outputDir = path.join(__dirname, outputRootDir, data.slug);
-  if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir, { recursive: true });
+    const outputRootDir = 'ads';
+    const outputDir = path.join(__dirname, outputRootDir, data.slug);
+    await fsExtra.ensureDir(outputDir);
+
+    const html = renderTemplate(path.join(__dirname, 'template', 'index.html'), data);
+    const minifiedHtml = minifyHtml(html);
+    fs.writeFileSync(path.join(outputDir, 'index.html'), minifiedHtml);
+
+    const minifiedCss = minifyCss(path.join(__dirname, 'template', 'style.css'));
+    fs.writeFileSync(path.join(outputDir, 'style.css'), minifiedCss);
+
+    const minifiedJs = await minifyJs(path.join(__dirname, 'template', 'script.js'));
+    fs.writeFileSync(path.join(outputDir, 'script.js'), minifiedJs);
+
+    const templateAssetsDir = path.join(__dirname, 'template', 'assets');
+    const outputAssetsDir = path.join(outputDir, 'assets');
+    await fsExtra.ensureDir(outputAssetsDir);
+    await processImages(templateAssetsDir, outputAssetsDir, argv.width, argv.quality);
+
+    const dataAssetsDir = path.join(__dirname, 'data', 'assets');
+    if (fs.existsSync(dataAssetsDir)) {
+      await processImages(dataAssetsDir, outputAssetsDir, argv.width, argv.quality);
+    }
+
+    console.log(`Ad has been generated successfully in the '${outputRootDir}/${data.slug}' folder!`);
+
+    // Dynamically import 'open' and open the generated index.html file
+    const { default: open } = await import('open');
+    await open(path.join(outputDir, 'index.html'));
+  } catch (error) {
+    console.error('Error generating files:', error);
   }
-
-  const html = renderTemplate(path.join(__dirname, 'template', 'index.html'), data);
-  const minifiedHtml = minifyHtml(html);
-  fs.writeFileSync(path.join(outputDir, 'index.html'), minifiedHtml);
-
-  const minifiedCss = minifyCss(path.join(__dirname, 'template', 'style.css'));
-  fs.writeFileSync(path.join(outputDir, 'style.css'), minifiedCss);
-
-  const minifiedJs = await minifyJs(path.join(__dirname, 'template', 'script.js'));
-  fs.writeFileSync(path.join(outputDir, 'script.js'), minifiedJs);
-
-  const templateAssetsDir = path.join(__dirname, 'template', 'assets');
-  const outputAssetsDir = path.join(outputDir, 'assets');
-  await fsExtra.ensureDir(outputAssetsDir);
-  await processImages(templateAssetsDir, outputAssetsDir);
-
-  const dataAssetsDir = path.join(__dirname, 'data', 'assets');
-  if (fs.existsSync(dataAssetsDir)) {
-    await processImages(dataAssetsDir, outputAssetsDir);
-  }
-
-  console.log(`Ad has been generated successfully in the '${outputRootDir}/${data.slug}' folder!`);
 }
 
 // Run the function
-generateFiles();
+generateAd();
