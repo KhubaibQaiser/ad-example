@@ -4,12 +4,12 @@
     <div class="bg-overlay-bottom"></div>
   </div>
   <div class="bg-overlay-blend"></div>
-  <img src="<%= product.img %>" alt="<%= product.name %>" class="product-img" />
+  <img src="<%= product.img %>" alt="<%= product.name %>" loading="lazy" class="product-img" />
   <div class="suggestions">
     <div class="suggestions-wrapper">
       <% product.suggestions.forEach(suggestion => { %>
       <a href="<%= suggestion.url %>" target="_blank" class="suggestion-item" data-item="<%= JSON.stringify(suggestion) %>">
-        <img src="<%= suggestion.img %>" alt="<%= suggestion.name %>" class="suggestion" />
+        <img src="<%= suggestion.img %>" alt="<%= suggestion.name %>" loading="lazy" class="suggestion" />
       </a>
       </a>
       <% }) %>
