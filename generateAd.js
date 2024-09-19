@@ -8,6 +8,13 @@ const fsExtra = require('fs-extra');
 const sharp = require('sharp');
 const yargs = require('yargs/yargs');
 const { hideBin } = require('yargs/helpers');
+const dotenv = require('dotenv');
+
+// Load environment variables
+const envFile = `.env.${process.env.NODE_ENV || 'development'}`;
+
+console.log('NODE_ENV', process.env.NODE_ENV);
+dotenv.config({ path: envFile });
 
 // Parse command-line arguments
 const argv = yargs(hideBin(process.argv))
@@ -126,6 +133,26 @@ function validateData(_d) {
   }
 }
 
+async function copyGlobalFiles(outputDir) {
+  // Copy all files from the global folder to the output directory
+  const globalDir = path.join(__dirname, 'global');
+  if (fs.existsSync(globalDir)) {
+    const files = fs.readdirSync(globalDir);
+    for (const file of files) {
+      const filePath = path.join(globalDir, file);
+      const outputFilePath = path.join(outputDir, file);
+      if (file === 'amplitude-wrapper.min.js') {
+        const minifiedAmplitudeWrapperJs = await minifyJs(filePath);
+        let replacedAmplitudeWrapperJs = minifiedAmplitudeWrapperJs.replace('AMPLITUDE_API_KEY', process.env.AMPLITUDE_API_KEY);
+        replacedAmplitudeWrapperJs = replacedAmplitudeWrapperJs.replace('ENV_PLACEHOLDER', process.env.NODE_ENV || 'development');
+        fs.writeFileSync(path.join(outputFilePath), replacedAmplitudeWrapperJs);
+      } else {
+        fs.copyFileSync(filePath, outputFilePath);
+      }
+    }
+  }
+}
+
 // Main function to generate ads
 async function generateAd() {
   try {
@@ -167,11 +194,7 @@ async function generateAd() {
       await processImages(dataAssetsDir, outputAssetsDir, imageWidth, argv.quality);
     }
 
-    // Copy all files from the global folder to the output directory
-    const globalDir = path.join(__dirname, 'global');
-    if (fs.existsSync(globalDir)) {
-      await fsExtra.copy(globalDir, outputDir);
-    }
+    await copyGlobalFiles(outputDir);
 
     // Copy ad.html to the output directory root and rename it to index.html
     const adHtml = renderTemplate(path.join(__dirname, 'ad.html'), { width: argv.width, height: argv.height });

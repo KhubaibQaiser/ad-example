@@ -12,6 +12,26 @@
     </style>
   </head>
   <body>
-    <iframe src="ad/index.html" style="width: <%= data.width %>px; height: <%= data.height %>px; border: none"></iframe>
+    <iframe id="adIframe" src="ad/index.html" style="width: <%= data.width %>px; height: <%= data.height %>px; border: none"></iframe>
+    <script>
+      function getUtmParams() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return {
+          utm_source: urlParams.get('utm_source'),
+          utm_medium: urlParams.get('utm_medium'),
+          utm_campaign: urlParams.get('utm_campaign'),
+          utm_term: urlParams.get('utm_term'),
+          utm_content: urlParams.get('utm_content'),
+        };
+      }
+
+      const utmParams = getUtmParams();
+      const iframe = document.getElementById('adIframe');
+
+      // Send UTM parameters to the iframe
+      iframe.onload = () => {
+        iframe.contentWindow.postMessage(utmParams, '*');
+      };
+    </script>
   </body>
 </html>
