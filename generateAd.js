@@ -118,7 +118,6 @@ function updateAssetPaths(data, assetsDir) {
 }
 
 function validateData(_d) {
-  const z = require('zod');
   const schema = require(path.join(__dirname, 'data', 'schema.js'));
   const validationResult = schema.safeParse(_d);
   if (!validationResult.success) {
