@@ -151,8 +151,8 @@ async function generateAd() {
     const minifiedJs = await minifyJs(path.join(__dirname, 'template', 'script.js'));
     fs.writeFileSync(path.join(outputDir, 'script.js'), minifiedJs);
 
-    const minifiedAmplitudeWrapperJs = await minifyJs(path.join(__dirname, 'template', 'amplitude-wrapper.js'));
-    fs.writeFileSync(path.join(outputDir, 'amplitude-wrapper.js'), minifiedAmplitudeWrapperJs);
+    // const minifiedAmplitudeWrapperJs = await minifyJs(path.join(__dirname, 'template', 'amplitude-wrapper.js'));
+    // fs.writeFileSync(path.join(outputDir, 'amplitude-wrapper.js'), minifiedAmplitudeWrapperJs);
 
     const minifiedAmplitudeJs = await minifyJs(path.join(__dirname, 'template', 'amplitude.js'));
     fs.writeFileSync(path.join(outputDir, 'amplitude.js'), minifiedAmplitudeJs);

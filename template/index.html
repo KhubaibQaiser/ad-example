@@ -13,9 +13,9 @@
       <div id="products"><% data.products.forEach(item => { %> <%- include(__dirname + '/slide.ejs', { product: item }) %> <% }) %></div>
       <div class="bottom-highlight"></div>
     </main>
-    <script src="script.js"></script>
-    <script src="amplitude.min.js"></script>
-    <script src="amplitude-wrapper.js"></script>
-    <script src="amplitude.js"></script>
+    <script src="script.js" defer></script>
+    <script src="amplitude.min.js.gz"></script>
+    <script src="amplitude-wrapper.min.js"></script>
+    <script src="amplitude.js" defer></script>
   </body>
 </html>
