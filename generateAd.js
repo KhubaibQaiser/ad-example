@@ -8,6 +8,7 @@ const fsExtra = require('fs-extra');
 const sharp = require('sharp');
 const yargs = require('yargs/yargs');
 const { hideBin } = require('yargs/helpers');
+const schema = require('./data/validation-schema.js');
 
 // Parse command-line arguments
 const argv = yargs(hideBin(process.argv))
@@ -73,7 +74,10 @@ async function minifyJs(jsPath) {
 }
 
 // Function to process images
-async function processImages(inputDir, outputDir, width, quality) {
+async function processImages(inputDir, outputDir, _width, _quality) {
+  const width = parseInt(_width);
+  const quality = parseInt(_quality);
+
   const entries = fs.readdirSync(inputDir, { withFileTypes: true });
   for (const entry of entries) {
     const inputPath = path.join(inputDir, entry.name);
@@ -114,11 +118,22 @@ function updateAssetPaths(data, assetsDir) {
   updatePaths(data);
 }
 
+function validateData(_d, _s) {
+  const z = require('zod');
+  const validationResult = _s.safeParse(_d);
+  if (!validationResult.success) {
+    console.error('Validation errors:', validationResult.error);
+    throw new Error(validationResult.error);
+  }
+}
+
 // Main function to generate ads
 async function generateAd() {
   try {
     const dataPath = path.join(__dirname, 'data', 'data.json');
     const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
+
+    validateData(data, schema);
 
     const assetsDir = 'assets';
     updateAssetPaths(data, assetsDir);
