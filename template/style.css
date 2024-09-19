@@ -119,7 +119,7 @@ main {
   right: 0;
   top: 0;
   bottom: 0;
-  background: url('./assets/bg-overlay.webp') no-repeat center center fixed;
+  background: url('./assets/bg-overlay.webp') repeat;
 }
 
 .product-img {
