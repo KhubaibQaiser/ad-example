@@ -14,8 +14,14 @@ const argv = yargs(hideBin(process.argv))
   .option('width', {
     alias: 'w',
     type: 'number',
-    description: 'Width for image resizing',
-    default: 320,
+    description: 'Width for the ad unit',
+    default: 160,
+  })
+  .option('height', {
+    alias: 'h',
+    type: 'number',
+    description: 'Height for the ad unit',
+    default: 600,
   })
   .option('quality', {
     alias: 'q',
@@ -23,6 +29,8 @@ const argv = yargs(hideBin(process.argv))
     description: 'Quality for image compression',
     default: 80,
   }).argv;
+
+const imageWidth = argv.width * 1.9;
 
 // Function to read and render the template
 function renderTemplate(templatePath, data) {
@@ -138,11 +146,11 @@ async function generateAd() {
     const templateAssetsDir = path.join(__dirname, 'template', 'assets');
     const outputAssetsDir = path.join(outputDir, 'assets');
     await fsExtra.ensureDir(outputAssetsDir);
-    await processImages(templateAssetsDir, outputAssetsDir, argv.width, argv.quality);
+    await processImages(templateAssetsDir, outputAssetsDir, imageWidth * 0.9, argv.quality);
 
     const dataAssetsDir = path.join(__dirname, 'data', 'assets');
     if (fs.existsSync(dataAssetsDir)) {
-      await processImages(dataAssetsDir, outputAssetsDir, argv.width, argv.quality);
+      await processImages(dataAssetsDir, outputAssetsDir, imageWidth, argv.quality);
     }
 
     // Copy all files from the global folder to the output directory
@@ -152,7 +160,7 @@ async function generateAd() {
     }
 
     // Copy ad.html to the output directory root and rename it to index.html
-    const adHtml = fs.readFileSync(path.join(__dirname, 'ad.html'), 'utf-8');
+    const adHtml = renderTemplate(path.join(__dirname, 'ad.html'), { width: argv.width, height: argv.height });
     const minifiedAdHtml = minifyHtml(adHtml, { minifyCSS: true });
     fs.writeFileSync(path.join(outputRootDir, data.slug, 'index.html'), minifiedAdHtml);
 
