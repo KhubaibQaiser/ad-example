@@ -31,7 +31,7 @@ function renderTemplate(templatePath, data) {
 }
 
 // Function to minify HTML
-function minifyHtml(html) {
+function minifyHtml(html, moreOptions = {}) {
   return minify(html, {
     collapseWhitespace: true,
     removeComments: true,
@@ -39,6 +39,7 @@ function minifyHtml(html) {
     removeScriptTypeAttributes: true,
     removeStyleLinkTypeAttributes: true,
     useShortDoctype: true,
+    ...moreOptions,
   });
 }
 
@@ -115,7 +116,7 @@ async function generateAd() {
     updateAssetPaths(data, assetsDir);
 
     const outputRootDir = 'ads';
-    const outputDir = path.join(__dirname, outputRootDir, data.slug);
+    const outputDir = path.join(__dirname, outputRootDir, data.slug, 'ad');
     await fsExtra.ensureDir(outputDir);
 
     const html = renderTemplate(path.join(__dirname, 'template', 'index.html'), data);
@@ -128,6 +129,12 @@ async function generateAd() {
     const minifiedJs = await minifyJs(path.join(__dirname, 'template', 'script.js'));
     fs.writeFileSync(path.join(outputDir, 'script.js'), minifiedJs);
 
+    const minifiedAmplitudeWrapperJs = await minifyJs(path.join(__dirname, 'template', 'amplitude-wrapper.js'));
+    fs.writeFileSync(path.join(outputDir, 'amplitude-wrapper.js'), minifiedAmplitudeWrapperJs);
+
+    const minifiedAmplitudeJs = await minifyJs(path.join(__dirname, 'template', 'amplitude.js'));
+    fs.writeFileSync(path.join(outputDir, 'amplitude.js'), minifiedAmplitudeJs);
+
     const templateAssetsDir = path.join(__dirname, 'template', 'assets');
     const outputAssetsDir = path.join(outputDir, 'assets');
     await fsExtra.ensureDir(outputAssetsDir);
@@ -138,11 +145,22 @@ async function generateAd() {
       await processImages(dataAssetsDir, outputAssetsDir, argv.width, argv.quality);
     }
 
+    // Copy all files from the global folder to the output directory
+    const globalDir = path.join(__dirname, 'global');
+    if (fs.existsSync(globalDir)) {
+      await fsExtra.copy(globalDir, outputDir);
+    }
+
+    // Copy ad.html to the output directory root and rename it to index.html
+    const adHtml = fs.readFileSync(path.join(__dirname, 'ad.html'), 'utf-8');
+    const minifiedAdHtml = minifyHtml(adHtml, { minifyCSS: true });
+    fs.writeFileSync(path.join(outputRootDir, data.slug, 'index.html'), minifiedAdHtml);
+
     console.log(`Ad has been generated successfully in the '${outputRootDir}/${data.slug}' folder!`);
 
     // Dynamically import 'open' and open the generated index.html file
     const { default: open } = await import('open');
-    await open(path.join(outputDir, 'index.html'));
+    await open(path.join(outputRootDir, data.slug, 'index.html'));
   } catch (error) {
     console.error('Error generating files:', error);
   }
