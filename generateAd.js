@@ -401,7 +401,7 @@ async function generateAd() {
     await copyGlobalFiles(outputDir);
 
     // Copy ad.html to the output directory root and rename it to index.html
-    const adHtml = renderTemplate(path.join(__dirname, 'ad.html'), { width: argv.width, height: argv.height });
+    const adHtml = renderTemplate(path.join(__dirname, 'ad.html'), { title: data.title, width: argv.width, height: argv.height });
     const minifiedAdHtml = minifyHtml(adHtml);
     fs.writeFileSync(path.join(outputRootDir, slug, 'index.html'), minifiedAdHtml);
 
