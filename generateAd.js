@@ -67,6 +67,7 @@ function minifyHtml(html, moreOptions = {}) {
     removeScriptTypeAttributes: true,
     removeStyleLinkTypeAttributes: true,
     useShortDoctype: true,
+    minifyJS: true,
     ...moreOptions,
   });
 }
