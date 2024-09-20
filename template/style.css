@@ -76,9 +76,12 @@ main {
   top: 0;
   left: 100%;
   opacity: 0;
-  /* left: 0;
-  opacity: 1; */
   transition: left 1s ease-in-out, opacity 1s ease-in-out;
+  -webkit-border-radius: inherit;
+  -moz-border-radius: inherit;
+  -ms-border-radius: inherit;
+  -o-border-radius: inherit;
+  border-radius: inherit;
 }
 
 .product-section.active {
