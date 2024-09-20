@@ -11,9 +11,11 @@
     <main class="carousel">
       <% data.moduleData.forEach((module, index) => { %> <%- include(__dirname + '/slide.ejs', { module: module, index: index }) %> <% }) %>
     </main>
+    <script src="observer.js"></script>
     <script src="script.js" defer></script>
     <script src="amplitude.min.js.gz"></script>
     <script src="amplitude-wrapper.min.js"></script>
     <script src="amplitude.js" defer></script>
+    <script src="lazy-load-videos.js" defer></script>
   </body>
 </html>

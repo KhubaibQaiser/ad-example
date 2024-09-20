@@ -182,23 +182,38 @@ async function downloadAndProcessAssets(data, assetsDir) {
   console.log('Processed images successfully!');
 }
 
+async function processImageAsset(inputPath, outputPath, ext, width, quality) {
+  try {
+    // console.log('Compressing image: ', inputPath);
+    await sharp(inputPath)
+      .resize(width, undefined, { withoutEnlargement: true }) // Resize to the specified width, maintaining aspect ratio
+      .webp({ quality }) // Convert to WebP format with the specified quality
+      .toFile(outputPath.replace(ext, '.webp'));
+    // console.log('Compressed image: ', outputPath.replace(ext, '.webp'));
+  } catch (error) {
+    console.error(`Error processing file ${inputPath}:`, error);
+  }
+}
+
 function processVideoAsset(inputPath, outputPath, width) {
-  return ffmpeg(inputPath)
-    .output(outputPath)
-    .videoCodec('libx264')
-    .noAudio()
-    .size(`${width}x?`)
-    .autopad()
-    .on('error', (err) => {
-      console.error('Error:', err.message);
-    })
-    .on('progress', (progress) => {
-      console.log('Progress:', progress.frames);
-    })
-    .on('end', () => {
-      console.log('Video resizing complete!');
-    })
-    .run();
+  return new Promise((resolve, reject) => {
+    ffmpeg(inputPath)
+      .output(outputPath)
+      .videoCodec('libx264')
+      .noAudio()
+      .size(`${width}x?`) // Resize to the specified width, maintaining aspect ratio
+      .videoBitrate('1000k') // Set video bitrate
+      .outputOptions('-crf 35') // Set constant rate factor for quality
+      .on('error', reject)
+      .on('progress', (progress) => {
+        console.log('Video Compression Progress:', progress.frames);
+      })
+      .on('end', () => {
+        console.log('Video compression and resizing complete!', inputPath);
+        resolve('Video compression and resizing complete!');
+      })
+      .run();
+  });
 }
 
 // Function to process images
@@ -222,19 +237,10 @@ async function processAssets(inputDir, outputDir, _width, _quality) {
         w = isNaN(parseInt(w)) ? width : parseInt(w);
       }
       if (isImage(ext)) {
-        try {
-          // console.log('Compressing image: ', inputPath);
-          await sharp(inputPath)
-            .resize(w, undefined, { withoutEnlargement: true }) // Resize to the specified width, maintaining aspect ratio
-            .webp({ quality }) // Convert to WebP format with the specified quality
-            .toFile(outputPath.replace(ext, '.webp'));
-          // console.log('Compressed image: ', outputPath.replace(ext, '.webp'));
-        } catch (error) {
-          console.error(`Error processing file ${inputPath}:`, error);
-        }
+        await processImageAsset(inputPath, outputPath, ext, w, quality);
       } else {
         // fs.copyFileSync(inputPath, outputPath);
-        console.warn(`Unsupported file format: ${inputPath}`);
+        // console.warn(`Unsupported file format: ${inputPath}`);
         await processVideoAsset(inputPath, outputPath, w);
       }
     }
