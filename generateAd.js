@@ -153,6 +153,13 @@ async function copyGlobalFiles(outputDir) {
   }
 }
 
+function getSlug(title) {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
 // Main function to generate ads
 async function generateAd() {
   try {
@@ -165,7 +172,8 @@ async function generateAd() {
     updateAssetPaths(data, assetsDir);
 
     const outputRootDir = 'ads';
-    const outputDir = path.join(__dirname, outputRootDir, data.slug, 'ad');
+    const slug = getSlug(data.title);
+    const outputDir = path.join(__dirname, outputRootDir, slug, 'ad');
     await fsExtra.ensureDir(outputDir);
 
     const html = renderTemplate(path.join(__dirname, 'template', 'index.html'), data);
@@ -199,13 +207,13 @@ async function generateAd() {
     // Copy ad.html to the output directory root and rename it to index.html
     const adHtml = renderTemplate(path.join(__dirname, 'ad.html'), { width: argv.width, height: argv.height });
     const minifiedAdHtml = minifyHtml(adHtml, { minifyCSS: true });
-    fs.writeFileSync(path.join(outputRootDir, data.slug, 'index.html'), minifiedAdHtml);
+    fs.writeFileSync(path.join(outputRootDir, slug, 'index.html'), minifiedAdHtml);
 
-    console.log(`Ad has been generated successfully in the '${outputRootDir}/${data.slug}' folder!`);
+    console.log(`Ad has been generated successfully in the '${outputRootDir}/${slug}' folder!`);
 
     // Dynamically import 'open' and open the generated index.html file
     const { default: open } = await import('open');
-    await open(path.join(outputRootDir, data.slug, 'index.html'));
+    await open(path.join(outputRootDir, slug, 'index.html'));
   } catch (error) {
     console.error('Error generating files:', error);
   }

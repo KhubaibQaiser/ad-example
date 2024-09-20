@@ -1,0 +1,9 @@
+<div class="suggestions">
+  <div class="suggestions-wrapper">
+    <% products.forEach(product => { %>
+    <a href="<%= product.handle %>" target="_blank" class="suggestion-item" data-item="<%= JSON.stringify({ ...product, index }) %>">
+      <img src="<%= product.image %>" alt="Product <%= product.id %>" loading="lazy" class="suggestion" />
+    </a>
+    <% }) %>
+  </div>
+</div>

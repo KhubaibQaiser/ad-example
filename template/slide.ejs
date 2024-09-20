@@ -1,18 +1,6 @@
-<section class="product-section" data-item="<%= JSON.stringify({ ...product, index, suggestions: undefined }) %>">
-  <div class="bg-overlay-container" style="background-color: <%= product.bgColor %>">
-    <div class="bg-overlay"></div>
-    <div class="bg-overlay-bottom"></div>
-  </div>
-  <div class="bg-overlay-blend"></div>
-  <img src="<%= product.img %>" alt="<%= product.name %>" loading="lazy" class="product-img" />
-  <div class="suggestions">
-    <div class="suggestions-wrapper">
-      <% product.suggestions.forEach(suggestion => { %>
-      <a href="<%= suggestion.url %>" target="_blank" class="suggestion-item" data-item="<%= JSON.stringify({...suggestion, index}) %>">
-        <img src="<%= suggestion.img %>" alt="<%= suggestion.name %>" loading="lazy" class="suggestion" />
-      </a>
-      </a>
-      <% }) %>
-    </div>
-  </div>
+<section class="product-section" data-item="<%= JSON.stringify({ ...module, index }) %>">
+  <div class="product-backdrop" style="background: url(<%= module.backdropUrl %>)"></div>
+  <% if (module.media === 'video') { %> <%- include(__dirname + '/video-media.ejs', { srcURL: module.srcURL, index: index }) %> <% } else if
+  (module.media === 'picture') { %> <%- include(__dirname + '/picture-media.ejs', { srcURL: module.srcURL, name: module.title, index: index }) %> <% }
+  %> <%- include(__dirname + '/suggestions.ejs', { products: module.products, index: index }) %>
 </section>

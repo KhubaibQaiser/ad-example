@@ -33,7 +33,7 @@ main {
   transition: opacity 0.3s ease-in-out;
 }
 
-.main-bg {
+.product-backdrop {
   position: absolute;
   left: 0;
   right: 0;
@@ -41,6 +41,9 @@ main {
   bottom: 0;
   z-index: -1;
   background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.7) 100%);
+  background-repeat: no-repeat !important;
+  background-position: left top !important;
+  background-size: 100% 100% !important;
 }
 
 .splash {
@@ -122,7 +125,7 @@ main {
   background: url('./assets/bg-overlay.webp') repeat;
 }
 
-.product-img {
+.module-picture {
   width: 100%;
   height: auto;
   position: absolute;
@@ -173,6 +176,11 @@ main {
   height: 100%;
   object-fit: contain;
   transition: transform 0.2s ease-in-out;
+  -webkit-border-radius: inherit;
+  -moz-border-radius: inherit;
+  -ms-border-radius: inherit;
+  -o-border-radius: inherit;
+  border-radius: inherit;
 }
 
 .suggestions-wrapper a img:hover {
@@ -186,6 +194,14 @@ main {
   bottom: 3%;
   z-index: -1;
   background: radial-gradient(100% 80% at 50% 50%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 64%);
+}
+
+.module-video {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* 600 PIXELS HIGH */

@@ -1,71 +1,124 @@
 {
-  "slug": "sports-ad",
-  "products": [
+  "title": "All Up In My Grill Episode 8",
+  "image_url": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/blur-1-1724152858529.png",
+  "description": "",
+  "moduleType": "featureLook",
+  "moduleData": [
     {
-      "name": "Adidas",
-      "img": "assets/product-1/product.png",
-      "bgColor": "#f38e02",
-      "suggestions": [
+      "title": "",
+      "description": "",
+      "media": "video",
+      "duration": 5000,
+      "srcURL": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/AUIMG ep 8 V2 -1724152786098.mp4",
+      "backdropUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/blur-2-1724152858529.png",
+      "products": [
         {
-          "name": "Adidas",
-          "img": "assets/product-1/suggestion-1.png",
-          "url": "https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/2167765914421169176"
+          "id": 1,
+          "image": "https://tastemade.us-west-2.citadel.test.shopsense.ai/_next/image?url=https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Ftest-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l%2F7c72f3ea13264ab78a6f2db69ff285d1-1724075457652&w=1200&q=75",
+          "handle": "587731244733239347"
         },
         {
-          "name": "Nike",
-          "img": "assets/product-1/suggestion-2.png",
-          "url": "https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/7169382077361275352"
+          "id": 2,
+          "image": "https://tastemade.us-west-2.citadel.test.shopsense.ai/_next/image?url=https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Ftest-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l%2Fcf21003d22fb463e90584764081c3d33-1724075457263&w=1200&q=75",
+          "handle": "3543454612529747960"
         },
         {
-          "name": "Puma",
-          "img": "assets/product-1/suggestion-3.png",
-          "url": "https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/494399754107632726"
+          "id": 3,
+          "image": "https://tastemade.us-west-2.citadel.test.shopsense.ai/_next/image?url=https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Ftest-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l%2F2d46d8b6277c47398dda882b91a8c4b3-1724075457174&w=1200&q=75",
+          "handle": "6827796358115528368"
         }
       ]
     },
     {
-      "name": "Nike",
-      "img": "assets/product-2/product.png",
-      "bgColor": "#fbd80e",
-      "suggestions": [
+      "title": "",
+      "description": "",
+      "media": "video",
+      "duration": 5000,
+      "srcURL": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/AUIMG ep8 V1-1724152786097.mp4",
+      "backdropUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/blur-1-1724152858529.png",
+      "products": [
         {
-          "name": "Adidas",
-          "img": "assets/product-2/suggestion-1.png",
-          "url": "https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/2167765914421169176"
+          "id": 1,
+          "image": "https://tastemade.us-west-2.citadel.test.shopsense.ai/_next/image?url=https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Ftest-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l%2F60af764c9f5b4a4e898695c9749da173-1724075457445&w=1200&q=75",
+          "handle": "3136746939264067766"
         },
         {
-          "name": "Nike",
-          "img": "assets/product-2/suggestion-2.png",
-          "url": "https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/7169382077361275352"
-        },
-        {
-          "name": "Puma",
-          "img": "assets/product-2/suggestion-3.png",
-          "url": "https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/494399754107632726"
+          "id": 2,
+          "image": "https://tastemade.us-west-2.citadel.test.shopsense.ai/_next/image?url=https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Ftest-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l%2F5eaba0d9cb884491a0d93ebee5c2e447-1724174197534&w=1200&q=75",
+          "handle": "5466540014339988096"
         }
       ]
     },
     {
-      "name": "Bata",
-      "img": "assets/product-3/product.png",
-      "bgColor": "#0db3f3",
-      "suggestions": [
+      "title": "",
+      "description": "",
+      "media": "video",
+      "duration": 5000,
+      "srcURL": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/AUIMG ep8 V3-1724152786098.mp4",
+      "backdropUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/blur-3-1724152858529.png",
+      "products": [
         {
-          "name": "Adidas",
-          "img": "assets/product-3/suggestion-1.png",
-          "url": "https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/2167765914421169176"
+          "id": 1,
+          "image": "https://tastemade.us-west-2.citadel.test.shopsense.ai/_next/image?url=https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Ftest-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l%2F6856003032764defa38634e304c0fe35-1724075457178&w=1200&q=75",
+          "handle": "612398760366375867"
         },
         {
-          "name": "Nike",
-          "img": "assets/product-3/suggestion-2.png",
-          "url": "https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/7169382077361275352"
+          "id": 2,
+          "image": "https://tastemade.us-west-2.citadel.test.shopsense.ai/_next/image?url=https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Ftest-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l%2F4705af322fb84b929c4be8c927fae47f-1724075457211&w=1200&q=75",
+          "handle": "961809976375719329"
         },
         {
-          "name": "Puma",
-          "img": "assets/product-3/suggestion-3.png",
-          "url": "https://paramount.us-west-2.citadel.test.shopsense.ai/shop/products/494399754107632726"
+          "id": 3,
+          "image": "https://tastemade.us-west-2.citadel.test.shopsense.ai/_next/image?url=https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Ftest-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l%2Fdc90a4b915ee43f0b8c1f40003fdf5fe-1724075457279&w=1200&q=75",
+          "handle": "2298940287461372532"
+        }
+      ]
+    },
+    {
+      "title": "",
+      "description": "",
+      "media": "video",
+      "duration": 5000,
+      "srcURL": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/AUIMG ep8 V4-1724152786099.mp4",
+      "backdropUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/blur-4-1724152858529.png",
+      "products": [
+        {
+          "id": 1,
+          "image": "https://tastemade.us-west-2.citadel.test.shopsense.ai/_next/image?url=https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Ftest-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l%2F3cd6e58dc5724774a4722f0a9f19d59a-1724075457194&w=1200&q=75",
+          "handle": "1392975268286400353"
+        },
+        {
+          "id": 2,
+          "image": "https://tastemade.us-west-2.citadel.test.shopsense.ai/_next/image?url=https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Ftest-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l%2Ff9e3d24c27074cfd8d62c5aaabd37503-1724075457861&w=1200&q=75",
+          "handle": "8897817259364492064"
+        },
+        {
+          "id": 3,
+          "image": "https://tastemade.us-west-2.citadel.test.shopsense.ai/_next/image?url=https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Ftest-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l%2Fbe403e0c22eb4a5398cb908cc847e352-1724174197891&w=1200&q=75",
+          "handle": "8847285772807553967"
+        }
+      ]
+    },
+    {
+      "title": "",
+      "description": "",
+      "media": "video",
+      "duration": 5000,
+      "srcURL": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/AUIMG ep8 V5-1724152786099.mp4",
+      "backdropUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/blur-5-1724152858531.png",
+      "products": [
+        {
+          "id": 1,
+          "image": "https://tastemade.us-west-2.citadel.test.shopsense.ai/_next/image?url=https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Ftest-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l%2F398453b72014439ea8a5008e08d9f877-1724075457242&w=1200&q=75",
+          "handle": "4745629516903892857"
+        },
+        {
+          "id": 2,
+          "image": "https://tastemade.us-west-2.citadel.test.shopsense.ai/_next/image?url=https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Ftest-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l%2Fc5823b135e1347ba8c599b3172a9f801-1724075457148&w=1200&q=75",
+          "handle": "6152023729066827681"
         }
       ]
     }
-  ]
+  ],
+  "products": []
 }

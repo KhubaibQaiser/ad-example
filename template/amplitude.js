@@ -5,7 +5,6 @@ const getData = (element, attr) => {
 
 // Define the callback function to be executed when the element is in the viewport
 const elementWithinViewport = (element) => {
-  console.log('Element is now in the viewport!', element);
   window.analytics.logEvent('Slide Rendered', getData(element, 'item'));
 };
 
