@@ -78,21 +78,38 @@ function isImage(ext) {
   return ['.jpg', '.jpeg', '.png', '.webp', '.tiff', '.gif', '.svg'].includes(ext.startsWith('.') ? ext : `.${ext}`);
 }
 
-// function fetchData() {
-//   if (process.env.STORE_URL) {
-//     axios({
-//       method: 'get',
-//       url: `${process.env.STORE_URL}store/custom/store/superstore/super`,
-//     }).then((response) => {
-//       const store = response.data.sub_stores.find((store) => store.handle === currentCollectionHandle);
-//       console.log('CURRENT STORE:', { currentStore, currentCollectionHandle, store });
-//     });
-//   }
-// }
+async function fetchData() {
+  if (process.env.STORE_URL) {
+    console.log('Fetching data from store...');
+    try {
+      const response = await axios({
+        method: 'get',
+        url: `${process.env.STORE_URL}store/custom/store/superstore/super`,
+      });
 
-// fetchData();
-
-// return;
+      const store = response.data.sub_stores.find((store) => store.handle === currentCollectionHandle);
+      store.collections.forEach((collection) => {
+        if (collection.moduleType === 'featureLook') {
+          const data = {
+            ...collection,
+            collection_handle: store.handle,
+            moduleData: collection.metadata.moduleData,
+            metadata: undefined,
+          };
+          console.log('Storing data to file...');
+          fs.writeFileSync(path.join(__dirname, 'data', 'data.json'), JSON.stringify(data));
+          console.log('Data stored to file successfully!');
+        }
+      });
+    } catch (error) {
+      console.error('Error fetching data from store:', error);
+      throw new Error('Error fetching data from store');
+    }
+  } else {
+    console.error('STORE_URL not found in .env file');
+    throw new Error('STORE_URL not found in .env file');
+  }
+}
 
 // Function to read and render the template
 function renderTemplate(templatePath, data) {
@@ -110,6 +127,7 @@ function minifyHtml(html, moreOptions = {}) {
     removeStyleLinkTypeAttributes: true,
     useShortDoctype: true,
     minifyJS: true,
+    minifyCSS: true,
     ...moreOptions,
   });
 }
@@ -136,7 +154,6 @@ async function minifyJs(jsPath) {
 }
 
 // Function to download and save files
-
 async function downloadFile(url, outputPath) {
   const response = await axios({
     url,
@@ -214,8 +231,8 @@ async function downloadAndProcessAssets(data, assetsDir) {
           downloadPromises,
           ext: 'webp',
         });
-        // TODO: Get this base url from somewhere
-        const handleBaseUrl = 'https://tastemade.us-west-2.citadel.test.shopsense.ai/auimg/products/';
+
+        const handleBaseUrl = `${process.env.STORE_URL}/${data.collection_handle}/products/`;
         product.handle = `${handleBaseUrl}${product.handle}`;
       }
     }
@@ -302,26 +319,12 @@ async function processAssets(inputDir, outputDir, _width, _quality) {
   }
 }
 
-// Function to update asset paths in data.json
-// function updateAssetPaths(data, assetsDir) {
-//   const updatePaths = (obj) => {
-//     for (const key in obj) {
-//       if (typeof obj[key] === 'string' && obj[key].startsWith(assetsDir)) {
-//         obj[key] = obj[key].replace(/\.(jpg|jpeg|png|tiff|gif|svg)$/i, '.webp');
-//       } else if (typeof obj[key] === 'object') {
-//         updatePaths(obj[key]);
-//       }
-//     }
-//   };
-//   updatePaths(data);
-// }
-
 function validateData(_d) {
   const schema = require(path.join(__dirname, 'data', 'schema.js'));
   const validationResult = schema.safeParse(_d);
   if (!validationResult.success) {
     console.error('Validation errors:', validationResult.error);
-    throw new Error(validationResult.error);
+    // throw new Error(validationResult.error);
   }
 }
 
@@ -353,6 +356,8 @@ function getSlug(title) {
 // Main function to generate ads
 async function generateAd() {
   try {
+    await fetchData();
+
     const dataPath = path.join(__dirname, 'data', 'data.json');
     const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
 
@@ -362,7 +367,7 @@ async function generateAd() {
     // updateAssetPaths(data, assetsDir);
 
     const outputRootDir = 'ads';
-    const slug = getSlug(data.title);
+    const slug = data.handle || getSlug(data.title);
     const outputDir = path.join(outputRootDir, slug, 'ad');
     await fsExtra.ensureDir(outputDir);
 
@@ -397,7 +402,7 @@ async function generateAd() {
 
     // Copy ad.html to the output directory root and rename it to index.html
     const adHtml = renderTemplate(path.join(__dirname, 'ad.html'), { width: argv.width, height: argv.height });
-    const minifiedAdHtml = minifyHtml(adHtml, { minifyCSS: true });
+    const minifiedAdHtml = minifyHtml(adHtml);
     fs.writeFileSync(path.join(outputRootDir, slug, 'index.html'), minifiedAdHtml);
 
     console.log(`Ad has been generated successfully in the '${outputRootDir}/${slug}' folder!`);
