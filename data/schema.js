@@ -22,6 +22,7 @@ const validationSchema = z.object({
   description: z.string(),
   moduleType: z.string(),
   moduleData: z.array(moduleDataSchema),
+  collection_handle: z.string(),
   products: z.array(z.unknown()),
 });
 

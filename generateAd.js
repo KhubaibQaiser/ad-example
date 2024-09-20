@@ -1,190 +1,17 @@
 const fs = require('fs');
-const ejs = require('ejs');
-const { minify } = require('html-minifier');
-const CleanCSS = require('clean-css');
-const Terser = require('terser');
 const path = require('path');
 const fsExtra = require('fs-extra');
-const sharp = require('sharp');
-const yargs = require('yargs/yargs');
-const { hideBin } = require('yargs/helpers');
-const dotenv = require('dotenv');
-const axios = require('axios');
-const ffmpeg = require('fluent-ffmpeg');
-// if (process.env.NODE_ENV === 'production') {
-//   // Path to the local FFmpeg binary
-//   const ffmpegPath = path.join(__dirname, 'lib', 'ffmpeg');
-//   // Set the path to the FFmpeg binary
-//   ffmpeg.setFfmpegPath(ffmpegPath);
-// }
+const { processVideoAsset } = require('./src/modules/video.js');
+const config = require('./src/config.js').default;
+const { processImageAsset } = require('./src/modules/image.js');
+const { fetchData } = require('./src/api.js');
+const { isImage, minifyHtml, minifyCss, minifyJs, renderTemplate, getSlug, validateData } = require('./src/utils.js');
+const { downloadAndPlaceAsset } = require('./src/modules/file.js');
 
-// Parse command-line arguments
-const argv = yargs(hideBin(process.argv))
-  .option('width', {
-    alias: 'w',
-    type: 'number',
-    description: 'Width for the ad unit',
-    default: 160,
-  })
-  .option('height', {
-    alias: 'h',
-    type: 'number',
-    description: 'Height for the ad unit',
-    default: 600,
-  })
-  .option('quality', {
-    alias: 'q',
-    type: 'number',
-    description: 'Quality for image compression',
-    default: 80,
-  })
-  .option('compress-video', {
-    alias: 'cv',
-    type: 'boolean',
-    description: 'Enable or disable video compression',
-    default: false,
-  })
-  .option('store-handle', {
-    alias: 'sh',
-    type: 'string',
-    description: 'Store handle',
-    default: 'tastemade',
-  })
-  .option('collection-handle', {
-    alias: 'ch',
-    type: 'string',
-    description: 'Store Collection handle',
-    default: 'auimg',
-  }).argv;
+const { width: imageWidth, compressVideos, tempDownloadDir } = config;
 
-// Load environment variables
-const isProduction = process.env.NODE_ENV === 'production';
-const envFile = `.env.${isProduction ? 'production' : 'development'}`;
-const storeHandleEnvFile = `.env.${argv['store-handle']}${isProduction ? '' : '.test'}`;
-
-dotenv.config({ path: envFile });
-dotenv.config({ path: storeHandleEnvFile });
-
-// console.log('STORE ENV', process.env);
-
-const currentStore = argv['store-handle'];
-const currentCollectionHandle = argv['collection-handle'];
-const imageWidth = argv.width;
 const suggestionImageRatio = 0.4; // 64/160 - suggestion div size / ad unit size
 const suggestionImageWidth = imageWidth * suggestionImageRatio * 1.5;
-const compressVideos = argv['compress-video'];
-const tempDownloadDir = path.join(__dirname, 'temp');
-
-function isImage(ext) {
-  return ['.jpg', '.jpeg', '.png', '.webp', '.tiff', '.gif', '.svg'].includes(ext.startsWith('.') ? ext : `.${ext}`);
-}
-
-async function fetchData() {
-  if (process.env.STORE_URL) {
-    console.log('Fetching data from store...');
-    try {
-      const response = await axios({
-        method: 'get',
-        url: `${process.env.STORE_URL}store/custom/store/superstore/super`,
-      });
-
-      const store = response.data.sub_stores.find((store) => store.handle === currentCollectionHandle);
-      store.collections.forEach((collection) => {
-        if (collection.moduleType === 'featureLook') {
-          const data = {
-            ...collection,
-            collection_handle: store.handle,
-            moduleData: collection.metadata.moduleData,
-            metadata: undefined,
-          };
-          console.log('Storing data to file...');
-          fs.writeFileSync(path.join(__dirname, 'data', 'data.json'), JSON.stringify(data));
-          console.log('Data stored to file successfully!');
-        }
-      });
-    } catch (error) {
-      console.error('Error fetching data from store:', error);
-      throw new Error('Error fetching data from store');
-    }
-  } else {
-    console.error('STORE_URL not found in .env file');
-    throw new Error('STORE_URL not found in .env file');
-  }
-}
-
-// Function to read and render the template
-function renderTemplate(templatePath, data) {
-  const template = fs.readFileSync(templatePath, 'utf-8');
-  return ejs.render(template, { data: data, __dirname: path.dirname(templatePath) });
-}
-
-// Function to minify HTML
-function minifyHtml(html, moreOptions = {}) {
-  return minify(html, {
-    collapseWhitespace: true,
-    removeComments: true,
-    removeRedundantAttributes: true,
-    removeScriptTypeAttributes: true,
-    removeStyleLinkTypeAttributes: true,
-    useShortDoctype: true,
-    minifyJS: true,
-    minifyCSS: true,
-    ...moreOptions,
-  });
-}
-
-// Function to minify CSS
-function minifyCss(cssPath) {
-  const css = fs.readFileSync(cssPath, 'utf-8');
-  return new CleanCSS().minify(css).styles;
-}
-
-// Function to minify JS
-async function minifyJs(jsPath) {
-  const js = fs.readFileSync(jsPath, 'utf-8');
-  try {
-    const result = await Terser.minify(js);
-    if (result.error) {
-      throw result.error;
-    }
-    return result.code;
-  } catch (error) {
-    console.error('Error during JS minification:', error);
-    return js; // Fallback to original JS if minification fails
-  }
-}
-
-// Function to download and save files
-async function downloadFile(url, outputPath) {
-  const response = await axios({
-    url,
-    method: 'GET',
-    responseType: 'stream',
-    onDownloadProgress: (progressEvent) => {
-      const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-      console.group();
-      console.log(`Downloading ${url}: ${percentCompleted}%`);
-      console.groupEnd();
-    },
-  });
-
-  return new Promise((resolve, reject) => {
-    const writer = fs.createWriteStream(outputPath);
-    response.data.pipe(writer);
-    writer.on('finish', resolve);
-    writer.on('error', reject);
-  });
-}
-
-function downloadAndPlaceAsset({ assetUrl, assetsDir, ext, assetName, outAssetName, downloadPromises }) {
-  let extensionFromAsset = path.extname(assetUrl).toLowerCase();
-  extensionFromAsset = extensionFromAsset.startsWith('.') ? extensionFromAsset.slice(1) : extensionFromAsset;
-  extensionFromAsset = isImage(extensionFromAsset) ? 'webp' : extensionFromAsset;
-  const extension = ext ?? extensionFromAsset;
-  const downloadPath = path.join(tempDownloadDir, `${outAssetName ?? assetName}.${extension}`);
-  downloadPromises.push(downloadFile(assetUrl, downloadPath));
-  return path.join('assets', `${outAssetName ?? assetName}.${extension}`);
-}
 
 // Function to download and process assets
 async function downloadAndProcessAssets(data, assetsDir) {
@@ -244,48 +71,8 @@ async function downloadAndProcessAssets(data, assetsDir) {
   await Promise.all(downloadPromises);
   console.log('Downloaded assets successfully!');
   console.log('Processing assets...');
-  await processAssets(tempDownloadDir, assetsDir, imageWidth, argv.quality);
+  await processAssets(tempDownloadDir, assetsDir, imageWidth, config.quality);
   console.log('Processed images successfully!');
-}
-
-async function processImageAsset(inputPath, outputPath, ext, width, quality) {
-  try {
-    // console.log('Compressing image: ', inputPath);
-    await sharp(inputPath)
-      .resize(width, undefined, { withoutEnlargement: true }) // Resize to the specified width, maintaining aspect ratio
-      .webp({ quality }) // Convert to WebP format with the specified quality
-      .toFile(outputPath.replace(ext, '.webp'));
-    // console.log('Compressed image: ', outputPath.replace(ext, '.webp'));
-  } catch (error) {
-    console.error(`Error processing file ${inputPath}:`, error);
-  }
-}
-
-function processVideoAsset(inputPath, outputPath, width) {
-  if (!compressVideos) {
-    // !Important: Video compression is not supported on servers without FFmpeg installed
-    console.warn('Skipping video compression...');
-    fs.copyFileSync(inputPath, outputPath);
-    return;
-  }
-  return new Promise((resolve, reject) => {
-    ffmpeg(inputPath)
-      .output(outputPath)
-      .videoCodec('libx264')
-      .noAudio()
-      .size(`${width}x?`) // Resize to the specified width, maintaining aspect ratio
-      .videoBitrate('1000k') // Set video bitrate
-      .outputOptions('-crf 35') // Set constant rate factor for quality
-      .on('error', reject)
-      .on('progress', (progress) => {
-        console.log('Video Compression Progress:', progress.frames);
-      })
-      .on('end', () => {
-        console.log('Video compression and resizing complete!', inputPath);
-        resolve('Video compression and resizing complete!');
-      })
-      .run();
-  });
 }
 
 // Function to process images
@@ -313,18 +100,9 @@ async function processAssets(inputDir, outputDir, _width, _quality) {
       } else {
         // fs.copyFileSync(inputPath, outputPath);
         // console.warn(`Unsupported file format: ${inputPath}`);
-        await processVideoAsset(inputPath, outputPath, w);
+        await processVideoAsset(inputPath, outputPath, w, compressVideos);
       }
     }
-  }
-}
-
-function validateData(_d) {
-  const schema = require(path.join(__dirname, 'data', 'schema.js'));
-  const validationResult = schema.safeParse(_d);
-  if (!validationResult.success) {
-    console.error('Validation errors:', validationResult.error);
-    // throw new Error(validationResult.error);
   }
 }
 
@@ -344,13 +122,6 @@ async function copyGlobalFiles(outputDir) {
       fs.writeFileSync(path.join(outputFilePath), minifiedContent);
     }
   }
-}
-
-function getSlug(title) {
-  return title
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '');
 }
 
 // Main function to generate ads
@@ -391,17 +162,17 @@ async function generateAd() {
     const templateAssetsDir = path.join(__dirname, 'template', 'assets');
     await fsExtra.ensureDir(templateAssetsDir);
     await fsExtra.ensureDir(outputAssetsDir);
-    await processAssets(templateAssetsDir, outputAssetsDir, imageWidth, argv.quality);
+    await processAssets(templateAssetsDir, outputAssetsDir, imageWidth, config.quality);
 
     const dataAssetsDir = path.join(__dirname, 'data', 'assets');
     if (fs.existsSync(dataAssetsDir)) {
-      await processAssets(dataAssetsDir, outputAssetsDir, imageWidth, argv.quality);
+      await processAssets(dataAssetsDir, outputAssetsDir, imageWidth, config.quality);
     }
 
     await copyGlobalFiles(outputDir);
 
     // Copy ad.html to the output directory root and rename it to index.html
-    const adHtml = renderTemplate(path.join(__dirname, 'ad.html'), { title: data.title, width: argv.width, height: argv.height });
+    const adHtml = renderTemplate(path.join(__dirname, 'ad.html'), { title: data.title, width: config.width, height: config.height });
     const minifiedAdHtml = minifyHtml(adHtml);
     fs.writeFileSync(path.join(outputRootDir, slug, 'index.html'), minifiedAdHtml);
 
