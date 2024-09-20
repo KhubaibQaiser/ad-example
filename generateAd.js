@@ -73,6 +73,7 @@ const imageWidth = argv.width;
 const suggestionImageRatio = 0.4; // 64/160 - suggestion div size / ad unit size
 const suggestionImageWidth = imageWidth * suggestionImageRatio * 1.5;
 const compressVideos = argv['compress-video'];
+const tempDownloadDir = path.join(__dirname, 'temp');
 
 function isImage(ext) {
   return ['.jpg', '.jpeg', '.png', '.webp', '.tiff', '.gif', '.svg'].includes(ext.startsWith('.') ? ext : `.${ext}`);
@@ -159,6 +160,12 @@ async function downloadFile(url, outputPath) {
     url,
     method: 'GET',
     responseType: 'stream',
+    onDownloadProgress: (progressEvent) => {
+      const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+      console.group();
+      console.log(`Downloading ${url}: ${percentCompleted}%`);
+      console.groupEnd();
+    },
   });
 
   return new Promise((resolve, reject) => {
@@ -169,7 +176,7 @@ async function downloadFile(url, outputPath) {
   });
 }
 
-function downloadAndPlaceAsset({ assetUrl, assetsDir, tempDownloadDir, ext, assetName, outAssetName, downloadPromises }) {
+function downloadAndPlaceAsset({ assetUrl, assetsDir, ext, assetName, outAssetName, downloadPromises }) {
   let extensionFromAsset = path.extname(assetUrl).toLowerCase();
   extensionFromAsset = extensionFromAsset.startsWith('.') ? extensionFromAsset.slice(1) : extensionFromAsset;
   extensionFromAsset = isImage(extensionFromAsset) ? 'webp' : extensionFromAsset;
@@ -184,14 +191,13 @@ async function downloadAndProcessAssets(data, assetsDir) {
   await fsExtra.ensureDir(assetsDir);
   const downloadPromises = [];
 
-  const tempDownloadDir = path.join(__dirname, 'temp');
   await fsExtra.ensureDir(tempDownloadDir);
 
   console.log('Downloading assets...');
 
   // Download and process image_url
   if (data.image_url) {
-    data.image_url = downloadAndPlaceAsset({ assetUrl: data.image_url, assetName: 'main_image', assetsDir, tempDownloadDir, downloadPromises });
+    data.image_url = downloadAndPlaceAsset({ assetUrl: data.image_url, assetName: 'main_image', assetsDir, downloadPromises });
   }
 
   // Download and process moduleData assets
@@ -203,7 +209,6 @@ async function downloadAndProcessAssets(data, assetsDir) {
         assetUrl: module.srcURL,
         assetName: `asset_${module.media}_${i}`,
         assetsDir,
-        tempDownloadDir,
         downloadPromises,
       });
     }
@@ -213,7 +218,6 @@ async function downloadAndProcessAssets(data, assetsDir) {
         assetUrl: module.backdropUrl,
         assetName: `backdrop_${i}`,
         assetsDir,
-        tempDownloadDir,
         downloadPromises,
       });
     }
@@ -227,7 +231,6 @@ async function downloadAndProcessAssets(data, assetsDir) {
           assetName: `product_${i}_${j}`,
           outAssetName: `product_${i}_${j}_w_${suggestionImageWidth}`,
           assetsDir,
-          tempDownloadDir,
           downloadPromises,
           ext: 'webp',
         });
@@ -242,9 +245,6 @@ async function downloadAndProcessAssets(data, assetsDir) {
   console.log('Downloaded assets successfully!');
   console.log('Processing assets...');
   await processAssets(tempDownloadDir, assetsDir, imageWidth, argv.quality);
-  // Remove the temporary download directory
-  console.log('Removing temporary download directory...');
-  await fsExtra.remove(tempDownloadDir);
   console.log('Processed images successfully!');
 }
 
@@ -412,6 +412,10 @@ async function generateAd() {
     await open(path.join(outputRootDir, slug, 'index.html'));
   } catch (error) {
     console.error('Error generating files:', error);
+  } finally {
+    // Remove the temporary download directory
+    console.log('Removing temporary download directory...');
+    await fsExtra.remove(tempDownloadDir);
   }
 }
 
