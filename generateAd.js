@@ -18,11 +18,6 @@ const ffmpeg = require('fluent-ffmpeg');
 //   ffmpeg.setFfmpegPath(ffmpegPath);
 // }
 
-// Load environment variables
-const envFile = `.env.${process.env.NODE_ENV || 'development'}`;
-
-dotenv.config({ path: envFile });
-
 // Parse command-line arguments
 const argv = yargs(hideBin(process.argv))
   .option('width', {
@@ -48,8 +43,32 @@ const argv = yargs(hideBin(process.argv))
     type: 'boolean',
     description: 'Enable or disable video compression',
     default: false,
+  })
+  .option('store-handle', {
+    alias: 'sh',
+    type: 'string',
+    description: 'Store handle',
+    default: 'tastemade',
+  })
+  .option('collection-handle', {
+    alias: 'ch',
+    type: 'string',
+    description: 'Store Collection handle',
+    default: 'auimg',
   }).argv;
 
+// Load environment variables
+const isProduction = process.env.NODE_ENV === 'production';
+const envFile = `.env.${isProduction ? 'production' : 'development'}`;
+const storeHandleEnvFile = `.env.${argv['store-handle']}${isProduction ? '' : '.test'}`;
+
+dotenv.config({ path: envFile });
+dotenv.config({ path: storeHandleEnvFile });
+
+// console.log('STORE ENV', process.env);
+
+const currentStore = argv['store-handle'];
+const currentCollectionHandle = argv['collection-handle'];
 const imageWidth = argv.width;
 const suggestionImageRatio = 0.4; // 64/160 - suggestion div size / ad unit size
 const suggestionImageWidth = imageWidth * suggestionImageRatio * 1.5;
@@ -58,6 +77,22 @@ const compressVideos = argv['compress-video'];
 function isImage(ext) {
   return ['.jpg', '.jpeg', '.png', '.webp', '.tiff', '.gif', '.svg'].includes(ext.startsWith('.') ? ext : `.${ext}`);
 }
+
+// function fetchData() {
+//   if (process.env.STORE_URL) {
+//     axios({
+//       method: 'get',
+//       url: `${process.env.STORE_URL}store/custom/store/superstore/super`,
+//     }).then((response) => {
+//       const store = response.data.sub_stores.find((store) => store.handle === currentCollectionHandle);
+//       console.log('CURRENT STORE:', { currentStore, currentCollectionHandle, store });
+//     });
+//   }
+// }
+
+// fetchData();
+
+// return;
 
 // Function to read and render the template
 function renderTemplate(templatePath, data) {
@@ -298,14 +333,12 @@ async function copyGlobalFiles(outputDir) {
     for (const file of files) {
       const filePath = path.join(globalDir, file);
       const outputFilePath = path.join(outputDir, file);
+      let minifiedContent = await minifyJs(filePath);
       if (file === 'amplitude-wrapper.min.js') {
-        const minifiedAmplitudeWrapperJs = await minifyJs(filePath);
-        let replacedAmplitudeWrapperJs = minifiedAmplitudeWrapperJs.replace('AMPLITUDE_API_KEY', process.env.AMPLITUDE_API_KEY);
-        replacedAmplitudeWrapperJs = replacedAmplitudeWrapperJs.replace('ENV_PLACEHOLDER', process.env.NODE_ENV || 'development');
-        fs.writeFileSync(path.join(outputFilePath), replacedAmplitudeWrapperJs);
-      } else {
-        fs.copyFileSync(filePath, outputFilePath);
+        minifiedContent = minifiedContent.replace('AMPLITUDE_API_KEY', process.env.AMPLITUDE_API_KEY);
+        minifiedContent = minifiedContent.replace('ENV_PLACEHOLDER', process.env.NODE_ENV || 'development');
       }
+      fs.writeFileSync(path.join(outputFilePath), minifiedContent);
     }
   }
 }
@@ -347,11 +380,8 @@ async function generateAd() {
     const minifiedJs = await minifyJs(path.join(__dirname, 'template', 'script.js'));
     fs.writeFileSync(path.join(outputDir, 'script.js'), minifiedJs);
 
-    // const minifiedAmplitudeWrapperJs = await minifyJs(path.join(__dirname, 'template', 'amplitude-wrapper.js'));
-    // fs.writeFileSync(path.join(outputDir, 'amplitude-wrapper.js'), minifiedAmplitudeWrapperJs);
-
-    const minifiedAmplitudeJs = await minifyJs(path.join(__dirname, 'template', 'amplitude.js'));
-    fs.writeFileSync(path.join(outputDir, 'amplitude.js'), minifiedAmplitudeJs);
+    const minifiedAmplitudeJs = await minifyJs(path.join(__dirname, 'template', 'amplitude-tracking.js'));
+    fs.writeFileSync(path.join(outputDir, 'amplitude-tracking.min.js'), minifiedAmplitudeJs);
 
     const templateAssetsDir = path.join(__dirname, 'template', 'assets');
     await fsExtra.ensureDir(templateAssetsDir);
