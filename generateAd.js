@@ -102,15 +102,14 @@ async function downloadFile(url, outputPath) {
   });
 }
 
-function downloadAndPlaceFile({ assetUrl, assetsDir, tempDownloadDir, ext, assetName, outAssetName, downloadPromises }) {
+function downloadAndPlaceAsset({ assetUrl, assetsDir, tempDownloadDir, ext, assetName, outAssetName, downloadPromises }) {
   let extensionFromAsset = path.extname(assetUrl).toLowerCase();
   extensionFromAsset = extensionFromAsset.startsWith('.') ? extensionFromAsset.slice(1) : extensionFromAsset;
   extensionFromAsset = isImage(extensionFromAsset) ? 'webp' : extensionFromAsset;
   const extension = ext ?? extensionFromAsset;
-  const assetPath = path.join(assetsDir, `${assetName}.${extension}`);
   const downloadPath = path.join(tempDownloadDir, `${outAssetName ?? assetName}.${extension}`);
   downloadPromises.push(downloadFile(assetUrl, downloadPath));
-  return path.join(assetsDir, `${outAssetName ?? assetName}.${extension}`);
+  return path.join('assets', `${outAssetName ?? assetName}.${extension}`);
 }
 
 // Function to download and process assets
@@ -125,7 +124,7 @@ async function downloadAndProcessAssets(data, assetsDir) {
 
   // Download and process image_url
   if (data.image_url) {
-    data.image_url = downloadAndPlaceFile({ assetUrl: data.image_url, assetName: 'main_image', assetsDir, tempDownloadDir, downloadPromises });
+    data.image_url = downloadAndPlaceAsset({ assetUrl: data.image_url, assetName: 'main_image', assetsDir, tempDownloadDir, downloadPromises });
   }
 
   // Download and process moduleData assets
@@ -133,7 +132,7 @@ async function downloadAndProcessAssets(data, assetsDir) {
     const module = data.moduleData[i];
 
     if (module.srcURL) {
-      module.srcURL = downloadAndPlaceFile({
+      module.srcURL = downloadAndPlaceAsset({
         assetUrl: module.srcURL,
         assetName: `asset_${module.media}_${i}`,
         assetsDir,
@@ -143,7 +142,7 @@ async function downloadAndProcessAssets(data, assetsDir) {
     }
 
     if (module.backdropUrl) {
-      module.backdropUrl = downloadAndPlaceFile({
+      module.backdropUrl = downloadAndPlaceAsset({
         assetUrl: module.backdropUrl,
         assetName: `backdrop_${i}`,
         assetsDir,
@@ -156,7 +155,7 @@ async function downloadAndProcessAssets(data, assetsDir) {
       const product = module.products[j];
 
       if (product.image) {
-        product.image = downloadAndPlaceFile({
+        product.image = downloadAndPlaceAsset({
           assetUrl: product.image,
           assetName: `product_${i}_${j}`,
           outAssetName: `product_${i}_${j}_w_${suggestionImageWidth}`,
@@ -285,10 +284,11 @@ async function generateAd() {
 
     const outputRootDir = 'ads';
     const slug = getSlug(data.title);
-    const outputDir = path.join(__dirname, outputRootDir, slug, 'ad');
+    const outputDir = path.join(outputRootDir, slug, 'ad');
     await fsExtra.ensureDir(outputDir);
 
     const outputAssetsDir = path.join(outputDir, 'assets');
+    console.warn('outputAssetsDir', outputAssetsDir);
     await downloadAndProcessAssets(data, outputAssetsDir);
 
     const html = renderTemplate(path.join(__dirname, 'template', 'index.html'), data);
