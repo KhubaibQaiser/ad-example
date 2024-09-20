@@ -9,11 +9,11 @@ const sharp = require('sharp');
 const yargs = require('yargs/yargs');
 const { hideBin } = require('yargs/helpers');
 const dotenv = require('dotenv');
+const axios = require('axios');
 
 // Load environment variables
 const envFile = `.env.${process.env.NODE_ENV || 'development'}`;
 
-console.log('NODE_ENV', process.env.NODE_ENV);
 dotenv.config({ path: envFile });
 
 // Parse command-line arguments
@@ -37,7 +37,13 @@ const argv = yargs(hideBin(process.argv))
     default: 80,
   }).argv;
 
-const imageWidth = argv.width * 1.9;
+const imageWidth = argv.width;
+const suggestionImageRatio = 0.4; // 64/160 - suggestion div size / ad unit size
+const suggestionImageWidth = imageWidth * suggestionImageRatio * 2;
+
+function isImage(ext) {
+  return ['.jpg', '.jpeg', '.png', '.webp', '.tiff', '.gif', '.svg'].includes(ext.startsWith('.') ? ext : `.${ext}`);
+}
 
 // Function to read and render the template
 function renderTemplate(templatePath, data) {
@@ -79,6 +85,103 @@ async function minifyJs(jsPath) {
   }
 }
 
+// Function to download and save files
+
+async function downloadFile(url, outputPath) {
+  const response = await axios({
+    url,
+    method: 'GET',
+    responseType: 'stream',
+  });
+
+  return new Promise((resolve, reject) => {
+    const writer = fs.createWriteStream(outputPath);
+    response.data.pipe(writer);
+    writer.on('finish', resolve);
+    writer.on('error', reject);
+  });
+}
+
+function downloadAndPlaceFile({ assetUrl, assetsDir, tempDownloadDir, ext, assetName, outAssetName, downloadPromises }) {
+  let extensionFromAsset = path.extname(assetUrl).toLowerCase();
+  extensionFromAsset = extensionFromAsset.startsWith('.') ? extensionFromAsset.slice(1) : extensionFromAsset;
+  extensionFromAsset = isImage(extensionFromAsset) ? 'webp' : extensionFromAsset;
+  const extension = ext ?? extensionFromAsset;
+  const assetPath = path.join(assetsDir, `${assetName}.${extension}`);
+  const downloadPath = path.join(tempDownloadDir, `${outAssetName ?? assetName}.${extension}`);
+  downloadPromises.push(downloadFile(assetUrl, downloadPath));
+  return path.join(assetsDir, `${outAssetName ?? assetName}.${extension}`);
+}
+
+// Function to download and process assets
+async function downloadAndProcessAssets(data, assetsDir) {
+  await fsExtra.ensureDir(assetsDir);
+  const downloadPromises = [];
+
+  const tempDownloadDir = path.join(__dirname, 'temp');
+  await fsExtra.ensureDir(tempDownloadDir);
+
+  console.log('Downloading assets...');
+
+  // Download and process image_url
+  if (data.image_url) {
+    data.image_url = downloadAndPlaceFile({ assetUrl: data.image_url, assetName: 'main_image', assetsDir, tempDownloadDir, downloadPromises });
+  }
+
+  // Download and process moduleData assets
+  for (let i = 0; i < data.moduleData.length; i++) {
+    const module = data.moduleData[i];
+
+    if (module.srcURL) {
+      module.srcURL = downloadAndPlaceFile({
+        assetUrl: module.srcURL,
+        assetName: `asset_${module.media}_${i}`,
+        assetsDir,
+        tempDownloadDir,
+        downloadPromises,
+      });
+    }
+
+    if (module.backdropUrl) {
+      module.backdropUrl = downloadAndPlaceFile({
+        assetUrl: module.backdropUrl,
+        assetName: `backdrop_${i}`,
+        assetsDir,
+        tempDownloadDir,
+        downloadPromises,
+      });
+    }
+
+    for (let j = 0; j < module.products.length; j++) {
+      const product = module.products[j];
+
+      if (product.image) {
+        product.image = downloadAndPlaceFile({
+          assetUrl: product.image,
+          assetName: `product_${i}_${j}`,
+          outAssetName: `product_${i}_${j}_w_${suggestionImageWidth}`,
+          assetsDir,
+          tempDownloadDir,
+          downloadPromises,
+          ext: 'webp',
+        });
+        // TODO: Get this base url from somewhere
+        const handleBaseUrl = 'https://tastemade.us-west-2.citadel.test.shopsense.ai/auimg/products/';
+        product.handle = `${handleBaseUrl}${product.handle}`;
+      }
+    }
+  }
+
+  await Promise.all(downloadPromises);
+  console.log('Downloaded assets successfully!');
+  console.log('Processing assets...');
+  await processImages(tempDownloadDir, assetsDir, imageWidth, argv.quality);
+  // Remove the temporary download directory
+  console.log('Removing temporary download directory...');
+  await fsExtra.remove(tempDownloadDir);
+  console.log('Processed images successfully!');
+}
+
 // Function to process images
 async function processImages(inputDir, outputDir, _width, _quality) {
   const width = parseInt(_width);
@@ -94,16 +197,25 @@ async function processImages(inputDir, outputDir, _width, _quality) {
       await processImages(inputPath, outputPath, width, quality);
     } else {
       const ext = path.extname(entry.name).toLowerCase();
-      if (['.jpg', '.jpeg', '.png', '.webp', '.tiff', '.gif', '.svg'].includes(ext)) {
+      if (isImage(ext)) {
         try {
+          let w = width;
+          if (inputPath.includes('_w_')) {
+            w = inputPath.split('_w_')[1].split('.')[0];
+            w = isNaN(parseInt(w)) ? width : parseInt(w);
+          }
+
+          // console.log('Compressing image: ', inputPath);
           await sharp(inputPath)
-            .resize(width) // Resize to the specified width, maintaining aspect ratio
+            .resize(w) // Resize to the specified width, maintaining aspect ratio
             .webp({ quality }) // Convert to WebP format with the specified quality
             .toFile(outputPath.replace(ext, '.webp'));
+          // console.log('Compressed image: ', outputPath.replace(ext, '.webp'));
         } catch (error) {
           console.error(`Error processing file ${inputPath}:`, error);
         }
       } else {
+        fs.copyFileSync(inputPath, outputPath);
         console.warn(`Unsupported file format: ${inputPath}`);
       }
     }
@@ -168,13 +280,16 @@ async function generateAd() {
 
     validateData(data);
 
-    const assetsDir = 'assets';
-    updateAssetPaths(data, assetsDir);
+    // const assetsDir = 'assets';
+    // updateAssetPaths(data, assetsDir);
 
     const outputRootDir = 'ads';
     const slug = getSlug(data.title);
     const outputDir = path.join(__dirname, outputRootDir, slug, 'ad');
     await fsExtra.ensureDir(outputDir);
+
+    const outputAssetsDir = path.join(outputDir, 'assets');
+    await downloadAndProcessAssets(data, outputAssetsDir);
 
     const html = renderTemplate(path.join(__dirname, 'template', 'index.html'), data);
     const minifiedHtml = minifyHtml(html);
@@ -193,9 +308,9 @@ async function generateAd() {
     fs.writeFileSync(path.join(outputDir, 'amplitude.js'), minifiedAmplitudeJs);
 
     const templateAssetsDir = path.join(__dirname, 'template', 'assets');
-    const outputAssetsDir = path.join(outputDir, 'assets');
+    await fsExtra.ensureDir(templateAssetsDir);
     await fsExtra.ensureDir(outputAssetsDir);
-    await processImages(templateAssetsDir, outputAssetsDir, imageWidth * 0.9, argv.quality);
+    await processImages(templateAssetsDir, outputAssetsDir, imageWidth, argv.quality);
 
     const dataAssetsDir = path.join(__dirname, 'data', 'assets');
     if (fs.existsSync(dataAssetsDir)) {
