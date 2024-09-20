@@ -11,6 +11,12 @@ const { hideBin } = require('yargs/helpers');
 const dotenv = require('dotenv');
 const axios = require('axios');
 const ffmpeg = require('fluent-ffmpeg');
+if (process.env.NODE_ENV === 'production') {
+  // Path to the local FFmpeg binary
+  const ffmpegPath = path.join(__dirname, 'lib', 'ffmpeg');
+  // Set the path to the FFmpeg binary
+  ffmpeg.setFfmpegPath(ffmpegPath);
+}
 
 // Load environment variables
 const envFile = `.env.${process.env.NODE_ENV || 'development'}`;
