@@ -178,7 +178,7 @@ async function downloadAndProcessAssets(data, assetsDir) {
   await processAssets(tempDownloadDir, assetsDir, imageWidth, argv.quality);
   // Remove the temporary download directory
   console.log('Removing temporary download directory...');
-  // await fsExtra.remove(tempDownloadDir);
+  await fsExtra.remove(tempDownloadDir);
   console.log('Processed images successfully!');
 }
 
