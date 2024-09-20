@@ -39,7 +39,7 @@ const argv = yargs(hideBin(process.argv))
 
 const imageWidth = argv.width;
 const suggestionImageRatio = 0.4; // 64/160 - suggestion div size / ad unit size
-const suggestionImageWidth = imageWidth * suggestionImageRatio * 2;
+const suggestionImageWidth = imageWidth * suggestionImageRatio * 1.5;
 
 function isImage(ext) {
   return ['.jpg', '.jpeg', '.png', '.webp', '.tiff', '.gif', '.svg'].includes(ext.startsWith('.') ? ext : `.${ext}`);
@@ -206,7 +206,7 @@ async function processImages(inputDir, outputDir, _width, _quality) {
 
           // console.log('Compressing image: ', inputPath);
           await sharp(inputPath)
-            .resize(w) // Resize to the specified width, maintaining aspect ratio
+            .resize(w, undefined, { withoutEnlargement: true }) // Resize to the specified width, maintaining aspect ratio
             .webp({ quality }) // Convert to WebP format with the specified quality
             .toFile(outputPath.replace(ext, '.webp'));
           // console.log('Compressed image: ', outputPath.replace(ext, '.webp'));
@@ -288,7 +288,7 @@ async function generateAd() {
     await fsExtra.ensureDir(outputDir);
 
     const outputAssetsDir = path.join(outputDir, 'assets');
-    console.warn('outputAssetsDir', outputAssetsDir);
+
     await downloadAndProcessAssets(data, outputAssetsDir);
 
     const html = renderTemplate(path.join(__dirname, 'template', 'index.html'), data);
