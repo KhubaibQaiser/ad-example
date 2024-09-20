@@ -5,7 +5,7 @@ const getData = (element, attr) => {
 
 // Define the callback function to be executed when the element is in the viewport
 const elementWithinViewport = (element) => {
-  window.analytics.logEvent('Slide Rendered', getData(element, 'item'));
+  window.analytics.logEvent('Tile: Rendered', getData(element, 'item'));
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -17,17 +17,17 @@ document.addEventListener('DOMContentLoaded', () => {
     window.getObserverInstance(slide, elementWithinViewport);
     // Track user impressions
     slide.addEventListener('mouseenter', () => {
-      window.analytics.logEvent('Mouse over slide', getData(slide, 'item'));
+      window.analytics.logEvent('Tile: Mouse Over', getData(slide, 'item'));
     });
 
     // Track user mouseenter and mouseclick events on elements inside each slide
     slide.querySelectorAll('.suggestion-item').forEach((element) => {
       element.addEventListener('mouseenter', () => {
-        window.analytics.logEvent('Suggestion Hover', getData(element, 'item'));
+        window.analytics.logEvent('Product: Mouse Hover', getData(element, 'item'));
       });
 
       element.addEventListener('click', () => {
-        window.analytics.logEvent('Suggestion Clicked', getData(element, 'item'));
+        window.analytics.logEvent('Product: Clicked', getData(element, 'item'));
       });
     });
   });
