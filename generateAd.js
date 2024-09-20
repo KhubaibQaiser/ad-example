@@ -42,11 +42,18 @@ const argv = yargs(hideBin(process.argv))
     type: 'number',
     description: 'Quality for image compression',
     default: 80,
+  })
+  .option('compress-video', {
+    alias: 'cv',
+    type: 'boolean',
+    description: 'Enable or disable video compression',
+    default: false,
   }).argv;
 
 const imageWidth = argv.width;
 const suggestionImageRatio = 0.4; // 64/160 - suggestion div size / ad unit size
 const suggestionImageWidth = imageWidth * suggestionImageRatio * 1.5;
+const compressVideos = argv['compress-video'];
 
 function isImage(ext) {
   return ['.jpg', '.jpeg', '.png', '.webp', '.tiff', '.gif', '.svg'].includes(ext.startsWith('.') ? ext : `.${ext}`);
@@ -203,6 +210,12 @@ async function processImageAsset(inputPath, outputPath, ext, width, quality) {
 }
 
 function processVideoAsset(inputPath, outputPath, width) {
+  if (!compressVideos) {
+    // !Important: Video compression is not supported on servers without FFmpeg installed
+    console.warn('Skipping video compression...');
+    fs.copyFileSync(inputPath, outputPath);
+    return;
+  }
   return new Promise((resolve, reject) => {
     ffmpeg(inputPath)
       .output(outputPath)
