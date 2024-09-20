@@ -10,6 +10,7 @@ const yargs = require('yargs/yargs');
 const { hideBin } = require('yargs/helpers');
 const dotenv = require('dotenv');
 const axios = require('axios');
+const ffmpeg = require('fluent-ffmpeg');
 
 // Load environment variables
 const envFile = `.env.${process.env.NODE_ENV || 'development'}`;
@@ -174,15 +175,34 @@ async function downloadAndProcessAssets(data, assetsDir) {
   await Promise.all(downloadPromises);
   console.log('Downloaded assets successfully!');
   console.log('Processing assets...');
-  await processImages(tempDownloadDir, assetsDir, imageWidth, argv.quality);
+  await processAssets(tempDownloadDir, assetsDir, imageWidth, argv.quality);
   // Remove the temporary download directory
   console.log('Removing temporary download directory...');
-  await fsExtra.remove(tempDownloadDir);
+  // await fsExtra.remove(tempDownloadDir);
   console.log('Processed images successfully!');
 }
 
+function processVideoAsset(inputPath, outputPath, width) {
+  return ffmpeg(inputPath)
+    .output(outputPath)
+    .videoCodec('libx264')
+    .noAudio()
+    .size(`${width}x?`)
+    .autopad()
+    .on('error', (err) => {
+      console.error('Error:', err.message);
+    })
+    .on('progress', (progress) => {
+      console.log('Progress:', progress.frames);
+    })
+    .on('end', () => {
+      console.log('Video resizing complete!');
+    })
+    .run();
+}
+
 // Function to process images
-async function processImages(inputDir, outputDir, _width, _quality) {
+async function processAssets(inputDir, outputDir, _width, _quality) {
   const width = parseInt(_width);
   const quality = parseInt(_quality);
 
@@ -193,17 +213,16 @@ async function processImages(inputDir, outputDir, _width, _quality) {
 
     if (entry.isDirectory()) {
       await fsExtra.ensureDir(outputPath);
-      await processImages(inputPath, outputPath, width, quality);
+      await processAssets(inputPath, outputPath, width, quality);
     } else {
       const ext = path.extname(entry.name).toLowerCase();
+      let w = width;
+      if (inputPath.includes('_w_')) {
+        w = inputPath.split('_w_')[1].split('.')[0];
+        w = isNaN(parseInt(w)) ? width : parseInt(w);
+      }
       if (isImage(ext)) {
         try {
-          let w = width;
-          if (inputPath.includes('_w_')) {
-            w = inputPath.split('_w_')[1].split('.')[0];
-            w = isNaN(parseInt(w)) ? width : parseInt(w);
-          }
-
           // console.log('Compressing image: ', inputPath);
           await sharp(inputPath)
             .resize(w, undefined, { withoutEnlargement: true }) // Resize to the specified width, maintaining aspect ratio
@@ -214,26 +233,27 @@ async function processImages(inputDir, outputDir, _width, _quality) {
           console.error(`Error processing file ${inputPath}:`, error);
         }
       } else {
-        fs.copyFileSync(inputPath, outputPath);
+        // fs.copyFileSync(inputPath, outputPath);
         console.warn(`Unsupported file format: ${inputPath}`);
+        await processVideoAsset(inputPath, outputPath, w);
       }
     }
   }
 }
 
 // Function to update asset paths in data.json
-function updateAssetPaths(data, assetsDir) {
-  const updatePaths = (obj) => {
-    for (const key in obj) {
-      if (typeof obj[key] === 'string' && obj[key].startsWith(assetsDir)) {
-        obj[key] = obj[key].replace(/\.(jpg|jpeg|png|tiff|gif|svg)$/i, '.webp');
-      } else if (typeof obj[key] === 'object') {
-        updatePaths(obj[key]);
-      }
-    }
-  };
-  updatePaths(data);
-}
+// function updateAssetPaths(data, assetsDir) {
+//   const updatePaths = (obj) => {
+//     for (const key in obj) {
+//       if (typeof obj[key] === 'string' && obj[key].startsWith(assetsDir)) {
+//         obj[key] = obj[key].replace(/\.(jpg|jpeg|png|tiff|gif|svg)$/i, '.webp');
+//       } else if (typeof obj[key] === 'object') {
+//         updatePaths(obj[key]);
+//       }
+//     }
+//   };
+//   updatePaths(data);
+// }
 
 function validateData(_d) {
   const schema = require(path.join(__dirname, 'data', 'schema.js'));
@@ -310,11 +330,11 @@ async function generateAd() {
     const templateAssetsDir = path.join(__dirname, 'template', 'assets');
     await fsExtra.ensureDir(templateAssetsDir);
     await fsExtra.ensureDir(outputAssetsDir);
-    await processImages(templateAssetsDir, outputAssetsDir, imageWidth, argv.quality);
+    await processAssets(templateAssetsDir, outputAssetsDir, imageWidth, argv.quality);
 
     const dataAssetsDir = path.join(__dirname, 'data', 'assets');
     if (fs.existsSync(dataAssetsDir)) {
-      await processImages(dataAssetsDir, outputAssetsDir, imageWidth, argv.quality);
+      await processAssets(dataAssetsDir, outputAssetsDir, imageWidth, argv.quality);
     }
 
     await copyGlobalFiles(outputDir);
