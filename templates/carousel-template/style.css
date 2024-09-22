@@ -40,7 +40,7 @@ main {
   top: 0;
   bottom: 0;
   z-index: -1;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.7) 100%);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 100%);
   background-repeat: no-repeat !important;
   background-position: left top !important;
   background-size: 100% 100% !important;
@@ -139,10 +139,16 @@ main {
 
 .module-video {
   position: absolute;
-  width: 100%;
+  width: 95%;
   height: auto;
   top: 50%;
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-border-radius: calc(100vw * 0.043);
+  -moz-border-radius: calc(100vw * 0.043);
+  -ms-border-radius: calc(100vw * 0.043);
+  -o-border-radius: calc(100vw * 0.043);
+  border-radius: calc(100vw * 0.043);
 }
 
 /* 600 PIXELS HIGH */
