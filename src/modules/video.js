@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const ffmpeg = require('fluent-ffmpeg');
 // if (process.env.NODE_ENV === 'production') {
 //   // Path to the local FFmpeg binary
