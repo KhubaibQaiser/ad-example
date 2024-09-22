@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const fsExtra = require('fs-extra');
-const config = require('../config').default;
+const { config } = require('../config');
 
 const { processImageAsset } = require('./image');
 const { processVideoAsset } = require('./video');

@@ -5,7 +5,7 @@ const fsExtra = require('fs-extra');
 const { processAssets } = require('../../src/modules/asset-compression');
 const { renderTemplate, minifyHtml, minifyCss, minifyJs } = require('../../src/utils');
 const { downloadAndPlaceAsset } = require('../../src/modules/file');
-const config = require('../../src/config').default;
+const { config } = require('../../src/config');
 
 const suggestionImageRatio = 0.4; // 64/160 - suggestion div size / ad unit size
 const suggestionImageWidth = config.width * suggestionImageRatio * 1.5;

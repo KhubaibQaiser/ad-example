@@ -1,6 +1,6 @@
 const fs = require('fs');
 const axios = require('axios');
-const config = require('./config').default;
+const { config } = require('./config');
 
 async function fetchData() {
   if (config.API_BASE_URL) {

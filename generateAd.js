@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const fsExtra = require('fs-extra');
-const config = require('./src/config.js').default;
+const { config, argv } = require('./src/config.js');
 const { fetchData } = require('./src/api.js');
 const { minifyHtml, minifyJs, renderTemplate, getSlug } = require('./src/utils.js');
 
@@ -53,7 +53,7 @@ async function generateAd() {
     const outputDir = path.join(outputAdRootDir, 'ad');
     await fsExtra.ensureDir(outputDir);
 
-    const templateName = 'template'; // Get template name from build args
+    const templateName = argv.template;
     const generateScriptPath = path.join(templatesDir, templateName, 'generate.js');
     const { generate } = require(generateScriptPath);
     await generate(data, outputDir);

@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "generate": "node generateAd.js --width=160 --height=600 --quality=80 --compress-video=true",
-    "generate-prod": "NODE_ENV=production node generateAd.js --width=160 --height=600 --quality=80 --compress-video=false",
+    "generate": "node generateAd.js --template=carousel-template --width=160 --height=600 --quality=80 --compress-video=true",
+    "generate-prod": "NODE_ENV=production node generateAd.js --template=carousel-template --width=160 --height=600 --quality=80 --compress-video=false",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

@@ -42,6 +42,11 @@ const argv = yargs(hideBin(process.argv))
     type: 'string',
     description: 'Store Collection handle',
     default: 'auimg',
+  })
+  .option('template', {
+    alias: 't',
+    type: 'string',
+    description: 'Ad template to use',
   }).argv;
 
 const envFile = `.env.${isProduction ? 'production' : 'development'}`;
@@ -49,7 +54,7 @@ const storeHandleEnvFile = `.env.${argv['store-handle']}${isProduction ? '' : '.
 dotenv.config({ path: envFile });
 dotenv.config({ path: storeHandleEnvFile });
 
-module.exports.default = {
+const config = {
   isProduction,
   API_BASE_URL: process.env.STORE_URL,
   outputRootDir: 'ads',
@@ -60,4 +65,9 @@ module.exports.default = {
   currentStore: argv['store-handle'],
   currentCollectionHandle: argv['collection-handle'],
   tempDownloadDir: path.join(__dirname, 'temp'),
+};
+
+module.exports = {
+  config,
+  argv,
 };

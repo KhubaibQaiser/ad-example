@@ -1,5 +1,5 @@
 const path = require('path');
-const config = require('../config').default;
+const { config } = require('../config');
 const { isImage } = require('../utils');
 const { downloadFile } = require('../api');
 
