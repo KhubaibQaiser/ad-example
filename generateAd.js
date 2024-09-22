@@ -73,7 +73,7 @@ async function generateAd() {
   } catch (error) {
     console.error('Error generating files:', error);
     if (fs.existsSync(outputAdRootDir)) {
-      console.log('Removing output directory...');
+      console.log('Removing current ad output directory...');
       await fsExtra.remove(outputAdRootDir);
     }
   } finally {
