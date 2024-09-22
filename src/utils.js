@@ -40,7 +40,11 @@ function minifyCss(cssPath) {
 async function minifyJs(jsPath) {
   const js = fs.readFileSync(jsPath, 'utf-8');
   try {
-    const result = await Terser.minify(js);
+    const result = await Terser.minify(js, {
+      compress: {
+        drop_console: true,
+      },
+    });
     if (result.error) {
       throw result.error;
     }
