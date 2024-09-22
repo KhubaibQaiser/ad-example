@@ -1,6 +1,4 @@
 const fs = require('fs');
-const fsExtra = require('fs-extra');
-const path = require('path');
 const axios = require('axios');
 const config = require('./config').default;
 
@@ -12,11 +10,12 @@ async function fetchData() {
         method: 'get',
         url: `${config.API_BASE_URL}store/custom/store/superstore/super`,
       });
+      let data = null;
 
       const store = response.data.sub_stores.find((_s) => _s.handle === config.currentCollectionHandle);
       store.collections.forEach((collection) => {
         if (collection.moduleType === 'featureLook') {
-          const data = {
+          data = {
             title: collection.title,
             image_url: collection.image_url,
             description: collection.description,
@@ -25,14 +24,11 @@ async function fetchData() {
             moduleData: collection.metadata.moduleData,
             products: [],
           };
-          console.log('Storing data to file...');
-          const dataFilePath = path.join(__dirname, 'data', 'data.json');
-          fsExtra.ensureFileSync(dataFilePath);
-          fs.writeFileSync(dataFilePath, JSON.stringify(data));
-          console.log('Data stored to file successfully!');
           return;
         }
       });
+
+      return data;
     } catch (error) {
       console.error('Error fetching data from store:', error);
       throw new Error('Error fetching data from store');

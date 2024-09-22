@@ -52,6 +52,7 @@ dotenv.config({ path: storeHandleEnvFile });
 module.exports.default = {
   isProduction,
   API_BASE_URL: process.env.STORE_URL,
+  outputRootDir: 'ads',
   width: argv.width,
   height: argv.height,
   quality: argv.quality,

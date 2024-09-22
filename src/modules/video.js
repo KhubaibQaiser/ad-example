@@ -20,7 +20,7 @@ function processVideoAsset(inputPath, outputPath, width, compressVideos = true) 
       .noAudio()
       .size(`${width}x?`) // Resize to the specified width, maintaining aspect ratio
       .videoBitrate('1000k') // Set video bitrate
-      .outputOptions('-crf 35') // Set constant rate factor for quality
+      .outputOptions('-crf 30') // Set constant rate factor for quality
       .on('error', reject)
       .on('progress', (progress) => {
         console.log('Video Compression Progress:', progress.frames);

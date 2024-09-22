@@ -1,9 +1,18 @@
 const { z } = require('zod');
 
 const productSchema = z.object({
-  id: z.number(),
+  id: z.string(),
   image: z.string().url(),
+  price: z.number(),
   handle: z.string(),
+  retailer: z.string(),
+  affiliate: z.string(),
+  collectionID: z.string(),
+  productTitle: z.string(),
+  retailerHandle: z.string(),
+  affiliateHandle: z.string(),
+  collectionTitle: z.string(),
+  productSubtitle: z.string(),
 });
 
 const moduleDataSchema = z.object({
@@ -18,12 +27,12 @@ const moduleDataSchema = z.object({
 
 const validationSchema = z.object({
   title: z.string(),
-  image_url: z.string().url(),
+  image_url: z.string().url().optional(),
   description: z.string(),
   moduleType: z.string(),
   moduleData: z.array(moduleDataSchema),
   collection_handle: z.string(),
-  products: z.array(z.unknown()),
+  products: z.array(productSchema).optional(),
 });
 
 module.exports = validationSchema;

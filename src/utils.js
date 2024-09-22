@@ -58,15 +58,6 @@ function getSlug(title) {
     .replace(/^-|-$/g, '');
 }
 
-function validateData(_d) {
-  const schema = require(path.join(__dirname, '..', 'data', 'schema.js'));
-  const validationResult = schema.safeParse(_d);
-  if (!validationResult.success) {
-    console.error('Validation errors:', validationResult.error);
-    // throw new Error(validationResult.error);
-  }
-}
-
 module.exports = {
   isImage,
   renderTemplate,
@@ -74,5 +65,4 @@ module.exports = {
   minifyCss,
   minifyJs,
   getSlug,
-  validateData,
 };
