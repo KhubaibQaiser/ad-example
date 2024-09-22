@@ -9,7 +9,7 @@ function getUtmParams() {
   };
 }
 
-const iframe = document.querySelector('adIframe');
+const iframe = document.querySelector('#adIframe');
 
 if (iframe) {
   const utmParams = getUtmParams();
