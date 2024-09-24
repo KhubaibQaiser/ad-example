@@ -99,8 +99,8 @@ async function generate(_data, outputDir) {
     const minifiedJs = await minifyJs(path.join(__dirname, 'script.js'));
     fs.writeFileSync(path.join(outputDir, 'script.js'), minifiedJs);
 
-    // const minifiedAmplitudeJs = await minifyJs(path.join(__dirname, 'amplitude-tracking.js'));
-    // fs.writeFileSync(path.join(outputDir, 'amplitude-tracking.min.js'), minifiedAmplitudeJs);
+    const minifiedAmplitudeJs = await minifyJs(path.join(__dirname, 'amplitude-tracking.js'));
+    fs.writeFileSync(path.join(outputDir, 'amplitude-tracking.min.js'), minifiedAmplitudeJs);
 
     const templateAssetsDir = path.join(__dirname, 'assets');
     await fsExtra.ensureDir(templateAssetsDir);
