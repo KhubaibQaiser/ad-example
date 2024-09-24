@@ -28,11 +28,20 @@ function initCarousel() {
   }
 
   function stopCarousel() {
-    clearInterval(interval);
+    cancelAnimationFrame(interval);
   }
 
   function startCarousel() {
-    interval = setInterval(nextSlide, (delay + 1) * 1000);
+    let then = performance.now();
+    function animate(now) {
+      const delta = now - then;
+      if (delta >= delay * 1000) {
+        then = now;
+        nextSlide();
+      }
+      interval = requestAnimationFrame(animate);
+    }
+    interval = requestAnimationFrame(animate);
   }
 
   if (slides.length > 1) {
