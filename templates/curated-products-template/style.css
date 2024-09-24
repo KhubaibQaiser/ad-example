@@ -132,7 +132,7 @@ main {
 }
 
 .product .product-title {
-  font-size: 0.5rem;
+  font-size: 0.7rem;
   font-weight: 500;
   color: #030712;
   display: -webkit-box;
@@ -143,7 +143,8 @@ main {
 }
 
 .product .product-price {
-  font-size: 0.4rem;
+  font-size: 0.6rem;
+  font-weight: 300;
   color: #030712;
 }
 
