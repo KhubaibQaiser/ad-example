@@ -124,6 +124,7 @@ main {
   -webkit-border-radius: inherit;
   -ms-border-radius: inherit;
   -o-border-radius: inherit;
+  flex: 1;
 }
 
 .product p {
