@@ -41,6 +41,7 @@ async function downloadAndSaveData() {
 // Main function to generate ads
 async function generateAd() {
   let outputAdRootDir = '';
+  const templateName = argv.template;
 
   try {
     const templatesDir = path.join(__dirname, 'templates');
@@ -49,11 +50,10 @@ async function generateAd() {
     const data = await downloadAndSaveData();
 
     const slug = data.handle ?? getSlug(data.title);
-    outputAdRootDir = path.join(outputRootDir, slug);
+    outputAdRootDir = path.join(outputRootDir, slug, templateName);
     const outputDir = path.join(outputAdRootDir, 'ad');
     await fsExtra.ensureDir(outputDir);
 
-    const templateName = argv.template;
     const generateScriptPath = path.join(templatesDir, templateName, 'generate.js');
     const { generate } = require(generateScriptPath);
     await generate(data, outputDir);
@@ -63,13 +63,13 @@ async function generateAd() {
     // Copy ad.html to the output directory root and rename it to index.html
     const adHtml = renderTemplate(path.join(__dirname, 'ad.html'), { title: data.title, width: config.width, height: config.height });
     const minifiedAdHtml = minifyHtml(adHtml);
-    fs.writeFileSync(path.join(outputRootDir, slug, 'index.html'), minifiedAdHtml);
+    fs.writeFileSync(path.join(outputAdRootDir, 'index.html'), minifiedAdHtml);
 
-    console.log(`Ad has been generated successfully in the '${outputRootDir}/${slug}' folder!`);
+    console.log(`Ad has been generated successfully in the '${outputAdRootDir}' folder!`);
 
     // Open the generated index.html file
     const { default: open } = await import('open');
-    await open(path.join(outputRootDir, slug, 'index.html'));
+    await open(path.join(outputAdRootDir, 'index.html'));
   } catch (error) {
     console.error('Error generating files:', error);
     if (fs.existsSync(outputAdRootDir)) {

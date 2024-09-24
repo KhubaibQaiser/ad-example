@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "generate": "node generateAd.js --template=carousel-template --width=160 --height=600 --quality=80 --compress-video=true",
-    "generate-prod": "NODE_ENV=production node generateAd.js --template=carousel-template --width=160 --height=600 --quality=80 --compress-video=false",
+    "generate-curated": "node generateAd.js --template=curated-products-template --width=160 --height=600 --quality=80 --compress-video=true",
+    "generate-prod": "NODE_ENV=production node generateAd.js --template=curated-products-template --width=160 --height=600 --quality=80 --compress-video=false",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

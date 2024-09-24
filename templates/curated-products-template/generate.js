@@ -22,44 +22,41 @@ async function downloadRemoteAssetsToTempDir(data, assetsDir) {
     data.image_url = downloadAndPlaceAsset({ assetUrl: data.image_url, assetName: 'main_image', assetsDir, downloadPromises });
   }
 
-  // Download and process moduleData assets
-  for (let i = 0; i < data.moduleData.length; i++) {
-    const module = data.moduleData[i];
+  const module = data.moduleData;
 
-    if (module.srcURL) {
-      module.srcURL = downloadAndPlaceAsset({
-        assetUrl: module.srcURL,
-        assetName: `asset_${module.media}_${i}`,
+  if (module.srcURL) {
+    module.srcURL = downloadAndPlaceAsset({
+      assetUrl: module.srcURL,
+      assetName: `asset_${module.media}_${0}`,
+      assetsDir,
+      downloadPromises,
+    });
+  }
+
+  if (module.backdropUrl) {
+    module.backdropUrl = downloadAndPlaceAsset({
+      assetUrl: module.backdropUrl,
+      assetName: `backdrop_${0}`,
+      assetsDir,
+      downloadPromises,
+    });
+  }
+
+  for (let j = 0; j < module.products.length; j++) {
+    const product = module.products[j];
+
+    if (product.image) {
+      product.image = downloadAndPlaceAsset({
+        assetUrl: product.image,
+        assetName: `product_${0}_${j}`,
+        outAssetName: `product_${0}_${j}_w_${suggestionImageWidth}`,
         assetsDir,
         downloadPromises,
+        ext: 'webp',
       });
-    }
 
-    if (module.backdropUrl) {
-      module.backdropUrl = downloadAndPlaceAsset({
-        assetUrl: module.backdropUrl,
-        assetName: `backdrop_${i}`,
-        assetsDir,
-        downloadPromises,
-      });
-    }
-
-    for (let j = 0; j < module.products.length; j++) {
-      const product = module.products[j];
-
-      if (product.image) {
-        product.image = downloadAndPlaceAsset({
-          assetUrl: product.image,
-          assetName: `product_${i}_${j}`,
-          outAssetName: `product_${i}_${j}_w_${suggestionImageWidth}`,
-          assetsDir,
-          downloadPromises,
-          ext: 'webp',
-        });
-
-        const handleBaseUrl = `${process.env.STORE_URL}/${data.collection_handle}/products/`;
-        product.handle = `${handleBaseUrl}${product.handle}`;
-      }
+      const handleBaseUrl = `${process.env.STORE_URL}/${data.collection_handle}/products/`;
+      product.handle = `${handleBaseUrl}${product.handle}`;
     }
   }
 
@@ -79,8 +76,12 @@ function validateData(_d) {
   }
 }
 
-async function generate(data, outputDir) {
+async function generate(_data, outputDir) {
   try {
+    let data = JSON.parse(JSON.stringify(_data));
+    // Use only first since it's a single module template
+    data = { ...data, moduleData: data.moduleData[0] };
+
     validateData(data);
 
     const outputAssetsDir = path.join(outputDir, 'assets');
@@ -98,13 +99,13 @@ async function generate(data, outputDir) {
     const minifiedJs = await minifyJs(path.join(__dirname, 'script.js'));
     fs.writeFileSync(path.join(outputDir, 'script.js'), minifiedJs);
 
-    const minifiedAmplitudeJs = await minifyJs(path.join(__dirname, 'amplitude-tracking.js'));
-    fs.writeFileSync(path.join(outputDir, 'amplitude-tracking.min.js'), minifiedAmplitudeJs);
+    // const minifiedAmplitudeJs = await minifyJs(path.join(__dirname, 'amplitude-tracking.js'));
+    // fs.writeFileSync(path.join(outputDir, 'amplitude-tracking.min.js'), minifiedAmplitudeJs);
 
-    // const templateAssetsDir = path.join(__dirname, 'assets');
-    // await fsExtra.ensureDir(templateAssetsDir);
+    const templateAssetsDir = path.join(__dirname, 'assets');
+    await fsExtra.ensureDir(templateAssetsDir);
 
-    // await processAssets(templateAssetsDir, outputAssetsDir, config.width, config.quality);
+    await processAssets(templateAssetsDir, outputAssetsDir, config.width, config.quality);
   } catch (error) {
     console.error('An error occurred:', error);
     throw error;
