@@ -19,7 +19,7 @@ export default async function ExistingAds() {
           ))}
         </ul>
       ) : (
-        <p className='text-gray-800'>No ads found. Generate some by filling out the form above.</p>
+        <p className='text-gray-800 text-center'>No ads found. Generate some by filling out the form above.</p>
       )}
     </Layout>
   );
