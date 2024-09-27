@@ -9,13 +9,13 @@ export async function POST(request: NextRequest) {
   const outputDir = path.join(process.cwd(), 'public', 'ads');
 
   try {
-    let responses = [];
+    const responses: unknown[] = [];
     for (const publisher of publisherHandles) {
       for (const storeHandle of storeHandles) {
         const data = await getFeatureLookData({ publisher, storeHandle });
         for (const template of templates) {
           const [width, height] = size.split('x').map(Number);
-          const response = await generateAd(data, outputDir, template, width, height, publisher, storeHandle);
+          const response = await generateAd(data, outputDir, template, width, height);
           responses.push(response);
         }
       }

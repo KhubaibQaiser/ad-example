@@ -2,6 +2,6 @@
   <!-- <div class="product-backdrop" style="background: url(<%= module.backdropUrl %>)"></div> -->
   <div class="product-backdrop"></div>
   <% if (module.media === 'video') { %> <%- include(__dirname + '/video-media.ejs', { srcURL: module.srcURL, index: index }) %> <% } else if
-  (module.media === 'picture') { %> <%- include(__dirname + '/picture-media.ejs', { srcURL: module.srcURL, name: module.title, index: index }) %> <% }
+  (module.media === 'image') { %> <%- include(__dirname + '/picture-media.ejs', { srcURL: module.srcURL, name: module.title, index: index }) %> <% }
   %> <%- include(__dirname + '/suggestions.ejs', { products: module.products, index: index }) %>
 </section>

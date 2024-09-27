@@ -1,10 +1,12 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 
 import { Card, SelectInput } from '@/components';
 import { config } from '@/generator/config';
 import { FeatureLookCollectionAdDataType } from '@/generator/types';
 import axios from 'axios';
+import { loadEnv } from '@/generator/utils/env';
 
 type Option = {
   label: string;
@@ -17,7 +19,7 @@ const options = {
     { value: config.supportedTemplates['carousel-template'], label: 'Carousel Template' },
   ],
   sizes: [
-    { value: '160x600', label: '160x600' },
+    { value: '160x600', label: 'Skyscraper (160x600)' },
     // { value: '300x250', label: '300x250' },
   ],
   publisherHandles: [
@@ -74,11 +76,14 @@ export function AdForm() {
     const getPublisherStores = async () => {
       try {
         setLoadingOptions(true);
+        setSelectedStores([]);
+
         const { data } = await axios.post<{ data: FeatureLookCollectionAdDataType[] }>('/api/get-feature-looks', {
           publisher: publisher.value,
         });
+
         setCollectionHandles(data.data.map((d) => ({ value: d.collection_handle, label: d.title })));
-        setSelectedStores([]);
+        loadEnv(publisher.value);
       } catch (e) {
         console.error(e);
       }
@@ -102,7 +107,7 @@ export function AdForm() {
           isDisabled={isSubmitting}
         />
         <SelectInput
-          label='Store(s)'
+          label='FL Module(s)'
           value={selectedStores}
           isMulti
           onChange={setSelectedStores}

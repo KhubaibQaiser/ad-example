@@ -9,8 +9,8 @@ import { AdGenerationResponse } from '@/types';
 import { FeatureLookCollectionAdDataType } from './types';
 
 const TEMPLATE_GENERATOR_MAP = {
-  'carousel-template': generateCarousel,
-  'curated-products-template': generatedCuratedProduct,
+  [config.supportedTemplates['carousel-template']]: generateCarousel,
+  [config.supportedTemplates['curated-products-template']]: generatedCuratedProduct,
 };
 
 const { tempDownloadDir } = config;
@@ -22,7 +22,6 @@ async function copyGlobalFiles(outputDir: string): Promise<void> {
   const files = fs.readdirSync(globalDir);
   for (const file of files) {
     const filePath = path.join(globalDir, file);
-    console.log('filePath', filePath);
     const outputFilePath = path.join(outputDir, file);
     let minifiedContent = await minifyJs(filePath);
     if (file === 'amplitude-wrapper.min.js') {
@@ -33,22 +32,24 @@ async function copyGlobalFiles(outputDir: string): Promise<void> {
   }
 }
 
-export async function generateAd(
-  flData: FeatureLookCollectionAdDataType[],
-  outputRootDir: string,
-  template: string,
-  width: number,
-  height: number,
-  publisher: string,
-  storeHandle?: string
-) {
+async function writeDataToTemp(data: FeatureLookCollectionAdDataType[], outputDir: string) {
+  try {
+    const dataFilePath = path.join(outputDir, 'data.json');
+    fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2));
+  } catch (error) {
+    console.error('Error writing data to temp:', error);
+  }
+}
+
+export async function generateAd(flData: FeatureLookCollectionAdDataType[], outputRootDir: string, template: string, width: number, height: number) {
   let outputAdRootDir = '';
   try {
     const templatesDir = path.join(process.cwd(), 'src', 'generator', 'templates');
     const templateDir = path.join(templatesDir, template);
     await fsExtra.ensureDir(tempDownloadDir);
     await fsExtra.ensureDir(outputRootDir);
-    const adsPromises: Promise<any>[] = [];
+    writeDataToTemp(flData, tempDownloadDir);
+    const adsPromises: Promise<unknown>[] = [];
     flData.forEach((data) => {
       adsPromises.push(
         new Promise(async (resolve, reject) => {
@@ -65,7 +66,6 @@ export async function generateAd(
             const adIndexPath = path.join(outputAdRootDir, 'index.html');
             fs.writeFileSync(adIndexPath, minifiedAdHtml);
             const responseMessage = `Ad has been generated successfully!`;
-            console.log(responseMessage);
             const relativePath = path.relative(process.cwd(), adIndexPath).replace('public/', '');
             resolve({ message: responseMessage, slug, template, outputPath: relativePath } as AdGenerationResponse);
           } catch (error) {
@@ -76,7 +76,6 @@ export async function generateAd(
       );
     });
     const adsGenerationResponse = await Promise.all(adsPromises);
-    console.log('ALL SUCCESS', adsGenerationResponse);
     return adsGenerationResponse;
   } catch (error) {
     console.error('Error generating files:', error);

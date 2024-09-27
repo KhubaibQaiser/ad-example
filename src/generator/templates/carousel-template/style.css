@@ -76,7 +76,7 @@ main {
 }
 
 .module-picture {
-  width: 100%;
+  width: 90%;
   height: auto;
   position: absolute;
   top: 50%;
@@ -137,12 +137,13 @@ main {
   transform: scale(1.1);
 }
 
-.module-video {
+.main-product {
   position: absolute;
   width: 90%;
   height: auto;
   top: 50%;
   left: 50%;
+  object-fit: contain;
   transform: translate(-50%, -50%);
   -webkit-border-radius: calc(100vw * 0.043);
   -moz-border-radius: calc(100vw * 0.043);

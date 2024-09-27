@@ -2,11 +2,12 @@ import axios from 'axios';
 import { FeatureLookCollectionAdDataType, PublisherStore } from '../types';
 
 export async function getFeatureLookData({ publisher, storeHandle }: { publisher: string; storeHandle?: string }) {
-  console.log('Fetching data from store...');
   try {
+    // const handle = storeHandle ?? 'superstore';
+    const handle = 'superstore';
     const response = await axios<PublisherStore>({
       method: 'GET',
-      url: `https://${publisher}.us-west-2.citadel.prod.shopsense.ai/store/custom/store/superstore/super`,
+      url: `https://${publisher}.us-west-2.citadel.prod.shopsense.ai/store/custom/store/${handle}/super`,
     });
 
     if (response.data) {

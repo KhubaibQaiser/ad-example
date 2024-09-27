@@ -24,26 +24,26 @@ async function downloadRemoteAssetsToTempDir({ data, outputAssetsDir, width, qua
 
   // Download and process moduleData assets
   for (let i = 0; i < data.moduleData.length; i++) {
-    const module = data.moduleData[i];
+    const moduleData = data.moduleData[i];
 
-    if (module.srcURL) {
-      module.srcURL = downloadAndPlaceAsset({
-        assetUrl: module.srcURL,
-        assetName: `asset_${module.media}_${i}`,
+    if (moduleData.srcURL) {
+      moduleData.srcURL = downloadAndPlaceAsset({
+        assetUrl: moduleData.srcURL,
+        assetName: `asset_${moduleData.media}_${i}`,
         downloadPromises,
       });
     }
 
-    if (module.backdropUrl) {
-      module.backdropUrl = downloadAndPlaceAsset({
-        assetUrl: module.backdropUrl,
+    if (moduleData.backdropUrl) {
+      moduleData.backdropUrl = downloadAndPlaceAsset({
+        assetUrl: moduleData.backdropUrl,
         assetName: `backdrop_${i}`,
         downloadPromises,
       });
     }
 
-    for (let j = 0; j < module.products.length; j++) {
-      const product = module.products[j];
+    for (let j = 0; j < moduleData.products.length; j++) {
+      const product = moduleData.products[j];
 
       if (product.image) {
         product.image = downloadAndPlaceAsset({
@@ -66,14 +66,14 @@ async function downloadRemoteAssetsToTempDir({ data, outputAssetsDir, width, qua
   console.log('Processed images successfully!');
 }
 
-function validateData(_d, templateDir) {
-  const schema = require(path.join(templateDir, 'validation-schema.js'));
-  const validationResult = schema.safeParse(_d);
-  if (!validationResult.success) {
-    console.error('Validation errors:', validationResult.error);
-    // throw new Error(validationResult.error);
-  }
-}
+// function validateData(_d, templateDir) {
+//   const schema = require(path.join(templateDir, 'validation-schema.js'));
+//   const validationResult = schema.safeParse(_d);
+//   if (!validationResult.success) {
+//     console.error('Validation errors:', validationResult.error);
+//     // throw new Error(validationResult.error);
+//   }
+// }
 
 export async function generate(_data, outputAdDir, templateDir, width, quality) {
   try {

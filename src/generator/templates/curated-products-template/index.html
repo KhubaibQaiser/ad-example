@@ -13,7 +13,9 @@
         <img src="./assets/title.webp" alt="store title" class="store-title" />
         <img src="./assets/sub-title.webp" alt="store subtitle" class="store-subtitle" />
       </div>
-      <video src="<%= data.moduleData.srcURL %>" autoplay muted loop class="product-main"></video>
+      <% if (data.moduleData.media === 'video') { %> <%- include(__dirname + '/video-media.ejs', { srcURL: data.moduleData.srcURL, title:
+      data.moduleData.title }) %> <% } else if (data.moduleData.media === 'image') { %> <%- include(__dirname + '/picture-media.ejs', { srcURL:
+      data.moduleData.srcURL, title: data.moduleData.title }) %> <% } %>
       <section class="collection-container">
         <div class="collection">
           <% data.moduleData.products.forEach(product => { %>
