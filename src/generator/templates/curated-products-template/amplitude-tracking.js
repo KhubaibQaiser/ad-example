@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 const getData = (element, attr) => {
   const data = element.getAttribute(`data-${attr}`);
   return data ? JSON.parse(data) : {};

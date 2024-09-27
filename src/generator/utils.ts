@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import ejs from 'ejs';
-import { minify, Options as HtmlMinifierOptions } from 'html-minifier';
+import { Options as HtmlMinifierOptions } from 'html-minifier';
 import CleanCSS from 'clean-css';
 import * as Terser from 'terser';
 
@@ -16,6 +16,7 @@ export function renderTemplate(templatePath: string, data: unknown) {
 }
 
 // Function to minify HTML
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function minifyHtml(html: string, moreOptions?: HtmlMinifierOptions) {
   return html;
   // return minify(html, {

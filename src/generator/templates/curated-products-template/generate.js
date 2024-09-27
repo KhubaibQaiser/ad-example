@@ -22,26 +22,26 @@ async function downloadRemoteAssetsToTempDir({ data, outputAssetsDir, width, qua
     data.image_url = downloadAndPlaceAsset({ assetUrl: data.image_url, assetName: 'main_image', downloadPromises });
   }
 
-  const module = data.moduleData;
+  const moduleData = data.moduleData;
 
-  if (module.srcURL) {
-    module.srcURL = downloadAndPlaceAsset({
-      assetUrl: module.srcURL,
-      assetName: `asset_${module.media}_${0}`,
+  if (moduleData.srcURL) {
+    moduleData.srcURL = downloadAndPlaceAsset({
+      assetUrl: moduleData.srcURL,
+      assetName: `asset_${moduleData.media}_${0}`,
       downloadPromises,
     });
   }
 
-  if (module.backdropUrl) {
-    module.backdropUrl = downloadAndPlaceAsset({
-      assetUrl: module.backdropUrl,
+  if (moduleData.backdropUrl) {
+    moduleData.backdropUrl = downloadAndPlaceAsset({
+      assetUrl: moduleData.backdropUrl,
       assetName: `backdrop_${0}`,
       downloadPromises,
     });
   }
 
-  for (let j = 0; j < module.products.length; j++) {
-    const product = module.products[j];
+  for (let j = 0; j < moduleData.products.length; j++) {
+    const product = moduleData.products[j];
 
     if (product.image) {
       product.image = downloadAndPlaceAsset({
@@ -63,19 +63,19 @@ async function downloadRemoteAssetsToTempDir({ data, outputAssetsDir, width, qua
   console.log('Processed images successfully!');
 }
 
-function validateData(_d, templateDir) {
-  const schema = require(path.join(templateDir, 'validation-schema.js'));
-  const validationResult = schema.safeParse(_d);
-  if (!validationResult.success) {
-    console.error('Validation errors:', validationResult.error);
-    // throw new Error(validationResult.error);
-  }
-}
+// function validateData(_d, templateDir) {
+//   const schema = require(path.join(templateDir, 'validation-schema.js'));
+//   const validationResult = schema.safeParse(_d);
+//   if (!validationResult.success) {
+//     console.error('Validation errors:', validationResult.error);
+//     // throw new Error(validationResult.error);
+//   }
+// }
 
 export async function generate(_data, outputAdDir, templateDir, width, quality) {
   try {
     let data = JSON.parse(JSON.stringify(_data));
-    // Use only first since it's a single module template
+    // Use only first since it's a single moduleData template
     data = { ...data, moduleData: data.moduleData[0] };
 
     // validateData(data,templateDir);

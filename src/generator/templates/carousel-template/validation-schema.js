@@ -1,4 +1,4 @@
-const { z } = require('zod');
+import * as z from 'zod';
 
 const productSchema = z.object({
   id: z.string(),
