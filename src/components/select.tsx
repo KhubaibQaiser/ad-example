@@ -5,6 +5,7 @@ import { Label } from './label';
 
 type SelectInputProps<T, M extends boolean> = SelectProps<T, M> & { label: string; formItemClassName?: string };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const SelectInput = forwardRef<SelectInstance<any, boolean>, SelectInputProps<any, boolean>>(
   ({ label, formItemClassName, isMulti = false, ...props }, ref) => (
     <FormItem className={formItemClassName}>
