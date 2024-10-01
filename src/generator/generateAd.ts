@@ -62,13 +62,13 @@ export async function generateAd(flData: FeatureLookCollectionAdDataType[], outp
     const templateDir = path.join(templatesDir, template);
     await fsExtra.ensureDir(tempDownloadDir);
     await fsExtra.ensureDir(outputRootDir);
-    writeDataToTemp(flData, tempDownloadDir);
+    // writeDataToTemp(flData, tempDownloadDir);
     const adsPromises: Promise<unknown>[] = [];
     flData.forEach((data) => {
       adsPromises.push(
         new Promise(async (resolve, reject) => {
           try {
-            const slug = data.handle ?? getSlug(data.title);
+            const slug = data.collection_handle ?? getSlug(data.title);
             outputAdRootDir = path.join(outputRootDir, slug, template);
             const outputAdDir = path.join(outputAdRootDir, 'ad');
             await fsExtra.ensureDir(outputAdDir);

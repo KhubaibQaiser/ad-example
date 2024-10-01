@@ -1,22 +1,22 @@
-import React from 'react';
-import Select, { Props as SelectProps, MultiValue, SingleValue } from 'react-select';
+import { forwardRef } from 'react';
+import Select, { SelectInstance, Props as SelectProps } from 'react-select';
+import { FormControl, FormItem, FormMessage } from './form';
+import { Label } from './label';
 
-export type SelectInputProps<T, M extends boolean> = Omit<SelectProps<T, M>, 'onChange'> & {
-  label: string;
-  onChange: M extends true ? (value: T[]) => void : (value: T) => void;
-};
+type SelectInputProps<T, M extends boolean> = SelectProps<T, M> & { label: string; formItemClassName?: string };
 
-export function SelectInput<T, M extends boolean = true>({ label, isMulti, onChange, ...props }: SelectInputProps<T, M>) {
-  const handleChange: SelectProps<T, M>['onChange'] = (value) => {
-    onChange(value as T[] & T);
-  };
+const SelectInput = forwardRef<SelectInstance<any, boolean>, SelectInputProps<any, boolean>>(
+  ({ label, formItemClassName, isMulti = false, ...props }, ref) => (
+    <FormItem className={formItemClassName}>
+      <FormControl>
+        <>
+          <Label>{label}</Label>
+          <Select ref={ref} isMulti={isMulti} {...props} className='mt-1 block w-full text-gray-800' />
+          <FormMessage />
+        </>
+      </FormControl>
+    </FormItem>
+  )
+);
 
-  return (
-    <div>
-      <label className='block text-gray-700 font-semibold'>{label}</label>
-      <Select isMulti={isMulti} onChange={handleChange} {...props} className='mt-1 block w-full text-gray-800' />
-    </div>
-  );
-}
-
-export type { MultiValue, SingleValue };
+export const FormSelectInput = SelectInput as <T, M extends boolean = false>(props: SelectInputProps<T, M>) => JSX.Element;

@@ -234,14 +234,23 @@ export type FLMeta = {
   footerText: string;
 };
 
+export type ModuleData = {
+  media: 'image' | 'video';
+  title: string;
+  srcURL: string;
+  duration: number;
+  products: ProductPreview[];
+};
+
 export type FeatureLookCollectionAdDataType = {
   title: string;
-  handle: string;
   image_url?: string;
   description?: string;
   moduleType: 'featureLook';
   collection_handle: PublisherStore['handle'];
-  moduleData: PublisherStore['collections'][number]['metadata']['moduleData'];
-  productBaseUrl: string;
+  collection_url: string;
+  store_handle: PublisherStore['handle'];
+  moduleData: ModuleData[];
+  product_base_url: string;
   meta: FLMeta;
 };

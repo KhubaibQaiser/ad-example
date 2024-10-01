@@ -52,7 +52,7 @@ async function downloadRemoteAssetsToTempDir({ data, outputAssetsDir, width, qua
         ext: 'webp',
       });
 
-      product.handle = `${data.productBaseUrl}${product.handle}`;
+      product.handle = `${data.product_base_url}${product.handle}`;
     }
   }
 

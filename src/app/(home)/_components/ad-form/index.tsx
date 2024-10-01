@@ -1,58 +1,23 @@
 'use client';
 
-import { memo, useEffect, useRef, useState } from 'react';
-
-import { Card, Input, SelectInput } from '@/components';
-import { config } from '@/generator/config';
-import { FeatureLookCollectionAdDataType, FLMeta } from '@/generator/types';
+import { memo, useEffect, useState } from 'react';
 import axios from 'axios';
+import { FormProvider } from 'react-hook-form';
+
+import { Button, Card, FormField, FormInput, FormSelectInput, Label } from '@/components';
+
+import { FeatureLookCollectionAdDataType } from '@/generator/types';
 import { loadEnv } from '@/generator/utils/env';
-
-type Option = {
-  label: string;
-  value: string;
-};
-
-const options = {
-  templates: [
-    { value: config.supportedTemplates['curated-products-template'], label: 'Curated Products Template' },
-    { value: config.supportedTemplates['carousel-template'], label: 'Carousel Template' },
-  ],
-  sizes: [
-    { value: '160x600', label: 'Skyscraper (160x600)' },
-    // { value: '300x250', label: '300x250' },
-  ],
-  publisherHandles: [
-    { value: 'tastemade', label: 'Tastemade' },
-    { value: 'paramount', label: 'Paramount' },
-  ],
-};
+import { AdFormSchema, options, OptionSchema, useFormDef } from './form';
 
 function AdFormBase({ handleRefresh }: { handleRefresh: () => void }) {
   const [isSubmitting, setSubmitting] = useState(false);
   const [loadingOptions, setLoadingOptions] = useState(false);
-  const metaRef = useRef<FLMeta>({
-    title: 'Tastemade',
-    subTitle: 'Discover & Shop!',
-    footerText: 'Custom curated collections from your favorite shows!',
-  });
+  const [storeHandles, setCollectionHandles] = useState<OptionSchema[]>([]);
 
-  const [publisher, setStoreHandle] = useState<Option>(options.publisherHandles[0]);
-  const [storeHandles, setCollectionHandles] = useState<Option[]>([]);
-  const [selectedStores, setSelectedStores] = useState<Option[]>([]);
-  const [templates, setTemplates] = useState<Option[]>(options.templates.slice(0, 1));
-  const [size, setSize] = useState<Option>(options.sizes[0]);
+  const form = useFormDef();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (isSubmitting) {
-      return;
-    }
-    if (templates.length === 0 || selectedStores.length === 0) {
-      alert('Please select at least one template and store');
-      return;
-    }
+  const onSubmit = async (values: AdFormSchema) => {
     setSubmitting(true);
     try {
       const response = await fetch('/api/generate-ad', {
@@ -61,11 +26,11 @@ function AdFormBase({ handleRefresh }: { handleRefresh: () => void }) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          templates: templates.map((t) => t.value),
-          size: size.value,
-          publisherHandles: [publisher.value],
-          storeHandles: selectedStores.map((ch) => ch.value),
-          meta: metaRef.current,
+          templates: values.templates.map((t) => t.value),
+          size: values.size.value,
+          publisherHandles: [values.publisher.value],
+          storeHandles: values.selectedStores.map((ch) => ch.value),
+          meta: values.meta,
         }),
       });
       const result = await response.json();
@@ -78,18 +43,19 @@ function AdFormBase({ handleRefresh }: { handleRefresh: () => void }) {
     setSubmitting(false);
   };
 
-  useEffect(() => {
+  const handleChangePublisher = async (publisher: OptionSchema) => {
     const getPublisherStores = async () => {
       try {
         setLoadingOptions(true);
-        setSelectedStores([]);
 
         const { data } = await axios.post<{ data: FeatureLookCollectionAdDataType[] }>('/api/get-feature-looks', {
           publisher: publisher.value,
-          meta: metaRef.current,
+          meta: {},
         });
 
-        setCollectionHandles(data.data.map((d) => ({ value: d.collection_handle, label: d.title })));
+        const stores = data.data.map((d) => ({ value: d.store_handle, label: d.title }));
+        setCollectionHandles(stores);
+        form.reset({ ...form.getValues(), selectedStores: [] });
         loadEnv(publisher.value);
       } catch (e) {
         console.error(e);
@@ -97,67 +63,103 @@ function AdFormBase({ handleRefresh }: { handleRefresh: () => void }) {
       setLoadingOptions(false);
     };
     getPublisherStores();
-  }, [publisher]);
+  };
+
+  useEffect(() => {
+    handleChangePublisher(options.publisherHandles[0]);
+  }, []);
 
   const isLoading = isSubmitting || loadingOptions;
 
+  console.log(form.formState.errors);
+
   return (
     <Card>
-      <h1 className='text-2xl font-bold mb-6 text-center text-gray-800'>Ad Generator</h1>
-      <form onSubmit={handleSubmit} className='space-y-4'>
-        <SelectInput<Option, false>
-          label='Publisher'
-          value={publisher}
-          onChange={setStoreHandle}
-          options={options.publisherHandles}
-          isLoading={loadingOptions}
-          isDisabled={isSubmitting}
-        />
-        <SelectInput
-          label='FL Module(s)'
-          value={selectedStores}
-          isMulti
-          onChange={setSelectedStores}
-          options={storeHandles}
-          isLoading={loadingOptions}
-          isDisabled={isSubmitting}
-        />
+      <Label size='xl' className='mb-6 block text-center'>
+        Ad Generator
+      </Label>
 
-        <SelectInput
-          label='Template(s)'
-          value={templates}
-          isMulti
-          onChange={setTemplates}
-          options={options.templates}
-          isLoading={loadingOptions}
-          isDisabled={isSubmitting}
-        />
-        <SelectInput<Option, false>
-          label='Size'
-          value={size}
-          onChange={setSize}
-          options={options.sizes}
-          isLoading={loadingOptions}
-          isDisabled={isSubmitting}
-        />
+      <FormProvider {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+          <FormField
+            control={form.control}
+            name='publisher'
+            render={({ field }) => (
+              <FormSelectInput
+                label='Publisher'
+                isMulti={false}
+                value={field.value}
+                onChange={(value) => {
+                  field.onChange(value);
+                  if (value) {
+                    handleChangePublisher(value);
+                  }
+                }}
+                options={options.publisherHandles}
+                isLoading={loadingOptions}
+                isDisabled={isSubmitting}
+              />
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='selectedStores'
+            render={({ field }) => (
+              <FormSelectInput {...field} label='FL Module(s)' isMulti options={storeHandles} isLoading={loadingOptions} isDisabled={isSubmitting} />
+            )}
+          />
 
-        <section className=''>
-          <h2 className='text-lg font-semibold text-gray-700'>Meta</h2>
-          <div className='px-2 flex flex-col gap-3 mt-2'>
-            <Input label='Title' onChangeText={(value) => (metaRef.current.title = value)} disabled={isSubmitting} />
-            <Input label='Subtitle' onChangeText={(value) => (metaRef.current.subTitle = value)} disabled={isSubmitting} />
-            <Input label='Footer Text' onChangeText={(value) => (metaRef.current.footerText = value)} disabled={isSubmitting} />
-          </div>
-        </section>
+          <FormField
+            control={form.control}
+            name='templates'
+            render={({ field }) => (
+              <FormSelectInput
+                {...field}
+                label='Template(s)'
+                isMulti
+                options={options.templates}
+                isLoading={loadingOptions}
+                isDisabled={isSubmitting}
+              />
+            )}
+          />
 
-        <button
-          type='submit'
-          className='w-full py-2 px-4 !mt-8 disabled:bg-gray-600 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500'
-          disabled={isLoading}
-        >
-          {isSubmitting ? 'Generating Ads...' : 'Generate Ads'}
-        </button>
-      </form>
+          <FormField
+            control={form.control}
+            name='size'
+            render={({ field }) => (
+              <FormSelectInput {...field} label='Size' options={options.sizes} isLoading={loadingOptions} isDisabled={isSubmitting} />
+            )}
+          />
+
+          <section className='border-t pt-6 !mt-6 border-dashed'>
+            <Label size='xl' className='text-center block'>
+              Meta
+            </Label>
+            <div className='flex flex-col gap-3 mt-2'>
+              <FormField
+                control={form.control}
+                name='meta.title'
+                render={({ field }) => <FormInput {...field} label='Title' disabled={isSubmitting} />}
+              />
+              <FormField
+                control={form.control}
+                name='meta.subTitle'
+                render={({ field }) => <FormInput {...field} label='Subtitle' disabled={isSubmitting} />}
+              />
+              <FormField
+                control={form.control}
+                name='meta.footerText'
+                render={({ field }) => <FormInput {...field} label='Footer Text' disabled={isSubmitting} />}
+              />
+            </div>
+          </section>
+
+          <Button type='submit' disabled={isLoading} isLoading={isSubmitting}>
+            Generate Ads
+          </Button>
+        </form>
+      </FormProvider>
     </Card>
   );
 }
