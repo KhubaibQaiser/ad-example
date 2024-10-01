@@ -76,7 +76,7 @@ export async function generateAd(flData: FeatureLookCollectionAdDataType[], outp
             await generate(data, outputAdDir, templateDir, width, config.compressionQuality);
             await copyGlobalFiles(outputAdDir);
             const adHtml = renderTemplate(path.join(templatesDir, 'ad.html'), { title: data.title, width, height });
-            const minifiedAdHtml = minifyHtml(adHtml);
+            const minifiedAdHtml = await minifyHtml(adHtml);
             const adIndexPath = path.join(outputAdRootDir, 'index.html');
             fs.writeFileSync(adIndexPath, minifiedAdHtml);
             const responseMessage = `Ad has been generated successfully!`;
@@ -84,7 +84,7 @@ export async function generateAd(flData: FeatureLookCollectionAdDataType[], outp
             resolve({ message: responseMessage, slug, template, outputPath: relativePath } as AdGenerationResponse);
           } catch (error) {
             console.error('Error generating ad:', error);
-            reject(error);
+            reject(`Error generating ad: ${template}`);
           }
         })
       );

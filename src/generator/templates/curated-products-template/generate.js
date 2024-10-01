@@ -88,7 +88,7 @@ export async function generate(_data, outputAdDir, templateDir, width, quality) 
     console.log('Rendering template...', data);
 
     const html = renderTemplate(path.join(templateDir, 'index.html'), data);
-    const minifiedHtml = minifyHtml(html);
+    const minifiedHtml = await minifyHtml(html);
     fs.writeFileSync(path.join(outputAdDir, 'index.html'), minifiedHtml);
 
     const minifiedCss = minifyCss(path.join(templateDir, 'style.css'));

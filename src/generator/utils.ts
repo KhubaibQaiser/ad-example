@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import ejs from 'ejs';
-import { Options as HtmlMinifierOptions } from 'html-minifier';
+import { Options as HtmlMinifierOptions, minify } from 'html-minifier-terser';
 import CleanCSS from 'clean-css';
 import * as Terser from 'terser';
 
@@ -16,20 +16,24 @@ export function renderTemplate(templatePath: string, data: unknown) {
 }
 
 // Function to minify HTML
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function minifyHtml(html: string, moreOptions?: HtmlMinifierOptions) {
-  return html;
-  // return minify(html, {
-  //   collapseWhitespace: true,
-  //   removeComments: true,
-  //   removeRedundantAttributes: true,
-  //   removeScriptTypeAttributes: true,
-  //   removeStyleLinkTypeAttributes: true,
-  //   useShortDoctype: true,
-  //   minifyJS: true,
-  //   minifyCSS: true,
-  //   ...(moreOptions || {}),
-  // });
+export async function minifyHtml(html: string, moreOptions?: HtmlMinifierOptions) {
+  try {
+    const minified = await minify(html, {
+      collapseWhitespace: true,
+      removeComments: true,
+      removeRedundantAttributes: true,
+      removeScriptTypeAttributes: true,
+      removeStyleLinkTypeAttributes: true,
+      useShortDoctype: true,
+      minifyJS: true,
+      minifyCSS: true,
+      ...(moreOptions || {}),
+    });
+    return minified;
+  } catch (error) {
+    console.error('Error during HTML minification:', error);
+    return html;
+  }
 }
 
 const cleanCss = new CleanCSS();

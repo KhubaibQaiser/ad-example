@@ -58,7 +58,7 @@ dotenv.config({ path: envFile });
 export const config = {
   isProduction,
   outputRootDir: path.join(process.cwd(), 'public', 'ads'),
-  compressVideos: false,
+  compressVideos: true,
   tempDownloadDir: path.join(process.cwd(), 'temp'),
   compressionQuality: 80,
   supportedTemplates: {
