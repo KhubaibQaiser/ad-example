@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 
-import { Card, SelectInput } from '@/components';
+import { Card, Input, SelectInput } from '@/components';
 import { config } from '@/generator/config';
-import { FeatureLookCollectionAdDataType } from '@/generator/types';
+import { FeatureLookCollectionAdDataType, FLMeta } from '@/generator/types';
 import axios from 'axios';
 import { loadEnv } from '@/generator/utils/env';
 
@@ -28,14 +28,19 @@ const options = {
   ],
 };
 
-export function AdForm() {
+function AdFormBase({ handleRefresh }: { handleRefresh: () => void }) {
   const [isSubmitting, setSubmitting] = useState(false);
   const [loadingOptions, setLoadingOptions] = useState(false);
+  const metaRef = useRef<FLMeta>({
+    title: 'Tastemade',
+    subTitle: 'Discover & Shop!',
+    footerText: 'Custom curated collections from your favorite shows!',
+  });
 
   const [publisher, setStoreHandle] = useState<Option>(options.publisherHandles[0]);
   const [storeHandles, setCollectionHandles] = useState<Option[]>([]);
   const [selectedStores, setSelectedStores] = useState<Option[]>([]);
-  const [templates, setTemplates] = useState<Option[]>(options.templates);
+  const [templates, setTemplates] = useState<Option[]>(options.templates.slice(0, 1));
   const [size, setSize] = useState<Option>(options.sizes[0]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -60,11 +65,12 @@ export function AdForm() {
           size: size.value,
           publisherHandles: [publisher.value],
           storeHandles: selectedStores.map((ch) => ch.value),
+          meta: metaRef.current,
         }),
       });
       const result = await response.json();
       if (result && 'data' in result) {
-        window.location.reload();
+        handleRefresh();
       }
     } catch (e) {
       console.error(e);
@@ -80,6 +86,7 @@ export function AdForm() {
 
         const { data } = await axios.post<{ data: FeatureLookCollectionAdDataType[] }>('/api/get-feature-looks', {
           publisher: publisher.value,
+          meta: metaRef.current,
         });
 
         setCollectionHandles(data.data.map((d) => ({ value: d.collection_handle, label: d.title })));
@@ -115,6 +122,7 @@ export function AdForm() {
           isLoading={loadingOptions}
           isDisabled={isSubmitting}
         />
+
         <SelectInput
           label='Template(s)'
           value={templates}
@@ -132,6 +140,16 @@ export function AdForm() {
           isLoading={loadingOptions}
           isDisabled={isSubmitting}
         />
+
+        <section className=''>
+          <h2 className='text-lg font-semibold text-gray-700'>Meta</h2>
+          <div className='px-2 flex flex-col gap-3 mt-2'>
+            <Input label='Title' onChangeText={(value) => (metaRef.current.title = value)} disabled={isSubmitting} />
+            <Input label='Subtitle' onChangeText={(value) => (metaRef.current.subTitle = value)} disabled={isSubmitting} />
+            <Input label='Footer Text' onChangeText={(value) => (metaRef.current.footerText = value)} disabled={isSubmitting} />
+          </div>
+        </section>
+
         <button
           type='submit'
           className='w-full py-2 px-4 !mt-8 disabled:bg-gray-600 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500'
@@ -143,3 +161,5 @@ export function AdForm() {
     </Card>
   );
 }
+
+export const AdForm = memo(AdFormBase);

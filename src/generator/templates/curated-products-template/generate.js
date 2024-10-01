@@ -85,6 +85,8 @@ export async function generate(_data, outputAdDir, templateDir, width, quality) 
 
     await downloadRemoteAssetsToTempDir({ data, outputAssetsDir: outputAdAssetsDir, width, quality });
 
+    console.log('Rendering template...', data);
+
     const html = renderTemplate(path.join(templateDir, 'index.html'), data);
     const minifiedHtml = minifyHtml(html);
     fs.writeFileSync(path.join(outputAdDir, 'index.html'), minifiedHtml);

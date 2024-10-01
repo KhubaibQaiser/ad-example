@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
 
 export async function POST(request: NextRequest) {
-  const { templates, size, publisherHandles, storeHandles } = await request.json();
+  const { templates, size, publisherHandles, storeHandles, meta } = await request.json();
 
   const outputDir = path.join(process.cwd(), 'public', 'ads');
 
@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
     const responses: unknown[] = [];
     for (const publisher of publisherHandles) {
       for (const storeHandle of storeHandles) {
-        const data = await getFeatureLookData({ publisher, storeHandle });
+        const data = await getFeatureLookData({ publisher, storeHandle, meta });
         for (const template of templates) {
           const [width, height] = size.split('x').map(Number);
           const response = await generateAd(data, outputDir, template, width, height);

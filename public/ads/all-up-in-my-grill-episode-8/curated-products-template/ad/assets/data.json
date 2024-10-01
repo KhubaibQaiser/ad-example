@@ -1,0 +1,250 @@
+[
+  {
+    "title": "All Up In My Grill Episode 8",
+    "handle": "all-up-in-my-grill-episode-8",
+    "image_url": "https://s3.us-west-2.amazonaws.com/prod-tastemadetenantstack-citadelbucket0907d78c-8x2hebphr3j9/blur-1-1724182662908.png",
+    "description": "",
+    "moduleType": "featureLook",
+    "collection_handle": "auimg",
+    "moduleData": [
+      {
+        "media": "video",
+        "title": "",
+        "srcURL": "https://s3.us-west-2.amazonaws.com/prod-tastemadetenantstack-citadelbucket0907d78c-8x2hebphr3j9/1-1724182640933.mp4",
+        "duration": 5000,
+        "products": [
+          {
+            "id": "prod_01J5TQ0WPVYD9QVR1SK2KDN8MP",
+            "image": "https://s3.us-west-2.amazonaws.com/prod-tastemadetenantstack-citadelbucket0907d78c-8x2hebphr3j9/a98e0a638a794ca594903580abe18399-1724249672751",
+            "price": 35,
+            "handle": "3497906317012948695",
+            "retailer": "Etsy",
+            "affiliate": "Awin",
+            "collectionID": "pcol_01J5TNVNN1B9JY0BAV1E0CD0A4",
+            "productTitle": "Hand Blown Margarita Glassware Set",
+            "retailerHandle": "Etsy",
+            "affiliateHandle": "awin",
+            "collectionTitle": "All Up In My Grill Episode 8",
+            "productSubtitle": "MyCajita"
+          },
+          {
+            "id": "prod_01J5TQ0XZ7YARY3T1ZDHG39009",
+            "image": "https://s3.us-west-2.amazonaws.com/prod-tastemadetenantstack-citadelbucket0907d78c-8x2hebphr3j9/5a394f1fbf6d4dc88869e5e580de796f-1724249672590",
+            "price": 12.99,
+            "handle": "4551671756220001599",
+            "retailer": "Target",
+            "affiliate": "Impact",
+            "collectionID": "pcol_01J5TNVNN1B9JY0BAV1E0CD0A4",
+            "productTitle": "Ball 4pk Regular Mouth 16oz Pint Jars Honeybee Keepsakes Jars with Lids and Bands",
+            "retailerHandle": "Target",
+            "affiliateHandle": "impact",
+            "collectionTitle": "All Up In My Grill Episode 8",
+            "productSubtitle": "Ball"
+          },
+          {
+            "id": "prod_01J5TQ0WD27D0PPCM678JJAFMY",
+            "image": "https://s3.us-west-2.amazonaws.com/prod-tastemadetenantstack-citadelbucket0907d78c-8x2hebphr3j9/05f24b3f419d4f12b477db5dafff6679-1724249672496",
+            "price": 8.88,
+            "handle": "7356581461924335511",
+            "retailer": "Amazon",
+            "affiliate": "Amazon",
+            "collectionID": "pcol_01J5TNVNN1B9JY0BAV1E0CD0A4",
+            "productTitle": "Cocktail Umbrella Parasol Picks 4 Inch Pack 144 Assorted Colors",
+            "retailerHandle": "Amazon",
+            "affiliateHandle": "amazon",
+            "collectionTitle": "All Up In My Grill Episode 8",
+            "productSubtitle": "Blue Top"
+          }
+        ],
+        "backdropUrl": "https://s3.us-west-2.amazonaws.com/prod-tastemadetenantstack-citadelbucket0907d78c-8x2hebphr3j9/blur-1-1724182662908.png",
+        "description": ""
+      },
+      {
+        "media": "video",
+        "title": "",
+        "srcURL": "https://s3.us-west-2.amazonaws.com/prod-tastemadetenantstack-citadelbucket0907d78c-8x2hebphr3j9/2-1724182640937.mp4",
+        "duration": 5000,
+        "products": [
+          {
+            "id": "prod_01J5TQ0VMVPZ9ZK2ZG0S6RRJ7C",
+            "image": "https://s3.us-west-2.amazonaws.com/prod-tastemadetenantstack-citadelbucket0907d78c-8x2hebphr3j9/bd90221282ec482b85711aa0cec93ded-1724249672593",
+            "price": 15.99,
+            "handle": "8078899256853665440",
+            "retailer": "Amazon",
+            "affiliate": "Amazon",
+            "collectionID": "pcol_01J5TNVNN1B9JY0BAV1E0CD0A4",
+            "productTitle": "Fish Grilling Basket, Folding Portable Stainless Steel BBQ Grill Basket for Fish Vegetables Shrimp with Removable Handle, Come with Basting Brush and Storage Bag (01)",
+            "retailerHandle": "Amazon",
+            "affiliateHandle": "amazon",
+            "collectionTitle": "All Up In My Grill Episode 8",
+            "productSubtitle": "Penobon"
+          },
+          {
+            "id": "prod_01J5TQ0ZNMK4GTTTH4YA6QPY8M",
+            "image": "https://s3.us-west-2.amazonaws.com/prod-tastemadetenantstack-citadelbucket0907d78c-8x2hebphr3j9/6bf3ef9be8ca4702bc34905798e854ec-1724249672467",
+            "price": 12.95,
+            "handle": "1699318283208350790",
+            "retailer": "Sur La Table",
+            "affiliate": "Ascend",
+            "collectionID": "pcol_01J5TNVNN1B9JY0BAV1E0CD0A4",
+            "productTitle": "Sur La Table Olive Oil Cruet with Pourer",
+            "retailerHandle": "Sur La Table",
+            "affiliateHandle": "ascend",
+            "collectionTitle": "All Up In My Grill Episode 8",
+            "productSubtitle": "Sur La Table"
+          }
+        ],
+        "backdropUrl": "https://s3.us-west-2.amazonaws.com/prod-tastemadetenantstack-citadelbucket0907d78c-8x2hebphr3j9/blur-2-1724182662908.png",
+        "description": ""
+      },
+      {
+        "media": "video",
+        "title": "",
+        "srcURL": "https://s3.us-west-2.amazonaws.com/prod-tastemadetenantstack-citadelbucket0907d78c-8x2hebphr3j9/3-1724182640937.mp4",
+        "duration": 5000,
+        "products": [
+          {
+            "id": "prod_01J5TQ0YJJ592AXYWZJFYNF9JE",
+            "image": "https://s3.us-west-2.amazonaws.com/prod-tastemadetenantstack-citadelbucket0907d78c-8x2hebphr3j9/315642112b3d41b8ad26d2966a664fb7-1724249672455",
+            "price": 19.99,
+            "handle": "6685711029908822825",
+            "retailer": "Amazon",
+            "affiliate": "Amazon",
+            "collectionID": "pcol_01J5TNVNN1B9JY0BAV1E0CD0A4",
+            "productTitle": "Liquid Alchemist Simple Syrup for Cocktails - Real Ingredients Make our Simple Sugar Syrup the Perfect Old Fashioned Mix - Our Natural Simple Syrup for Drinks is Non-GMO Gluten Free & Vegan (12 oz)",
+            "retailerHandle": "Amazon",
+            "affiliateHandle": "amazon",
+            "collectionTitle": "All Up In My Grill Episode 8",
+            "productSubtitle": "Liquid Alchemist"
+          },
+          {
+            "id": "prod_01J5TQ0X9FCBYJ9SRRGEH6SX4C",
+            "image": "https://s3.us-west-2.amazonaws.com/prod-tastemadetenantstack-citadelbucket0907d78c-8x2hebphr3j9/c3a04723359146a6b238b580de5f5ac9-1724249672549",
+            "price": 180.19,
+            "handle": "2544915133386306775",
+            "retailer": "Bed Bath & Beyond",
+            "affiliate": "CJ",
+            "collectionID": "pcol_01J5TNVNN1B9JY0BAV1E0CD0A4",
+            "productTitle": "Ninja BL770 Mega Kitchen System",
+            "retailerHandle": "Bed Bath & Beyond",
+            "affiliateHandle": "cj",
+            "collectionTitle": "All Up In My Grill Episode 8",
+            "productSubtitle": "Ninja"
+          },
+          {
+            "id": "prod_01J5TQ0XP24Q47EZV2K4BAWVR1",
+            "image": "https://s3.us-west-2.amazonaws.com/prod-tastemadetenantstack-citadelbucket0907d78c-8x2hebphr3j9/9e2b6ef558184b32bf2ea9b0c766147a-1724249672574",
+            "price": 5.39,
+            "handle": "3346987266977839351",
+            "retailer": "Target",
+            "affiliate": "Impact",
+            "collectionID": "pcol_01J5TNVNN1B9JY0BAV1E0CD0A4",
+            "productTitle": "GoodCook Ready 6\" Mesh Strainer",
+            "retailerHandle": "Target",
+            "affiliateHandle": "impact",
+            "collectionTitle": "All Up In My Grill Episode 8",
+            "productSubtitle": "GoodCook"
+          }
+        ],
+        "backdropUrl": "https://s3.us-west-2.amazonaws.com/prod-tastemadetenantstack-citadelbucket0907d78c-8x2hebphr3j9/blur-3-1724182662909.png",
+        "description": ""
+      },
+      {
+        "media": "video",
+        "title": "",
+        "srcURL": "https://s3.us-west-2.amazonaws.com/prod-tastemadetenantstack-citadelbucket0907d78c-8x2hebphr3j9/4-1724182640938.mp4",
+        "duration": 5000,
+        "products": [
+          {
+            "id": "prod_01J5TQ0Y8Q35Q8JGYWSHVBKZFF",
+            "image": "https://s3.us-west-2.amazonaws.com/prod-tastemadetenantstack-citadelbucket0907d78c-8x2hebphr3j9/cddfe1e93b3240a38b3445dfeee0e9a8-1724249672562",
+            "price": 4.48,
+            "handle": "2976074693500030009",
+            "retailer": "The Home Depot",
+            "affiliate": "Impact",
+            "collectionID": "pcol_01J5TNVNN1B9JY0BAV1E0CD0A4",
+            "productTitle": "Apple Wood Chips",
+            "retailerHandle": "The Home Depot",
+            "affiliateHandle": "impact",
+            "collectionTitle": "All Up In My Grill Episode 8",
+            "productSubtitle": "Weber"
+          },
+          {
+            "id": "prod_01J5TQ0YVZ84XJ5YJ1F6XRQPY1",
+            "image": "https://s3.us-west-2.amazonaws.com/prod-tastemadetenantstack-citadelbucket0907d78c-8x2hebphr3j9/6d87794efe794af7872f8ac23558048a-1724249672606",
+            "price": 9.95,
+            "handle": "7233884002914178071",
+            "retailer": "Amazon",
+            "affiliate": "Amazon",
+            "collectionID": "pcol_01J5TNVNN1B9JY0BAV1E0CD0A4",
+            "productTitle": "Smoke Tube for Pellet Smoker, 12'' Smoker Tube for Pellet Grill - Hot or Cold Smoker Accessories for Electric Gas Charcoal Grilling, Premium Stainless Steel Portable Barbecue Smoking Tube, Bonus Brush",
+            "retailerHandle": "Amazon",
+            "affiliateHandle": "amazon",
+            "collectionTitle": "All Up In My Grill Episode 8",
+            "productSubtitle": "Lanney"
+          },
+          {
+            "id": "prod_01J5TQ0ZYCVN6JYVGYV4X310G8",
+            "image": "https://s3.us-west-2.amazonaws.com/prod-tastemadetenantstack-citadelbucket0907d78c-8x2hebphr3j9/31a86026944441a986b1cc848ff4d03f-1724249672523",
+            "price": 17.95,
+            "handle": "5836858090373633601",
+            "retailer": "Target",
+            "affiliate": "Impact",
+            "collectionID": "pcol_01J5TNVNN1B9JY0BAV1E0CD0A4",
+            "productTitle": "Henckels BBQ Stainless Steel Grill Tongs",
+            "retailerHandle": "Target",
+            "affiliateHandle": "impact",
+            "collectionTitle": "All Up In My Grill Episode 8",
+            "productSubtitle": "Henckels"
+          }
+        ],
+        "backdropUrl": "https://s3.us-west-2.amazonaws.com/prod-tastemadetenantstack-citadelbucket0907d78c-8x2hebphr3j9/blur-4-1724182662910.png",
+        "description": ""
+      },
+      {
+        "media": "video",
+        "title": "",
+        "srcURL": "https://s3.us-west-2.amazonaws.com/prod-tastemadetenantstack-citadelbucket0907d78c-8x2hebphr3j9/5-1724182640938.mp4",
+        "duration": 5000,
+        "products": [
+          {
+            "id": "prod_01J5TQ0W1V9X200PRWK80RN6HE",
+            "image": "https://s3.us-west-2.amazonaws.com/prod-tastemadetenantstack-citadelbucket0907d78c-8x2hebphr3j9/6f05f2d053584de88458c9396095bf81-1724249672491",
+            "price": 102.47,
+            "handle": "8168251458144109737",
+            "retailer": "Amazon",
+            "affiliate": "Amazon",
+            "collectionID": "pcol_01J5TNVNN1B9JY0BAV1E0CD0A4",
+            "productTitle": "Paul Smith Men's Dark Floral Button Down",
+            "retailerHandle": "Amazon",
+            "affiliateHandle": "amazon",
+            "collectionTitle": "All Up In My Grill Episode 8",
+            "productSubtitle": "Paul Smith"
+          },
+          {
+            "id": "prod_01J5TQ0WZQ6T34XQ1HMT2Y9AW4",
+            "image": "https://s3.us-west-2.amazonaws.com/prod-tastemadetenantstack-citadelbucket0907d78c-8x2hebphr3j9/05a0d02d9faf4ae5931fa17214cd5d09-1724249672452",
+            "price": 11.98,
+            "handle": "2811110356994990511",
+            "retailer": "Amazon",
+            "affiliate": "Amazon",
+            "collectionID": "pcol_01J5TNVNN1B9JY0BAV1E0CD0A4",
+            "productTitle": "Butane Torch Kitchen Blow Lighter - Culinary Torches Chef Cooking Professional Adjustable Flame with Reverse Use for Creme, Brulee, BBQ, Baking, Jewelry by FunOwlet (Butane Fuel Not Included)",
+            "retailerHandle": "Amazon",
+            "affiliateHandle": "amazon",
+            "collectionTitle": "All Up In My Grill Episode 8",
+            "productSubtitle": "FunOwlet"
+          }
+        ],
+        "backdropUrl": "https://s3.us-west-2.amazonaws.com/prod-tastemadetenantstack-citadelbucket0907d78c-8x2hebphr3j9/blur-5-1724182662911.png",
+        "description": ""
+      }
+    ],
+    "productBaseUrl": "https://tastemade.us-west-2.citadel.prod.shopsense.ai/auimg/products/",
+    "meta": {
+      "title": "Tastemade",
+      "subTitle": "Custom curated collections from your favorite shows!",
+      "footerText": ""
+    }
+  }
+]

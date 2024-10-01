@@ -228,6 +228,12 @@ export interface MatchPoint {
   index: number;
 }
 
+export type FLMeta = {
+  title: string;
+  subTitle: string;
+  footerText: string;
+};
+
 export type FeatureLookCollectionAdDataType = {
   title: string;
   handle: string;
@@ -237,4 +243,5 @@ export type FeatureLookCollectionAdDataType = {
   collection_handle: PublisherStore['handle'];
   moduleData: PublisherStore['collections'][number]['metadata']['moduleData'];
   productBaseUrl: string;
+  meta: FLMeta;
 };

@@ -41,11 +41,6 @@ main {
   background-repeat: no-repeat !important;
   background-position: left top !important;
   background-size: 100% 100% !important;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 2rem;
-  row-gap: 0.5rem;
 }
 
 .store-title {
@@ -72,10 +67,47 @@ main {
   border-radius: calc(100vw * 0.058);
 }
 
+.header {
+  position: absolute;
+  width: 90%;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.title {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.subTitle {
+  font-size: 1.9375rem;
+  font-weight: 500;
+  text-align: center;
+  color: #d43d1b;
+  margin-top: 10px;
+  line-height: 1.07;
+}
+
+.footer {
+  position: absolute;
+  width: 90%;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.footer-text {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.07;
+  margin-bottom: 14px;
+}
+
 .collection-container {
   position: absolute;
   z-index: 3;
-  bottom: 10%;
+  bottom: 15%;
   left: 0;
   right: 0;
   overflow-x: scroll;
@@ -98,6 +130,9 @@ main {
 }
 
 .product {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   width: 88px;
   padding: 8px;
   flex: 0 0 88px;
@@ -105,9 +140,10 @@ main {
   scroll-snap-align: center;
   background: white;
   border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
   text-decoration: none;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
@@ -136,6 +172,7 @@ main {
   font-weight: 500;
   color: #030712;
   display: -webkit-box;
+  line-clamp: 2;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -150,7 +187,7 @@ main {
 
 .control-buttons {
   position: fixed;
-  bottom: 20.5%;
+  bottom: 25.5%;
   width: 100%;
   z-index: 4;
   display: flex;
@@ -169,6 +206,10 @@ main {
   height: 20px;
   background-color: rgba(0, 0, 0, 0.75);
   border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
   color: #fff;
   pointer-events: all;
   -webkit-appearance: none;

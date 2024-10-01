@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import fsExtra from 'fs-extra';
 import { config } from './config';
-import { getSlug, minifyHtml, minifyJs, renderTemplate } from './utils';
+import { getSlug, minifyCss, minifyHtml, minifyJs, renderTemplate } from './utils';
 import { generate as generateCarousel } from './templates/carousel-template/generate';
 import { generate as generatedCuratedProduct } from './templates/curated-products-template/generate';
 import { AdGenerationResponse } from '@/types';
@@ -18,12 +18,26 @@ const { tempDownloadDir } = config;
 async function copyGlobalFiles(outputDir: string): Promise<void> {
   const globalDir = path.join(process.cwd(), 'src', 'generator', 'global');
   await fsExtra.ensureDir(globalDir);
-
   const files = fs.readdirSync(globalDir);
   for (const file of files) {
     const filePath = path.join(globalDir, file);
     const outputFilePath = path.join(outputDir, file);
-    let minifiedContent = await minifyJs(filePath);
+
+    let minifiedContent = '';
+
+    const ext = path.extname(file).toLowerCase();
+    switch (ext) {
+      case '.js':
+        minifiedContent = await minifyJs(filePath);
+        break;
+      case '.css':
+        minifiedContent = await minifyCss(filePath);
+        break;
+      case '.html':
+        minifiedContent = await minifyHtml(fs.readFileSync(filePath, 'utf-8'));
+        break;
+    }
+
     if (file === 'amplitude-wrapper.min.js') {
       minifiedContent = minifiedContent.replace('AMPLITUDE_API_KEY', process.env.AMPLITUDE_API_KEY || '');
       minifiedContent = minifiedContent.replace('ENV_PLACEHOLDER', process.env.NODE_ENV || 'development');

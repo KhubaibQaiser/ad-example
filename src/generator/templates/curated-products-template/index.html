@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="displayheight" content="600" />
     <title><%= data.title %></title>
+    <link rel="stylesheet" href="global.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <main>
-      <div class="product-backdrop">
-        <img src="./assets/title.webp" alt="store title" class="store-title" />
-        <img src="./assets/sub-title.webp" alt="store subtitle" class="store-subtitle" />
+      <div class="product-backdrop"></div>
+      <div class="header">
+        <h1 class="title"><%= data.meta.title %></h1>
+        <h2 class="subTitle"><%= data.meta.subTitle %></h1>
       </div>
       <% if (data.moduleData.media === 'video') { %> <%- include(__dirname + '/video-media.ejs', { srcURL: data.moduleData.srcURL, title:
       data.moduleData.title }) %> <% } else if (data.moduleData.media === 'image') { %> <%- include(__dirname + '/picture-media.ejs', { srcURL:
@@ -50,6 +52,10 @@
             />
           </svg>
         </button>
+      </div>
+      <div class="footer">
+        <h3 class="footer-text"><%= data.meta.footerText %></h3>
+        <button class="collection-cta-button button">Shop Now!</button>
       </div>
     </main>
 
