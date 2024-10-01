@@ -21,7 +21,7 @@
       <section class="collection-container">
         <div class="collection">
           <% data.moduleData.products.forEach(product => { %>
-          <a href="<%= product.handle %>" target="_blank" data-item="<%= JSON.stringify({ productTitle: product.productTitle }) %>" class="product"
+          <a href="javascript:void(0);" onclick="window.open('<%= product.handle %>', '_blank')" data-item="<%= JSON.stringify({ productTitle: product.productTitle }) %>" class="product"
             ><img src="<%= product.image %>" alt="<%= product.productTitle %>" class="product-image" />
             <p class="product-title"><%= product.productTitle %></p>
             <p class="product-price">$<%= product.price %></p></a
@@ -55,7 +55,7 @@
       </div>
       <div class="footer">
         <h3 class="footer-text"><%= data.meta.footerText %></h3>
-        <a class="collection-cta-button button" href="<%= data.collection_url %>" target="_blank" data-item="<%= JSON.stringify({ title: data.title, url: data.collection_url }) %>">Shop Now!</a>
+        <a class="collection-cta-button button" href="javascript:void(0);" onclick="window.open('<%= data.collection_url %>', '_blank')" data-item="<%= JSON.stringify({ title: data.title, url: data.collection_url }) %>">Shop Now!</a>
       </div>
     </main>
 

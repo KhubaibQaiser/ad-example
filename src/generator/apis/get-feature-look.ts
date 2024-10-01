@@ -39,6 +39,7 @@ async function _getFeatureLookData({ publisher, storeHandle, meta }: { publisher
               collection_handle: collection.handle,
               store_handle: subStore.handle,
               collection_url: `${process.env.BASE_URL}/${subStore.handle}/collections/${collection.handle}`,
+              clickTag: `${process.env.BASE_URL}/${subStore.handle}`,
               moduleData: collection.metadata.moduleData as ModuleData[],
               product_base_url: `${process.env.BASE_URL}/${subStore.handle}/products/`,
               meta,

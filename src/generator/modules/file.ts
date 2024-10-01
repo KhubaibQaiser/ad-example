@@ -18,9 +18,10 @@ export function downloadAndPlaceAsset({
 }) {
   let extensionFromAsset = path.extname(assetUrl).toLowerCase();
   extensionFromAsset = extensionFromAsset.startsWith('.') ? extensionFromAsset.slice(1) : extensionFromAsset;
-  extensionFromAsset = isImage(extensionFromAsset) ? 'webp' : extensionFromAsset;
+  extensionFromAsset = isImage(extensionFromAsset) ? 'jpeg' : 'gif';
   const extension = ext ?? extensionFromAsset;
   const downloadPath = path.join(config.tempDownloadDir, `${outAssetName ?? assetName}.${extension}`);
   downloadPromises.push(downloadFile(assetUrl, downloadPath));
+  console.log('CHECK THIS', extension);
   return path.join('assets', `${outAssetName ?? assetName}.${extension}`);
 }

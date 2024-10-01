@@ -253,4 +253,5 @@ export type FeatureLookCollectionAdDataType = {
   moduleData: ModuleData[];
   product_base_url: string;
   meta: FLMeta;
+  clickTag: string;
 };

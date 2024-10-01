@@ -51,7 +51,7 @@ async function downloadRemoteAssetsToTempDir({ data, outputAssetsDir, width, qua
           assetName: `product_${i}_${j}`,
           outAssetName: `product_${i}_${j}_w_${suggestionImageWidth}`,
           downloadPromises,
-          ext: 'webp',
+          ext: 'jpeg',
         });
 
         product.handle = `${data.product_base_url}${product.handle}`;

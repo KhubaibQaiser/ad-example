@@ -18,18 +18,26 @@ export function processVideoAsset(inputPath: string, outputPath: string, width: 
   return new Promise((resolve, reject) => {
     ffmpeg(inputPath)
       .output(outputPath)
-      .videoCodec('libx264')
+      .toFormat('gif')
       .noAudio()
       .size(`${width}x?`) // Resize to the specified width, maintaining aspect ratio
-      .videoBitrate('1000k') // Set video bitrate
-      .outputOptions('-crf 30') // Set constant rate factor for quality
+      .outputOptions([
+        '-vf',
+        `scale=${width}:-1:flags=lanczos,fps=25`, // Resize and set frame rate
+        '-crf',
+        '30', // Set constant rate factor for quality
+        '-b:v',
+        '1000k', // Set video bitrate
+        '-fs',
+        '2.5M', // Limit the file size to 2MB
+      ])
       .on('error', reject)
       .on('progress', (progress) => {
-        console.log('Video Compression Progress:', progress.frames);
+        console.log('GIF Conversion Progress:', progress.frames);
       })
       .on('end', () => {
-        console.log('Video compression and resizing complete!', inputPath);
-        resolve('Video compression and resizing complete!');
+        console.log('GIF conversion complete!', inputPath);
+        resolve('GIF conversion complete!');
       })
       .run();
   });

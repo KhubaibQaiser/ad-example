@@ -11,9 +11,17 @@
       }
     </style>
     <meta name="ad.size" content="width=<%= data.width %>,height=<%= data.height %>" />
+    <script>
+      var clickTag = '<%= data.clickTag %>';
+    </script>
   </head>
   <body>
-    <iframe id="adIframe" src="ad/index.html" style="width: <%= data.width %>px; height: <%= data.height %>px; border: none"></iframe>
+    <iframe
+      id="adIframe"
+      src="ad/index.html"
+      style="width: <%= data.width %>px; height: <%= data.height %>px; border: none"
+      onclick="window.open(clickTag, '_blank')"
+    ></iframe>
     <script src="ad/tracking.js"></script>
   </body>
 </html>

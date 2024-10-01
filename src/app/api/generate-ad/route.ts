@@ -13,7 +13,6 @@ export async function POST(request: NextRequest) {
       for (const storeHandle of storeHandles) {
         const data = await getFeatureLookData({ publisher, storeHandle, meta });
         for (const template of templates) {
-          console.log('GENERATE AD', config.outputRootDir, template, size);
           const [width, height] = size.split('x').map(Number);
           const response = await generateAd(data, config.outputRootDir, template, width, height);
           responses.push(response);

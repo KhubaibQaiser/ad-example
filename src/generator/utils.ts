@@ -6,7 +6,7 @@ import CleanCSS from 'clean-css';
 import * as Terser from 'terser';
 
 export function isImage(ext: string) {
-  return ['.jpg', '.jpeg', '.png', '.webp', '.tiff', '.gif', '.svg', 'avif'].includes(ext.startsWith('.') ? ext : `.${ext}`);
+  return ['.jpg', '.jpeg', '.png', '.webp', '.tiff', '.svg', 'avif'].includes(ext.startsWith('.') ? ext : `.${ext}`);
 }
 
 // Function to read and render the template

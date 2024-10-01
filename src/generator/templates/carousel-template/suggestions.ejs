@@ -2,8 +2,8 @@
   <div class="suggestions-wrapper">
     <% products.forEach(product => { %>
     <a
-      href="<%= product.handle %>"
-      target="_blank"
+      href="javascript:void(0);"
+      onclick="window.open('<%= product.handle %>', '_blank')"
       class="suggestion-item"
       data-item="<%= JSON.stringify({ productTitle: product.productTitle, index }) %>"
     >
