@@ -40,7 +40,7 @@ async function copyGlobalFiles(outputDir: string): Promise<void> {
 
     if (file === 'amplitude-wrapper.min.js') {
       minifiedContent = minifiedContent.replace('AMPLITUDE_API_KEY', process.env.AMPLITUDE_API_KEY || '');
-      minifiedContent = minifiedContent.replace('ENV_PLACEHOLDER', process.env.NODE_ENV || 'development');
+      minifiedContent = minifiedContent.replace('ENV_PLACEHOLDER', process.env.ENVIRONMENT || 'development');
     }
     fs.writeFileSync(outputFilePath, minifiedContent);
   }
