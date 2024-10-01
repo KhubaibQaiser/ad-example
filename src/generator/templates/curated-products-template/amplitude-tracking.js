@@ -28,4 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
       window.analytics.logEvent('Product: Clicked', getData(element, 'item'));
     });
   });
+
+  var shopNowCtaButton = document.querySelector('.collection-cta-button');
+  shopNowCtaButton.addEventListener('click', () => {
+    window.analytics.logEvent('CTA: Shop Now Clicked', getData(shopNowCtaButton, 'item'));
+  });
 });

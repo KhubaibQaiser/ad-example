@@ -55,7 +55,7 @@
       </div>
       <div class="footer">
         <h3 class="footer-text"><%= data.meta.footerText %></h3>
-        <a class="collection-cta-button button" href="<%= data.collection_url %>" target="_blank">Shop Now!</a>
+        <a class="collection-cta-button button" href="<%= data.collection_url %>" target="_blank" data-item="<%= JSON.stringify({ title: data.title, url: data.collection_url }) %>">Shop Now!</a>
       </div>
     </main>
 
