@@ -15,8 +15,8 @@
         <h1 class="title"><%= data.meta.title %></h1>
         <h2 class="subTitle"><%= data.meta.subTitle %></h1>
       </div>
-      <% if (data.moduleData.media === 'video') { %> <%- include(__dirname + '/video-media.ejs', { srcURL: data.moduleData.srcURL, title:
-      data.moduleData.title }) %> <% } else if (data.moduleData.media === 'image') { %> <%- include(__dirname + '/picture-media.ejs', { srcURL:
+      <% if (data.moduleData.media === 'video') { %> <%- include(__dirname + '/../shared/video-media.ejs', { srcURL: data.moduleData.srcURL, title:
+      data.moduleData.title }) %> <% } else if (data.moduleData.media === 'image') { %> <%- include(__dirname + '/../shared/picture-media.ejs', { srcURL:
       data.moduleData.srcURL, title: data.moduleData.title }) %> <% } %>
       <section class="collection-container">
         <div class="collection">
@@ -59,9 +59,11 @@
       </div>
     </main>
 
-    <script src="script.js"></script>
     <script src="amplitude.min.js"></script>
+    <script src="observer.js"></script>
+    <script src="script.js" defer></script>
     <script src="amplitude-wrapper.min.js"></script>
     <script src="amplitude-tracking.min.js" defer></script>
+    <script src="lazy-load-videos.js" defer></script>
   </body>
 </html>

@@ -89,10 +89,9 @@ export async function generateAd(flData: FeatureLookCollectionAdDataType[], outp
         })
       );
     });
+
     const adsGenerationResponse = await Promise.all(adsPromises);
     return adsGenerationResponse;
-  } catch (error) {
-    console.error('Error generating files:', error);
   } finally {
     console.log('Removing temporary download directory...');
     await fsExtra.remove(tempDownloadDir);

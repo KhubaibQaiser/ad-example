@@ -22,6 +22,5 @@ export function downloadAndPlaceAsset({
   const extension = ext ?? extensionFromAsset;
   const downloadPath = path.join(config.tempDownloadDir, `${outAssetName ?? assetName}.${extension}`);
   downloadPromises.push(downloadFile(assetUrl, downloadPath));
-  console.log('CHECK THIS', extension);
   return path.join('assets', `${outAssetName ?? assetName}.${extension}`);
 }

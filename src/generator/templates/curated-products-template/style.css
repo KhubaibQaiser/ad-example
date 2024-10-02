@@ -30,20 +30,6 @@ main {
   height: auto;
 }
 
-.product-main {
-  width: 90%;
-  position: absolute;
-  left: 50%;
-  top: 40%;
-  transform: translate(-50%, -40%);
-  z-index: 2;
-  -webkit-border-radius: calc(100vw * 0.058);
-  -moz-border-radius: calc(100vw * 0.058);
-  -ms-border-radius: calc(100vw * 0.058);
-  -o-border-radius: calc(100vw * 0.058);
-  border-radius: calc(100vw * 0.058);
-}
-
 .header {
   position: absolute;
   width: 90%;

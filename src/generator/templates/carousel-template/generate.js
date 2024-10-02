@@ -51,7 +51,6 @@ async function downloadRemoteAssetsToTempDir({ data, outputAssetsDir, width, qua
           assetName: `product_${i}_${j}`,
           outAssetName: `product_${i}_${j}_w_${suggestionImageWidth}`,
           downloadPromises,
-          ext: 'jpeg',
         });
 
         product.handle = `${data.product_base_url}${product.handle}`;
@@ -76,35 +75,30 @@ async function downloadRemoteAssetsToTempDir({ data, outputAssetsDir, width, qua
 // }
 
 export async function generate(_data, outputAdDir, templateDir, width, quality) {
-  try {
-    const data = JSON.parse(JSON.stringify(_data));
+  const data = JSON.parse(JSON.stringify(_data));
 
-    // validateData(data,templateDir);
+  // validateData(data,templateDir);
 
-    const outputAdAssetsDir = path.join(outputAdDir, 'assets');
-    await fsExtra.ensureDir(outputAdAssetsDir);
+  const outputAdAssetsDir = path.join(outputAdDir, 'assets');
+  await fsExtra.ensureDir(outputAdAssetsDir);
 
-    await downloadRemoteAssetsToTempDir({ data, outputAssetsDir: outputAdAssetsDir, width, quality });
+  await downloadRemoteAssetsToTempDir({ data, outputAssetsDir: outputAdAssetsDir, width, quality });
 
-    const html = renderTemplate(path.join(templateDir, 'index.html'), data);
-    const minifiedHtml = await minifyHtml(html);
-    fs.writeFileSync(path.join(outputAdDir, 'index.html'), minifiedHtml);
+  const html = renderTemplate(path.join(templateDir, 'index.html'), data);
+  const minifiedHtml = await minifyHtml(html);
+  fs.writeFileSync(path.join(outputAdDir, 'index.html'), minifiedHtml);
 
-    const minifiedCss = minifyCss(path.join(templateDir, 'style.css'));
-    fs.writeFileSync(path.join(outputAdDir, 'style.css'), minifiedCss);
+  const minifiedCss = minifyCss(path.join(templateDir, 'style.css'));
+  fs.writeFileSync(path.join(outputAdDir, 'style.css'), minifiedCss);
 
-    const minifiedJs = await minifyJs(path.join(templateDir, 'script.js'));
-    fs.writeFileSync(path.join(outputAdDir, 'script.js'), minifiedJs);
+  const minifiedJs = await minifyJs(path.join(templateDir, 'script.js'));
+  fs.writeFileSync(path.join(outputAdDir, 'script.js'), minifiedJs);
 
-    const minifiedAmplitudeJs = await minifyJs(path.join(templateDir, 'amplitude-tracking.js'));
-    fs.writeFileSync(path.join(outputAdDir, 'amplitude-tracking.min.js'), minifiedAmplitudeJs);
+  const minifiedAmplitudeJs = await minifyJs(path.join(templateDir, 'amplitude-tracking.js'));
+  fs.writeFileSync(path.join(outputAdDir, 'amplitude-tracking.min.js'), minifiedAmplitudeJs);
 
-    // const templateAssetsDir = path.join(templateDir, 'assets');
-    // await fsExtra.ensureDir(templateAssetsDir);
+  // const templateAssetsDir = path.join(templateDir, 'assets');
+  // await fsExtra.ensureDir(templateAssetsDir);
 
-    // await processAssets(templateAssetsDir, outputAdAssetsDir, width, quality);
-  } catch (error) {
-    console.error('An error occurred:', error);
-    throw error;
-  }
+  // await processAssets(templateAssetsDir, outputAdAssetsDir, width, quality);
 }
