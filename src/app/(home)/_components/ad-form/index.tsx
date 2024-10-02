@@ -39,6 +39,7 @@ function AdFormBase({ handleRefresh }: { handleRefresh: () => void }) {
       }
     } catch (e) {
       console.error(e);
+      alert('There were errors generating the ads. Please check the console for more information.');
     }
     setSubmitting(false);
   };

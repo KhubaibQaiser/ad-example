@@ -20,16 +20,12 @@ export function processVideoAsset(inputPath: string, outputPath: string, width: 
       .output(outputPath)
       .toFormat('gif')
       .noAudio()
-      .size(`${width}x?`) // Resize to the specified width, maintaining aspect ratio
+      // .size(`${width}x?`) // Resize to the specified width, maintaining aspect ratio
       .outputOptions([
-        '-vf',
-        `scale=${width}:-1:flags=lanczos,fps=25`, // Resize and set frame rate
-        '-crf',
-        '30', // Set constant rate factor for quality
-        '-b:v',
-        '1000k', // Set video bitrate
-        '-fs',
-        '2.5M', // Limit the file size to 2MB
+        `-vf fps=25,scale=${width}:-1:flags=lanczos`, // Resize to the specified width using Lanczos resampling, set frame rate to 25 fps
+        '-crf 40', // Set constant rate factor for quality (lower value means higher quality)
+        '-b:v 500k', // Set video bitrate
+        // '-fs 1.5M', // Limit the file size
       ])
       .on('error', reject)
       .on('progress', (progress) => {

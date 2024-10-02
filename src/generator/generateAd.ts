@@ -75,7 +75,7 @@ export async function generateAd(flData: FeatureLookCollectionAdDataType[], outp
             const generate = TEMPLATE_GENERATOR_MAP[template as keyof typeof TEMPLATE_GENERATOR_MAP];
             await generate(data, outputAdDir, templateDir, width, config.compressionQuality);
             await copyGlobalFiles(outputAdDir);
-            const adHtml = renderTemplate(path.join(templatesDir, 'ad.html'), { title: data.title, width, height, clickTag: data.clickTag });
+            const adHtml = renderTemplate(path.join(templatesDir, 'ad.html'), { title: data.title, width, height });
             const minifiedAdHtml = await minifyHtml(adHtml);
             const adIndexPath = path.join(outputAdRootDir, 'index.html');
             fs.writeFileSync(adIndexPath, minifiedAdHtml);

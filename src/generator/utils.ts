@@ -9,6 +9,10 @@ export function isImage(ext: string) {
   return ['.jpg', '.jpeg', '.png', '.webp', '.tiff', '.svg', 'avif'].includes(ext.startsWith('.') ? ext : `.${ext}`);
 }
 
+export function isVideo(ext: string) {
+  return ['.mp4', '.webm', '.ogg'].includes(ext.startsWith('.') ? ext : `.${ext}`);
+}
+
 // Function to read and render the template
 export function renderTemplate(templatePath: string, data: unknown) {
   const template = fs.readFileSync(templatePath, 'utf-8');

@@ -1,1 +1,0 @@
-document.addEventListener("DOMContentLoaded",(function(){document.querySelectorAll(".event-module-video").forEach((function(e){window.getObserverInstance(e,(()=>{var t=e.getAttribute("data-src");t&&e.setAttribute("src",t)}),{threshold:.5})}))}));

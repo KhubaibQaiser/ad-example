@@ -1,5 +1,5 @@
 import path from 'path';
-import { isImage } from '../utils';
+import { isImage, isVideo } from '../utils';
 import { downloadFile } from '../apis/download-file';
 import { config } from '../config';
 
@@ -18,7 +18,7 @@ export function downloadAndPlaceAsset({
 }) {
   let extensionFromAsset = path.extname(assetUrl).toLowerCase();
   extensionFromAsset = extensionFromAsset.startsWith('.') ? extensionFromAsset.slice(1) : extensionFromAsset;
-  extensionFromAsset = isImage(extensionFromAsset) ? 'jpeg' : 'gif';
+  extensionFromAsset = isVideo(extensionFromAsset) ? 'gif' : 'jpeg';
   const extension = ext ?? extensionFromAsset;
   const downloadPath = path.join(config.tempDownloadDir, `${outAssetName ?? assetName}.${extension}`);
   downloadPromises.push(downloadFile(assetUrl, downloadPath));
