@@ -29,7 +29,7 @@ export async function processAssets(inputDir: string, outputDir: string, _width:
       if (isImage(ext)) {
         await processImageAsset(inputPath, outputPath, ext, w, quality);
       } else {
-        await processVideoAsset(inputPath, outputPath, w, config.compressVideos);
+        await processVideoAsset(inputPath, outputPath, w, config.compressVideos, config.videoOutputFormat);
       }
     }
   }

@@ -18,7 +18,7 @@ export function downloadAndPlaceAsset({
 }) {
   let extensionFromAsset = path.extname(assetUrl).toLowerCase();
   extensionFromAsset = extensionFromAsset.startsWith('.') ? extensionFromAsset.slice(1) : extensionFromAsset;
-  extensionFromAsset = isVideo(extensionFromAsset) ? 'gif' : 'jpeg';
+  extensionFromAsset = isVideo(extensionFromAsset) ? config.videoOutputFormat : 'jpeg';
   const extension = ext ?? extensionFromAsset;
   const downloadPath = path.join(config.tempDownloadDir, `${outAssetName ?? assetName}.${extension}`);
   downloadPromises.push(downloadFile(assetUrl, downloadPath));

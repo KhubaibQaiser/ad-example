@@ -1,6 +1,7 @@
 import fs from 'fs';
 
 import ffmpeg from 'fluent-ffmpeg';
+import { config } from '../config';
 // if (process.env.NODE_ENV === 'production') {
 //   // Path to the local FFmpeg binary
 //   const ffmpegPath = path.join(__dirname, 'lib', 'ffmpeg');
@@ -8,13 +9,42 @@ import ffmpeg from 'fluent-ffmpeg';
 //   ffmpeg.setFfmpegPath(ffmpegPath);
 // }
 
-export function processVideoAsset(inputPath: string, outputPath: string, width: number, compressVideos = true) {
+export function processVideoAsset(inputPath: string, outputPath: string, width: number, compressVideos = true, _format?: string) {
   if (!compressVideos) {
     // !Important: Video compression is not supported on servers without FFmpeg installed
     console.warn('Skipping video compression...');
     fs.copyFileSync(inputPath, outputPath);
     return;
   }
+  const format = _format ?? config.videoOutputFormat;
+  if (format === 'mp4') {
+    return convertToMp4(inputPath, outputPath, width);
+  }
+  return convertToGif(inputPath, outputPath, width);
+}
+
+function convertToMp4(inputPath: string, outputPath: string, width: number) {
+  return new Promise((resolve, reject) => {
+    ffmpeg(inputPath)
+      .output(outputPath)
+      .videoCodec('libx264')
+      .noAudio()
+      .size(`${width}x?`) // Resize to the specified width, maintaining aspect ratio
+      .videoBitrate('1000k') // Set video bitrate
+      .outputOptions('-crf 30') // Set constant rate factor for quality
+      .on('error', reject)
+      .on('progress', (progress) => {
+        console.log('Video Compression Progress:', progress.frames);
+      })
+      .on('end', () => {
+        console.log('Video compression and resizing complete!', inputPath);
+        resolve('Video compression and resizing complete!');
+      })
+      .run();
+  });
+}
+
+function convertToGif(inputPath: string, outputPath: string, width: number) {
   return new Promise((resolve, reject) => {
     ffmpeg(inputPath)
       .output(outputPath)
