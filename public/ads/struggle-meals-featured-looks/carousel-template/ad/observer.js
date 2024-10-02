@@ -1,0 +1,1 @@
+const handleIntersection=e=>(n,t)=>{n.forEach((n=>{n.isIntersecting&&(e(n.target),t.unobserve(n.target))}))};window.getObserverInstance=(e,n,t={})=>{new IntersectionObserver(handleIntersection(n),{root:null,rootMargin:"0px",threshold:1,...t}).observe(e)};

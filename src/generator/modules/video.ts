@@ -18,15 +18,16 @@ export function processVideoAsset(inputPath: string, outputPath: string, width: 
   }
   const format = _format ?? config.videoOutputFormat;
   if (format === 'mp4') {
-    return convertToMp4(inputPath, outputPath, width);
+    return convertToVideo(inputPath, outputPath, width, format);
   }
   return convertToGif(inputPath, outputPath, width);
 }
 
-function convertToMp4(inputPath: string, outputPath: string, width: number) {
+function convertToVideo(inputPath: string, outputPath: string, width: number, format: string) {
   return new Promise((resolve, reject) => {
     ffmpeg(inputPath)
       .output(outputPath)
+      .toFormat(format)
       .videoCodec('libx264')
       .noAudio()
       .size(`${width}x?`) // Resize to the specified width, maintaining aspect ratio

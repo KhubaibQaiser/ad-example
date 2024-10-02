@@ -7,6 +7,10 @@ document.addEventListener('DOMContentLoaded', function () {
         var source = video.getAttribute('data-src');
         if (source) {
           video.setAttribute('src', source);
+          // The loadeddata event is fired when the frame at the current playback position of the media has finished loading; often the first frame.
+          video.addEventListener('loadeddata', function () {
+            video.classList.remove('hidden');
+          });
         }
       },
       {

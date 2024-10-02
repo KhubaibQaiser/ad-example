@@ -10,7 +10,7 @@ export function isImage(ext: string) {
 }
 
 export function isVideo(ext: string) {
-  return ['.mp4', '.webm', '.ogg'].includes(ext.startsWith('.') ? ext : `.${ext}`);
+  return ['.avi', '.mov', '.mp4', '.m4v', '.mpeg', '.mpg', '.webm', '.wmv'].includes(ext.startsWith('.') ? ext : `.${ext}`);
 }
 
 // Function to read and render the template

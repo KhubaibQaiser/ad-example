@@ -70,6 +70,10 @@ export async function generateAd(flData: FeatureLookCollectionAdDataType[], outp
           try {
             const slug = data.collection_handle ?? getSlug(data.title);
             outputAdRootDir = path.join(outputRootDir, slug, template);
+            if (fs.existsSync(outputAdRootDir)) {
+              await fsExtra.remove(outputAdRootDir);
+            }
+            await fsExtra.ensureDir(outputAdRootDir);
             const outputAdDir = path.join(outputAdRootDir, 'ad');
             await fsExtra.ensureDir(outputAdDir);
             const generate = TEMPLATE_GENERATOR_MAP[template as keyof typeof TEMPLATE_GENERATOR_MAP];

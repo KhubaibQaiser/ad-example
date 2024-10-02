@@ -65,5 +65,5 @@ export const config = {
     'curated-products-template': 'curated-products-template',
     'carousel-template': 'carousel-template',
   },
-  videoOutputFormat: 'gif', // 'mp4' or 'gif'
+  videoOutputFormat: 'mp4', // '.avi', '.mov', '.mp4', '.m4v', '.mpeg', '.mpg', '.webm', '.wmv' or 'gif'
 };

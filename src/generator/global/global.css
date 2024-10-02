@@ -22,6 +22,10 @@ body {
   background-color: #fff;
 }
 
+.hidden {
+  opacity: 0;
+}
+
 .button {
   display: block;
   text-align: center;
@@ -63,7 +67,7 @@ body {
   left: 50%;
   top: 40%;
   transform: translate(-50%, -40%);
-  z-index: 2;
+  z-index: -1;
   -webkit-border-radius: calc(100vw * 0.058);
   -moz-border-radius: calc(100vw * 0.058);
   -ms-border-radius: calc(100vw * 0.058);
