@@ -38,3 +38,10 @@ next-env.d.ts
 certificates
 
 /temp/
+
+# ignore all files with extension .zip
+**/*.zip
+*.log
+*.log.*
+.DS_Store
+**/.DS_Store
