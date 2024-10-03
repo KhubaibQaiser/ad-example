@@ -34,13 +34,13 @@ async function downloadRemoteAssetsToTempDir({ data, outputAssetsDir, width, qua
       });
     }
 
-    if (moduleData.backdropUrl) {
-      moduleData.backdropUrl = downloadAndPlaceAsset({
-        assetUrl: moduleData.backdropUrl,
-        assetName: `backdrop_${i}`,
-        downloadPromises,
-      });
-    }
+    // if (moduleData.backdropUrl) {
+    //   moduleData.backdropUrl = downloadAndPlaceAsset({
+    //     assetUrl: moduleData.backdropUrl,
+    //     assetName: `backdrop_${i}`,
+    //     downloadPromises,
+    //   });
+    // }
 
     for (let j = 0; j < moduleData.products.length; j++) {
       const product = moduleData.products[j];
