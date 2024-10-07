@@ -43,5 +43,6 @@ certificates
 **/*.zip
 *.log
 *.log.*
+*.mbtree
 .DS_Store
 **/.DS_Store
