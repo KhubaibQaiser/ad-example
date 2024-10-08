@@ -22,7 +22,7 @@ const adFormSchema = z
         logo: z
           .string()
           .optional()
-          .refine((value) => (!value ? true : value.startsWith('<svg')), { message: 'Logo must be a valid SVG' }),
+          .refine((value) => (!value ? true : value.toLowerCase().startsWith('<svg')), { message: 'Logo must be a valid SVG' }),
         subTitle: z.string().optional(),
         footerText: z.string().optional(),
       })
