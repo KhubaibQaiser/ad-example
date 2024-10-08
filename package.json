@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build-embed-injector": "terser --compress --mangle --output ./public/embed-injector.min.js -- ./src/lib/embed-injector.js",
     "start": "next start",
     "lint": "next lint"
   },
