@@ -4,7 +4,7 @@ import { memo, useEffect, useState } from 'react';
 import axios from 'axios';
 import { FormProvider } from 'react-hook-form';
 
-import { Button, Card, FormField, FormInput, FormSelectInput, Label } from '@/components';
+import { Button, Card, FormField, FormSvgInputInput, FormInput, FormSelectInput, Label } from '@/components';
 
 import { FeatureLookCollectionAdDataType } from '@/generator/types';
 import { loadEnv } from '@/generator/utils/env';
@@ -19,6 +19,7 @@ function AdFormBase({ handleRefresh }: { handleRefresh: () => void }) {
 
   const onSubmit = async (values: AdFormSchema) => {
     setSubmitting(true);
+    console.log('SUBMIT FORM', values);
     try {
       const response = await fetch('/api/generate-ad', {
         method: 'POST',
@@ -68,11 +69,13 @@ function AdFormBase({ handleRefresh }: { handleRefresh: () => void }) {
 
   useEffect(() => {
     handleChangePublisher(options.publisherHandles[0]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const isLoading = isSubmitting || loadingOptions;
 
   console.log(form.formState.errors);
+  console.log('Form Values', form.getValues().meta);
 
   return (
     <Card>
@@ -97,7 +100,6 @@ function AdFormBase({ handleRefresh }: { handleRefresh: () => void }) {
                   }
                 }}
                 options={options.publisherHandles}
-                isLoading={loadingOptions}
                 isDisabled={isSubmitting}
               />
             )}
@@ -140,8 +142,8 @@ function AdFormBase({ handleRefresh }: { handleRefresh: () => void }) {
             <div className='flex flex-col gap-3 mt-2'>
               <FormField
                 control={form.control}
-                name='meta.title'
-                render={({ field }) => <FormInput {...field} label='Title' disabled={isSubmitting} />}
+                name='meta.logo'
+                render={({ field }) => <FormSvgInputInput {...field} label='Logo' disabled={isSubmitting} />}
               />
               <FormField
                 control={form.control}

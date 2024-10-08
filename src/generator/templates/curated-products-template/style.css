@@ -38,9 +38,11 @@ main {
   transform: translateX(-50%);
 }
 
-.title {
-  font-size: 1.5rem;
-  text-align: center;
+.logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .subTitle {
@@ -50,6 +52,7 @@ main {
   color: #d43d1b;
   margin-top: 10px;
   line-height: 1.07;
+  word-break: break-all;
 }
 
 .footer {

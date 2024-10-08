@@ -29,12 +29,11 @@ function convertToVideo(inputPath: string, outputPath: string, width: number, fo
       .output(outputPath)
       .toFormat(format)
       .videoCodec('libx264')
-      .fps(23.98)
-      // .preset('divx')
+      .fps(30)
       .noAudio()
       .size(`${width}x?`) // Resize to the specified width, maintaining aspect ratio
       .videoBitrate('1000k') // Set video bitrate
-      .outputOptions(['-crf 33', '-pass 1'])
+      .outputOptions(['-crf 20', '-pass 1'])
       .on('error', reject)
       .on('progress', (progress) => {
         console.log('Video Compression Progress:', progress.frames);

@@ -15,7 +15,9 @@
     <main>
       <div class="product-backdrop"></div>
       <div class="header">
-        <h1 class="title"><%= data.meta.title %></h1>
+        <div class="logo">
+          <%- data.meta.logo %>
+        </div>
         <h2 class="subTitle"><%= data.meta.subTitle %></h1>
       </div>
       <% if (data.moduleData.media === 'video') { %> <%- include(__dirname + '/../shared/video-media.ejs', { srcURL: data.moduleData.srcURL, title:

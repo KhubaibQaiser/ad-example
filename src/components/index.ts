@@ -5,3 +5,4 @@ export * from './form';
 export * from './label';
 export * from './helper-text';
 export * from './button';
+export * from './svg-file-input';
