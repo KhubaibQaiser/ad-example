@@ -114,7 +114,7 @@
           newScript.src = `${BASE_URL}/${assetName}`;
           /* Generate the HASH by: openssl dgst -sha256 -binary your-script.js | openssl base64 -A */
           // newScript.integrity = 'sha256-abcdef'; // Add Proper SRI hash
-          newScript.crossOrigin = 'anonymous';
+          // newScript.crossOrigin = 'anonymous';
           document.body.appendChild(newScript);
           script.remove();
         });
