@@ -23,6 +23,9 @@
       // Add more IAB standard variations as needed
     };
 
+    const embedLoaderContainerId = 'shopsense-embed-loader';
+    const embedContainerId = 'shopsense-embed-ad';
+
     /**
      * Load an Embed into the specified container.
      * @param {Object} config - Configuration object for loading the embed. (required)
@@ -58,6 +61,16 @@
         if (!container) {
           throw new Error(`Element with id="${config.containerId}" not found.`);
         }
+
+        container.style.position = 'relative';
+        container.style.width = width;
+        container.style.height = height;
+        container.style.overflow = 'hidden';
+
+        const { loaderContainer, hideLoader } = createLoaderContainer(width, height);
+        container.appendChild(loaderContainer);
+        const adContainer = createAdContainer(width, height);
+        container.appendChild(adContainer);
 
         const response = await fetch(indexUrl);
         if (!response.ok) {
@@ -101,11 +114,8 @@
           video.controls = true; // Enable video controls
         });
 
-        container.innerHTML = tempDiv.innerHTML;
-        container.style.width = width;
-        container.style.height = height;
-        // container.style.backgroundColor = '#fff';
-        container.style.overflow = 'hidden';
+        adContainer.innerHTML = tempDiv.innerHTML;
+        setTimeout(hideLoader, 250);
 
         // Append JS files to the body
         scripts.forEach((script) => {
@@ -122,6 +132,38 @@
         console.error('Error loading ad:', error);
       }
     }
+
+    const createLoaderContainer = (width, height) => {
+      const loaderContainer = document.createElement('div');
+      loaderContainer.id = embedLoaderContainerId;
+      loaderContainer.style.width = width;
+      loaderContainer.style.height = height;
+      loaderContainer.style.backgroundColor = '#ff0000';
+      loaderContainer.style.position = 'absolute';
+      loaderContainer.style.left = 0;
+      loaderContainer.style.top = 0;
+      loaderContainer.style.opacity = 1;
+      loaderContainer.style.transition = 'opacity 0.5s ease';
+      loaderContainer.style.zIndex = 10;
+
+      const hideLoader = () => {
+        loaderContainer.style.opacity = 0;
+        setTimeout(() => {
+          loaderContainer.remove();
+        }, 500);
+      };
+
+      return { loaderContainer, hideLoader };
+    };
+
+    const createAdContainer = (width, height) => {
+      const adContainer = document.createElement('div');
+      adContainer.id = embedContainerId;
+      adContainer.style.width = width;
+      adContainer.style.height = height;
+      adContainer.style.zIndex = 1;
+      return adContainer;
+    };
 
     return {
       loadAd: loadAd,

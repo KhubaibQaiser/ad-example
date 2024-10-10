@@ -4,6 +4,7 @@ import Script from 'next/script';
 
 export default function TestEmbed() {
   const initEmbed = () => {
+    console.log(window.ShopsenseEmbeds);
     if (window && window.ShopsenseEmbeds && window.ShopsenseEmbeds.EmbedInjector) {
       try {
         window.ShopsenseEmbeds.EmbedInjector.loadAd({

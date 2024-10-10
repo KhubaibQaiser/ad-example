@@ -1,4 +1,13 @@
-* {
+.shopsense-ad {
+  font-family: serif, Helvetica, Arial;
+  width: 100%;
+  height: 100%;
+  font-size: 70%;
+  line-height: normal;
+  background-color: #fff;
+}
+
+.shopsense-ad * {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
@@ -6,20 +15,6 @@
   -ms-box-sizing: border-box;
   -o-box-sizing: border-box;
   box-sizing: border-box;
-}
-
-html {
-  width: 100%;
-  height: 100%;
-}
-
-body {
-  font-family: serif, Helvetica, Arial;
-  width: 100%;
-  height: 100%;
-  font-size: 70%;
-  line-height: normal;
-  background-color: #fff;
 }
 
 .hidden {

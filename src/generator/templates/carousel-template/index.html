@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="global.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body class="shopsense-ad">
     <main class="carousel">
       <% data.moduleData.forEach((module, index) => { %> <%- include(__dirname + '/slide.ejs', { module: module, index: index }) %> <% }) %>
     </main>
