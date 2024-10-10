@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build-embed-injector": "terser --compress --mangle --output ./public/embed-injector.min.js -- ./src/lib/embed-injector.js",
+    "build-embed-injector": "terser --compress --mangle --output ./public/shopsense-embed-injector.min.js -- ./src/lib/shopsense-embed-injector.js",
     "start": "next start",
     "lint": "next lint"
   },

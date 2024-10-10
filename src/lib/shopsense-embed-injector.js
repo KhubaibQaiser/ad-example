@@ -1,5 +1,8 @@
 (function (global) {
-  const ShopsenseEmbeds = (function () {
+  // Ensure the namespace exists
+  global.ShopsenseEmbeds = global.ShopsenseEmbeds || {};
+
+  global.ShopsenseEmbeds.EmbedInjector = (function () {
     const SupportedTemplates = {
       CuratedProducts: 'curated-products-template',
       Carousel: 'carousel-template',
@@ -74,8 +77,8 @@
         console.log('FOUND', { scripts, links, images, videos });
 
         links.forEach((link) => {
-          const newLink = document.createElement('link');
-          const assetName = link.href.split('/').pop();
+          const newLink = link.cloneNode(true);
+          const assetName = newLink.href.split('/').pop();
           newLink.href = `${BASE_URL}/${assetName}`;
           document.head.appendChild(newLink);
           link.remove();
@@ -106,14 +109,14 @@
 
         // Append JS files to the body
         scripts.forEach((script) => {
-          const assetName = script.src.split('/').pop();
-          const newScript = document.createElement('script');
+          const newScript = script.cloneNode(true);
+          const assetName = newScript.src.split('/').pop();
           newScript.src = `${BASE_URL}/${assetName}`;
           /* Generate the HASH by: openssl dgst -sha256 -binary your-script.js | openssl base64 -A */
           // newScript.integrity = 'sha256-abcdef'; // Add Proper SRI hash
           newScript.crossOrigin = 'anonymous';
           document.body.appendChild(newScript);
-          scripts.remove();
+          script.remove();
         });
       } catch (error) {
         console.error('Error loading ad:', error);
@@ -126,6 +129,4 @@
       SupportedVariations: SupportedVariations,
     };
   })();
-
-  global.ShopsenseEmbeds = ShopsenseEmbeds;
 })(window);

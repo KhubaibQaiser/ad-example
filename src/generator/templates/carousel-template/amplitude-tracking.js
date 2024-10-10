@@ -1,34 +1,39 @@
-const getData = (element, attr) => {
-  const data = element.getAttribute(`data-${attr}`);
-  return data ? JSON.parse(data) : {};
-};
+(function () {
+  // Ensure the namespace exists
+  window.ShopsenseEmbeds = window.ShopsenseEmbeds || {};
 
-// Define the callback function to be executed when the element is in the viewport
-const elementWithinViewport = (element) => {
-  window.analytics.logEvent('Tile: Rendered', getData(element, 'item'));
-};
+  window.ShopsenseEmbeds.getData = (element, attr) => {
+    const data = element.getAttribute(`data-${attr}`);
+    return data ? JSON.parse(data) : {};
+  };
 
-document.addEventListener('DOMContentLoaded', () => {
-  window.analytics.logEvent('Page Loaded');
+  // Define the callback function to be executed when the element is in the viewport
+  const elementWithinViewport = (element) => {
+    window.ShopsenseEmbeds.analytics.logEvent('Tile: Rendered', getData(element, 'item'));
+  };
 
-  const slides = document.querySelectorAll('.product-section');
+  document.addEventListener('DOMContentLoaded', () => {
+    window.ShopsenseEmbeds.analytics.logEvent('Page Loaded');
 
-  slides.forEach((slide) => {
-    window.getObserverInstance(slide, elementWithinViewport);
-    // Track user impressions
-    slide.addEventListener('mouseenter', () => {
-      window.analytics.logEvent('Tile: Mouse Over', getData(slide, 'item'));
-    });
+    const slides = document.querySelectorAll('.product-section');
 
-    // Track user mouseenter and mouseclick events on elements inside each slide
-    slide.querySelectorAll('.suggestion-item').forEach((element) => {
-      element.addEventListener('mouseenter', () => {
-        window.analytics.logEvent('Product: Mouse Hover', getData(element, 'item'));
+    slides.forEach((slide) => {
+      window.ShopsenseEmbeds.getObserverInstance(slide, elementWithinViewport);
+      // Track user impressions
+      slide.addEventListener('mouseenter', () => {
+        window.ShopsenseEmbeds.analytics.logEvent('Tile: Mouse Over', getData(slide, 'item'));
       });
 
-      element.addEventListener('click', () => {
-        window.analytics.logEvent('Product: Clicked', getData(element, 'item'));
+      // Track user mouseenter and mouseclick events on elements inside each slide
+      slide.querySelectorAll('.suggestion-item').forEach((element) => {
+        element.addEventListener('mouseenter', () => {
+          window.ShopsenseEmbeds.analytics.logEvent('Product: Mouse Hover', getData(element, 'item'));
+        });
+
+        element.addEventListener('click', () => {
+          window.ShopsenseEmbeds.analytics.logEvent('Product: Clicked', getData(element, 'item'));
+        });
       });
     });
   });
-});
+})();
