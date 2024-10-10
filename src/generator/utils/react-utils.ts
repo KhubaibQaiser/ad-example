@@ -13,7 +13,6 @@ export function mergeRefs<T = any>(refs: Array<React.MutableRefObject<T> | React
   };
 }
 
-
 export async function convertSvgToBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
     if (file && file.type === 'image/svg+xml') {

@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="global.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body class="shopsense-ad">
-    <main class="carousel">
+  <body>
+    <main class="shopsense-ad">
       <% data.moduleData.forEach((module, index) => { %> <%- include(__dirname + '/slide.ejs', { module: module, index: index }) %> <% }) %>
     </main>
     <script src="amplitude.min.js"></script>

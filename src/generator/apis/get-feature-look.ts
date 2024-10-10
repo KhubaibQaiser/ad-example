@@ -1,20 +1,12 @@
 import axios from 'axios';
-// import Medusa from '@medusajs/medusa-js';
 import { FeatureLookCollectionAdDataType, FLMeta, ModuleData, PublisherStore } from '../types';
-import { loadEnv } from '../utils/env';
+import { loadEnv } from '../utils/env-utils';
 import { cache } from 'react';
 
 async function _getFeatureLookData({ publisher, storeHandle, meta }: { publisher: string; storeHandle?: string; meta: FLMeta }) {
   try {
     // const handle = storeHandle ?? 'superstore';
     loadEnv(publisher);
-    // const medusaClient = new Medusa({
-    //   baseUrl: process.env.BASE_URL || '',
-    //   maxRetries: 3,
-    //   customHeaders: {
-    //     'cache-control': 'public, max-age=3600, stale-while-revalidate=3660',
-    //   },
-    // });
 
     const handle = 'superstore';
     const response = await axios<PublisherStore>({

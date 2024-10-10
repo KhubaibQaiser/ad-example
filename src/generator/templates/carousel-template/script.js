@@ -1,6 +1,6 @@
 (function () {
   const initCarousel = () => {
-    const carousel = document.querySelector('.carousel');
+    const carousel = document.querySelector('main');
     const slides = document.querySelectorAll('.product-section');
     const numSlides = slides.length;
     let interval;

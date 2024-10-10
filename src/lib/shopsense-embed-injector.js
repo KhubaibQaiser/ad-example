@@ -114,7 +114,12 @@
           video.controls = true; // Enable video controls
         });
 
-        adContainer.innerHTML = tempDiv.innerHTML;
+        const adContentContainer = tempDiv.getElementsByTagName('main')[0];
+        if (!adContentContainer) {
+          throw new Error('Main content not found in the ad.');
+        }
+        adContentContainer.classList.add('shopsense-ad');
+        adContainer.innerHTML = adContentContainer.outerHTML;
         setTimeout(hideLoader, 250);
 
         // Append JS files to the body
@@ -138,7 +143,7 @@
       loaderContainer.id = embedLoaderContainerId;
       loaderContainer.style.width = width;
       loaderContainer.style.height = height;
-      loaderContainer.style.backgroundColor = '#ff0000';
+      loaderContainer.style.backgroundColor = 'rgba(0,0,0,1)';
       loaderContainer.style.position = 'absolute';
       loaderContainer.style.left = 0;
       loaderContainer.style.top = 0;

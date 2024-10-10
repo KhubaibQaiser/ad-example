@@ -3,7 +3,7 @@ import { ChangeEvent, forwardRef, useRef, useState } from 'react';
 import { FormControl, FormItem, FormMessage } from './form';
 import { twMerge } from 'tailwind-merge';
 import { Label } from './label';
-import { mergeRefs, readSvgFile } from '@/utils';
+import { mergeRefs, readSvgFile } from '@/generator/utils/react-utils';
 import Image from 'next/image';
 
 type SvgInputProps = {

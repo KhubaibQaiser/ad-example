@@ -7,7 +7,7 @@ import { FormProvider } from 'react-hook-form';
 import { Button, Card, FormField, FormSvgInputInput, FormInput, FormSelectInput, Label } from '@/components';
 
 import { FeatureLookCollectionAdDataType } from '@/generator/types';
-import { loadEnv } from '@/generator/utils/env';
+import { loadEnv } from '@/generator/utils/env-utils';
 import { AdFormSchema, options, OptionSchema, useFormDef } from './form';
 
 function AdFormBase({ handleRefresh }: { handleRefresh: () => void }) {
