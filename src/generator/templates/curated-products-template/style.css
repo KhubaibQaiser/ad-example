@@ -154,7 +154,7 @@ main {
 }
 
 .control-buttons {
-  position: fixed;
+  position: absolute;
   bottom: 26.5%;
   width: 100%;
   z-index: 4;

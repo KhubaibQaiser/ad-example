@@ -46,7 +46,9 @@
       const dimensions = config.variation ? AdVariations[config.variation] || AdVariations.Skyscraper : AdVariations.Skyscraper;
       const width = dimensions.width || 'auto';
       const height = dimensions.height || 'auto';
-      const adUrl = `https://ad-example.vercel.app/ads/${config.embedId}/${config.template}/index.html`;
+      const BASE_URL = `https://ad-example.vercel.app/ads/${config.embedId}/${config.template}/ad`;
+      const indexUrl = `${BASE_URL}/index.html`;
+      const assetsUrl = `${BASE_URL}/assets`;
 
       try {
         const container = document.getElementById(config.containerId);
@@ -54,7 +56,7 @@
           throw new Error(`Element with id="${config.containerId}" not found.`);
         }
 
-        const response = await fetch(adUrl);
+        const response = await fetch(indexUrl);
         if (!response.ok) {
           throw new Error('Unable to fetch the ad content.');
         }
@@ -65,38 +67,53 @@
         tempDiv.innerHTML = adContent;
 
         const scripts = tempDiv.querySelectorAll('script');
-        const links = tempDiv.querySelectorAll('link[rel="stylesheet"]');
+        const links = tempDiv.querySelectorAll('link');
         const images = tempDiv.querySelectorAll('img');
         const videos = tempDiv.querySelectorAll('video');
 
+        console.log('FOUND', { scripts, links, images, videos });
+
         links.forEach((link) => {
-          document.head.appendChild(link);
+          const newLink = document.createElement('link');
+          const assetName = link.href.split('/').pop();
+          newLink.href = `${BASE_URL}/${assetName}`;
+          document.head.appendChild(newLink);
+          link.remove();
         });
 
-        // Append images to the container
+        // Update the src of original images
         images.forEach((img) => {
-          const newImg = document.createElement('img');
-          newImg.src = img.src;
-          container.appendChild(newImg);
+          const assetName = img.src.split('/').pop();
+          img.src = `${assetsUrl}/${assetName}`;
         });
 
-        // Append videos to the container
+        // Update the src or data-src of original videos
         videos.forEach((video) => {
-          const newVideo = document.createElement('video');
-          newVideo.src = video.src;
-          newVideo.controls = true; // Enable video controls
-          container.appendChild(newVideo);
+          const assetName = video.getAttribute('data-src') || video.src.split('/').pop();
+          if (video.hasAttribute('data-src')) {
+            video.setAttribute('data-src', `${assetsUrl}/${assetName}`);
+          } else {
+            video.src = `${assetsUrl}/${assetName}`;
+          }
+          video.controls = true; // Enable video controls
         });
 
         container.innerHTML = tempDiv.innerHTML;
         container.style.width = width;
         container.style.height = height;
+        // container.style.backgroundColor = '#fff';
+        container.style.overflow = 'hidden';
 
         // Append JS files to the body
         scripts.forEach((script) => {
+          const assetName = script.src.split('/').pop();
           const newScript = document.createElement('script');
-          newScript.src = script.src;
+          newScript.src = `${BASE_URL}/${assetName}`;
+          /* Generate the HASH by: openssl dgst -sha256 -binary your-script.js | openssl base64 -A */
+          // newScript.integrity = 'sha256-abcdef'; // Add Proper SRI hash
+          newScript.crossOrigin = 'anonymous';
           document.body.appendChild(newScript);
+          scripts.remove();
         });
       } catch (error) {
         console.error('Error loading ad:', error);
