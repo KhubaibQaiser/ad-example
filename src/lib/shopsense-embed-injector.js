@@ -145,8 +145,9 @@
     const onScriptLoaded =
       (scriptsCount = 0) =>
       () => {
+        console.log('SCRIPT LOADED', { scriptsCount, scriptsLoaded });
         scriptsLoaded++;
-        if (scriptsLoaded === scriptsCount) {
+        if (scriptsLoaded === scriptsCount - 2) {
           console.log('All scripts loaded successfully');
           const event = new Event('ShopsenseEmbedInjected');
           document.dispatchEvent(event);
