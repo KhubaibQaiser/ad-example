@@ -130,6 +130,7 @@
           const newScript = document.createElement('script');
           newScript.src = scriptUrl;
           newScript.type = 'text/javascript';
+          newScript.onload = onScriptLoaded(scripts.length);
           /* Generate the HASH by: openssl dgst -sha256 -binary your-script.js | openssl base64 -A */
           // newScript.integrity = 'sha256-abcdef'; // Add Proper SRI hash
           // newScript.crossOrigin = 'anonymous';
@@ -139,6 +140,18 @@
         console.error('Error loading ad:', error);
       }
     }
+
+    let scriptsLoaded = 0;
+    const onScriptLoaded =
+      (scriptsCount = 0) =>
+      () => {
+        scriptsLoaded++;
+        if (scriptsLoaded === scriptsCount) {
+          console.log('All scripts loaded successfully');
+          const event = new Event('ShopsenseEmbedInjected');
+          document.dispatchEvent(event);
+        }
+      };
 
     const createLoaderContainer = (width, height) => {
       const loaderContainer = document.createElement('div');
