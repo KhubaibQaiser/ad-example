@@ -5,7 +5,7 @@ import fs from 'fs';
 import { config } from '@/generator/config';
 
 export async function getExistingAds() {
-  const adsDir = path.join(process.cwd(), 'public/ads');
+  const adsDir = path.join(config.rootDir, 'public', 'ads');
   const supportedTemplates = [config.supportedTemplates['carousel-template'], config.supportedTemplates['curated-products-template']];
   if (!fs.existsSync(adsDir)) {
     return [];

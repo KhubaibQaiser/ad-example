@@ -55,11 +55,15 @@ const isProduction = process.env.NODE_ENV === 'production';
 const envFile = `.env.${isProduction ? 'production' : 'development'}`;
 dotenv.config({ path: envFile });
 
+const rootDir = '/tmp';
+// const rootDir = process.cwd();
+
 export const config = {
   isProduction,
-  outputRootDir: path.join(process.cwd(), 'public', 'ads'),
+  rootDir,
+  outputRootDir: path.join(rootDir, 'public', 'ads'),
   compressVideos: true,
-  tempDownloadDir: path.join('/tmp', 'temp'),
+  tempDownloadDir: path.join(rootDir, 'temp'),
   compressionQuality: 80,
   supportedTemplates: {
     'curated-products-template': 'curated-products-template',
