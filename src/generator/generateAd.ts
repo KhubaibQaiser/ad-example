@@ -88,7 +88,7 @@ export async function generateAd(flData: FeatureLookCollectionAdDataType[], outp
             resolve({ message: responseMessage, slug, template, outputPath: relativePath } as AdGenerationResponse);
           } catch (error) {
             console.error('Error generating ad:', error);
-            reject(`Error generating ad: ${template}`);
+            reject({ message: `Error generating ad: ${template}`, error });
           }
         })
       );
