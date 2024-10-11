@@ -94,7 +94,7 @@
           const assetName = newLink.href.split('/').pop();
           newLink.href = `${BASE_URL}/${assetName}`;
           document.head.appendChild(newLink);
-          link.remove();
+          // link.remove();
         });
 
         // Update the src of original images
@@ -105,7 +105,7 @@
 
         // Update the src or data-src of original videos
         videos.forEach((video) => {
-          const assetName = video.getAttribute('data-src') || video.src.split('/').pop();
+          const assetName = (video.getAttribute('data-src') || video.src).split('/').pop();
           if (video.hasAttribute('data-src')) {
             video.setAttribute('data-src', `${assetsUrl}/${assetName}`);
           } else {
@@ -123,25 +123,20 @@
         setTimeout(hideLoader, 250);
 
         // Append JS files to the body
-        const scriptPromises = [];
+        // const scriptPromises = [];
         scripts.forEach((script) => {
           let scriptUrl = script.src;
           scriptUrl = scriptUrl.split('/').pop();
           scriptUrl = `${BASE_URL}/${scriptUrl}`;
-          // const newScript = script.cloneNode(true);
-          // newScript.removeAttribute('defer');
-          // const assetName = newScript.src.split('/').pop();
-          // newScript.src = `${BASE_URL}/${assetName}`;
-          // newScript.type = 'text/javascript';
-          // /* Generate the HASH by: openssl dgst -sha256 -binary your-script.js | openssl base64 -A */
-          // // newScript.integrity = 'sha256-abcdef'; // Add Proper SRI hash
-          // // newScript.crossOrigin = 'anonymous';
-          // document.body.appendChild(newScript);
-          // script.remove();
-
-          scriptPromises.push(injectScript(scriptUrl));
+          const newScript = document.createElement('script');
+          newScript.src = scriptUrl;
+          newScript.type = 'text/javascript';
+          /* Generate the HASH by: openssl dgst -sha256 -binary your-script.js | openssl base64 -A */
+          // newScript.integrity = 'sha256-abcdef'; // Add Proper SRI hash
+          // newScript.crossOrigin = 'anonymous';
+          document.body.appendChild(newScript);
         });
-        await Promise.all(scriptPromises);
+        // await Promise.all(scriptPromises);
       } catch (error) {
         console.error('Error loading ad:', error);
       }
