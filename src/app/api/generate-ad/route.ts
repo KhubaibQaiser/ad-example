@@ -2,7 +2,6 @@ import { getFeatureLookData } from '@/generator/apis/get-feature-look';
 import { config } from '@/generator/config';
 import { generateAd } from '@/generator/generateAd';
 import { NextRequest, NextResponse } from 'next/server';
-import path from 'path';
 
 export async function POST(request: NextRequest) {
   const { templates, size, publisherHandles, storeHandles, meta } = await request.json();

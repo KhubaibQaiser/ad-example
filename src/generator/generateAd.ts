@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import fsExtra from 'fs-extra';
 import { config } from './config';
-import { getSlug, minifyCss, minifyHtml, minifyJs, renderTemplate } from './utils';
+import { getSlug, minifyCss, minifyHtml, minifyJs, renderTemplate } from '@/generator/utils/generator-utils';
 import { generate as generateCarousel } from './templates/carousel-template/generate';
 import { generate as generatedCuratedProduct } from './templates/curated-products-template/generate';
 import { AdGenerationResponse } from '@/types';

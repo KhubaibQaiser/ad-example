@@ -69,6 +69,7 @@ main {
   line-height: 1.07;
   margin-bottom: 11px;
   text-align: center;
+  color: #000000;
 }
 
 .collection-container {
@@ -108,7 +109,7 @@ main {
   background: white;
   border-radius: 14px;
   -moz-border-radius: 14px;
-  -webkit-border-radius: 8px;
+  -webkit-border-radius: 14px;
   -ms-border-radius: 14px;
   -o-border-radius: 14px;
   text-decoration: none;

@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import fsExtra from 'fs-extra';
 import { config } from '../config';
-import { isImage } from '../utils';
+import { isImage } from '@/generator/utils/generator-utils';
 import { processImageAsset } from './image';
 import { processVideoAsset } from './video';
 

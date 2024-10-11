@@ -125,13 +125,19 @@
         // Append JS files to the body
         scripts.forEach((script) => {
           const newScript = script.cloneNode(true);
+          newScript.removeAttribute('defer');
           const assetName = newScript.src.split('/').pop();
           newScript.src = `${BASE_URL}/${assetName}`;
+          newScript.type = 'text/javascript';
+
           /* Generate the HASH by: openssl dgst -sha256 -binary your-script.js | openssl base64 -A */
           // newScript.integrity = 'sha256-abcdef'; // Add Proper SRI hash
           // newScript.crossOrigin = 'anonymous';
           document.body.appendChild(newScript);
-          script.remove();
+
+          // const testScript = document.createElement('script');
+          // testScript.textContent = `console.log('Test script loaded and running');`;
+          // document.body.appendChild(testScript);
         });
       } catch (error) {
         console.error('Error loading ad:', error);

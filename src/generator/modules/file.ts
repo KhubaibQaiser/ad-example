@@ -1,5 +1,5 @@
 import path from 'path';
-import { isImage, isVideo } from '../utils';
+import { isVideo } from '@/generator/utils/generator-utils';
 import { downloadFile } from '../apis/download-file';
 import { config } from '../config';
 

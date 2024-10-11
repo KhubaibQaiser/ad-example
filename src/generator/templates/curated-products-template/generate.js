@@ -5,8 +5,7 @@ import fsExtra from 'fs-extra';
 import { config } from '@/generator/config';
 import { downloadAndPlaceAsset } from '@/generator/modules/file';
 import { processAssets } from '@/generator/modules/asset-compression';
-import { minifyCss, minifyHtml, minifyJs, renderTemplate } from '@/generator/utils';
-import { title } from 'process';
+import { minifyCss, minifyHtml, minifyJs, renderTemplate } from '@/generator/utils/generator-utils';
 
 // Function to download and process assets
 async function downloadRemoteAssetsToTempDir({ data, outputAssetsDir, width, quality }) {

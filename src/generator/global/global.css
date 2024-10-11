@@ -1,10 +1,13 @@
 .shopsense-ad {
   font-family: serif, Helvetica, Arial;
+  position: relative;
   width: 100%;
   height: 100%;
   font-size: 70%;
   line-height: normal;
   background-color: #fff;
+  overflow: hidden;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .shopsense-ad * {
@@ -17,19 +20,15 @@
   box-sizing: border-box;
 }
 
-.hidden {
+.shopsense-ad .hidden {
   opacity: 0;
 }
 
-.button {
+.shopsense-ad .button {
   display: block;
   text-align: center;
   width: 100%;
   height: 40px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -52,11 +51,11 @@
   text-decoration: none;
 }
 
-.button:hover {
+.shopsense-ad .button:hover {
   background-color: #333;
 }
 
-.product-main {
+.shopsense-ad .product-main {
   width: 90%;
   position: absolute;
   left: 50%;
