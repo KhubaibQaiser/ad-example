@@ -3,7 +3,6 @@
   window.ShopsenseEmbeds = window.ShopsenseEmbeds || {};
 
   const init = () => {
-    console.log('INITIALIZING LAZY LOAD');
     var videos = document.querySelectorAll('.event-module-video');
     videos.forEach(function (video) {
       window.ShopsenseEmbeds.getObserverInstance(

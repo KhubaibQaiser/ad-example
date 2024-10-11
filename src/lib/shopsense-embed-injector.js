@@ -57,20 +57,20 @@
       const assetsUrl = `${BASE_URL}/assets`;
 
       try {
-        const container = document.getElementById(config.containerId);
-        if (!container) {
+        const adParentContainer = document.getElementById(config.containerId);
+        if (!adParentContainer) {
           throw new Error(`Element with id="${config.containerId}" not found.`);
         }
 
-        container.style.position = 'relative';
-        container.style.width = width;
-        container.style.height = height;
-        container.style.overflow = 'hidden';
+        adParentContainer.style.position = 'relative';
+        adParentContainer.style.width = width;
+        adParentContainer.style.height = height;
+        adParentContainer.style.overflow = 'hidden';
 
         const { loaderContainer, hideLoader } = createLoaderContainer(width, height);
-        container.appendChild(loaderContainer);
+        adParentContainer.appendChild(loaderContainer);
         const adContainer = createAdContainer(width, height);
-        container.appendChild(adContainer);
+        adParentContainer.appendChild(adContainer);
 
         const response = await fetch(indexUrl);
         if (!response.ok) {
@@ -127,14 +127,16 @@
           let scriptUrl = script.src;
           scriptUrl = scriptUrl.split('/').pop();
           scriptUrl = `${BASE_URL}/${scriptUrl}`;
-          const newScript = document.createElement('script');
-          newScript.src = scriptUrl;
-          newScript.type = 'text/javascript';
-          newScript.onload = onScriptLoaded(scripts.length);
-          /* Generate the HASH by: openssl dgst -sha256 -binary your-script.js | openssl base64 -A */
-          // newScript.integrity = 'sha256-abcdef'; // Add Proper SRI hash
-          // newScript.crossOrigin = 'anonymous';
-          document.body.appendChild(newScript);
+          if (scriptUrl.includes('.js')) {
+            const newScript = document.createElement('script');
+            newScript.src = scriptUrl;
+            newScript.type = 'text/javascript';
+            newScript.onload = onScriptLoaded(adParentContainer)(scripts.length);
+            /* Generate the HASH by: openssl dgst -sha256 -binary your-script.js | openssl base64 -A */
+            // newScript.integrity = 'sha256-abcdef'; // Add Proper SRI hash
+            // newScript.crossOrigin = 'anonymous';
+            document.body.appendChild(newScript);
+          }
         });
       } catch (error) {
         console.error('Error loading ad:', error);
@@ -143,13 +145,13 @@
 
     let scriptsLoaded = 0;
     const onScriptLoaded =
-      (scriptsCount = 0) =>
+      (adContainer, scriptsCount = 0) =>
       () => {
         console.log('SCRIPT LOADED', { scriptsCount, scriptsLoaded });
         scriptsLoaded++;
-        if (scriptsLoaded === scriptsCount - 2) {
+        if (scriptsLoaded === scriptsCount) {
           console.log('All scripts loaded successfully');
-          const event = new Event('ShopsenseEmbedInjected');
+          const event = new CustomEvent('ShopsenseEmbedInjected', { detail: { container: adContainer } });
           document.dispatchEvent(event);
         }
       };

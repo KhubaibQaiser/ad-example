@@ -1,7 +1,7 @@
 (function () {
-  const updateControls = (scrollLeft, maxScrollLeft) => {
-    const leftButton = document.querySelector('.control-button.left');
-    const rightButton = document.querySelector('.control-button.right');
+  const updateControls = (container) => (scrollLeft, maxScrollLeft) => {
+    const leftButton = container.querySelector('.control-button.left');
+    const rightButton = container.querySelector('.control-button.right');
 
     if (scrollLeft === 0) {
       leftButton.style.opacity = '0';
@@ -16,21 +16,23 @@
     }
   };
 
-  document.addEventListener('DOMContentLoaded', function () {
-    const collectionContainer = document.querySelector('.collection-container');
-    const controlButtons = document.querySelectorAll('.control-button');
+  const init = (e) => {
+    const container = e?.detail?.container || document;
 
-    updateControls(0, collectionContainer.scrollWidth - collectionContainer.clientWidth);
+    const collectionContainer = container.querySelector('.collection-container');
+    const controlButtons = container.querySelectorAll('.control-button');
+
+    updateControls(container)(0, collectionContainer.scrollWidth - collectionContainer.clientWidth);
 
     collectionContainer.addEventListener('scroll', function () {
       const scrollLeft = collectionContainer.scrollLeft;
       const maxScrollLeft = collectionContainer.scrollWidth - collectionContainer.clientWidth;
-      updateControls(scrollLeft, maxScrollLeft);
+      updateControls(container)(scrollLeft, maxScrollLeft);
     });
 
     controlButtons.forEach(function (button) {
       button.addEventListener('click', function () {
-        const product = document.querySelector('.product');
+        const product = container.querySelector('.product');
         const itemWidth = product.offsetWidth;
         const scrollLeft = collectionContainer.scrollLeft;
 
@@ -47,5 +49,8 @@
         }
       });
     });
-  });
+  };
+
+  document.addEventListener('DOMContentLoaded', init);
+  document.addEventListener('ShopsenseEmbedInjected', init);
 })();

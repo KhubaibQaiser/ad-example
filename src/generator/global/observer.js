@@ -3,7 +3,7 @@
   window.ShopsenseEmbeds = window.ShopsenseEmbeds || {};
 
   // Create a function to handle the intersection logic
-  window.ShopsenseEmbeds.handleIntersection = (callback) => {
+  const handleIntersection = (callback) => {
     return (entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -17,7 +17,7 @@
 
   // Create an Intersection Observer instance with the custom callback
   window.ShopsenseEmbeds.getObserverInstance = (element, cb, options = {}) => {
-    const observer = new IntersectionObserver(window.ShopsenseEmbeds.handleIntersection(cb), {
+    const observer = new IntersectionObserver(handleIntersection(cb), {
       root: null, // Use the viewport as the root
       rootMargin: '0px',
       threshold: 1, // Trigger when 10% of the element is visible
