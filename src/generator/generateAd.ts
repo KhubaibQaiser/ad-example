@@ -13,10 +13,10 @@ const TEMPLATE_GENERATOR_MAP = {
   [config.supportedTemplates['curated-products-template']]: generatedCuratedProduct,
 };
 
-const { tempDownloadDir, rootDir } = config;
+const { tempDownloadDir } = config;
 
 async function copyGlobalFiles(outputDir: string): Promise<void> {
-  const globalDir = path.join(rootDir, 'src', 'generator', 'global');
+  const globalDir = path.join(process.cwd(), 'src', 'generator', 'global');
   await fsExtra.ensureDir(globalDir);
   const files = fs.readdirSync(globalDir);
   for (const file of files) {
@@ -58,7 +58,7 @@ async function writeDataToTemp(data: FeatureLookCollectionAdDataType[], outputDi
 export async function generateAd(flData: FeatureLookCollectionAdDataType[], outputRootDir: string, template: string, width: number, height: number) {
   let outputAdRootDir = '';
   try {
-    const templatesDir = path.join(rootDir, 'src', 'generator', 'templates');
+    const templatesDir = path.join(process.cwd(), 'src', 'generator', 'templates');
     const templateDir = path.join(templatesDir, template);
     await fsExtra.ensureDir(tempDownloadDir);
     await fsExtra.ensureDir(outputRootDir);
@@ -84,7 +84,7 @@ export async function generateAd(flData: FeatureLookCollectionAdDataType[], outp
             const adIndexPath = path.join(outputAdRootDir, 'index.html');
             fs.writeFileSync(adIndexPath, minifiedAdHtml);
             const responseMessage = `Ad has been generated successfully!`;
-            const relativePath = path.relative(rootDir, adIndexPath).replace('public/', '');
+            const relativePath = path.relative(process.cwd(), adIndexPath).replace('public/', '');
             resolve({ message: responseMessage, slug, template, outputPath: relativePath } as AdGenerationResponse);
           } catch (error) {
             console.error('Error generating ad:', error);
