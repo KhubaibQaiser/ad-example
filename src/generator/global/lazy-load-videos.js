@@ -2,8 +2,15 @@
   // Ensure the namespace exists
   window.ShopsenseEmbeds = window.ShopsenseEmbeds || {};
 
-  document.addEventListener('DOMContentLoaded', function () {
+  const isInitialized = false;
+  const init = () => {
+    if (isInitialized) {
+      return;
+    }
     var videos = document.querySelectorAll('.event-module-video');
+    if (videos.length === 0) {
+      return;
+    }
     videos.forEach(function (video) {
       window.ShopsenseEmbeds.getObserverInstance(
         video,
@@ -22,5 +29,9 @@
         }
       );
     });
-  });
+    isInitialized = true;
+  };
+
+  document.addEventListener('DOMContentLoaded', init);
+  init();
 })();

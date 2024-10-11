@@ -123,7 +123,6 @@
         setTimeout(hideLoader, 250);
 
         // Append JS files to the body
-        // const scriptPromises = [];
         scripts.forEach((script) => {
           let scriptUrl = script.src;
           scriptUrl = scriptUrl.split('/').pop();
@@ -136,7 +135,6 @@
           // newScript.crossOrigin = 'anonymous';
           document.body.appendChild(newScript);
         });
-        // await Promise.all(scriptPromises);
       } catch (error) {
         console.error('Error loading ad:', error);
       }
