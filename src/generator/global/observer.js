@@ -16,9 +16,9 @@
   };
 
   // Create an Intersection Observer instance with the custom callback
-  window.ShopsenseEmbeds.getObserverInstance = (element, cb, options = {}) => {
+  window.ShopsenseEmbeds.getObserverInstance = (root, element, cb, options = {}) => {
     const observer = new IntersectionObserver(handleIntersection(cb), {
-      root: null, // Use the viewport as the root
+      root: root ?? null, // Use the viewport as the root
       rootMargin: '0px',
       threshold: 1, // Trigger when 10% of the element is visible
       ...options,

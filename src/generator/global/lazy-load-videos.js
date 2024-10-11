@@ -8,6 +8,7 @@
     var videos = container.querySelectorAll('.event-module-video');
     videos.forEach(function (video) {
       window.ShopsenseEmbeds.getObserverInstance(
+        container,
         video,
         () => {
           var source = video.getAttribute('data-src');

@@ -20,7 +20,7 @@
     const slides = container.querySelectorAll('.product-section');
 
     slides.forEach((slide) => {
-      window.ShopsenseEmbeds.getObserverInstance(slide, elementWithinViewport);
+      window.ShopsenseEmbeds.getObserverInstance(container, slide, elementWithinViewport);
       // Track user impressions
       slide.addEventListener('mouseenter', () => {
         window.ShopsenseEmbeds.analytics.logEvent('Tile: Mouse Over', window.ShopsenseEmbeds.getData(slide, 'item'));
