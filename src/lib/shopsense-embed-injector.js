@@ -123,22 +123,25 @@
         setTimeout(hideLoader, 250);
 
         // Append JS files to the body
+        const scriptPromises = [];
         scripts.forEach((script) => {
-          const newScript = script.cloneNode(true);
-          newScript.removeAttribute('defer');
-          const assetName = newScript.src.split('/').pop();
-          newScript.src = `${BASE_URL}/${assetName}`;
-          newScript.type = 'text/javascript';
+          let scriptUrl = script.src;
+          scriptUrl = scriptUrl.split('/').pop();
+          scriptUrl = `${BASE_URL}/${scriptUrl}`;
+          // const newScript = script.cloneNode(true);
+          // newScript.removeAttribute('defer');
+          // const assetName = newScript.src.split('/').pop();
+          // newScript.src = `${BASE_URL}/${assetName}`;
+          // newScript.type = 'text/javascript';
+          // /* Generate the HASH by: openssl dgst -sha256 -binary your-script.js | openssl base64 -A */
+          // // newScript.integrity = 'sha256-abcdef'; // Add Proper SRI hash
+          // // newScript.crossOrigin = 'anonymous';
+          // document.body.appendChild(newScript);
+          // script.remove();
 
-          /* Generate the HASH by: openssl dgst -sha256 -binary your-script.js | openssl base64 -A */
-          // newScript.integrity = 'sha256-abcdef'; // Add Proper SRI hash
-          // newScript.crossOrigin = 'anonymous';
-          document.body.appendChild(newScript);
-
-          // const testScript = document.createElement('script');
-          // testScript.textContent = `console.log('Test script loaded and running');`;
-          // document.body.appendChild(testScript);
+          scriptPromises.push(injectScript(scriptUrl));
         });
+        await Promise.all(scriptPromises);
       } catch (error) {
         console.error('Error loading ad:', error);
       }
@@ -174,6 +177,21 @@
       adContainer.style.height = height;
       adContainer.style.zIndex = 1;
       return adContainer;
+    };
+
+    const injectScript = (url) => {
+      return fetch(url)
+        .then((response) => {
+          if (!response.ok) throw new Error('Network response was not ok');
+          return response.text();
+        })
+        .then((scriptContent) => {
+          const script = document.createElement('script');
+          script.textContent = scriptContent;
+          document.body.appendChild(script);
+          console.log('Script loaded successfully');
+        })
+        .catch((error) => console.error('Error loading script:', error));
     };
 
     return {

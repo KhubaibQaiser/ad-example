@@ -1,7 +1,5 @@
 (function () {
-  console.log('LOAD CURATED PRODUCTS TEMPLATE SCRIPTS.JS');
   const updateControls = (scrollLeft, maxScrollLeft) => {
-    console.log('LOAD CURATED PRODUCTS TEMPLATE CONTROLS');
     const leftButton = document.querySelector('.control-button.left');
     const rightButton = document.querySelector('.control-button.right');
 

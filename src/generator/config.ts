@@ -59,7 +59,7 @@ export const config = {
   isProduction,
   outputRootDir: path.join(process.cwd(), 'public', 'ads'),
   compressVideos: true,
-  tempDownloadDir: path.join(process.cwd(), 'temp'),
+  tempDownloadDir: path.join('/tmp', 'temp'),
   compressionQuality: 80,
   supportedTemplates: {
     'curated-products-template': 'curated-products-template',
