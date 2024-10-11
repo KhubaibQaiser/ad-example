@@ -12,10 +12,12 @@
     window.ShopsenseEmbeds.analytics.logEvent('Tile: Rendered', window.ShopsenseEmbeds.getData(element, 'item'));
   };
 
-  document.addEventListener('DOMContentLoaded', () => {
+  const init = (e) => {
+    const container = e?.detail?.container || document;
+
     window.ShopsenseEmbeds.analytics.logEvent('Page Loaded');
 
-    const slides = document.querySelectorAll('.product-section');
+    const slides = container.querySelectorAll('.product-section');
 
     slides.forEach((slide) => {
       window.ShopsenseEmbeds.getObserverInstance(slide, elementWithinViewport);
@@ -35,5 +37,8 @@
         });
       });
     });
-  });
+  };
+
+  document.addEventListener('DOMContentLoaded', init);
+  document.addEventListener('ShopsenseEmbedInjected', init);
 })();

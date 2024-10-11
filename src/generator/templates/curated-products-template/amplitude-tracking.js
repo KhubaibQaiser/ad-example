@@ -13,16 +13,18 @@
     window.ShopsenseEmbeds.analytics.logEvent('Curated: Rendered', window.ShopsenseEmbeds.getData(element, 'item'));
   };
 
-  document.addEventListener('DOMContentLoaded', () => {
+  const init = (e) => {
+    const container = e?.detail?.container || document;
+
     window.ShopsenseEmbeds.analytics.logEvent('Page Loaded');
 
-    const videoElement = document.querySelector('.product-main');
+    const videoElement = container.querySelector('.product-main');
 
     if (videoElement) {
       window.ShopsenseEmbeds.analytics.logEvent('Video Loaded');
     }
 
-    const products = document.querySelectorAll('.product');
+    const products = container.querySelectorAll('.product');
     products.forEach((element) => {
       element.addEventListener('mouseenter', () => {
         window.ShopsenseEmbeds.analytics.logEvent('Product: Mouse Hover', window.ShopsenseEmbeds.getData(element, 'item'));
@@ -33,9 +35,12 @@
       });
     });
 
-    var shopNowCtaButton = document.querySelector('.collection-cta-button');
+    var shopNowCtaButton = container.querySelector('.collection-cta-button');
     shopNowCtaButton.addEventListener('click', () => {
       window.ShopsenseEmbeds.analytics.logEvent('CTA: Shop Now Clicked', window.ShopsenseEmbeds.getData(shopNowCtaButton, 'item'));
     });
-  });
+  };
+
+  document.addEventListener('DOMContentLoaded', init);
+  document.addEventListener('ShopsenseEmbedInjected', init);
 })();

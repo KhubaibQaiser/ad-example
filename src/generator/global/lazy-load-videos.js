@@ -2,8 +2,10 @@
   // Ensure the namespace exists
   window.ShopsenseEmbeds = window.ShopsenseEmbeds || {};
 
-  const init = () => {
-    var videos = document.querySelectorAll('.event-module-video');
+  const init = (e) => {
+    const container = e?.detail?.container || document;
+
+    var videos = container.querySelectorAll('.event-module-video');
     videos.forEach(function (video) {
       window.ShopsenseEmbeds.getObserverInstance(
         video,

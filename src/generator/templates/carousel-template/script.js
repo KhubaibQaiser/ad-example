@@ -1,7 +1,8 @@
 (function () {
-  const initCarousel = () => {
-    const carousel = document.querySelector('main');
-    const slides = document.querySelectorAll('.product-section');
+  const init = (e) => {
+    const container = e?.detail?.container || document;
+
+    const slides = container.querySelectorAll('.product-section');
     const numSlides = slides.length;
     let interval;
     const delay = 3; // seconds
@@ -46,13 +47,14 @@
     }
 
     if (slides.length > 1) {
-      carousel.addEventListener('mouseenter', stopCarousel);
-      carousel.addEventListener('mouseleave', startCarousel);
+      container.addEventListener('mouseenter', stopCarousel);
+      container.addEventListener('mouseleave', startCarousel);
     }
 
     showSlide(currentIndex);
     startCarousel();
   };
 
-  document.addEventListener('DOMContentLoaded', initCarousel);
+  document.addEventListener('DOMContentLoaded', init);
+  document.addEventListener('ShopsenseEmbedInjected', init);
 })();

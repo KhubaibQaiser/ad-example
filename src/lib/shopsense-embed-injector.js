@@ -123,20 +123,24 @@
         setTimeout(hideLoader, 250);
 
         // Append JS files to the body
+        let filteredScripts = [];
         scripts.forEach((script) => {
+          if (script.src && script.src.includes('.js')) {
+            filteredScripts.push(script);
+          }
+        });
+        filteredScripts.forEach((script) => {
           let scriptUrl = script.src;
           scriptUrl = scriptUrl.split('/').pop();
           scriptUrl = `${BASE_URL}/${scriptUrl}`;
-          if (scriptUrl.includes('.js')) {
-            const newScript = document.createElement('script');
-            newScript.src = scriptUrl;
-            newScript.type = 'text/javascript';
-            newScript.onload = onScriptLoaded(adParentContainer)(scripts.length);
-            /* Generate the HASH by: openssl dgst -sha256 -binary your-script.js | openssl base64 -A */
-            // newScript.integrity = 'sha256-abcdef'; // Add Proper SRI hash
-            // newScript.crossOrigin = 'anonymous';
-            document.body.appendChild(newScript);
-          }
+          const newScript = document.createElement('script');
+          newScript.src = scriptUrl;
+          newScript.type = 'text/javascript';
+          newScript.onload = onScriptLoaded(adParentContainer, filteredScripts.length);
+          /* Generate the HASH by: openssl dgst -sha256 -binary your-script.js | openssl base64 -A */
+          // newScript.integrity = 'sha256-abcdef'; // Add Proper SRI hash
+          // newScript.crossOrigin = 'anonymous';
+          document.body.appendChild(newScript);
         });
       } catch (error) {
         console.error('Error loading ad:', error);
@@ -147,8 +151,8 @@
     const onScriptLoaded =
       (adContainer, scriptsCount = 0) =>
       () => {
-        console.log('SCRIPT LOADED', { scriptsCount, scriptsLoaded });
         scriptsLoaded++;
+        console.log('SCRIPT LOADED', { scriptsCount, scriptsLoaded });
         if (scriptsLoaded === scriptsCount) {
           console.log('All scripts loaded successfully');
           const event = new CustomEvent('ShopsenseEmbedInjected', { detail: { container: adContainer } });
