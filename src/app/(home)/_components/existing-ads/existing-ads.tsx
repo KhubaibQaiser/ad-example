@@ -6,6 +6,10 @@ import { Layout } from './layout';
 export default async function ExistingAds() {
   const ads = await getExistingAds();
 
+  // const openAd = (url: string) => () => {
+  //   window.open(url, '_blank');
+  // };
+
   return (
     <Layout>
       {ads.length > 0 ? (

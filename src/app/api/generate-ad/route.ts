@@ -1,5 +1,8 @@
 import { getFeatureLookData } from '@/generator/apis/get-feature-look';
+import { config } from '@/generator/config';
 import { generateAd } from '@/generator/generateAd';
+import { downloadDataToTemp } from '@/generator/modules/file';
+import fsExtra from 'fs-extra';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
@@ -10,9 +13,10 @@ export async function POST(request: NextRequest) {
     for (const publisher of publisherHandles) {
       for (const storeHandle of storeHandles) {
         const data = await getFeatureLookData({ publisher, storeHandle, meta });
+        const localReferenceData = await downloadDataToTemp(data);
         for (const template of templates) {
           const [width, height] = size.split('x').map(Number);
-          const response = await generateAd(data, template, width, height);
+          const response = await generateAd(localReferenceData, template, width, height);
           responses.push(response);
         }
       }
@@ -21,5 +25,8 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Error generating ads:', error);
     return NextResponse.json({ data: null, error }, { status: 500 });
+  } finally {
+    console.log('Removing temporary download directory...');
+    await fsExtra.remove(config.tempDownloadDir);
   }
 }

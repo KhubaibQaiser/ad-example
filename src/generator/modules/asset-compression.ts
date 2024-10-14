@@ -7,18 +7,22 @@ import { processImageAsset } from './image';
 import { processVideoAsset } from './video';
 
 // Function to process images
-export async function processAssets(inputDir: string, outputDir: string, _width: number, _quality: number) {
+export async function processAssets(collectionSlug: string, outputDir: string, _width: number) {
+  const inputDir = path.join(config.tempDownloadDir, collectionSlug);
   const width = parseInt(`${_width}`);
-  const quality = parseInt(`${_quality}`);
+  const quality = parseInt(`${config.imageCompressionQuality}`);
 
   const entries = fs.readdirSync(inputDir, { withFileTypes: true });
+
   for (const entry of entries) {
     const inputPath = path.join(inputDir, entry.name);
     const outputPath = path.join(outputDir, entry.name);
 
     if (entry.isDirectory()) {
       await fsExtra.ensureDir(outputPath);
-      await processAssets(inputPath, outputPath, width, quality);
+      await processAssets(collectionSlug, outputPath, width);
+    } else if (entry.name.startsWith('.')) {
+      // Ignore
     } else {
       const ext = path.extname(entry.name).toLowerCase();
       let w: string | number = width;
@@ -33,4 +37,5 @@ export async function processAssets(inputDir: string, outputDir: string, _width:
       }
     }
   }
+  console.log('Assets compressed successfully!');
 }

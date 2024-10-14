@@ -5,7 +5,7 @@ import fs from 'fs';
 import { config } from '@/generator/config';
 
 export async function getExistingAds() {
-  const adsDir = path.join(config.rootDir, 'public', 'ads');
+  const adsDir = config.outputRootDir;
   const supportedTemplates = [config.supportedTemplates['carousel-template'], config.supportedTemplates['curated-products-template']];
   if (!fs.existsSync(adsDir)) {
     return [];
@@ -19,12 +19,11 @@ export async function getExistingAds() {
     const adFolders = [];
     for (const template of supportedTemplates) {
       const templateDir = path.join(adsDir, file, template, 'index.html');
-      if (fs.existsSync(templateDir)) {
-        const relativePath = templateDir.split('public')[1];
 
+      if (fs.existsSync(templateDir)) {
         adFolders.push({
-          name: relativePath.replace('ads/', '').replace('/index.html', '').slice(1),
-          url: relativePath,
+          name: templateDir.replace(adsDir, '').replace('/index.html', '').slice(1),
+          url: templateDir,
         });
       }
     }
