@@ -60,7 +60,7 @@
       </div>
       <div class="footer">
         <h3 class="footer-text"><%= data.meta.footerText %></h3>
-        <a class="collection-cta-button button" href="javascript:void(0);" onclick="window.open(clickTag, '_blank')" data-item="<%= JSON.stringify({ title: data.title, url: data.collection_url }) %>">Shop Now!</a>
+        <a class="collection-cta-button button" href="<%= data.clickTag %>" onclick="window.open(clickTag, '_blank')" data-item="<%= JSON.stringify({ title: data.title, url: data.collection_url }) %>">Shop Now!</a>
       </div>
     </main>
 
