@@ -1,5 +1,4 @@
 import { getFeatureLookData } from '@/generator/apis/get-feature-look';
-import { config } from '@/generator/config';
 import { generateAd } from '@/generator/generateAd';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -13,7 +12,7 @@ export async function POST(request: NextRequest) {
         const data = await getFeatureLookData({ publisher, storeHandle, meta });
         for (const template of templates) {
           const [width, height] = size.split('x').map(Number);
-          const response = await generateAd(data, config.outputRootDir, template, width, height);
+          const response = await generateAd(data, template, width, height);
           responses.push(response);
         }
       }

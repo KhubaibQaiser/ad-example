@@ -8,6 +8,7 @@ export type ProductPreview = Product & {
   retailer: ProductRetailer;
   order: number;
   non_affiliate_url?: string;
+  image?: string;
 };
 
 export type ProductRetailer = {

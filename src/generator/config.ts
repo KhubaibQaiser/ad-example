@@ -55,16 +55,16 @@ const isProduction = process.env.NODE_ENV === 'production';
 const envFile = `.env.${isProduction ? 'production' : 'development'}`;
 dotenv.config({ path: envFile });
 
-const rootDir = '/tmp';
+const rootDir = path.join('/tmp', 'shopsense-embeds');
 // const rootDir = process.cwd();
 
 export const config = {
   isProduction,
   rootDir,
-  outputRootDir: path.join(rootDir, 'public', 'ads'),
+  imageCompressionQuality: 80,
   compressVideos: true,
-  tempDownloadDir: path.join(rootDir, 'temp'),
-  compressionQuality: 80,
+  tempDownloadDir: path.join(rootDir, 'downloads'),
+  outputRootDir: path.join(rootDir, 'output'),
   supportedTemplates: {
     'curated-products-template': 'curated-products-template',
     'carousel-template': 'carousel-template',
