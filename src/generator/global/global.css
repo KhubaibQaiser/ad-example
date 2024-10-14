@@ -74,9 +74,9 @@ body {
   top: 40%;
   transform: translate(-50%, -40%);
   z-index: -1;
-  -webkit-border-radius: calc(100vw * 0.058);
-  -moz-border-radius: calc(100vw * 0.058);
-  -ms-border-radius: calc(100vw * 0.058);
-  -o-border-radius: calc(100vw * 0.058);
-  border-radius: calc(100vw * 0.058);
+  -webkit-border-radius: calc(var(--parent-width) * 0.058);
+  -moz-border-radius: calc(var(--parent-width) * 0.058);
+  -ms-border-radius: calc(var(--parent-width) * 0.058);
+  -o-border-radius: calc(var(--parent-width) * 0.058);
+  border-radius: calc(var(--parent-width) * 0.058);
 }
