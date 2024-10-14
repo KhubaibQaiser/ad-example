@@ -138,11 +138,13 @@
         applyStyles(adParentContainer, {
           position: 'relative',
           width,
-          height,
+          height: 0, // Initially hidden
           overflow: 'hidden',
+          opacity: 0,
+          transition: 'all 0.5s ease', // Added transition on height and opacity
         });
 
-        const hideLoader = injectLoaderContainer(adParentContainer, embedLoaderContainerId, width, height);
+        // const hideLoader = injectLoaderContainer(adParentContainer, embedLoaderContainerId, width, height);
         const adContainer = injectAdContainer(adParentContainer, embedContainerId, width, height);
 
         const response = await fetch(indexUrl);
@@ -195,7 +197,9 @@
         }
         adContentContainer.classList.add('shopsense-ad');
         adContainer.innerHTML = adContentContainer.outerHTML;
-        setTimeout(hideLoader, 250);
+        setTimeout(() => {
+          applyStyles(adParentContainer, { height: height, opacity: 1 });
+        }, 250);
 
         // Append JS files to the body
         let filteredScripts = [];
