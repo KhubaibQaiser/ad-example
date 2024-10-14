@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/generate-ad/route.ts": {
+      "maxDuration": 120
+    }
+  }
+}
