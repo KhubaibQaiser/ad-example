@@ -21,12 +21,12 @@ main {
 }
 
 .store-title {
-  width: calc(100% * 0.825);
+  width: calc(var(--parent-width) * 0.825);
   height: auto;
 }
 
 .store-subtitle {
-  width: calc(100% * 0.825);
+  width: calc(var(--parent-width) * 0.825);
   height: auto;
 }
 

@@ -1,3 +1,7 @@
+:root {
+  --parent-width: 160px;
+}
+
 html,
 body {
   margin: 0;
