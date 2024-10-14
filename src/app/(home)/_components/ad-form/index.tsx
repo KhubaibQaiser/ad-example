@@ -108,7 +108,7 @@ function AdFormBase({ handleRefresh }: { handleRefresh: () => void }) {
             control={form.control}
             name='selectedStores'
             render={({ field }) => (
-              <FormSelectInput {...field} label='FL Module(s)' isMulti options={storeHandles} isLoading={loadingOptions} isDisabled={isSubmitting} />
+              <FormSelectInput {...field} label='Module(s)' isMulti options={storeHandles} isLoading={loadingOptions} isDisabled={isSubmitting} />
             )}
           />
 

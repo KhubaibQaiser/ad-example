@@ -3,11 +3,11 @@ main {
   height: 100%;
   position: relative;
   overflow: hidden;
-  -webkit-border-radius: calc(100vw * 0.058);
-  -moz-border-radius: calc(100vw * 0.058);
-  -ms-border-radius: calc(100vw * 0.058);
-  -o-border-radius: calc(100vw * 0.058);
-  border-radius: calc(100vw * 0.058);
+  -webkit-border-radius: calc(100% * 0.058);
+  -moz-border-radius: calc(100% * 0.058);
+  -ms-border-radius: calc(100% * 0.058);
+  -o-border-radius: calc(100% * 0.058);
+  border-radius: calc(100% * 0.058);
   z-index: 1;
   transition: opacity 0.3s ease-in-out;
 }
@@ -76,23 +76,23 @@ main {
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: calc(100vh * 0.02);
+  gap: calc(100% * 0.02);
 }
 
 .suggestions-wrapper a {
-  width: calc(100vw * 0.29);
-  height: calc(100vw * 0.29);
+  width: calc(100% * 0.29);
+  height: calc(100% * 0.29);
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #fff;
   padding: 0.25rem;
-  -webkit-border-radius: calc(100vw * 0.043);
-  -moz-border-radius: calc(100vw * 0.043);
-  -ms-border-radius: calc(100vw * 0.043);
-  -o-border-radius: calc(100vw * 0.043);
-  border-radius: calc(100vw * 0.043);
+  -webkit-border-radius: calc(100% * 0.043);
+  -moz-border-radius: calc(100% * 0.043);
+  -ms-border-radius: calc(100% * 0.043);
+  -o-border-radius: calc(100% * 0.043);
+  border-radius: calc(100% * 0.043);
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -119,8 +119,8 @@ main {
 /* 600 PIXELS HIGH */
 @media only screen and (height: 600px) and (min-width: 160px) {
   .suggestions-wrapper a {
-    width: calc(100vw * 0.45);
-    height: calc(100vw * 0.45);
+    width: calc(100% * 0.45);
+    height: calc(100% * 0.45);
   }
 
   .suggestions {
@@ -128,14 +128,14 @@ main {
   }
 
   .suggestions-wrapper {
-    gap: calc(100vh * 0.015);
+    gap: calc(100% * 0.015);
   }
 }
 
 /* 1050 PIXELS HIGH */
 @media only screen and (height: 1050px) and (min-width: 300px) {
   .suggestions-wrapper {
-    gap: calc(100vh * 0.015);
+    gap: calc(100% * 0.015);
   }
 
   .suggestions {
@@ -143,7 +143,7 @@ main {
   }
 
   .suggestions-wrapper a {
-    width: calc(100vw * 0.4);
-    height: calc(100vw * 0.4);
+    width: calc(100% * 0.4);
+    height: calc(100% * 0.4);
   }
 }

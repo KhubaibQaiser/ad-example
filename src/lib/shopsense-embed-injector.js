@@ -25,6 +25,79 @@
 
     const embedLoaderContainerId = 'shopsense-embed-loader';
     const embedContainerId = 'shopsense-embed-ad';
+    let scriptsLoaded = 0;
+
+    const onScriptLoaded =
+      (adContainer, scriptsCount = 0) =>
+      () => {
+        scriptsLoaded++;
+        if (scriptsLoaded === scriptsCount) {
+          console.log('All scripts loaded successfully');
+          const event = new CustomEvent('ShopsenseEmbedInjected', { detail: { container: adContainer } });
+          document.dispatchEvent(event);
+        }
+      };
+
+    const applyStyles = (element, styles, forceOverride = false) => {
+      if (forceOverride) {
+        // Clear existing styles
+        element.style.cssText = '';
+      }
+      Object.assign(element.style, styles);
+    };
+
+    const injectLoaderContainer = (container, id, width, height) => {
+      const loaderContainer = document.createElement('div');
+      loaderContainer.id = id;
+      applyStyles(loaderContainer, {
+        width,
+        height,
+        backgroundColor: 'rgba(0,0,0,1)',
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        opacity: 1,
+        transition: 'opacity 0.5s ease',
+        zIndex: 10,
+      });
+      container.appendChild(loaderContainer);
+
+      const hideLoader = () => {
+        loaderContainer.style.opacity = 0;
+        setTimeout(() => {
+          loaderContainer.remove();
+        }, 500);
+      };
+
+      return hideLoader;
+    };
+
+    const injectAdContainer = (container, id, width, height) => {
+      const adContainer = document.createElement('div');
+      adContainer.id = id;
+      applyStyles(adContainer, {
+        width,
+        height,
+        zIndex: 1,
+      });
+      container.appendChild(adContainer);
+      return adContainer;
+    };
+
+    // const injectScript = (url) => {
+    //   return fetch(url)
+    //     .then((response) => {
+    //       if (!response.ok) throw new Error('Network response was not ok');
+    //       return response.text();
+    //     })
+    //     .then((scriptContent) => {
+    //       const script = document.createElement('script');
+    //       script.textContent = scriptContent;
+    //       document.body.appendChild(script);
+    //       console.log('Script loaded successfully');
+    //     })
+    //     .catch((error) => console.error('Error loading script:', error));
+    // };
 
     /**
      * Load an Embed into the specified container.
@@ -50,8 +123,8 @@
       config.variation = config.variation || SupportedVariations.Skyscraper;
 
       const dimensions = config.variation ? AdVariations[config.variation] || AdVariations.Skyscraper : AdVariations.Skyscraper;
-      const width = dimensions.width || 'auto';
-      const height = dimensions.height || 'auto';
+      const width = dimensions.width;
+      const height = dimensions.height;
       const BASE_URL = `https://ad-example.vercel.app/ads/${config.embedId}/${config.template}/ad`;
       const indexUrl = `${BASE_URL}/index.html`;
       const assetsUrl = `${BASE_URL}/assets`;
@@ -62,15 +135,15 @@
           throw new Error(`Element with id="${config.containerId}" not found.`);
         }
 
-        adParentContainer.style.position = 'relative';
-        adParentContainer.style.width = width;
-        adParentContainer.style.height = height;
-        adParentContainer.style.overflow = 'hidden';
+        applyStyles(adParentContainer, {
+          position: 'relative',
+          width,
+          height,
+          overflow: 'hidden',
+        });
 
-        const { loaderContainer, hideLoader } = createLoaderContainer(width, height);
-        adParentContainer.appendChild(loaderContainer);
-        const adContainer = createAdContainer(width, height);
-        adParentContainer.appendChild(adContainer);
+        const hideLoader = injectLoaderContainer(adParentContainer, embedLoaderContainerId, width, height);
+        const adContainer = injectAdContainer(adParentContainer, embedContainerId, width, height);
 
         const response = await fetch(indexUrl);
         if (!response.ok) {
@@ -94,7 +167,6 @@
           const assetName = newLink.href.split('/').pop();
           newLink.href = `${BASE_URL}/${assetName}`;
           document.head.appendChild(newLink);
-          // link.remove();
         });
 
         // Update the src of original images
@@ -106,12 +178,15 @@
         // Update the src or data-src of original videos
         videos.forEach((video) => {
           const assetName = (video.getAttribute('data-src') || video.src).split('/').pop();
+          const videoSrc = `${assetsUrl}/${assetName}`;
           if (video.hasAttribute('data-src')) {
-            video.setAttribute('data-src', `${assetsUrl}/${assetName}`);
+            video.setAttribute('data-src', videoSrc);
           } else {
-            video.src = `${assetsUrl}/${assetName}`;
+            video.src = videoSrc;
           }
-          video.controls = true; // Enable video controls
+          video.controls = false; // Set video controls
+          video.setAttribute('src', videoSrc);
+          video.classList.remove('hidden');
         });
 
         const adContentContainer = tempDiv.getElementsByTagName('main')[0];
@@ -146,66 +221,6 @@
         console.error('Error loading ad:', error);
       }
     }
-
-    let scriptsLoaded = 0;
-    const onScriptLoaded =
-      (adContainer, scriptsCount = 0) =>
-      () => {
-        scriptsLoaded++;
-        console.log('SCRIPT LOADED', { scriptsCount, scriptsLoaded });
-        if (scriptsLoaded === scriptsCount) {
-          console.log('All scripts loaded successfully');
-          const event = new CustomEvent('ShopsenseEmbedInjected', { detail: { container: adContainer } });
-          document.dispatchEvent(event);
-        }
-      };
-
-    const createLoaderContainer = (width, height) => {
-      const loaderContainer = document.createElement('div');
-      loaderContainer.id = embedLoaderContainerId;
-      loaderContainer.style.width = width;
-      loaderContainer.style.height = height;
-      loaderContainer.style.backgroundColor = 'rgba(0,0,0,1)';
-      loaderContainer.style.position = 'absolute';
-      loaderContainer.style.left = 0;
-      loaderContainer.style.top = 0;
-      loaderContainer.style.opacity = 1;
-      loaderContainer.style.transition = 'opacity 0.5s ease';
-      loaderContainer.style.zIndex = 10;
-
-      const hideLoader = () => {
-        loaderContainer.style.opacity = 0;
-        setTimeout(() => {
-          loaderContainer.remove();
-        }, 500);
-      };
-
-      return { loaderContainer, hideLoader };
-    };
-
-    const createAdContainer = (width, height) => {
-      const adContainer = document.createElement('div');
-      adContainer.id = embedContainerId;
-      adContainer.style.width = width;
-      adContainer.style.height = height;
-      adContainer.style.zIndex = 1;
-      return adContainer;
-    };
-
-    const injectScript = (url) => {
-      return fetch(url)
-        .then((response) => {
-          if (!response.ok) throw new Error('Network response was not ok');
-          return response.text();
-        })
-        .then((scriptContent) => {
-          const script = document.createElement('script');
-          script.textContent = scriptContent;
-          document.body.appendChild(script);
-          console.log('Script loaded successfully');
-        })
-        .catch((error) => console.error('Error loading script:', error));
-    };
 
     return {
       loadAd: loadAd,
