@@ -4,6 +4,7 @@ import fsExtra from 'fs-extra';
 
 import { processAssets } from '@/generator/modules/asset-compression';
 import { minifyCss, minifyHtml, minifyJs, renderTemplate } from '@/generator/utils/generator-utils';
+import { config } from '@/generator/config';
 
 export async function generate(_data, outputAdDir, templateDir, width) {
   const data = JSON.parse(JSON.stringify(_data));
@@ -11,7 +12,7 @@ export async function generate(_data, outputAdDir, templateDir, width) {
   const outputAdAssetsDir = path.join(outputAdDir, 'assets');
   await fsExtra.ensureDir(outputAdAssetsDir);
 
-  await processAssets(data.collection_handle, outputAdAssetsDir, width);
+  await processAssets(path.join(config.tempDownloadDir, data.collection_handle), outputAdAssetsDir, width);
 
   const html = renderTemplate(path.join(templateDir, 'index.html'), data);
   const minifiedHtml = await minifyHtml(html);

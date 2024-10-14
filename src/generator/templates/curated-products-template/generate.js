@@ -4,8 +4,9 @@ import fsExtra from 'fs-extra';
 
 import { processAssets } from '@/generator/modules/asset-compression';
 import { minifyCss, minifyHtml, minifyJs, renderTemplate } from '@/generator/utils/generator-utils';
+import { config } from '@/generator/config';
 
-export async function generate(_data, outputAdDir, templateDir, width, quality) {
+export async function generate(_data, outputAdDir, templateDir, width) {
   try {
     let data = JSON.parse(JSON.stringify(_data));
     // Use only first since it's a single moduleData template
@@ -14,7 +15,7 @@ export async function generate(_data, outputAdDir, templateDir, width, quality) 
     const outputAdAssetsDir = path.join(outputAdDir, 'assets');
     await fsExtra.ensureDir(outputAdAssetsDir);
 
-    await processAssets(data.collection_handle, outputAdAssetsDir, width);
+    await processAssets(path.join(config.tempDownloadDir, data.collection_handle), outputAdAssetsDir, width);
 
     console.log('Rendering template...');
     const html = renderTemplate(path.join(templateDir, 'index.html'), data);
@@ -29,6 +30,11 @@ export async function generate(_data, outputAdDir, templateDir, width, quality) 
 
     const minifiedAmplitudeJs = await minifyJs(path.join(templateDir, 'amplitude-tracking.js'));
     fs.writeFileSync(path.join(outputAdDir, 'amplitude-tracking.min.js'), minifiedAmplitudeJs);
+
+    // Copy assets from the input template folder
+    const templateAssetsDir = path.join(templateDir, 'assets');
+    await fsExtra.ensureDir(templateAssetsDir);
+    await processAssets(templateAssetsDir, outputAdAssetsDir, width);
   } catch (error) {
     console.error('An error occurred:', error);
     throw error;

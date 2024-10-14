@@ -14,6 +14,7 @@ export async function POST(request: NextRequest) {
       for (const storeHandle of storeHandles) {
         const data = await getFeatureLookData({ publisher, storeHandle, meta });
         const localReferenceData = await downloadDataToTemp(data);
+        // TODO: Compress and place assets in the compressed_assets directory
         for (const template of templates) {
           const [width, height] = size.split('x').map(Number);
           const response = await generateAd(localReferenceData, template, width, height);

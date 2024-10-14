@@ -86,7 +86,6 @@ export async function downloadDataToTemp(flDataArr: FeatureLookCollectionAdDataT
     }
   }
 
-  console.log('ALMOST Downloaded SHARED');
   await Promise.all(downloadPromises);
   console.log('Downloaded SHARED assets successfully!');
   return modifiedData;

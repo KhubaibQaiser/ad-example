@@ -7,8 +7,7 @@ import { processImageAsset } from './image';
 import { processVideoAsset } from './video';
 
 // Function to process images
-export async function processAssets(collectionSlug: string, outputDir: string, _width: number) {
-  const inputDir = path.join(config.tempDownloadDir, collectionSlug);
+export async function processAssets(inputDir: string, outputDir: string, _width: number) {
   const width = parseInt(`${_width}`);
   const quality = parseInt(`${config.imageCompressionQuality}`);
 
@@ -20,7 +19,7 @@ export async function processAssets(collectionSlug: string, outputDir: string, _
 
     if (entry.isDirectory()) {
       await fsExtra.ensureDir(outputPath);
-      await processAssets(collectionSlug, outputPath, width);
+      await processAssets(inputDir, outputPath, width);
     } else if (entry.name.startsWith('.')) {
       // Ignore
     } else {
