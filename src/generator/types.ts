@@ -253,6 +253,13 @@ export type FeatureLookCollectionAdDataType = {
   store_handle: PublisherStore['handle'];
   moduleData: ModuleData[];
   product_base_url: string;
-  meta: FLMeta;
+  meta?: FLMeta;
   clickTag: string;
 };
+
+export type GenerateTemplateHandler = (
+  data: FeatureLookCollectionAdDataType,
+  outputAdDir: string,
+  templateDir: string,
+  width: number
+) => Promise<void>;

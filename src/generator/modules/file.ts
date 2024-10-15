@@ -34,7 +34,7 @@ export async function downloadDataToTemp(flDataArr: FeatureLookCollectionAdDataT
   const downloadPromises: Promise<unknown>[] = [];
   const modifiedData = JSON.parse(JSON.stringify(flDataArr));
 
-  console.log('Downloading SHARED assets...');
+  console.log('Downloading assets...');
   for (let fl = 0; fl < modifiedData.length; fl++) {
     const data = modifiedData[fl];
     // Download and process image_url
@@ -60,13 +60,14 @@ export async function downloadDataToTemp(flDataArr: FeatureLookCollectionAdDataT
         });
       }
 
-      // if (moduleData.backdropUrl) {
-      //   moduleData.backdropUrl = downloadAndPlaceAsset({
-      //     assetUrl: moduleData.backdropUrl,
-      //     assetName: `backdrop_${i}`,
-      //     downloadPromises,
-      //   });
-      // }
+      if (moduleData.backdropUrl) {
+        moduleData.backdropUrl = downloadAndPlaceAsset({
+          assetUrl: moduleData.backdropUrl,
+          assetName: `backdrop_${i}`,
+          dirName: data.collection_handle,
+          downloadPromises,
+        });
+      }
 
       for (let j = 0; j < moduleData.products.length; j++) {
         const product = moduleData.products[j];
@@ -82,6 +83,17 @@ export async function downloadDataToTemp(flDataArr: FeatureLookCollectionAdDataT
 
           product.handle = `${data.product_base_url}${product.handle}`;
         }
+
+        // TODO: Need to fix the 'retailer' object and then switch 'retailer_data' with 'retailer'
+        if (product.retailer_data && product.retailer_data.thumbnail_url) {
+          product.retailer_data.thumbnail_url = await downloadAndPlaceAsset({
+            assetUrl: product.retailer_data.thumbnail_url,
+            assetName: `retailer_thumbnail_${i}_${j}`,
+            outAssetName: `retailer_thumbnail_${i}_${j}`,
+            dirName: data.collection_handle,
+            downloadPromises,
+          });
+        }
       }
     }
   }
@@ -89,4 +101,10 @@ export async function downloadDataToTemp(flDataArr: FeatureLookCollectionAdDataT
   await Promise.all(downloadPromises);
   console.log('Downloaded SHARED assets successfully!');
   return modifiedData;
+}
+
+export async function copyFolderRecursive(srcPath: string, destPath: string) {
+  await fsExtra.ensureDir(destPath);
+  await fsExtra.copy(srcPath, destPath, { overwrite: true });
+  console.log('Copied assets successfully!');
 }

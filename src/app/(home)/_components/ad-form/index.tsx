@@ -80,7 +80,7 @@ function AdFormBase({ handleRefresh }: { handleRefresh: () => void }) {
   return (
     <Card>
       <Label size='xl' className='mb-6 block text-center'>
-        Ad Generator
+        Embeds Generator
       </Label>
 
       <FormProvider {...form}>
@@ -159,7 +159,7 @@ function AdFormBase({ handleRefresh }: { handleRefresh: () => void }) {
           </section>
 
           <Button type='submit' disabled={isLoading} isLoading={isSubmitting}>
-            Generate Ads
+            Generate Embeds
           </Button>
         </form>
       </FormProvider>

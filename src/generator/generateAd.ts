@@ -3,14 +3,16 @@ import path from 'path';
 import fsExtra from 'fs-extra';
 import { config } from './config';
 import { getSlug, minifyCss, minifyHtml, minifyJs, renderTemplate } from '@/generator/utils/generator-utils';
-import { generate as generateCarousel } from './templates/carousel-template/generate';
-import { generate as generatedCuratedProduct } from './templates/curated-products-template/generate';
+import generateCarousel from './templates/carousel-template/generate';
+import generateCuratedProduct from './templates/curated-products-template/generate';
+import generateBanner from './templates/banner-template/generate';
 import { AdGenerationResponse } from '@/types';
-import { FeatureLookCollectionAdDataType } from './types';
+import { FeatureLookCollectionAdDataType, GenerateTemplateHandler } from './types';
 
-const TEMPLATE_GENERATOR_MAP = {
-  [config.supportedTemplates['carousel-template']]: generateCarousel,
-  [config.supportedTemplates['curated-products-template']]: generatedCuratedProduct,
+const TEMPLATE_GENERATOR_MAP: Record<keyof typeof config.supportedTemplates, GenerateTemplateHandler> = {
+  'carousel-template': generateCarousel,
+  'curated-products-template': generateCuratedProduct,
+  'banner-template': generateBanner,
 };
 
 async function copyGlobalFiles(outputDir: string): Promise<void> {

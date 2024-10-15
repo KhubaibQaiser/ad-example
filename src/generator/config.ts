@@ -68,6 +68,7 @@ export const config = {
   supportedTemplates: {
     'curated-products-template': 'curated-products-template',
     'carousel-template': 'carousel-template',
+    'banner-template': 'banner-template',
   },
   videoOutputFormat: 'mp4', // '.avi', '.mov', '.mp4', '.m4v', '.mpeg', '.mpg', '.webm', '.wmv' or 'gif'
 };

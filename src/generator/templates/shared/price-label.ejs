@@ -1,0 +1,13 @@
+<% 
+  const isDiscounted = showDiscount(product.discountable, getDiscountPercentage(product.base_price, product.price)); 
+%>
+<p class="text-compact-small text-semibold text-fg-base">
+  <% if (isDiscounted) { %>
+    <span class="discounted-price"><%= formatPrice(product.price) %></span>
+  <% } else { %>
+    <span><%= formatPrice(product.price) %></span>
+  <% } %>
+  <% if (isDiscounted) { %>
+    <span class="base-price"><%= formatPrice(product.base_price) %></span>
+  <% } %>
+</p>

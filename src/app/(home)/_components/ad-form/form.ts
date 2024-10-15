@@ -9,7 +9,9 @@ const optionSchema = z.object({
   value: z.string(),
 });
 
-export type OptionSchema = z.infer<typeof optionSchema>;
+export type OptionSchema<T = string> = Omit<z.infer<typeof optionSchema>, 'value'> & {
+  value: T;
+};
 
 const adFormSchema = z
   .object({
@@ -83,14 +85,17 @@ const adFormSchema = z
 
 export type AdFormSchema = z.infer<typeof adFormSchema>;
 
+const templateOptions: OptionSchema<keyof typeof config.supportedTemplates>[] = [
+  { value: 'curated-products-template', label: 'Curated Products Template' },
+  { value: 'carousel-template', label: 'Carousel Template' },
+  { value: 'banner-template', label: 'Banner Template' },
+];
+
 export const options = {
-  templates: [
-    { value: config.supportedTemplates['curated-products-template'], label: 'Curated Products Template' },
-    { value: config.supportedTemplates['carousel-template'], label: 'Carousel Template' },
-  ],
+  templates: templateOptions,
   sizes: [
     { value: '160x600', label: 'Skyscraper (160x600)' },
-    // { value: '300x250', label: '300x250' },
+    { value: '912x384', label: 'Banner (912x384)' },
   ],
   publisherHandles: [
     { value: 'tastemade', label: 'Tastemade' },

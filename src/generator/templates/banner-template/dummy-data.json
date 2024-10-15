@@ -1,0 +1,2320 @@
+{
+  "id": "store_homepage",
+  "created_at": "2024-06-26T20:09:36.218Z",
+  "updated_at": "2024-06-26T20:09:36.218Z",
+  "name": "Shop Tastemade",
+  "default_currency_code": "usd",
+  "swap_link_template": null,
+  "payment_link_template": null,
+  "invite_link_template": null,
+  "default_location_id": null,
+  "metadata": {
+    "app": { "enableLens": false, "enableSearch": false, "enableRecentlyViewed": true },
+    "seo": { "gtmId": "GTM-MTVVMAS-TEST", "keywords": [], "vanityUrl": "https://shop.tastemade.com" },
+    "navigationMenu": [
+      { "text": "All Up In My Grill", "handle": "auimg" },
+      { "text": "Kitchen Glow Up", "handle": "kgu" },
+      { "text": "Grill Week", "handle": "grillweek" },
+      { "text": "Pizza Week", "handle": "pizzaweek" },
+      { "text": "Struggle Meals", "handle": "strugglemeals" },
+      { "text": "Frankie’s Favorite Things", "handle": "frankie" }
+    ]
+  },
+  "handle": "superstore",
+  "displayName": null,
+  "analyticsHandle": "SuperStore",
+  "description": null,
+  "hero": {
+    "title": "Shop Tastemade",
+    "subtitle": "Tastemade and its publishing partners may collect a share of sales and/or other compensation from the links on this page.",
+    "brandLogoImage": "https://test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l.s3.us-west-2.amazonaws.com/ss/blank.png",
+    "backgroundImage": "https://test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l.s3.us-west-2.amazonaws.com/ss/tm-hero.webp",
+    "brandLogoImageAlt": "Tastemade Logo",
+    "backgroundImageAlt": "Tastemade"
+  },
+  "logo": {
+    "navImage": "https://test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l.s3.us-west-2.amazonaws.com/tastemade/nav-logo.png",
+    "navImageAlt": "Nav Logo"
+  },
+  "link": { "image": "https://test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l.s3.us-west-2.amazonaws.com/ss/tm-hero.webp" },
+  "storeCollectionConfig": { "featuredLook": { "title": "Shop the shorts" }, "titleEnabled": true, "storeHeroLogoEnabled": true },
+  "footer": {
+    "copyright": "©2024 Tastemade. All rights reserved.",
+    "contactUsPage": false,
+    "builtByShopSense": false,
+    "privacyPolicyUrl": "https://www.tastemade.com/privacy/2023/08"
+  },
+  "storeDisabled": null,
+  "storeDisabledContent": null,
+  "stores": ["strugglemeals", "auimg", "kgu", "grillweek", "pizzaweek", "frankie"],
+  "publisher": { "name": "tastemade", "analyticsHandle": "Tastemade" },
+  "metaConfig": null,
+  "default_sales_channel_id": "sc_homepage",
+  "sub_stores": [
+    {
+      "id": "store_pizzaweek",
+      "created_at": "2024-06-27T20:09:36.218Z",
+      "updated_at": "2024-06-27T20:09:36.218Z",
+      "name": "Shop Pizza Week",
+      "default_currency_code": "usd",
+      "swap_link_template": null,
+      "payment_link_template": null,
+      "invite_link_template": null,
+      "default_location_id": null,
+      "metadata": {
+        "app": { "enableLens": false, "enableSearch": false, "enableRecentlyViewed": false },
+        "navigationMenu": [
+          { "text": "All Up In My Grill", "handle": "auimg" },
+          { "text": "Grill Week", "handle": "grillweek" },
+          { "text": "Kitchen Glow Up", "handle": "kgu" },
+          { "text": "Struggle Meals", "handle": "strugglemeals" },
+          { "text": "Frankie’s Favorite Things", "handle": "frankie" }
+        ]
+      },
+      "handle": "pizzaweek",
+      "displayName": "Pizza Week",
+      "analyticsHandle": "PizzaWeek",
+      "description": "Celebrate Pizza Week with all you need for the perfect slice—elevate your pizza game in style!",
+      "hero": {
+        "type": "DUAL_COLUMN",
+        "title": "Pizza Week",
+        "ctaText": "Shop the Pizza Week",
+        "subtitle": "Celebrate Pizza Week with all you need for the perfect slice—elevate your pizza game in style!",
+        "disclaimer": "Tastemade and its publishing partners may collect a share of sales and/or other compensation from the links on this page.",
+        "brandLogoImage": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/pizzaweek-logo-1723492182343.webp",
+        "backgroundImage": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/pizzaweek-background-1723492107922.webp",
+        "brandLogoImageAlt": "Tastemade Pizza Week Logo",
+        "backgroundImageAlt": "Tastemade Pizza Week"
+      },
+      "logo": {
+        "navImage": "https://test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l.s3.us-west-2.amazonaws.com/tastemade/nav-logo.png",
+        "navImageAlt": "Nav Logo"
+      },
+      "link": {
+        "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/pizzaweek-opengraph-1723492348407.webp"
+      },
+      "storeCollectionConfig": {
+        "featuredLook": { "title": "Shop the shorts" },
+        "titleEnabled": true,
+        "collectionStyle": "DUAL_COLUMN",
+        "storeHeroLogoEnabled": true
+      },
+      "footer": {
+        "copyright": "©2024 Tastemade. All rights reserved.",
+        "contactUsPage": false,
+        "builtByShopSense": false,
+        "privacyPolicyUrl": "https://www.tastemade.com/privacy/2023/08"
+      },
+      "storeDisabled": null,
+      "storeDisabledContent": null,
+      "stores": [],
+      "publisher": { "name": "tastemade", "analyticsHandle": "Tastemade" },
+      "metaConfig": null,
+      "default_sales_channel_id": "sc_pizzaweek",
+      "collections": [
+        {
+          "id": "pcol_01J5C8JAC93XC0V099DFD4JGN5",
+          "created_at": "2024-08-16T00:14:29.768Z",
+          "updated_at": "2024-08-20T21:10:53.325Z",
+          "deleted_at": null,
+          "title": "The Ultimate Pizza Experience Sponsored by Ooni",
+          "handle": "the-ultimate-pizza-experience-sponsored-by-ooni",
+          "metadata": null,
+          "store_id": "store_pizzaweek",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/2515cf367d3d499bacae7d9650bfdb88-1723767265537",
+          "thumbnailUrl": null,
+          "description": "Explore premium Ooni pizza ovens and accessories for the ultimate pizza experience Sponsored by Ooni.",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J5E1GWNC0CY7J3HKMNGT7MG8",
+          "created_at": "2024-08-16T16:49:51.784Z",
+          "updated_at": "2024-08-20T21:10:31.221Z",
+          "deleted_at": null,
+          "title": "Pizza Lovers' Apparel",
+          "handle": "pizza-lovers-apparel",
+          "metadata": null,
+          "store_id": "store_pizzaweek",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/86c141cd2a0042cc9b91cf3f6e6b76c9-1723826972461",
+          "thumbnailUrl": null,
+          "description": "A fun collection of apparel featuring pizza-themed designs.",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J5C8A51NBWE8HTWBN5MMJFZP",
+          "created_at": "2024-08-16T00:10:02.165Z",
+          "updated_at": "2024-08-20T21:11:31.333Z",
+          "deleted_at": null,
+          "title": "Pizza Party Essentials",
+          "handle": "pizza-party-essentials",
+          "metadata": null,
+          "store_id": "store_pizzaweek",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/458f7dd23d89454c90260f44cbf67256-1723766987181",
+          "thumbnailUrl": null,
+          "description": "Everything you need to throw the ultimate pizza party.",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J5XGC98NXSQHMSEAKJHVCBG0",
+          "created_at": "2024-08-22T16:58:05.972Z",
+          "updated_at": "2024-08-22T16:58:07.030Z",
+          "deleted_at": null,
+          "title": "Pizza Week Episode 4789",
+          "handle": "pizza-week-episode-4789",
+          "metadata": {
+            "moduleData": [
+              {
+                "media": "video",
+                "title": "",
+                "srcURL": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/image-1-1724160458636.mp4",
+                "duration": 5000,
+                "products": [
+                  {
+                    "id": "prod_01J5RT1PAWE020RE6ZM3S44PQA",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/3e8c9cf13e40462e80e4d290e6e20724-1724188245572",
+                    "price": 59,
+                    "handle": "232705852120672546",
+                    "retailer": "Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J5XGC98NXSQHMSEAKJHVCBG0",
+                    "productTitle": "Ooni 14” Metal Pizza Peel",
+                    "retailerHandle": "Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "Pizza Week Episode 4789",
+                    "productSubtitle": "Ooni"
+                  },
+                  {
+                    "id": "prod_01J5RT1PKWJH2ZQPSHYG9XTRKV",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/74f2ef7fc2924b4e902e1e7f4392e71b-1724188245649",
+                    "price": 299,
+                    "handle": "5985509615743013187",
+                    "retailer": "Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J5XGC98NXSQHMSEAKJHVCBG0",
+                    "productTitle": "Ooni Karu 12 Multi-Fuel Outdoor Pizza Oven",
+                    "retailerHandle": "Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "Pizza Week Episode 4789",
+                    "productSubtitle": "Ooni"
+                  },
+                  {
+                    "id": "prod_01J5RSZD1KTM4QKMX8T5AF1GCG",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/f5271c32f7104f5c815b4e5240c8f5f4-1724188159082",
+                    "price": 22.99,
+                    "handle": "5615089248683592089",
+                    "retailer": "Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J5XGC98NXSQHMSEAKJHVCBG0",
+                    "productTitle": "Premium Sliding Pizza Peel | Non-Stick Pizza Spatula Paddle with Wooden Handle | Smart Pizza Slider for Indoor & Outdoor Ovens | Large 19.68\" x 11.81\" Pizza Board",
+                    "retailerHandle": "Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "Pizza Week Episode 4789",
+                    "productSubtitle": "ASHNAEEM"
+                  }
+                ],
+                "backdropUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/blur-1-1724160321502.png",
+                "description": ""
+              },
+              {
+                "media": "video",
+                "title": "",
+                "srcURL": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/image-2-1724160458637.mp4",
+                "duration": 5000,
+                "products": [
+                  {
+                    "id": "prod_01J5RSZMJRPY63EATXW5WMC1W7",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/bffbc2639a434a0791ff337d545be399-1724188162500",
+                    "price": 24.9,
+                    "handle": "5496605170814424641",
+                    "retailer": "Target",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J5XGC98NXSQHMSEAKJHVCBG0",
+                    "productTitle": "Lodge 10.25\" Cast Iron Skillet",
+                    "retailerHandle": "Target",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Pizza Week Episode 4789",
+                    "productSubtitle": "Lodge"
+                  },
+                  {
+                    "id": "prod_01J5RSZNQDHJ8H3J9K48P4MTB6",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/f0d855909c8946eeb95724094fad3342-1724188164382",
+                    "price": 2,
+                    "handle": "3543944567867740550",
+                    "retailer": "Target",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J5XGC98NXSQHMSEAKJHVCBG0",
+                    "productTitle": "27oz Stoneware Avesta Bowls - Threshold™",
+                    "retailerHandle": "Target",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Pizza Week Episode 4789",
+                    "productSubtitle": "Threshold"
+                  },
+                  {
+                    "id": "prod_01J5RT1PPVYEHZCS9FXSEJNG27",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/43af86ff085e4fca9a7d529bb163a584-1724188245600",
+                    "price": 129,
+                    "handle": "5941582383172074574",
+                    "retailer": "Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J5XGC98NXSQHMSEAKJHVCBG0",
+                    "productTitle": "Ooni Pizza Topping Station – 2 x 1.6L and 4 x 0.8L Pizza Topping Containers with Custom Fit Lids Pizza Oven Accessories - Outdoor Kitchen",
+                    "retailerHandle": "Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "Pizza Week Episode 4789",
+                    "productSubtitle": "Ooni"
+                  }
+                ],
+                "backdropUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/blur-2-1724160321503.png",
+                "description": ""
+              },
+              {
+                "media": "video",
+                "title": "",
+                "srcURL": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/image-3-1724160458637.mp4",
+                "duration": 5000,
+                "products": [
+                  {
+                    "id": "prod_01J5RSZK5D25VH449VY5TNMA6H",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/ea70383fb1b142a2a6a8d679a4a64bee-1724188159150",
+                    "price": 95,
+                    "handle": "3506881266307282013",
+                    "retailer": "Hedley & Bennett",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J5XGC98NXSQHMSEAKJHVCBG0",
+                    "productTitle": "Essential Apron",
+                    "retailerHandle": "Hedley & Bennett",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Pizza Week Episode 4789",
+                    "productSubtitle": "Hedley & Bennett"
+                  },
+                  {
+                    "id": "prod_01J5RT0Y1YXQBBSJBX7ZE6AHG6",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/d77881a51eaf4699b99945065483c877-1724188207442",
+                    "price": 16.99,
+                    "handle": "9004879176654893927",
+                    "retailer": "Walmart",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J5XGC98NXSQHMSEAKJHVCBG0",
+                    "productTitle": "Delicious Pizza Pattern Necktie Men Women Polyester 8 cm Tortilla Food Neck Tie for Mens Slim Narrow Daily Wear Cravat Office",
+                    "retailerHandle": "Walmart",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Pizza Week Episode 4789",
+                    "productSubtitle": "Yiahuag"
+                  },
+                  {
+                    "id": "prod_01J5RSZJN74ANVM6H8TT6JKPSX",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/95453db40fb84de68c421e0bf41db816-1724188159272",
+                    "price": 11.99,
+                    "handle": "7399282778245779491",
+                    "retailer": "Walmart",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J5XGC98NXSQHMSEAKJHVCBG0",
+                    "productTitle": "Pizza Cutter Rocker with Wooden Handles & Protective Cover, 14\" Super Sharp Stainless Steel Pizza Slicer Wheel , Heavy Duty Big Pizza Knife Cutters for Kitchen Tool",
+                    "retailerHandle": "Walmart",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Pizza Week Episode 4789",
+                    "productSubtitle": "Busatia"
+                  }
+                ],
+                "backdropUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/blur-3-1724160321503.png",
+                "description": ""
+              },
+              {
+                "media": "video",
+                "title": "",
+                "srcURL": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/image-4-1724160458637.mp4",
+                "duration": 5000,
+                "products": [
+                  {
+                    "id": "prod_01J5RT0VX5SGWMMH50ZVMSK0XP",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/0c619c2889664202bbec552a4eced017-1724188207544",
+                    "price": 8.2,
+                    "handle": "8122379548541165366",
+                    "retailer": "SHEIN",
+                    "affiliate": "CJ",
+                    "collectionID": "pcol_01J5XGC98NXSQHMSEAKJHVCBG0",
+                    "productTitle": "1pc Men's Fashion Able PIZZA Embroidery Hip Hop Baseball Cap With Letter Embroidery, Adjustable, For Outdoor Casual Wear, Spring/Autumn, Traveling Or Beach Vacation",
+                    "retailerHandle": "SHEIN",
+                    "affiliateHandle": "cj",
+                    "collectionTitle": "Pizza Week Episode 4789",
+                    "productSubtitle": "SHEIN"
+                  },
+                  {
+                    "id": "prod_01J5RSZGAF2346BZ7G41CBA1RQ",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/ff4240a6fce245dba0c40a2877c2ccf7-1724188159627",
+                    "price": 10,
+                    "handle": "6326044451257052348",
+                    "retailer": "Target",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J5XGC98NXSQHMSEAKJHVCBG0",
+                    "productTitle": "10\" Wood Rolling Pin Light Brown - Figmint™",
+                    "retailerHandle": "Target",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Pizza Week Episode 4789",
+                    "productSubtitle": "Figmint"
+                  },
+                  {
+                    "id": "prod_01J5RT0TVXGFK5PSJ59VE57MS4",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/107315684f6b45f5befedadf0a9aae33-1724188207655",
+                    "price": 19.99,
+                    "handle": "6921192456260479922",
+                    "retailer": "Target",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J5XGC98NXSQHMSEAKJHVCBG0",
+                    "productTitle": "My Pizza Day Neon Pizza Slice Men's Black Graphic Tee",
+                    "retailerHandle": "Target",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Pizza Week Episode 4789",
+                    "productSubtitle": "Bioworld"
+                  }
+                ],
+                "backdropUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/blur-4-1724160321503.png",
+                "description": ""
+              },
+              {
+                "media": "video",
+                "title": "",
+                "srcURL": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/image-5-1724160458637.mp4",
+                "duration": 5000,
+                "products": [
+                  {
+                    "id": "prod_01J5RSZMZZX8K15QBHCKBEVTDC",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/454632297cd8412b81a80a3451cc881d-1724188162934",
+                    "price": 16.97,
+                    "handle": "1825044611946205554",
+                    "retailer": "Walmart",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J5XGC98NXSQHMSEAKJHVCBG0",
+                    "productTitle": "Tramontina PrimaWare Non-Stick Steel Gray Saut Pan Set",
+                    "retailerHandle": "Walmart",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Pizza Week Episode 4789",
+                    "productSubtitle": "Tramontina"
+                  },
+                  {
+                    "id": "prod_01J5RSZGNFSKAQD4FNY604SZG9",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/ad1269defa9848a488734a9c3ea44d9e-1724188159075",
+                    "price": 39.99,
+                    "handle": "200668208753418469",
+                    "retailer": "Kohl's",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J5XGC98NXSQHMSEAKJHVCBG0",
+                    "productTitle": "Outset Pizza Peel",
+                    "retailerHandle": "Kohl's",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Pizza Week Episode 4789",
+                    "productSubtitle": "Outset"
+                  },
+                  {
+                    "id": "prod_01J5RT0TFMBPY1DDEFEKE8X742",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/a0764b2750ae4cbaae4d5fb6ae2fd867-1724188207473",
+                    "price": 31.99,
+                    "handle": "4298930898402619613",
+                    "retailer": "Macy's",
+                    "affiliate": "CJ",
+                    "collectionID": "pcol_01J5XGC98NXSQHMSEAKJHVCBG0",
+                    "productTitle": "Pizza Apron",
+                    "retailerHandle": "Macy's",
+                    "affiliateHandle": "cj",
+                    "collectionTitle": "Pizza Week Episode 4789",
+                    "productSubtitle": "Ambesonne"
+                  }
+                ],
+                "backdropUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/blur-5-1724160321503.png",
+                "description": ""
+              },
+              {
+                "media": "video",
+                "title": "",
+                "srcURL": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/image-6-1724160458638.mp4",
+                "duration": 5000,
+                "products": [
+                  {
+                    "id": "prod_01J5RSZNB168DCQ2XYVKSWNP6V",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/75d0c13ea78b4e0bbec02a8e62ea27e1-1724188163940",
+                    "price": 16.94,
+                    "handle": "4207293837494821565",
+                    "retailer": "Walmart",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J5XGC98NXSQHMSEAKJHVCBG0",
+                    "productTitle": "OXO Soft Works Box Grater, Black",
+                    "retailerHandle": "Walmart",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Pizza Week Episode 4789",
+                    "productSubtitle": "OXO"
+                  },
+                  {
+                    "id": "prod_01J5RSZDTDXR0GCA96VSVJJW36",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/c158b8a818154888b0208d42f44e0d5e-1724188159050",
+                    "price": 29.94,
+                    "handle": "4905036759760989787",
+                    "retailer": "Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J5XGC98NXSQHMSEAKJHVCBG0",
+                    "productTitle": "Restaurant-Grade Italian Cuisine Rotary Cheese Grater with Handle",
+                    "retailerHandle": "Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "Pizza Week Episode 4789",
+                    "productSubtitle": "Vivaant"
+                  },
+                  {
+                    "id": "prod_01J5RSZH4E4EV6Y31WVAZGGPV2",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/b013c437dc494f279e63c153bf5bd6d9-1724188159038",
+                    "price": 15.95,
+                    "handle": "987510559333264501",
+                    "retailer": "Sur La Table",
+                    "affiliate": "Ascend",
+                    "collectionID": "pcol_01J5XGC98NXSQHMSEAKJHVCBG0",
+                    "productTitle": "Boska Hard-Cheese Plane",
+                    "retailerHandle": "Sur La Table",
+                    "affiliateHandle": "ascend",
+                    "collectionTitle": "Pizza Week Episode 4789",
+                    "productSubtitle": "Boska"
+                  }
+                ],
+                "backdropUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/blur-6-1724160321503.png",
+                "description": ""
+              },
+              {
+                "media": "video",
+                "title": "",
+                "srcURL": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/image-7-1724160458638.mp4",
+                "duration": 5000,
+                "products": [
+                  {
+                    "id": "prod_01J5RSZEXZ8MR6T2V1F9XY20NJ",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/3cfcaa27085745488ba1190258b70b52-1724188159093",
+                    "price": 49.99,
+                    "handle": "5871818605178689107",
+                    "retailer": "Kohl's",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J5XGC98NXSQHMSEAKJHVCBG0",
+                    "productTitle": "KitchenAid® KHBV53 Variable Speed Corded Hand Blender",
+                    "retailerHandle": "Kohl's",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Pizza Week Episode 4789",
+                    "productSubtitle": "KitchenAid"
+                  },
+                  {
+                    "id": "prod_01J5RT0V728K7F2DVEBDY3CW6G",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/5aa9ccefc1a645df904f0e6fb935c5b5-1724188207445",
+                    "price": 38.99,
+                    "handle": "4856835484477318327",
+                    "retailer": "Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J5XGC98NXSQHMSEAKJHVCBG0",
+                    "productTitle": "Jewelry Hip Hop Iced Out Exquisite Pizza Pendant Chain Pave Colorful Diamond 18K Gold Plated Solid Back Necklace with 24 Inch Stainless Rope Chain for Men Women",
+                    "retailerHandle": "Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "Pizza Week Episode 4789",
+                    "productSubtitle": "KMASAL"
+                  },
+                  {
+                    "id": "prod_01J5RSZP57QKSSZNGHWEZG78W2",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/a8d183e429b44a2ba15f5f3d524b1a11-1724188165271",
+                    "price": 15.49,
+                    "handle": "3289829251795968710",
+                    "retailer": "Target",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J5XGC98NXSQHMSEAKJHVCBG0",
+                    "productTitle": "Ball 16oz 12pk Glass Wide Mouth Mason Jar with Lid and Band",
+                    "retailerHandle": "Target",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Pizza Week Episode 4789",
+                    "productSubtitle": "Ball"
+                  },
+                  {
+                    "id": "prod_01J5RSZPVWT4WMYZEWR4TD2631",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/f6f3e8243482436186ca9a3eb72b931a-1724188164432",
+                    "price": 5.94,
+                    "handle": "461859891534448499",
+                    "retailer": "Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J5XGC98NXSQHMSEAKJHVCBG0",
+                    "productTitle": "Olive Oil Dispenser Bottle, Oil and Vinegar Cruet Bottle 17oz/500 ml",
+                    "retailerHandle": "Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "Pizza Week Episode 4789",
+                    "productSubtitle": "Showvigor"
+                  }
+                ],
+                "backdropUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/blur-7-1724160321504.png",
+                "description": ""
+              }
+            ],
+            "moduleType": "featureLook"
+          },
+          "store_id": "store_pizzaweek",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/blur-1-1724160321502.png",
+          "thumbnailUrl": null,
+          "description": "",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": "featureLook"
+        },
+        {
+          "id": "pcol_01J5R8TM6FV7E02AXTM4G3ZCE8",
+          "created_at": "2024-08-20T16:09:55.149Z",
+          "updated_at": "2024-08-20T16:09:55.200Z",
+          "deleted_at": null,
+          "title": "Ooni’s Top Picks for Pizza Perfection.",
+          "handle": "oonis-top-picks-for-pizza-perfection",
+          "metadata": {
+            "moduleData": {
+              "title": "Ooni’s Top Picks for Pizza Perfection.",
+              "shuffle": true,
+              "description": "Discover Ooni’s best ovens, tools, and accessories for perfect pizza creations.",
+              "shuffleData": { "link": "", "images": [] },
+              "shuffleMode": "products"
+            },
+            "moduleType": "shuffle"
+          },
+          "store_id": "store_pizzaweek",
+          "imageUrl": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/images/1721000548380-Grill%20Week%20Hero.webp",
+          "thumbnailUrl": null,
+          "description": "Discover Ooni’s best ovens, tools, and accessories for perfect pizza creations.",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": "shuffle"
+        },
+        {
+          "id": "pcol_01J5E1KVDVWZHTC3WDXYYW26PE",
+          "created_at": "2024-08-16T16:51:28.826Z",
+          "updated_at": "2024-08-20T21:09:47.490Z",
+          "deleted_at": null,
+          "title": "Pizza At Home Must-Haves",
+          "handle": "pizza-at-home-must-haves",
+          "metadata": null,
+          "store_id": "store_pizzaweek",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/2f9a71c95dcb4eda9b98801fd3440add-1723827076186",
+          "thumbnailUrl": null,
+          "description": "A curated selection of essential tools for making delicious homemade pizza.",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        }
+      ]
+    },
+    {
+      "id": "store_kgu",
+      "created_at": "2024-06-27T20:09:36.218Z",
+      "updated_at": "2024-06-27T20:09:36.218Z",
+      "name": "Shop Kitchen Glow Up",
+      "default_currency_code": "usd",
+      "swap_link_template": null,
+      "payment_link_template": null,
+      "invite_link_template": null,
+      "default_location_id": null,
+      "metadata": {
+        "app": { "enableLens": false, "enableSearch": false, "enableRecentlyViewed": true },
+        "navigationMenu": [
+          { "text": "All Up In My Grill", "handle": "auimg" },
+          { "text": "Grill Week", "handle": "grillweek" },
+          { "text": "Pizza Week", "handle": "pizzaweek" },
+          { "text": "Struggle Meals", "handle": "strugglemeals" },
+          { "text": "Frankie’s Favorite Things", "handle": "frankie" }
+        ]
+      },
+      "handle": "kgu",
+      "displayName": "Kitchen Glow Up",
+      "analyticsHandle": "KitchenGlowUp",
+      "description": "Celebrate Kitchen Glow Up with all you need for the perfect slice—elevate your pizza game in style!",
+      "hero": {
+        "type": "DUAL_COLUMN",
+        "title": "Kitchen Glow Up",
+        "subtitle": "Tastemade and its publishing partners may collect a share of sales and/or other compensation from the links on this page.",
+        "brandLogoImage": "https://test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l.s3.us-west-2.amazonaws.com/tastemade/kitchen-glow-up-logo.png",
+        "backgroundImage": "https://test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l.s3.us-west-2.amazonaws.com/tastemade/hero-bg.webp",
+        "brandLogoImageAlt": "Tastemade Logo",
+        "backgroundImageAlt": "Tastemade"
+      },
+      "logo": {
+        "navImage": "https://test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l.s3.us-west-2.amazonaws.com/tastemade/nav-logo.png",
+        "navImageAlt": "Nav Logo"
+      },
+      "link": { "image": "https://test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l.s3.us-west-2.amazonaws.com/tastemade/hero-bg.webp" },
+      "storeCollectionConfig": {
+        "featuredLook": { "title": "Shop the shorts" },
+        "titleEnabled": true,
+        "collectionStyle": "DEFAULT",
+        "productPageStyle": "HERO_PRODUCTS_DESCRIPTION",
+        "storeHeroLogoEnabled": true
+      },
+      "footer": {
+        "copyright": "©2024 Tastemade. All rights reserved.",
+        "contactUsPage": false,
+        "builtByShopSense": false,
+        "privacyPolicyUrl": "https://www.tastemade.com/privacy/2023/08"
+      },
+      "storeDisabled": null,
+      "storeDisabledContent": null,
+      "stores": [],
+      "publisher": { "name": "tastemade", "analyticsHandle": "Tastemade" },
+      "metaConfig": null,
+      "default_sales_channel_id": "sc_kgu",
+      "collections": [
+        {
+          "id": "pcol_01J2VKR9M5ZK4D9ZRNPY09QC3R",
+          "created_at": "2024-07-15T16:31:30.948Z",
+          "updated_at": "2024-07-15T16:31:35.766Z",
+          "deleted_at": null,
+          "title": "Refreshed & Reorg’d",
+          "handle": "refreshed-reorgd",
+          "metadata": null,
+          "store_id": "store_kgu",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/c0a09d4a38414ec180f7498042951c40-1721061074061",
+          "thumbnailUrl": null,
+          "description": "A beautiful arched pantry and functional island anchor Kat’s refreshed and reorganized space",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J2VMTR86R320X4G9GWFZHDCF",
+          "created_at": "2024-07-15T16:50:20.037Z",
+          "updated_at": "2024-07-15T16:50:23.594Z",
+          "deleted_at": null,
+          "title": "Fun & Functional Farmhouse",
+          "handle": "fun-functional-farmhouse",
+          "metadata": null,
+          "store_id": "store_kgu",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/00bfe52d18524e55b34b859d0a1ddb65-1721062213012",
+          "thumbnailUrl": null,
+          "description": "Romantic colors, functional fixtures and finishes make this farmhouse-inspired makeover magical",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J2VMZMXD6YVJJE196R6X3XT4",
+          "created_at": "2024-07-15T16:53:00.461Z",
+          "updated_at": "2024-07-25T15:59:36.307Z",
+          "deleted_at": null,
+          "title": "Declutter Your Kitchen",
+          "handle": "declutter-your-kitchen",
+          "metadata": null,
+          "store_id": "store_kgu",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/e95522412bae4e9b938a223ddf24fbba-1721062352981",
+          "thumbnailUrl": null,
+          "description": "Go from cluttered and chaotic to smart and streamlined with kitchen organization essentials",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J2VKHP56R5RVFZK9NEHVH2GW",
+          "created_at": "2024-07-15T16:27:54.405Z",
+          "updated_at": "2024-07-15T16:28:01.511Z",
+          "deleted_at": null,
+          "title": "From Drab to Fab",
+          "handle": "from-drab-to-fab",
+          "metadata": null,
+          "store_id": "store_kgu",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/f2382ecd827a41a48a023c9bc8a95db4-1721060826736",
+          "thumbnailUrl": null,
+          "description": "We transformed the Elson’s dull, drab and tired space into a vibrant, fun and functional kitchen",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J2VMSD63HK2Y02FDVT81FYJ0",
+          "created_at": "2024-07-15T16:49:35.939Z",
+          "updated_at": "2024-07-15T16:49:40.734Z",
+          "deleted_at": null,
+          "title": "Spanish Style Inside & Out",
+          "handle": "spanish-style-inside-out",
+          "metadata": null,
+          "store_id": "store_kgu",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/7615192e1a604486abfe60bbf5db76b1-1721062157180",
+          "thumbnailUrl": null,
+          "description": "Spanish-inspired terracotta tile, vibrant hues and brass finishes turn this house a comfy home",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J2VMQ9SZ62FXNMMDKJQA98NN",
+          "created_at": "2024-07-15T16:48:26.942Z",
+          "updated_at": "2024-07-15T16:48:33.178Z",
+          "deleted_at": null,
+          "title": "Colorful Kitchen Connection",
+          "handle": "colorful-kitchen-connection",
+          "metadata": null,
+          "store_id": "store_kgu",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/261412f973d94808aa2610b38a7d949a-1721062088327",
+          "thumbnailUrl": null,
+          "description": "Practical built-ins, colorful cabinets and vibrant wallpaper make this space connected and cozy",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J2VKAXFZPKTDQ5KJFG00A6MN",
+          "created_at": "2024-07-15T16:24:12.541Z",
+          "updated_at": "2024-07-15T16:24:20.991Z",
+          "deleted_at": null,
+          "title": "Kitchen Dreams Made Real",
+          "handle": "kitchen-dreams-made-real",
+          "metadata": null,
+          "store_id": "store_kgu",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/071772259be84ddc913ed600417bd669-1721060629157",
+          "thumbnailUrl": null,
+          "description": "Upgrade your kitchen from drab to fab with fixtures, flooring, lighting and more",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J2VKSGG5JH019PBZ7QG19HSF",
+          "created_at": "2024-07-15T16:32:10.757Z",
+          "updated_at": "2024-07-15T16:32:15.219Z",
+          "deleted_at": null,
+          "title": "Spanish Colonial Spruce Up",
+          "handle": "spanish-colonial-spruce-up",
+          "metadata": null,
+          "store_id": "store_kgu",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/2e89c5cdc5c14ad684f7f53c4a09b574-1721061117695",
+          "thumbnailUrl": null,
+          "description": "Modern coastal California colors meet Spanish Colonial finishes to spruce up the Hunt’s home",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J2VKKW6VRDA3AFNBP8WQYFWG",
+          "created_at": "2024-07-15T16:29:06.138Z",
+          "updated_at": "2024-07-25T15:58:41.921Z",
+          "deleted_at": null,
+          "title": "Cluttered Clean Up",
+          "handle": "cluttered-clean-up",
+          "metadata": null,
+          "store_id": "store_kgu",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/ab6441e67ee24d4684830248f2d83bcf-1721060927423",
+          "thumbnailUrl": null,
+          "description": "We converted the Mohr’s cramped and cluttered space into a colorful, organized kitchen oasis",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J2VMXEQVWYH0QE4REN2NKM9R",
+          "created_at": "2024-07-15T16:51:48.603Z",
+          "updated_at": "2024-07-15T16:51:59.872Z",
+          "deleted_at": null,
+          "title": "Home Chef Essentials",
+          "handle": "home-chef-essentials",
+          "metadata": null,
+          "store_id": "store_kgu",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/bf63065cd7174b18a24eb26cf1e55476-1721062274219",
+          "thumbnailUrl": null,
+          "description": "Stock your drawers and shelves with smart and simple kitchen essentials every home chef needs",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J2VKPRV92RMX39CZ5AC1125Q",
+          "created_at": "2024-07-15T16:30:41.001Z",
+          "updated_at": "2024-07-25T15:58:12.862Z",
+          "deleted_at": null,
+          "title": "Accentuate the Positive",
+          "handle": "accentuate-the-positive",
+          "metadata": null,
+          "store_id": "store_kgu",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/59b7ebeae72e438883bc820ab13dd5c9-1721061026429",
+          "thumbnailUrl": null,
+          "description": "Natalie’s space went from bland and basic to warm and welcoming with bright and colorful accents",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        }
+      ]
+    },
+    {
+      "id": "store_frankie",
+      "created_at": "2024-10-04T19:26:16.267Z",
+      "updated_at": "2024-10-04T19:26:16.267Z",
+      "name": "Frankie’s Favorite Things - Shop",
+      "default_currency_code": "usd",
+      "swap_link_template": null,
+      "payment_link_template": null,
+      "invite_link_template": null,
+      "default_location_id": null,
+      "metadata": {
+        "app": { "enableLens": false, "enableSearch": false, "enableRecentlyViewed": true },
+        "navigationMenu": [
+          { "text": "Kitchen Glow Up", "handle": "kgu" },
+          { "text": "Grill Week", "handle": "grillweek" },
+          { "text": "Pizza Week", "handle": "pizzaweek" },
+          { "text": "Struggle Meals", "handle": "strugglemeals" },
+          { "text": "All Up In My Grill", "handle": "auimg" }
+        ]
+      },
+      "handle": "frankie",
+      "displayName": "Frankie’s Favorite Things",
+      "analyticsHandle": "FRANKIE",
+      "description": null,
+      "hero": {
+        "title": "Shop Frankie’s Favorite Things",
+        "subtitle": "Tastemade and its publishing partners may collect a share of sales and/or other compensation from the links on this page.",
+        "brandLogoImage": "https://test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l.s3.us-west-2.amazonaws.com/auimg/auimg-logo.webp",
+        "backgroundImage": "https://test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l.s3.us-west-2.amazonaws.com/auimg/hero-bg.webp",
+        "backgroundVideo": {
+          "mobile": "",
+          "desktop": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/CBS NFL_Little_Caesars_9302024-1727724293942.mp4"
+        },
+        "brandLogoImageAlt": "Tastemade Logo",
+        "backgroundImageAlt": "Tastemade",
+        "backgroundContentType": "IMAGE"
+      },
+      "logo": {
+        "navImage": "https://test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l.s3.us-west-2.amazonaws.com/auimg/nav-logo.png",
+        "navImageAlt": "Nav Logo"
+      },
+      "link": { "image": "https://test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l.s3.us-west-2.amazonaws.com/auimg/hero-bg.webp" },
+      "storeCollectionConfig": {
+        "featuredLook": { "title": "Shop the shorts" },
+        "titleEnabled": true,
+        "collectionStyle": "DUAL_COLUMN",
+        "productPageStyle": "HERO_PRODUCTS_DESCRIPTION",
+        "storeHeroLogoEnabled": true
+      },
+      "footer": {
+        "copyright": "©2024 Tastemade. All rights reserved.",
+        "contactUsPage": false,
+        "builtByShopSense": false,
+        "privacyPolicyUrl": "https://www.tastemade.com/privacy/2023/08"
+      },
+      "storeDisabled": null,
+      "storeDisabledContent": null,
+      "stores": [],
+      "publisher": { "name": "tastemade", "analyticsHandle": "Tastemade" },
+      "metaConfig": null,
+      "default_sales_channel_id": "sc_frankie",
+      "collections": []
+    },
+    {
+      "id": "store_auimg",
+      "created_at": "2024-06-28T20:09:36.218Z",
+      "updated_at": "2024-06-28T20:09:36.218Z",
+      "name": "AUIMG - Shop",
+      "default_currency_code": "usd",
+      "swap_link_template": null,
+      "payment_link_template": null,
+      "invite_link_template": null,
+      "default_location_id": null,
+      "metadata": {
+        "app": { "enableLens": false, "enableSearch": false, "enableRecentlyViewed": true },
+        "navigationMenu": [
+          { "text": "Kitchen Glow Up", "handle": "kgu" },
+          { "text": "Grill Week", "handle": "grillweek" },
+          { "text": "Pizza Week", "handle": "pizzaweek" },
+          { "text": "Struggle Meals", "handle": "strugglemeals" },
+          { "text": "Frankie’s Favorite Things", "handle": "frankie" }
+        ]
+      },
+      "handle": "auimg",
+      "displayName": "All Up In My Grill",
+      "analyticsHandle": "AUIMG",
+      "description": null,
+      "hero": {
+        "title": "Shop All Up In My Grill",
+        "subtitle": "Tastemade and its publishing partners may collect a share of sales and/or other compensation from the links on this page.",
+        "brandLogoImage": "https://test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l.s3.us-west-2.amazonaws.com/auimg/auimg-logo.webp",
+        "backgroundImage": "https://test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l.s3.us-west-2.amazonaws.com/auimg/hero-bg.webp",
+        "backgroundVideo": {
+          "mobile": "",
+          "desktop": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/CBS NFL_Little_Caesars_9302024-1727724293942.mp4"
+        },
+        "brandLogoImageAlt": "Tastemade Logo",
+        "backgroundImageAlt": "Tastemade",
+        "backgroundContentType": "VIDEO"
+      },
+      "logo": {
+        "navImage": "https://test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l.s3.us-west-2.amazonaws.com/auimg/nav-logo.png",
+        "navImageAlt": "Nav Logo"
+      },
+      "link": { "image": "https://test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l.s3.us-west-2.amazonaws.com/auimg/hero-bg.webp" },
+      "storeCollectionConfig": {
+        "featuredLook": { "title": "Shop the shorts" },
+        "titleEnabled": true,
+        "collectionStyle": "DUAL_COLUMN",
+        "productPageStyle": "HERO_PRODUCTS_DESCRIPTION",
+        "storeHeroLogoEnabled": true
+      },
+      "footer": {
+        "copyright": "©2024 Tastemade. All rights reserved.",
+        "contactUsPage": false,
+        "builtByShopSense": false,
+        "privacyPolicyUrl": "https://www.tastemade.com/privacy/2023/08"
+      },
+      "storeDisabled": null,
+      "storeDisabledContent": null,
+      "stores": [],
+      "publisher": { "name": "tastemade", "analyticsHandle": "Tastemade" },
+      "metaConfig": null,
+      "default_sales_channel_id": "sc_auimg",
+      "collections": [
+        {
+          "id": "pcol_01J2VRT0A2F430PK2ZA6Z1Q759",
+          "created_at": "2024-07-15T17:59:49.825Z",
+          "updated_at": "2024-07-15T17:59:55.472Z",
+          "deleted_at": null,
+          "title": "Backyard Bliss",
+          "handle": "backyard-bliss",
+          "metadata": null,
+          "store_id": "store_auimg",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/c3513bd41d5b4056bbf871cec7626e67-1721066374012",
+          "thumbnailUrl": null,
+          "description": "Turn your outdoor space into a blissful escape with plush patio furniture, decor and more",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J2VS0AWV82HE4BFP222YEVZE",
+          "created_at": "2024-07-15T18:03:17.275Z",
+          "updated_at": "2024-07-25T14:54:30.038Z",
+          "deleted_at": null,
+          "title": "The ABC’s of Grilling",
+          "handle": "the-ab-cs-of-grilling",
+          "metadata": null,
+          "store_id": "store_auimg",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/575d62f13df645a2806bad40325aadfe-1721066585287",
+          "thumbnailUrl": null,
+          "description": "Take your grill game beyond the basics with this selection of cookout essentials",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J5RMHRP2KX84B1B1KVX057BD",
+          "created_at": "2024-08-20T19:34:47.746Z",
+          "updated_at": "2024-08-20T19:34:48.527Z",
+          "deleted_at": null,
+          "title": "All Up In My Grill Episode 8",
+          "handle": "all-up-in-my-grill-episode-8",
+          "metadata": {
+            "moduleData": [
+              {
+                "media": "video",
+                "title": "",
+                "srcURL": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/AUIMG ep 8 V2 -1724152786098.mp4",
+                "duration": 5000,
+                "products": [
+                  {
+                    "id": "prod_01J5RCN69SY1QQA798KQ5MNQBF",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/ce8129f13e274765841b503263e5298a-1724174197531",
+                    "price": 35,
+                    "handle": "587731244733239347",
+                    "retailer": "Etsy",
+                    "affiliate": "Awin",
+                    "collectionID": "pcol_01J5RMHRP2KX84B1B1KVX057BD",
+                    "productTitle": "Hand Blown Margarita Glassware Set",
+                    "retailerHandle": "Etsy",
+                    "affiliateHandle": "awin",
+                    "collectionTitle": "All Up In My Grill Episode 8",
+                    "productSubtitle": "MyCajita"
+                  },
+                  {
+                    "id": "prod_01J5RCN7P4JB0SP9MAQ17S47C3",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/6544f59bec2c43b89943664fa9b25e98-1724174197429",
+                    "price": 12.99,
+                    "handle": "3543454612529747960",
+                    "retailer": "Target",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J5RMHRP2KX84B1B1KVX057BD",
+                    "productTitle": "Ball 4pk Regular Mouth 16oz Pint Jars Honeybee Keepsakes Jars with Lids and Bands",
+                    "retailerHandle": "Target",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "All Up In My Grill Episode 8",
+                    "productSubtitle": "Ball"
+                  },
+                  {
+                    "id": "prod_01J5RCN5XV4GE17ZXTSCT17QMR",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/17f3df426a274cbcacfe240fc71a4744-1724174197300",
+                    "price": 8.88,
+                    "base_price": 9.99,
+                    "discountable": true,
+                    "handle": "6827796358115528368",
+                    "retailer_data": {
+                      "name": "Amazon",
+                      "thumbnail_url": "https://tastemade.us-west-2.citadel.test.shopsense.ai/_next/image?url=https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Ftest-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l%2Fd6ba17ff-7b44-45e2-bbb6-98c39e9fa0ce-1728360912198.jpeg&w=2048&q=75"
+                    },
+                    "retailer": "Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J5RMHRP2KX84B1B1KVX057BD",
+                    "productTitle": "Cocktail Umbrella Parasol Picks 4 Inch Pack 144 Assorted Colors",
+                    "retailerHandle": "Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "All Up In My Grill Episode 8",
+                    "productSubtitle": "Blue Top"
+                  }
+                ],
+                "backdropUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/blur-2-1724152858529.png",
+                "description": ""
+              },
+              {
+                "media": "video",
+                "title": "",
+                "srcURL": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/AUIMG ep8 V1-1724152786097.mp4",
+                "duration": 5000,
+                "products": [
+                  {
+                    "id": "prod_01J5RCN54YM4QHPGAGHGC8FGXR",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/23021f0a7db2491fb74365a0b83385ee-1724174197425",
+                    "price": 15.99,
+                    "handle": "3136746939264067766",
+                    "retailer": "Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J5RMHRP2KX84B1B1KVX057BD",
+                    "productTitle": "Fish Grilling Basket, Folding Portable Stainless Steel BBQ Grill Basket for Fish Vegetables Shrimp with Removable Handle, Come with Basting Brush and Storage Bag (01)",
+                    "retailerHandle": "Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "All Up In My Grill Episode 8",
+                    "productSubtitle": "Penobon"
+                  },
+                  {
+                    "id": "prod_01J5RCN9NRDZFEMN741XZEGZTR",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/8d72fa71176641eca42c98085dda0faf-1724174197199",
+                    "price": 12.95,
+                    "handle": "5466540014339988096",
+                    "retailer": "Sur La Table",
+                    "affiliate": "Ascend",
+                    "collectionID": "pcol_01J5RMHRP2KX84B1B1KVX057BD",
+                    "productTitle": "Sur La Table Olive Oil Cruet with Pourer",
+                    "retailerHandle": "Sur La Table",
+                    "affiliateHandle": "ascend",
+                    "collectionTitle": "All Up In My Grill Episode 8",
+                    "productSubtitle": "Sur La Table"
+                  }
+                ],
+                "backdropUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/blur-1-1724152858529.png",
+                "description": ""
+              },
+              {
+                "media": "video",
+                "title": "",
+                "srcURL": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/AUIMG ep8 V3-1724152786098.mp4",
+                "duration": 5000,
+                "products": [
+                  {
+                    "id": "prod_01J5RCN8C8XEWPM0VS2DNQVCFQ",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/eff4e1f488f341b1a37349d8e55084cd-1724174197251",
+                    "price": 19.99,
+                    "handle": "612398760366375867",
+                    "retailer": "Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J5RMHRP2KX84B1B1KVX057BD",
+                    "productTitle": "Liquid Alchemist Simple Syrup for Cocktails - Real Ingredients Make our Simple Sugar Syrup the Perfect Old Fashioned Mix - Our Natural Simple Syrup for Drinks is Non-GMO Gluten Free & Vegan (12 oz)",
+                    "retailerHandle": "Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "All Up In My Grill Episode 8",
+                    "productSubtitle": "Liquid Alchemist"
+                  },
+                  {
+                    "id": "prod_01J5RCN6ZSXF4CKY9HAYD0VH7Z",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/c560a76e0cd8457cad36551306943f43-1724174197256",
+                    "price": 180.19,
+                    "handle": "961809976375719329",
+                    "retailer": "Bed Bath & Beyond",
+                    "affiliate": "CJ",
+                    "collectionID": "pcol_01J5RMHRP2KX84B1B1KVX057BD",
+                    "productTitle": "Ninja BL770 Mega Kitchen System",
+                    "retailerHandle": "Bed Bath & Beyond",
+                    "affiliateHandle": "cj",
+                    "collectionTitle": "All Up In My Grill Episode 8",
+                    "productSubtitle": "Ninja"
+                  },
+                  {
+                    "id": "prod_01J5RCN7AR0734360Y4BQSPD19",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/1fa0a0d467394e13897b99d189771024-1724174197395",
+                    "price": 5.39,
+                    "handle": "2298940287461372532",
+                    "retailer": "Target",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J5RMHRP2KX84B1B1KVX057BD",
+                    "productTitle": "GoodCook Ready 6\" Mesh Strainer",
+                    "retailerHandle": "Target",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "All Up In My Grill Episode 8",
+                    "productSubtitle": "GoodCook"
+                  }
+                ],
+                "backdropUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/blur-3-1724152858529.png",
+                "description": ""
+              },
+              {
+                "media": "video",
+                "title": "",
+                "srcURL": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/AUIMG ep8 V4-1724152786099.mp4",
+                "duration": 5000,
+                "products": [
+                  {
+                    "id": "prod_01J5RCN818D3FQDXGQ7MAFVEMZ",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/695cdcb2a50d4adc80a6f035d7575b9c-1724174197452",
+                    "price": 4.48,
+                    "handle": "1392975268286400353",
+                    "retailer": "The Home Depot",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J5RMHRP2KX84B1B1KVX057BD",
+                    "productTitle": "Apple Wood Chips",
+                    "retailerHandle": "The Home Depot",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "All Up In My Grill Episode 8",
+                    "productSubtitle": "Weber"
+                  },
+                  {
+                    "id": "prod_01J5RCN8R29KTDSAQ7J42DAN8C",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/fc13958c83a342558a162b9bac958086-1724174197433",
+                    "price": 9.95,
+                    "handle": "8897817259364492064",
+                    "retailer": "Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J5RMHRP2KX84B1B1KVX057BD",
+                    "productTitle": "Smoke Tube for Pellet Smoker, 12'' Smoker Tube for Pellet Grill - Hot or Cold Smoker Accessories for Electric Gas Charcoal Grilling, Premium Stainless Steel Portable Barbecue Smoking Tube, Bonus Brush",
+                    "retailerHandle": "Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "All Up In My Grill Episode 8",
+                    "productSubtitle": "Lanney"
+                  },
+                  {
+                    "id": "prod_01J5RCN9ZSKSRRXEK2J9ZK99SV",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/13e01934cf234962adf82ce09ff429a4-1724174197530",
+                    "price": 17.95,
+                    "handle": "8847285772807553967",
+                    "retailer": "Target",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J5RMHRP2KX84B1B1KVX057BD",
+                    "productTitle": "Henckels BBQ Stainless Steel Grill Tongs",
+                    "retailerHandle": "Target",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "All Up In My Grill Episode 8",
+                    "productSubtitle": "Henckels"
+                  }
+                ],
+                "backdropUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/blur-4-1724152858529.png",
+                "description": ""
+              },
+              {
+                "media": "video",
+                "title": "",
+                "srcURL": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/AUIMG ep8 V5-1724152786099.mp4",
+                "duration": 5000,
+                "products": [
+                  {
+                    "id": "prod_01J5RCN5JMZ4DCKR9MKM32X4GC",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/6508dbe4119d434f9315454b0a9d2ba2-1724174197293",
+                    "price": 102.47,
+                    "handle": "4745629516903892857",
+                    "retailer": "Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J5RMHRP2KX84B1B1KVX057BD",
+                    "productTitle": "Paul Smith Men's Dark Floral Button Down",
+                    "retailerHandle": "Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "All Up In My Grill Episode 8",
+                    "productSubtitle": "Paul Smith"
+                  },
+                  {
+                    "id": "prod_01J5RCN6MVMG2GW4KPE0BHNJAQ",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/00aaf9bced604dc1bb014d829198655a-1724174197244",
+                    "price": 11.98,
+                    "handle": "6152023729066827681",
+                    "retailer": "Amazon",
+                    "discountable": true,
+                    "retailer_data": {
+                      "name": "Amazon",
+                      "thumbnail_url": "https://tastemade.us-west-2.citadel.test.shopsense.ai/_next/image?url=https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Ftest-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l%2Fd6ba17ff-7b44-45e2-bbb6-98c39e9fa0ce-1728360912198.jpeg&w=2048&q=75"
+                    },
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J5RMHRP2KX84B1B1KVX057BD",
+                    "productTitle": "Butane Torch Kitchen Blow Lighter - Culinary Torches Chef Cooking Professional Adjustable Flame with Reverse Use for Creme, Brulee, BBQ, Baking, Jewelry by FunOwlet (Butane Fuel Not Included)",
+                    "retailerHandle": "Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "All Up In My Grill Episode 8",
+                    "productSubtitle": "FunOwlet"
+                  }
+                ],
+                "backdropUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/blur-5-1724152858531.png",
+                "description": ""
+              }
+            ],
+            "moduleType": "featureLook"
+          },
+          "store_id": "store_auimg",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/blur-1-1724152858529.png",
+          "thumbnailUrl": null,
+          "description": "",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": "featureLook"
+        },
+        {
+          "id": "pcol_01J2VXC27K6SSCESER7W7N6S4Q",
+          "created_at": "2024-07-15T19:19:35.922Z",
+          "updated_at": "2024-07-25T14:56:15.868Z",
+          "deleted_at": null,
+          "title": "Yakitori and More-Y",
+          "handle": "yakitori-and-more-y",
+          "metadata": null,
+          "store_id": "store_auimg",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/308909cfe7e344cf878ea6d7c37ebafd-1721071160518",
+          "thumbnailUrl": null,
+          "description": "Say yes to yakitori with these must-have grilling gadgets, seasonings and serving platters",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J2VXFPN96J9C18D5XYQWFYQS",
+          "created_at": "2024-07-15T19:21:35.144Z",
+          "updated_at": "2024-07-15T19:21:38.820Z",
+          "deleted_at": null,
+          "title": "Wok Cooking on a Charcoal Grill",
+          "handle": "wok-cooking-on-a-charcoal-grill",
+          "metadata": null,
+          "store_id": "store_auimg",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/4c43a1cfd0924967bad1e68df885262c-1721071283134",
+          "thumbnailUrl": null,
+          "description": "Fire up your wok to create flavorful dishes with these chef-approved tools, spices and sauces",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J2VRZ4BHZHG7R4STKK7WJ6BG",
+          "created_at": "2024-07-15T18:02:37.809Z",
+          "updated_at": "2024-07-25T14:53:14.286Z",
+          "deleted_at": null,
+          "title": "Your Ultimate Outdoor Kitchen",
+          "handle": "your-ultimate-outdoor-kitchen",
+          "metadata": null,
+          "store_id": "store_auimg",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/0738bddbdc0845ed97fc771c010df925-1721066541402",
+          "thumbnailUrl": null,
+          "description": "Serve up flavorful food and fun with this checklist of items for your dream outdoor kitchen",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J2VRWTSDF3AJ1YS5T1XAHHVE",
+          "created_at": "2024-07-15T18:01:22.476Z",
+          "updated_at": "2024-07-25T14:55:47.896Z",
+          "deleted_at": null,
+          "title": "Funky & Fashionable Foodie",
+          "handle": "funky-fashionable-foodie",
+          "metadata": null,
+          "store_id": "store_auimg",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/3bfc44358f6a4fafb9e0a899994c8928-1721066425247",
+          "thumbnailUrl": null,
+          "description": "Tap into chef Talde’s fun and funky style with vibrant colors, bold prints and sleek sneaks",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J3N6DY4FY3YCVAT3MFDHRZRA",
+          "created_at": "2024-07-25T14:58:55.247Z",
+          "updated_at": "2024-07-25T14:59:00.009Z",
+          "deleted_at": null,
+          "title": "Caribbean Latin BBQ",
+          "handle": "caribbean-latin-bbq",
+          "metadata": null,
+          "store_id": "store_auimg",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/3feca1b42ca54999b85062b72b3f7085-1721919519143",
+          "thumbnailUrl": null,
+          "description": "Everything you need to bring this mashup of Latin & Caribbean flavors to your backyard BBQ",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J3RB55YJPDC2ASCQRK169AQP",
+          "created_at": "2024-07-26T20:19:14.513Z",
+          "updated_at": "2024-07-29T19:36:08.324Z",
+          "deleted_at": null,
+          "title": "World of Burgers!",
+          "handle": "world-of-burgers",
+          "metadata": null,
+          "store_id": "store_auimg",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/c654b328bd5648dda101fc1b63be2a86-1722025138917",
+          "thumbnailUrl": null,
+          "description": "Take basic burgers to the next level with these premium ingredients, sauces, spices and more",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J4J5F8KHJ041EM54JJEY1V5J",
+          "created_at": "2024-08-05T21:00:08.688Z",
+          "updated_at": "2024-08-05T21:00:12.845Z",
+          "deleted_at": null,
+          "title": "Grilled Loco Moco & Huli Huli Chicken ",
+          "handle": "grilled-loco-moco-huli-huli-chicken",
+          "metadata": null,
+          "store_id": "store_auimg",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/03e2d40b5a4f4c3282ddeeb7bf36e9ea-1722891598802",
+          "thumbnailUrl": null,
+          "description": "Embrace big Hawaiian flavors with fresh ingredients, marinades and essential grill tools",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J53VMTBV9KVMBEV0MCGXPWX2",
+          "created_at": "2024-08-12T17:54:44.729Z",
+          "updated_at": "2024-08-13T17:30:16.398Z",
+          "deleted_at": null,
+          "title": "Street Eats off the Grill",
+          "handle": "street-eats-off-the-grill",
+          "metadata": null,
+          "store_id": "store_auimg",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/d2a7ffc1646542fc9d26adcccc283a87-1723485269268",
+          "thumbnailUrl": null,
+          "description": "Transform your grill into a street food haven with top-quality marinades, spices, and must-have tools.",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J542W471BF0CDQAYAV37DPMN",
+          "created_at": "2024-08-12T20:01:04.225Z",
+          "updated_at": "2024-08-12T20:01:04.428Z",
+          "deleted_at": null,
+          "title": "Chic and Functional: Discover Your New Favorite Kitchen Tools.",
+          "handle": "chic-and-functional-discover-your-new-favorite-kitchen-tools",
+          "metadata": {
+            "moduleData": {
+              "title": "Chic and Functional: Discover Your New Favorite Kitchen Tools.",
+              "shuffle": true,
+              "description": "From cactus spoons to trendy dispensers—find unique items to elevate your kitchen.",
+              "shuffleData": { "link": "", "images": [] },
+              "shuffleMode": "products"
+            },
+            "moduleType": "shuffle"
+          },
+          "store_id": "store_auimg",
+          "imageUrl": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/images/1721000548380-Grill%20Week%20Hero.webp",
+          "thumbnailUrl": null,
+          "description": "From cactus spoons to trendy dispensers—find unique items to elevate your kitchen.",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": "shuffle"
+        },
+        {
+          "id": "pcol_01J5PG3VWYWVC8H5JVNPNHT7D1",
+          "created_at": "2024-08-19T23:38:49.118Z",
+          "updated_at": "2024-08-19T23:38:49.407Z",
+          "deleted_at": null,
+          "title": "The Best of All Up In My Grill",
+          "handle": "the-best-of-all-up-in-my-grill",
+          "metadata": {
+            "moduleData": {
+              "title": "The Best of All Up In My Grill",
+              "shuffle": true,
+              "description": "Discover top picks from grilling to stylish wear, and more to enhance your grilling lifestyle!",
+              "shuffleData": { "link": "", "images": [] },
+              "shuffleMode": "products"
+            },
+            "moduleType": "shuffle"
+          },
+          "store_id": "store_auimg",
+          "imageUrl": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/images/1721000548380-Grill%20Week%20Hero.webp",
+          "thumbnailUrl": null,
+          "description": "Discover top picks from grilling to stylish wear, and more to enhance your grilling lifestyle!",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": "shuffle"
+        },
+        {
+          "id": "pcol_01J5NE1EW1HC49SSQFGQZ530YY",
+          "created_at": "2024-08-19T13:43:18.657Z",
+          "updated_at": "2024-08-20T17:16:55.141Z",
+          "deleted_at": null,
+          "title": "Sizzlin’ Summer Fruits",
+          "handle": "sizzlin-summer-fruits",
+          "metadata": null,
+          "store_id": "store_auimg",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/293c7c80769641a7b77d6eb03efdd940-1724074989903",
+          "thumbnailUrl": null,
+          "description": "Celebrate summer with vibrant fruits and refreshing recipes using the best tools and accessories.",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        }
+      ]
+    },
+    {
+      "id": "store_grillweek",
+      "created_at": "2024-06-26T20:09:36.218Z",
+      "updated_at": "2024-06-26T20:09:36.218Z",
+      "name": "Grill Week on Tastemade | Tastemade",
+      "default_currency_code": "usd",
+      "swap_link_template": null,
+      "payment_link_template": null,
+      "invite_link_template": null,
+      "default_location_id": null,
+      "metadata": {
+        "app": { "enableLens": false, "enableSearch": false, "enableRecentlyViewed": true },
+        "seo": { "keywords": ["grill week", "grill week recommendations", "grill week on tastemade"] },
+        "navigationMenu": [
+          { "text": "All Up In My Grill", "handle": "auimg" },
+          { "text": "Kitchen Glow Up", "handle": "kgu" },
+          { "text": "Pizza Week", "handle": "pizzaweek" },
+          { "text": "Struggle Meals", "handle": "strugglemeals" },
+          { "text": "Frankie’s Favorite Things", "handle": "frankie" }
+        ]
+      },
+      "handle": "grillweek",
+      "displayName": "Grill Week",
+      "analyticsHandle": "GrillWeek",
+      "description": "Fire up the coals and get ready to sizzle—Grill Week on Tastemade is here! Whether you're a seasoned pitmaster or a backyard BBQ newbie, this is the ultimate week for delicious grilling inspiration, expert tips, and exclusive product recommendations.",
+      "hero": {
+        "title": "Shop Grill Week",
+        "subtitle": "Tastemade and its publishing partners may collect a share of sales and/or other compensation from the links on this page.",
+        "brandLogoImage": "https://test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l.s3.us-west-2.amazonaws.com/grill-week/logo.webp",
+        "backgroundImage": "https://test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l.s3.us-west-2.amazonaws.com/grill-week/hero-bg.webp",
+        "brandLogoImageAlt": "Tastemade Logo",
+        "backgroundImageAlt": "Tastemade"
+      },
+      "logo": {
+        "navImage": "https://test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l.s3.us-west-2.amazonaws.com/grill-week/nav-logo.png",
+        "navImageAlt": "Nav Logo"
+      },
+      "link": { "image": "https://test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l.s3.us-west-2.amazonaws.com/grill-week/hero-bg.webp" },
+      "storeCollectionConfig": { "featuredLook": { "title": "Shop the shorts" }, "titleEnabled": true, "storeHeroLogoEnabled": true },
+      "footer": {
+        "copyright": "©2024 Tastemade. All rights reserved.",
+        "contactUsPage": false,
+        "builtByShopSense": false,
+        "privacyPolicyUrl": "https://www.tastemade.com/privacy/2023/08"
+      },
+      "storeDisabled": null,
+      "storeDisabledContent": null,
+      "stores": [],
+      "publisher": { "name": "tastemade", "analyticsHandle": "Tastemade" },
+      "metaConfig": null,
+      "default_sales_channel_id": "sc_grillweek",
+      "collections": [
+        {
+          "id": "pcol_01J2VQ7Y9FA0EVN74TS23Y06FN",
+          "created_at": "2024-07-15T17:32:29.359Z",
+          "updated_at": "2024-07-15T17:32:37.391Z",
+          "deleted_at": null,
+          "title": "Outdoor Oasis",
+          "handle": "outdoor-oasis",
+          "metadata": null,
+          "store_id": "store_grillweek",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/134933ce11424df4b1f2329bcc21a04a-1721064730147",
+          "thumbnailUrl": null,
+          "description": "Transform your backyard into an outdoor oasis where you can relax and entertain. Our selection includes everything you need to create a comfortable and inviting space. Think cozy fire pits, luxurious lounges, and weather-resistant decor that will make your backyard the go-to spot for gatherings and solo unwinding alike. We’ve got all the inspiration and products to turn your outdoor space into a personal retreat.",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J2VQ9RW7EW1NDQW7BQ150751",
+          "created_at": "2024-07-15T17:33:29.351Z",
+          "updated_at": "2024-07-15T17:33:36.304Z",
+          "deleted_at": null,
+          "title": "Party on the Patio",
+          "handle": "party-on-the-patio",
+          "metadata": null,
+          "store_id": "store_grillweek",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/3f3ca2f3020241309c3b60ed107594e1-1721064788924",
+          "thumbnailUrl": null,
+          "description": "Turn your patio into a grillin' and chillin' paradise. Our \"Party on the Patio\" section is packed with stylish and functional items that make grilling a breeze. From comfortable outdoor furniture to ambient lighting, we’ve curated the best products to enhance your outdoor cooking and dining area. Make every meal al fresco and unforgettable with our top recommendations. At Tastemade, we believe outdoor living should be as tasteful as the food you grill.",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J2VQBA1ZCW620RMNN52AXAEX",
+          "created_at": "2024-07-15T17:34:19.711Z",
+          "updated_at": "2024-07-15T17:34:27.141Z",
+          "deleted_at": null,
+          "title": "Bangin’ Backyard BBQs",
+          "handle": "bangin-backyard-bb-qs",
+          "metadata": null,
+          "store_id": "store_grillweek",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/247345768bcd409f9bf2828c778429ac-1721064840874",
+          "thumbnailUrl": null,
+          "description": "Nothing says summer like a bangin' backyard BBQ. Create unforgettable experiences with family and friends by hosting the ultimate barbecue. From gourmet burgers to succulent ribs, explore our handpicked selection of recipes that will have everyone coming back for seconds. Plus, find all the essential gear to make your BBQ a hit, including grill accessories, utensils, and more.",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J2VQD0Z2YYFHYFYWSYEY5ZG3",
+          "created_at": "2024-07-15T17:35:15.937Z",
+          "updated_at": "2024-07-15T17:35:22.419Z",
+          "deleted_at": null,
+          "title": "All Up In My Grill",
+          "handle": "all-up-in-my-grill",
+          "metadata": null,
+          "store_id": "store_grillweek",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/d92e1a8c165c4fd69f1a1529b6b6ea65-1721064896521",
+          "thumbnailUrl": null,
+          "description": "From juicy steaks to perfectly charred veggies, our \"All Up in My Grill\" section offers everything you need to become a grill master. Discover mouth-watering recipes, step-by-step tutorials, and the best grilling techniques to elevate your cookouts. Whether you're using charcoal, gas, or a smoker, we've got you covered with tips and tricks that guarantee perfect results every time.",
+          "is_sponsored": false,
+          "order": null,
+          "moduleType": null
+        }
+      ]
+    },
+    {
+      "id": "store_strugglemeals",
+      "created_at": "2024-09-17T16:08:45.668Z",
+      "updated_at": "2024-09-17T16:08:45.668Z",
+      "name": "Struggle Meals - Shop",
+      "default_currency_code": "usd",
+      "swap_link_template": null,
+      "payment_link_template": null,
+      "invite_link_template": null,
+      "default_location_id": null,
+      "metadata": {
+        "app": { "enableLens": false, "enableSearch": false, "enableRecentlyViewed": true },
+        "navigationMenu": [
+          { "text": "All Up In My Grill", "handle": "auimg" },
+          { "text": "Grill Week", "handle": "grillweek" },
+          { "text": "Kitchen Glow Up", "handle": "kgu" },
+          { "text": "Pizza Week", "handle": "pizzaweek" },
+          { "text": "Frankie’s Favorite Things", "handle": "frankie" }
+        ]
+      },
+      "handle": "strugglemeals",
+      "displayName": "Struggle Meals",
+      "analyticsHandle": "StruggleMeals",
+      "description": "Cook smart, prep easy, and dress cool with these top picks for kitchen & style!",
+      "hero": {
+        "type": "FULLSIZE",
+        "title": "",
+        "subtitle": "Tastemade and its publishing partners may collect a share of sales and/or other compensation from the links on this page.",
+        "brandLogoImage": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/transparent-1726871361736.png",
+        "backgroundImage": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/strugglemeasl-hero2-1726866154350.jpg",
+        "brandLogoImageAlt": "Tastemade StruggleMeals Logo",
+        "backgroundImageAlt": "Tastemade StruggleMeals Hero"
+      },
+      "logo": {
+        "navImage": "https://test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l.s3.us-west-2.amazonaws.com/tastemade/nav-logo.png",
+        "navImageAlt": "Nav Logo"
+      },
+      "link": {
+        "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/strugglemeasl-hero2-1726866154350.jpg"
+      },
+      "storeCollectionConfig": {
+        "featuredLook": { "title": "Shop the shorts" },
+        "titleEnabled": true,
+        "collectionStyle": "DUAL_COLUMN",
+        "storeHeroLogoEnabled": true
+      },
+      "footer": {
+        "copyright": "©2024 Tastemade. All rights reserved.",
+        "contactUsPage": false,
+        "builtByShopSense": false,
+        "privacyPolicyUrl": "https://www.tastemade.com/privacy/2023/08"
+      },
+      "storeDisabled": null,
+      "storeDisabledContent": null,
+      "stores": [],
+      "publisher": { "name": "tastemade", "analyticsHandle": "Tastemade" },
+      "metaConfig": null,
+      "default_sales_channel_id": "sc_strugglemeals",
+      "collections": [
+        {
+          "id": "pcol_01J9N5CY1H6ZCHM2TS7BPS3MGB",
+          "created_at": "2024-10-08T04:15:04.753Z",
+          "updated_at": "2024-10-08T04:15:11.768Z",
+          "deleted_at": null,
+          "title": "Budget Kitchen Basics",
+          "handle": "budget-kitchen-basics",
+          "metadata": null,
+          "store_id": "store_strugglemeals",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/d1ebf0b1-2e5c-4e3d-ab7f-b0c0eb1df3cc-1728360781487.webp",
+          "thumbnailUrl": null,
+          "description": "Snag top kitchen tools under $20—cook up a storm without breaking the bank.",
+          "is_sponsored": false,
+          "order": 1,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+          "created_at": "2024-10-08T04:15:13.757Z",
+          "updated_at": "2024-10-08T04:15:14.369Z",
+          "deleted_at": null,
+          "title": "Shop the Shorts",
+          "handle": "shop-the-shorts",
+          "metadata": {
+            "moduleData": [
+              {
+                "media": "video",
+                "title": "",
+                "srcURL": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/images/1727904786558-Struggle%20Meals%20episode%20311%20flm%20clip%20of%20measuring%20spoons%20and%20wooden%20spoon%20(1).mp4",
+                "duration": 11,
+                "products": [
+                  {
+                    "id": "prod_01J9N5D117338R9Y3GPZHT3EVJ",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/624d54eb-4a8e-4c1e-bc29-a2bfbae1d0a9-1728360819423.jpeg",
+                    "price": 17.53,
+                    "base_price": 20.0,
+                    "handle": "994",
+                    "retailer": " Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Pyrex Glass, 3-Piece, 3 PC Mixing Bowl Set",
+                    "retailerHandle": " Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Amazon",
+                    "discountable": true,
+                    "retailer_data": {
+                      "name": "Amazon",
+                      "thumbnail_url": "https://tastemade.us-west-2.citadel.test.shopsense.ai/_next/image?url=https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Ftest-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l%2Fd6ba17ff-7b44-45e2-bbb6-98c39e9fa0ce-1728360912198.jpeg&w=2048&q=75"
+                    }
+                  },
+                  {
+                    "id": "prod_01J9N5CZ3T40ACHMY0PPX0FYT1",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/250b30cc-5b06-4ec2-af28-e6c898af8785-1728360788744.png",
+                    "price": 9.99,
+                    "handle": "993",
+                    "retailer": " Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Stainless Steel Measuring Spoons, Set of 6 for Measuring Dry and Liquid Ingredients",
+                    "retailerHandle": " Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "1Easylife",
+                    "retailer_data": {
+                      "name": "Amazon",
+                      "thumbnail_url": "https://tastemade.us-west-2.citadel.test.shopsense.ai/_next/image?url=https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Ftest-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l%2Fd6ba17ff-7b44-45e2-bbb6-98c39e9fa0ce-1728360912198.jpeg&w=2048&q=75"
+                    }
+                  },
+                  {
+                    "id": "prod_01J9N5CTE500C20DTP4CT6YDE5",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/cc972d22-8efc-427b-a668-b02b686d2e59-1728360862823.webp",
+                    "price": 12.89,
+                    "handle": "1077",
+                    "retailer": "Target",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Ball 4oz 12pk Glass Regular Mouth Quilted Mason Jar with Lid and Band",
+                    "retailerHandle": "Target",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Ball"
+                  },
+                  {
+                    "id": "prod_01J9N5D117338R9Y3GPZHT3EVJ",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/624d54eb-4a8e-4c1e-bc29-a2bfbae1d0a9-1728360819423.jpeg",
+                    "price": 17.53,
+                    "handle": "994",
+                    "retailer": " Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Pyrex Glass, 3-Piece, 3 PC Mixing Bowl Set",
+                    "retailerHandle": " Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Amazon",
+                    "retailer_data": {
+                      "name": "Amazon",
+                      "thumbnail_url": "https://tastemade.us-west-2.citadel.test.shopsense.ai/_next/image?url=https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Ftest-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l%2Fd6ba17ff-7b44-45e2-bbb6-98c39e9fa0ce-1728360912198.jpeg&w=2048&q=75"
+                    }
+                  },
+                  {
+                    "id": "prod_01J9N5CZ3T40ACHMY0PPX0FYT1",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/250b30cc-5b06-4ec2-af28-e6c898af8785-1728360788744.png",
+                    "price": 9.99,
+                    "handle": "993",
+                    "retailer": " Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Stainless Steel Measuring Spoons, Set of 6 for Measuring Dry and Liquid Ingredients",
+                    "retailerHandle": " Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "1Easylife",
+                    "retailer_data": {
+                      "name": "Amazon",
+                      "thumbnail_url": "https://tastemade.us-west-2.citadel.test.shopsense.ai/_next/image?url=https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Ftest-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l%2Fd6ba17ff-7b44-45e2-bbb6-98c39e9fa0ce-1728360912198.jpeg&w=2048&q=75"
+                    }
+                  },
+                  {
+                    "id": "prod_01J9N5CTE500C20DTP4CT6YDE5",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/cc972d22-8efc-427b-a668-b02b686d2e59-1728360862823.webp",
+                    "price": 12.89,
+                    "handle": "1077",
+                    "retailer": "Target",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Ball 4oz 12pk Glass Regular Mouth Quilted Mason Jar with Lid and Band",
+                    "retailerHandle": "Target",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Ball"
+                  },
+                  {
+                    "id": "prod_01J9N5D117338R9Y3GPZHT3EVJ",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/624d54eb-4a8e-4c1e-bc29-a2bfbae1d0a9-1728360819423.jpeg",
+                    "price": 17.53,
+                    "handle": "994",
+                    "retailer": " Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Pyrex Glass, 3-Piece, 3 PC Mixing Bowl Set",
+                    "retailerHandle": " Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Amazon",
+                    "retailer_data": {
+                      "name": "Amazon",
+                      "thumbnail_url": "https://tastemade.us-west-2.citadel.test.shopsense.ai/_next/image?url=https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Ftest-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l%2Fd6ba17ff-7b44-45e2-bbb6-98c39e9fa0ce-1728360912198.jpeg&w=2048&q=75"
+                    }
+                  },
+                  {
+                    "id": "prod_01J9N5CZ3T40ACHMY0PPX0FYT1",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/250b30cc-5b06-4ec2-af28-e6c898af8785-1728360788744.png",
+                    "price": 9.99,
+                    "handle": "993",
+                    "retailer": " Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Stainless Steel Measuring Spoons, Set of 6 for Measuring Dry and Liquid Ingredients",
+                    "retailerHandle": " Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "1Easylife",
+                    "retailer_data": {
+                      "name": "Amazon",
+                      "thumbnail_url": "https://tastemade.us-west-2.citadel.test.shopsense.ai/_next/image?url=https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Ftest-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l%2Fd6ba17ff-7b44-45e2-bbb6-98c39e9fa0ce-1728360912198.jpeg&w=2048&q=75"
+                    }
+                  },
+                  {
+                    "id": "prod_01J9N5CTE500C20DTP4CT6YDE5",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/cc972d22-8efc-427b-a668-b02b686d2e59-1728360862823.webp",
+                    "price": 12.89,
+                    "handle": "1077",
+                    "retailer": "Target",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Ball 4oz 12pk Glass Regular Mouth Quilted Mason Jar with Lid and Band",
+                    "retailerHandle": "Target",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Ball"
+                  },
+                  {
+                    "id": "prod_01J9N5D117338R9Y3GPZHT3EVJ",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/624d54eb-4a8e-4c1e-bc29-a2bfbae1d0a9-1728360819423.jpeg",
+                    "price": 17.53,
+                    "handle": "994",
+                    "retailer": " Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Pyrex Glass, 3-Piece, 3 PC Mixing Bowl Set",
+                    "retailerHandle": " Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Amazon",
+                    "retailer_data": {
+                      "name": "Amazon",
+                      "thumbnail_url": "https://tastemade.us-west-2.citadel.test.shopsense.ai/_next/image?url=https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Ftest-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l%2Fd6ba17ff-7b44-45e2-bbb6-98c39e9fa0ce-1728360912198.jpeg&w=2048&q=75"
+                    }
+                  },
+                  {
+                    "id": "prod_01J9N5CZ3T40ACHMY0PPX0FYT1",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/250b30cc-5b06-4ec2-af28-e6c898af8785-1728360788744.png",
+                    "price": 9.99,
+                    "handle": "993",
+                    "retailer": " Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Stainless Steel Measuring Spoons, Set of 6 for Measuring Dry and Liquid Ingredients",
+                    "retailerHandle": " Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "1Easylife",
+                    "retailer_data": {
+                      "name": "Amazon",
+                      "thumbnail_url": "https://tastemade.us-west-2.citadel.test.shopsense.ai/_next/image?url=https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Ftest-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l%2Fd6ba17ff-7b44-45e2-bbb6-98c39e9fa0ce-1728360912198.jpeg&w=2048&q=75"
+                    }
+                  },
+                  {
+                    "id": "prod_01J9N5CTE500C20DTP4CT6YDE5",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/cc972d22-8efc-427b-a668-b02b686d2e59-1728360862823.webp",
+                    "price": 12.89,
+                    "handle": "1077",
+                    "retailer": "Target",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Ball 4oz 12pk Glass Regular Mouth Quilted Mason Jar with Lid and Band",
+                    "retailerHandle": "Target",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Ball"
+                  }
+                ],
+                "backdropUrl": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/images/1727904864589-V1%20S.png",
+                "description": ""
+              },
+              {
+                "media": "video",
+                "title": "",
+                "srcURL": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/images/1727905005204-Struggle%20Meals%20ep%20312%20flm%20clip%20of%20peeler,%20knife%20and%20cutting%20board%20(1).mp4",
+                "duration": 10,
+                "products": [
+                  {
+                    "id": "prod_01J9N5CYDVHG539X5QKVCWFRZF",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/83dfcce7-d661-4bc6-b5e9-a7b8bbf1f434-1728360818245.jpeg",
+                    "price": 9.99,
+                    "handle": "998",
+                    "retailer": " Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Colorful Kitchen Knife Set 6 PCS",
+                    "retailerHandle": " Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Tj pop",
+                    "retailer_data": {
+                      "name": "Amazon",
+                      "thumbnail_url": "https://tastemade.us-west-2.citadel.test.shopsense.ai/_next/image?url=https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Ftest-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l%2Fd6ba17ff-7b44-45e2-bbb6-98c39e9fa0ce-1728360912198.jpeg&w=2048&q=75"
+                    }
+                  },
+                  {
+                    "id": "prod_01J9N5C6N63NFVYRF1B9EES2M9",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/d832b46a-2d58-43bc-9f23-f4682b1f6659-1728360789580.jpeg",
+                    "price": 12.99,
+                    "handle": "1100",
+                    "retailer": "Walmart",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Top Pro Men & Women Short Sleeve Baseball Raglan Tee Shirt Top",
+                    "retailerHandle": "Walmart",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Top Pro"
+                  },
+                  {
+                    "id": "prod_01J9N5D4XG0FT5NHSB1R8Z64D8",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/ae0e21aa-f06a-4a29-ab81-cc5daf48cdc6-1728360820123.jpeg",
+                    "price": 4,
+                    "handle": "1098",
+                    "retailer": " Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Mercer Culinary Y Swiss Peeler, Yellow",
+                    "retailerHandle": " Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Mercer Culinary "
+                  }
+                ],
+                "backdropUrl": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/images/1727905072228-V2%20S.png",
+                "description": ""
+              },
+              {
+                "media": "video",
+                "title": "",
+                "srcURL": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/images/1727905175967-Struggle%20Meals%20ep%20903%20clip%20of%20ziploc%20bag%20and%20container%20(1).mp4",
+                "duration": 5,
+                "products": [
+                  {
+                    "id": "prod_01J9N5CZEPXRB9TA7J81GAPW5T",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/9504f710-3bac-4ac2-92e6-778929dbab60-1728360813129.webp",
+                    "price": 19.72,
+                    "handle": "971",
+                    "retailer": "Sur La Table",
+                    "affiliate": "Ascend",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Teakhaus Edge Grain Reversible Cutting Board",
+                    "retailerHandle": "Sur La Table",
+                    "affiliateHandle": "ascend",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Teakhaus"
+                  },
+                  {
+                    "id": "prod_01J9N5CCGDANFYPWA8WX9WRCGZ",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/3a859c25-5235-479e-9277-0778f2cfc133-1728360872882.jpeg",
+                    "price": 10.35,
+                    "handle": "1102",
+                    "retailer": "Belk",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "TRUE CRAFT Solid Slub Henley T-Shirt",
+                    "retailerHandle": "Belk",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "TRUE CRAFT"
+                  },
+                  {
+                    "id": "prod_01J9N5CRX4T66KE8S50B5SSF2P",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/05e620c1-3994-4e0b-9b52-5d41ee72cb0c-1728360803267.webp",
+                    "price": 3.59,
+                    "handle": "1079",
+                    "retailer": "Target",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Ziploc Storage Quart Bags",
+                    "retailerHandle": "Target",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Ziploc"
+                  }
+                ],
+                "backdropUrl": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/images/1727905217028-V3%20S.png",
+                "description": ""
+              },
+              {
+                "media": "video",
+                "title": "",
+                "srcURL": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/images/1727905294892-Struggle%20Meals%20episode%20311%20clip%20of%20skillet%20and%20spatula%20(1).mp4",
+                "duration": 6,
+                "products": [
+                  {
+                    "id": "prod_01J9N5D470JDV4PVSG1WSZVPSR",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/e4b99ea6-b86d-4045-bf8e-9a99aa096cb0-1728360862711.jpeg",
+                    "price": 16.99,
+                    "handle": "1095",
+                    "retailer": "Kohl's",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Wood Handle Stainless Steel Smooth Wide Spatula 11.2\" Long",
+                    "retailerHandle": "Kohl's",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Unique Bargains"
+                  },
+                  {
+                    "id": "prod_01J9N5CJ5BXXTAZ94EKS1YWER8",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/172a0b1e-04d3-451d-bb8d-96247e04fd7d-1728360810025.png",
+                    "price": 19.9,
+                    "handle": "999",
+                    "retailer": " Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Lodge 10.25 Inch Cast Iron Pre-Seasoned Skillet",
+                    "retailerHandle": " Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Lodge"
+                  }
+                ],
+                "backdropUrl": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/images/1727905347694-V4%20S.png",
+                "description": ""
+              },
+              {
+                "media": "video",
+                "title": "",
+                "srcURL": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/images/1727905451457-Struggle%20Meals%20episode%20311%20clip%20of%20bamboo%20strainer%20and%20pot%20(1).mp4",
+                "duration": 5,
+                "products": [
+                  {
+                    "id": "prod_01J9N5D3G02BGCSDKA8AWQ7AJ6",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/2cb354c2-a0c6-4291-88a2-09e3cb435031-1728360856479.jpeg",
+                    "price": 9.99,
+                    "handle": "1093",
+                    "retailer": " Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Helen Chen’s Asian Kitchen Stainless Steel Spider Natural Bamboo Handle, 5-Inch Strainer Basket",
+                    "retailerHandle": " Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Helen's Asian Kitchen "
+                  },
+                  {
+                    "id": "prod_01J9N5CHSH8255DZCYW71T7455",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/109e3b39-b735-4c6a-bc08-aeb1617796d5-1728360823062.webp",
+                    "price": 49.9,
+                    "handle": "1076",
+                    "retailer": "Target",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Lodge 5qt Cast Iron Dutch Oven",
+                    "retailerHandle": "Target",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Lodge"
+                  }
+                ],
+                "backdropUrl": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/images/1727905486510-V5%20S.png",
+                "description": ""
+              },
+              {
+                "media": "video",
+                "title": "",
+                "srcURL": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/images/1727905671688-Struggle%20Meals%20ep%20903%20flm%20clip%20of%20blender,%20pot%20and%20container%20(1).mp4",
+                "duration": 7,
+                "products": [
+                  {
+                    "id": "prod_01J9N5CKYGPY6FBS5JAMZ7NSG4",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/0561de07-fd1d-4966-829b-0880ada7b926-1728360799154.jpeg",
+                    "price": 59.99,
+                    "handle": "1060",
+                    "retailer": "Kohl's",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Cuisinart® Chef's Classic Stainless Steel 5.5-qt. Saute Pan",
+                    "retailerHandle": "Kohl's",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Cuisinart"
+                  },
+                  {
+                    "id": "prod_01J9N5D1Q373VJ87NA09FZYS0H",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/53c84951-b91b-4610-b08c-378606aae8f9-1728360828235.jpeg",
+                    "price": 13.59,
+                    "handle": "1003",
+                    "retailer": "Kohl's",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Toastmaster Immersion Blender",
+                    "retailerHandle": "Kohl's",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Toastmaster"
+                  }
+                ],
+                "backdropUrl": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/images/1727905679173-V6%20S.png",
+                "description": ""
+              },
+              {
+                "media": "video",
+                "title": "",
+                "srcURL": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/images/1727905801760-Struggle%20Meals%20ep%20911%20flm%20clip%20of%20brush,%20baking%20tray%20and%20t-shirt%20(1).mp4",
+                "duration": 6,
+                "products": [
+                  {
+                    "id": "prod_01J9N5D32HWD5Z07DA7ET1PYVM",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/6f4e2ae0-2e39-4ec9-9539-2d9ff8de3c03-1728360855348.jpeg",
+                    "price": 12.98,
+                    "handle": "1008",
+                    "retailer": "Walmart",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Nordic Ware Naturals Half Sheet 18\" x 13\" Aluminum Cookie and Baking Pan, Silver",
+                    "retailerHandle": "Walmart",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Nordic Ware"
+                  },
+                  {
+                    "id": "prod_01J9N5D4JMAQ6YN0RHV547STK7",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/2a5f0772-181d-40fe-a892-c676187c15b7-1728360867169.webp",
+                    "price": 3.99,
+                    "handle": "1097",
+                    "retailer": "Macy's",
+                    "affiliate": "CJ",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Cuisinart GreenGourmet® Bamboo Basting Brush",
+                    "retailerHandle": "Macy's",
+                    "affiliateHandle": "cj",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Cuisinart"
+                  }
+                ],
+                "backdropUrl": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/images/1727905851053-V7%20S.png",
+                "description": ""
+              },
+              {
+                "media": "video",
+                "title": "",
+                "srcURL": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/images/1727905930964-Struggle%20Meals%20ep%20312%20flm%20clip%20of%20grater%20(1).mp4",
+                "duration": 8,
+                "products": [
+                  {
+                    "id": "prod_01J9N5D2QPQ12B491PB8NGWDJK",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/f5dbb275-48b9-4113-9bcf-055fc3e21dff-1728360849968.webp",
+                    "price": 16.95,
+                    "handle": "1006",
+                    "retailer": "Sur La Table",
+                    "affiliate": "Ascend",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Dreamfarm Fluicer Lemon Juicer",
+                    "retailerHandle": "Sur La Table",
+                    "affiliateHandle": "ascend",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Sur La Table"
+                  },
+                  {
+                    "id": "prod_01J9N5D2CV0PNWW12ZASDEDJ71",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/e3c8599c-63be-4f4c-85a3-c9bcb5b38eb2-1728360841574.png",
+                    "price": 16,
+                    "handle": "1005",
+                    "retailer": "Bloomingdale's",
+                    "affiliate": "Rakuten",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": " Joseph Joseph Handi-Grate Multi-Function Grater",
+                    "retailerHandle": "Bloomingdale's",
+                    "affiliateHandle": "rakuten",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": " Joseph Joseph"
+                  }
+                ],
+                "backdropUrl": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/images/1727906000967-V8%20S.png",
+                "description": ""
+              },
+              {
+                "media": "video",
+                "title": "",
+                "srcURL": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/images/1727906129312-Struggle%20Meals%20ep%20910%20flm%20clip%20of%20jar,%20glass%20bowl%20and%20colinder%20(1).mp4",
+                "duration": 5,
+                "products": [
+                  {
+                    "id": "prod_01J9N5CV54ZEHZGHV6A6EJFK8P",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/0b6792a5-5d40-4d4c-9377-083b9abb7035-1728360822719.jpeg",
+                    "price": 11.44,
+                    "handle": "1089",
+                    "retailer": "Walmart",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Ball Regular Mouth 16oz Pint Mason Jars with Lids & Bands, 12 Count",
+                    "retailerHandle": "Walmart",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Ball"
+                  },
+                  {
+                    "id": "prod_01J9N5D3V24DBTK80AZX9S5T66",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/aef15a25-82bb-472d-ab28-2940a2041d39-1728360857441.jpeg",
+                    "price": 7.44,
+                    "handle": "1094",
+                    "retailer": "Walmart",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Mainstays SS 3QT Multi-Use Colander for Straining, Draining & Rinsing Pasta, Fruits or Vegetables",
+                    "retailerHandle": "Walmart",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Mainstays"
+                  }
+                ],
+                "backdropUrl": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/images/1727906162250-V9%20S.png",
+                "description": ""
+              },
+              {
+                "media": "video",
+                "title": "",
+                "srcURL": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/images/1727906296167-Struggle%20Meals%20ep%20910%20flm%20clip%20of%20baking%20dish,%20bowl,%20spoon,%20plate%20(1).mp4",
+                "duration": 6,
+                "products": [
+                  {
+                    "id": "prod_01J9N5CK66992QYZZ9H3K3HM40",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/4cc68e1b-1481-4553-9852-c0a4f5c763dd-1728360787786.jpeg",
+                    "price": 39.99,
+                    "handle": "1058",
+                    "retailer": " Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Wok pan,Hybrid 12 inch Wok with Lid",
+                    "retailerHandle": " Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Dotclad"
+                  },
+                  {
+                    "id": "prod_01J9N5D21QAZVWHBA5R8123PK6",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/87684be2-2576-4d3d-b5d3-0357b4fbccf6-1728360834000.jpeg",
+                    "price": 13.86,
+                    "handle": "1004",
+                    "retailer": " Amazon",
+                    "affiliate": "Amazon",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Spatula Set Cherry Wood Spurtle Supplies Cast Scraper Wooden Spoons",
+                    "retailerHandle": " Amazon",
+                    "affiliateHandle": "amazon",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "MyFancyCraft"
+                  },
+                  {
+                    "id": "prod_01J9N5CVK2ETJ3473VVR65914W",
+                    "image": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/db8ab488-b1cf-4867-86a3-9b4ba1dac65d-1728360863878.jpeg",
+                    "price": 9.98,
+                    "handle": "1096",
+                    "retailer": "Walmart",
+                    "affiliate": "Impact",
+                    "collectionID": "pcol_01J9N5D6TY9ASXQTVXJEYFF9EN",
+                    "productTitle": "Pyrex Basics Glass Bakeware Set Value Pack, Set of 2",
+                    "retailerHandle": "Walmart",
+                    "affiliateHandle": "impact",
+                    "collectionTitle": "Shop the Shorts",
+                    "productSubtitle": "Pyrex"
+                  }
+                ],
+                "backdropUrl": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/images/1727906345951-V10%20S.png",
+                "description": ""
+              }
+            ],
+            "moduleType": "featureLook"
+          },
+          "store_id": "store_strugglemeals",
+          "imageUrl": "",
+          "thumbnailUrl": null,
+          "description": null,
+          "is_sponsored": false,
+          "order": 2,
+          "moduleType": "featureLook"
+        },
+        {
+          "id": "pcol_01J9N5CP9RNPGK2S1E3ZR7Z3WD",
+          "created_at": "2024-10-08T04:14:56.823Z",
+          "updated_at": "2024-10-08T04:15:02.685Z",
+          "deleted_at": null,
+          "title": "Meal Prep Must-haves",
+          "handle": "meal-prep-must-haves",
+          "metadata": null,
+          "store_id": "store_strugglemeals",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/92522ae2-796d-474f-b619-c5f851cf2099-1728360781331.webp",
+          "thumbnailUrl": null,
+          "description": "Prep like a pro with these versatile containers—easy storage and meal magic.",
+          "is_sponsored": false,
+          "order": 3,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J9N5CESQHJQRRW0ZDFQZEDEE",
+          "created_at": "2024-10-08T04:14:49.143Z",
+          "updated_at": "2024-10-08T04:14:54.856Z",
+          "deleted_at": null,
+          "title": "One-Pot Wonders",
+          "handle": "one-pot-wonders",
+          "metadata": null,
+          "store_id": "store_strugglemeals",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/0cdfe7cd-9628-4952-8c6e-1aaaaf75beba-1728360781243.webp",
+          "thumbnailUrl": null,
+          "description": "Whip up tasty, hassle-free meals with these one-pot wonders—cooking made fun.",
+          "is_sponsored": false,
+          "order": 4,
+          "moduleType": null
+        },
+        {
+          "id": "pcol_01J9N5C5P9MZDAMYYAVCTFN57Q",
+          "created_at": "2024-10-08T04:14:39.816Z",
+          "updated_at": "2024-10-08T04:14:46.778Z",
+          "deleted_at": null,
+          "title": "Dress like Frankie",
+          "handle": "dress-like-frankie",
+          "metadata": null,
+          "store_id": "store_strugglemeals",
+          "imageUrl": "https://s3.us-west-2.amazonaws.com/test-tastemadetenantstack-citadelbucket0907d78c-p2hj0fiq9o0l/31fc0581-527a-4f0b-b253-ec918e957d9c-1728360781270.webp",
+          "thumbnailUrl": null,
+          "description": "Effortless fashion: classic styles inspired by Frankie’s wardrobe.",
+          "is_sponsored": false,
+          "order": 5,
+          "moduleType": null
+        }
+      ]
+    }
+  ]
+}

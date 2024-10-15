@@ -1,0 +1,165 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('./assets/fonts/Inter.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Inter-SemiBold';
+  src: url('./assets/fonts/Inter-SemiBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'LiberationSans-SemiBold';
+  src: url('./assets/fonts/LiberationSans-Bold.woff') format('woff');
+}
+
+main {
+  width: 100%;
+  height: 100%;
+}
+
+main * {
+  font-family: 'Inter';
+}
+
+main .text-semibold {
+  font-family: 'Inter-SemiBold' !important;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  padding: 30px;
+  padding-right: 0;
+  border-radius: 10px;
+  z-index: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.header {
+  padding-right: 25px;
+  flex: 0 0 52px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.logo {
+  width: 58px;
+  height: 37px;
+  margin-right: 10px;
+}
+
+.logo-label {
+  font-family: 'LiberationSans-SemiBold' !important;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 15px;
+  color: #1d1e1f;
+}
+
+.control-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.control-button {
+  display: flex;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.control-button.left {
+  transform: rotate(180deg);
+}
+
+.control-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.products-container {
+  padding: 17px 13px;
+  max-width: 100%;
+  overflow: auto;
+  display: flex;
+}
+
+.products-list {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+}
+
+.product-card {
+  width: 168px;
+  height: 238px;
+}
+
+.product-card-header {
+  position: relative;
+  width: 168px;
+  height: 168px;
+  background-color: #eaeaea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-card-header .product-image {
+  width: 90%;
+  height: auto;
+  object-fit: contain;
+}
+
+.product-card-header .retail-logo {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  width: 30px;
+  height: 30px;
+  z-index: 5;
+  border-radius: 6px;
+}
+
+.product-card-header .indicator {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  z-index: 5;
+}
+
+.product-card-content {
+  padding: 10px;
+  padding-bottom: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card .divider-container {
+  padding: 0 10px;
+}
+
+.product-card-footer {
+  padding: 3px 10px;
+}

@@ -6,7 +6,7 @@ import { processAssets } from '@/generator/modules/asset-compression';
 import { minifyCss, minifyHtml, minifyJs, renderTemplate } from '@/generator/utils/generator-utils';
 import { config } from '@/generator/config';
 
-export async function generate(_data, outputAdDir, templateDir, width) {
+export default async function generate(_data, outputAdDir, templateDir, width) {
   const data = JSON.parse(JSON.stringify(_data));
 
   const outputAdAssetsDir = path.join(outputAdDir, 'assets');
