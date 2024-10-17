@@ -13,12 +13,12 @@ async function _getFeatureLookData({ publisher, storeHandle, meta }: { publisher
     loadEnv(publisher);
 
     const handle = 'superstore';
-    // const response = await axios<PublisherStore>({
-    //   method: 'GET',
-    //   url: `${process.env.BASE_URL}/store/custom/store/${handle}/super`,
-    // });
+    const response = await axios<PublisherStore>({
+      method: 'GET',
+      url: `${process.env.BASE_URL}/store/custom/store/${handle}/super`,
+    });
 
-    const response = { data: dummyResponseData };
+    // const response = { data: dummyResponseData };
 
     if (response.data) {
       // Temp write to data.json for debugging
