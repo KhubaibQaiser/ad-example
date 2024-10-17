@@ -10,9 +10,9 @@ import { AdGenerationResponse } from '@/types';
 import { FeatureLookCollectionAdDataType, GenerateTemplateHandler } from './types';
 
 const TEMPLATE_GENERATOR_MAP: Record<keyof typeof config.supportedTemplates, GenerateTemplateHandler> = {
-  'carousel-template': generateCarousel,
-  'curated-products-template': generateCuratedProduct,
-  'banner-template': generateBanner,
+  CarouselTemplate: generateCarousel,
+  CuratedProductsTemplate: generateCuratedProduct,
+  BannerTemplate: generateBanner,
 };
 
 async function copyGlobalFiles(outputDir: string): Promise<void> {
@@ -50,7 +50,8 @@ export async function generateAd(flData: FeatureLookCollectionAdDataType[], temp
   let outputAdRootDir = '';
 
   const templatesDir = path.join(process.cwd(), 'src', 'generator', 'templates');
-  const templateDir = path.join(templatesDir, template);
+  const templateDirName = config.supportedTemplates[template as keyof typeof config.supportedTemplates];
+  const templateDir = path.join(templatesDir, templateDirName);
   await fsExtra.ensureDir(config.tempDownloadDir);
   await fsExtra.ensureDir(config.outputRootDir);
   const adsPromises: Promise<unknown>[] = [];
@@ -59,13 +60,14 @@ export async function generateAd(flData: FeatureLookCollectionAdDataType[], temp
       new Promise(async (resolve, reject) => {
         try {
           const slug = data.collection_handle ?? getSlug(data.title);
-          outputAdRootDir = path.join(config.outputRootDir, slug, template);
+          outputAdRootDir = path.join(config.outputRootDir, slug, templateDirName);
           if (fs.existsSync(outputAdRootDir)) {
             await fsExtra.remove(outputAdRootDir);
           }
           await fsExtra.ensureDir(outputAdRootDir);
           const outputAdDir = path.join(outputAdRootDir, 'ad');
           await fsExtra.ensureDir(outputAdDir);
+          console.log('TEMPLATE', templateDirName);
           const generateAd = TEMPLATE_GENERATOR_MAP[template as keyof typeof TEMPLATE_GENERATOR_MAP];
           await generateAd(data, outputAdDir, templateDir, width);
           await copyGlobalFiles(outputAdDir);

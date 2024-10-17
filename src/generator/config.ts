@@ -66,9 +66,9 @@ export const config = {
   tempDownloadDir: path.join(rootDir, 'downloads'),
   outputRootDir: path.join(rootDir, 'output'),
   supportedTemplates: {
-    'curated-products-template': 'curated-products-template',
-    'carousel-template': 'carousel-template',
-    'banner-template': 'banner-template',
+    CuratedProductsTemplate: 'curated-products-template',
+    CarouselTemplate: 'carousel-template',
+    BannerTemplate: 'banner-template',
   },
   videoOutputFormat: 'mp4', // '.avi', '.mov', '.mp4', '.m4v', '.mpeg', '.mpg', '.webm', '.wmv' or 'gif'
 };

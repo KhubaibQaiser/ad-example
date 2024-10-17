@@ -10,8 +10,8 @@ export default function TestEmbed() {
         window.ShopsenseEmbeds.EmbedInjector.loadAd({
           containerId: 'tools', // required
           embedId: 'shop-the-shorts', // required
-          template: window.ShopsenseEmbeds.EmbedInjector.SupportedTemplates.CuratedProducts, // required
-          // variation: window.ShopsenseEmbeds.EmbedInjector.SupportedVariations.Skyscraper, // optional
+          template: window.ShopsenseEmbeds.EmbedInjector.SupportedTemplates.Banner, // required
+          variation: window.ShopsenseEmbeds.EmbedInjector.SupportedVariations.Banner, // optional
         });
       } catch (e) {
         console.error(e);

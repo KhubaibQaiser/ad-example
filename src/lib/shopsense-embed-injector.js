@@ -6,7 +6,7 @@
     const SupportedTemplates = {
       CuratedProducts: 'curated-products-template',
       Carousel: 'carousel-template',
-      // Add more ad templates as needed
+      Banner: 'banner-template',
     };
 
     const SupportedVariations = {
@@ -18,7 +18,7 @@
 
     const AdVariations = {
       Skyscraper: { width: '160px', height: '600px' },
-      Banner: { width: '468px', height: '60px' },
+      Banner: { width: '912px', height: '384px' }, // 912x384 || 468x60
       Leaderboard: { width: '728px', height: '90px' },
       // Add more IAB standard variations as needed
     };

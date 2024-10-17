@@ -32,7 +32,7 @@ const adFormSchema = z
   })
   .refine(
     (data) => {
-      const hasCuratedTemplate = data.templates.some((template) => template.value === config.supportedTemplates['curated-products-template']);
+      const hasCuratedTemplate = data.templates.some((template) => template.value === config.supportedTemplates.CuratedProductsTemplate);
       if (hasCuratedTemplate) {
         return !!data.meta;
       }
@@ -45,7 +45,7 @@ const adFormSchema = z
   )
   .refine(
     (data) => {
-      const hasCuratedTemplate = data.templates.some((template) => template.value === config.supportedTemplates['curated-products-template']);
+      const hasCuratedTemplate = data.templates.some((template) => template.value === config.supportedTemplates.CuratedProductsTemplate);
       if (hasCuratedTemplate) {
         return !!data.meta && data.meta.logo;
       }
@@ -58,7 +58,7 @@ const adFormSchema = z
   )
   .refine(
     (data) => {
-      const hasCuratedTemplate = data.templates.some((template) => template.value === config.supportedTemplates['curated-products-template']);
+      const hasCuratedTemplate = data.templates.some((template) => template.value === config.supportedTemplates.CuratedProductsTemplate);
       if (hasCuratedTemplate) {
         return !!data.meta && data.meta.subTitle;
       }
@@ -71,7 +71,7 @@ const adFormSchema = z
   )
   .refine(
     (data) => {
-      const hasCuratedTemplate = data.templates.some((template) => template.value === config.supportedTemplates['curated-products-template']);
+      const hasCuratedTemplate = data.templates.some((template) => template.value === config.supportedTemplates.CuratedProductsTemplate);
       if (hasCuratedTemplate) {
         return !!data.meta && data.meta.footerText;
       }
@@ -86,9 +86,9 @@ const adFormSchema = z
 export type AdFormSchema = z.infer<typeof adFormSchema>;
 
 const templateOptions: OptionSchema<keyof typeof config.supportedTemplates>[] = [
-  { value: 'curated-products-template', label: 'Curated Products Template' },
-  { value: 'carousel-template', label: 'Carousel Template' },
-  { value: 'banner-template', label: 'Banner Template' },
+  { value: 'CuratedProductsTemplate', label: 'Curated Products Template' },
+  { value: 'CarouselTemplate', label: 'Carousel Template' },
+  { value: 'BannerTemplate', label: 'Banner Template' },
 ];
 
 export const options = {
