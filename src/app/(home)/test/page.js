@@ -24,7 +24,7 @@ export default function TestEmbed() {
       <Script src='/shopsense-embed-injector.min.js?v=1.1' defer onLoad={initEmbed} />
       <div className='flex flex-col items-center gap-4'>
         <h1 className='text-white text-2xl'>Embed Injector Test</h1>
-        <div id='tools'></div>
+        <div id='tools' style={{ width: 320, height: 135 }}></div>
       </div>
     </>
   );

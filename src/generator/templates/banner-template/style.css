@@ -100,24 +100,23 @@ main *.text-semibold {
   gap: calc(var(--base-width) * 0.02);
 }
 .product-card {
+  display: flex;
+  flex-direction: column;
   width: calc(var(--base-width) * 0.185);
-  height: calc(var(--base-height) * 0.61);
 }
 .product-card-header {
+  flex: 1;
   position: relative;
   width: 100%;
-  height: 71%;
   background-color: #eaeaea;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: inherit;
 }
 .product-card-header .product-image {
   width: 90%;
   height: auto;
   object-fit: contain;
-  border-radius: inherit;
 }
 .product-card-header .retail-logo {
   position: absolute;
@@ -134,17 +133,23 @@ main *.text-semibold {
   top: calc(var(--base-width) * 0.009);
   z-index: 5;
 }
+.product-card .chip {
+  border-radius: calc(var(--base-width) * 0.015) !important;
+  padding: calc(var(--base-width) * 0.009) calc(var(--base-width) * 0.009) !important;
+  font-size: calc(var(--base-width) * 0.01) !important;
+}
 .product-card-content {
   padding: calc(var(--base-width) * 0.011);
-  padding-bottom: calc(var(--base-width) * 0.004);
+  padding-bottom: calc(var(--base-width) * 0.007);
   display: flex;
   flex-direction: column;
 }
 .product-card .divider-container {
   padding: 0 calc(var(--base-width) * 0.011);
 }
-.product-card-footer {
-  padding: calc(var(--base-height) * 0.01) calc(var(--base-width) * 0.011);
+.product-card .divider {
+  margin-top: calc(var(--base-height) * 0.015);
+  margin-bottom: calc(var(--base-height) * 0.015);
 }
 .shopsense-ad .text-xxs {
   font-size: calc(var(--base-width) * 0.011) !important;
@@ -153,34 +158,48 @@ main *.text-semibold {
   font-size: calc(var(--base-width) * 0.0143) !important;
 }
 
+.product-card .text-price-label,
+.product-card .text-price-label * {
+  font-family: 'Inter-SemiBold';
+}
+
+.product-card .base-price {
+  font-family: 'Inter';
+}
+
 /* Container queries for responsiveness */
-.main-container {
-  container-type: inline-size;
+.shopsense-ad {
+  container-type: inline-size !important;
+  container-name: shopsenseembed !important;
 }
 
-@container (max-width: 480px) {
-  :root {
+.shopsense-ad .card {
+  border-radius: calc(var(--base-width) * 0.011) !important;
+}
+
+@container shopsenseembed (max-width: 480px) {
+  .main-container {
     --base-width: 320px;
-    --base-height: calc(var(--base-width) * 0.422); /* Maintain aspect ratio */
+    --base-height: calc(var(--base-width) * 0.422);
   }
 }
 
-@container (min-width: 481px) and (max-width: 768px) {
-  :root {
+@container shopsenseembed (min-width: 481px) and (max-width: 768px) {
+  .main-container {
     --base-width: 688px;
-    --base-height: calc(var(--base-width) * 0.422); /* Maintain aspect ratio */
+    --base-height: calc(var(--base-width) * 0.4953);
   }
 }
 
-@container (min-width: 769px) and (max-width: 1024px) {
-  :root {
+@container shopsenseembed (min-width: 769px) and (max-width: 911px) {
+  .main-container {
     --base-width: 768px;
-    --base-height: calc(var(--base-width) * 0.422); /* Maintain aspect ratio */
+    --base-height: calc(var(--base-width) * 0.422);
   }
 }
 
-@container (min-width: 1025px) {
-  :root {
+@container shopsenseembed (min-width: 912px) {
+  .main-container {
     --base-width: 912px;
     --base-height: calc(var(--base-width) * 0.422); /* Maintain aspect ratio 912/385 (BASE DESIGN DIMENSIONS) */
   }

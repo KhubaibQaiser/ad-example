@@ -11,11 +11,7 @@
     <p class="text-xxs text-semibold text-fg-subtle text-clip-1"><%= product.productTitle %></p>
     <%- include(__dirname + '/../shared/price-label.ejs', { product: product, formatPrice: data.formatPrice, showDiscount: data.showDiscount,
     getDiscountPercentage: data.getDiscountPercentage, index: index }) %>
-  </div>
-  <div class="divider-container">
     <div class="divider"></div>
-  </div>
-  <div class="product-card-footer">
     <p class="text-xxs text-fg-muted"><%= product.retailer %></p>
   </div>
 </a>

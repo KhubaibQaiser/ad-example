@@ -9,7 +9,7 @@
       leftButton.removeAttribute('disabled');
     }
 
-    if (scrollLeft >= maxScrollLeft) {
+    if (Math.abs(maxScrollLeft - scrollLeft) <= 2) {
       rightButton.setAttribute('disabled', true);
     } else {
       rightButton.removeAttribute('disabled');

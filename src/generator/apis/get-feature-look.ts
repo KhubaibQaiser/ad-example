@@ -5,7 +5,7 @@ import { cache } from 'react';
 import path from 'path';
 import { config } from '../config';
 import fs from 'fs';
-import dummyResponseData from '@/generator/templates/banner-template/dummy-data.json';
+// import dummyResponseData from '@/generator/templates/banner-template/dummy-data.json';
 
 async function _getFeatureLookData({ publisher, storeHandle, meta }: { publisher: string; storeHandle?: string; meta: FLMeta }) {
   try {
