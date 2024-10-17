@@ -198,8 +198,8 @@
         adContentContainer.classList.add('shopsense-ad');
         adContainer.innerHTML = adContentContainer.outerHTML;
         setTimeout(() => {
-          applyStyles(adParentContainer, { height: height, opacity: 1 });
-        }, 250);
+          applyStyles(adParentContainer, { height: adContainer.clientHeight + 'px', opacity: 1 });
+        }, 500);
 
         // Append JS files to the body
         let filteredScripts = [];
