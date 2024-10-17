@@ -76,8 +76,8 @@
       const adContainer = document.createElement('div');
       adContainer.id = id;
       applyStyles(adContainer, {
-        width,
-        height,
+        // width,
+        // height,
         zIndex: 1,
       });
       container.appendChild(adContainer);
@@ -137,7 +137,7 @@
 
         applyStyles(adParentContainer, {
           position: 'relative',
-          width,
+          // width,
           height: 0, // Initially hidden
           overflow: 'hidden',
           opacity: 0,
@@ -198,7 +198,7 @@
         adContentContainer.classList.add('shopsense-ad');
         adContainer.innerHTML = adContentContainer.outerHTML;
         setTimeout(() => {
-          applyStyles(adParentContainer, { height: height, opacity: 1 });
+          applyStyles(adParentContainer, { height: 'auto', opacity: 1 });
         }, 250);
 
         // Append JS files to the body
