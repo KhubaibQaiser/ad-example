@@ -177,14 +177,14 @@ main *.text-semibold {
   border-radius: calc(var(--base-width) * 0.011) !important;
 }
 
-@container shopsenseembed (max-width: 480px) {
+/* @container shopsenseembed (max-width: 480px) {
   .main-container {
     --base-width: 320px;
     --base-height: calc(var(--base-width) * 0.422);
   }
-}
+} */
 
-@container shopsenseembed (min-width: 481px) and (max-width: 768px) {
+@container shopsenseembed (max-width: 768px) {
   .main-container {
     --base-width: 688px;
     --base-height: calc(var(--base-width) * 0.4953);
