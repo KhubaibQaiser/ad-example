@@ -5,7 +5,7 @@ import { cache } from 'react';
 import path from 'path';
 import { config } from '../config';
 import fs from 'fs';
-// import dummyResponseData from '@/generator/templates/banner-template/dummy-data.json';
+import dummyResponseData from '@/generator/templates/banner-template/dummy-data.json';
 
 async function _getFeatureLookData({ publisher, storeHandle, meta }: { publisher: string; storeHandle?: string; meta: FLMeta }) {
   try {
@@ -13,12 +13,12 @@ async function _getFeatureLookData({ publisher, storeHandle, meta }: { publisher
     loadEnv(publisher);
 
     const handle = 'superstore';
-    const response = await axios<PublisherStore>({
-      method: 'GET',
-      url: `${process.env.BASE_URL}/store/custom/store/${handle}/super`,
-    });
+    // const response = await axios<PublisherStore>({
+    //   method: 'GET',
+    //   url: `${process.env.BASE_URL}/store/custom/store/${handle}/super`,
+    // });
 
-    // const response = { data: dummyResponseData };
+    const response = { data: dummyResponseData };
 
     if (response.data) {
       // Temp write to data.json for debugging
