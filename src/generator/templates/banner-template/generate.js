@@ -12,7 +12,12 @@ export default async function generate(_data, outputAdDir, templateDir, width) {
   try {
     let data = JSON.parse(JSON.stringify(_data));
     // Use only first since it's a single moduleData template
-    data = { ...data, moduleData: data.moduleData[0] };
+
+    const moduleData = data.moduleData[0];
+    data.moduleData.slice(1).forEach((mData) => {
+      moduleData.products = moduleData.products.concat(mData.products);
+    });
+    data = { ...data, moduleData: moduleData };
 
     const outputAdAssetsDir = path.join(outputAdDir, 'assets');
     await fsExtra.ensureDir(outputAdAssetsDir);

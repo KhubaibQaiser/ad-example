@@ -102,6 +102,10 @@ body {
   box-shadow: 0px 5px 10px 0px #00000010;
 }
 
+.shopsense-ad .no-shadow {
+  box-shadow: none !important;
+}
+
 .shopsense-ad .scale-on-hover:not([disabled]):hover {
   transform: scale(1.02);
 }
