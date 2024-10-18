@@ -59,7 +59,8 @@ main *.text-semibold {
   font-family: 'LiberationSans-SemiBold' !important;
   font-size: calc(var(--font-size) * 0.85);
   font-weight: 700;
-  line-height: calc(var(--base-height) * 0.039);
+  /* line-height: calc(var(--base-height) * 0.039); */
+  line-height: normal;
   color: #1d1e1f;
 }
 .control-container {
@@ -176,13 +177,6 @@ main *.text-semibold {
 .shopsense-ad .card {
   border-radius: calc(var(--base-width) * 0.011) !important;
 }
-
-/* @container shopsenseembed (max-width: 480px) {
-  .main-container {
-    --base-width: 320px;
-    --base-height: calc(var(--base-width) * 0.422);
-  }
-} */
 
 @container shopsenseembed (max-width: 768px) {
   .main-container {

@@ -46,31 +46,31 @@
       Object.assign(element.style, styles);
     };
 
-    const injectLoaderContainer = (container, id, width, height) => {
-      const loaderContainer = document.createElement('div');
-      loaderContainer.id = id;
-      applyStyles(loaderContainer, {
-        width,
-        height,
-        backgroundColor: 'rgba(0,0,0,1)',
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        opacity: 1,
-        transition: 'opacity 0.5s ease',
-        zIndex: 10,
-      });
-      container.appendChild(loaderContainer);
+    // const injectLoaderContainer = (container, id, width, height) => {
+    //   const loaderContainer = document.createElement('div');
+    //   loaderContainer.id = id;
+    //   applyStyles(loaderContainer, {
+    //     width,
+    //     height,
+    //     backgroundColor: 'rgba(0,0,0,1)',
+    //     position: 'absolute',
+    //     left: 0,
+    //     top: 0,
+    //     opacity: 1,
+    //     transition: 'opacity 0.5s ease',
+    //     zIndex: 10,
+    //   });
+    //   container.appendChild(loaderContainer);
 
-      const hideLoader = () => {
-        loaderContainer.style.opacity = 0;
-        setTimeout(() => {
-          loaderContainer.remove();
-        }, 500);
-      };
+    //   const hideLoader = () => {
+    //     loaderContainer.style.opacity = 0;
+    //     setTimeout(() => {
+    //       loaderContainer.remove();
+    //     }, 500);
+    //   };
 
-      return hideLoader;
-    };
+    //   return hideLoader;
+    // };
 
     const injectAdContainer = (container, id, width, height) => {
       const adContainer = document.createElement('div');
@@ -199,7 +199,10 @@
         adContainer.innerHTML = adContentContainer.outerHTML;
         setTimeout(() => {
           applyStyles(adParentContainer, { height: adContainer.clientHeight + 'px', opacity: 1 });
-        }, 500);
+          setTimeout(() => {
+            applyStyles(adParentContainer, { height: 'auto' });
+          }, 500);
+        }, 1000);
 
         // Append JS files to the body
         let filteredScripts = [];

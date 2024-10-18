@@ -1,0 +1,17 @@
+HTTrack3.49-2 launched on Thu, 17 Oct 2024 07:09:15 at https://www.tastemade.com/recipes/walnut-cake
+(winhttrack https://www.tastemade.com/recipes/walnut-cake -O "/Users/khubaib-shopsense/websites/tastemade" -P none:8080 -%v )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+09:03:27	Warning: 	Retry after error -2 (Receive Time Out) at link https://www.tastemade.com/recipes/mini-spinach-artichoke-frittatas (from https://www.tastemade.com/recipes/browse?category__or=brunch)
+09:03:27	Warning: 	Retry after error -2 (Receive Time Out) at link https://www.tastemade.com/recipes/omelette-in-a-bag (from https://www.tastemade.com/recipes/browse?category__or=brunch)
+09:03:28	Warning: 	Retry after error -2 (Connect Time Out) at link https://www.tastemade.com/recipes/vietnamese-espresso-martini-shake (from https://www.tastemade.com/recipes/browse?category__or=snack)
+09:03:28	Warning: 	Retry after error -2 (Connect Time Out) at link https://www.tastemade.com/recipes/chicken-and-rice-traybake (from https://www.tastemade.com/recipes/browse?category__or=dinner)
+09:03:28	Warning: 	Retry after error -2 (Connect Time Out) at link https://www.tastemade.com/recipes/scallion-pancake-wraps-with-grilled-avocado-ponzu-oyster-mushrooms-and-brown-butter-labneh (from https://www.tastemade.com/recipes/browse?category__or=dinner)
+09:03:30	Warning: 	Retry after error -2 (Connect Time Out) at link https://www.tastemade.com/recipes/sizzling-saigon-crepes (from https://www.tastemade.com/recipes/browse?category__or=dinner)
+
+HTTrack Website Copier/3.49-2 mirror complete in 2 hours 7 minutes 36 seconds : 1556 links scanned, 1549 files written (198199906 bytes overall) [41133679 bytes received at 5372 bytes/sec], 198200105 bytes transferred using HTTP compression in 1550 files, ratio 20%, 36.9 requests per connection
+(No errors, 6 warnings, 0 messages)
