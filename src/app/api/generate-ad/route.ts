@@ -9,6 +9,8 @@ import archiver from 'archiver';
 import path from 'path';
 import fs from 'fs';
 
+export const maxDuration = 60;
+
 async function clearOutputDir() {
   console.log('Clearing output directory...');
   await fsExtra.emptyDir(config.outputRootDir);
