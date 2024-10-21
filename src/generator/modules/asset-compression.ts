@@ -7,7 +7,7 @@ import { processImageAsset } from './image';
 import { processVideoAsset } from './video';
 
 // Function to process images
-export async function processAssets(inputDir: string, outputDir: string, _width: number) {
+export async function processAssets(inputDir: string, outputDir: string, _width: number, excludeVideo = false) {
   const width = parseInt(`${_width}`);
   const quality = parseInt(`${config.imageCompressionQuality}`);
 
@@ -19,7 +19,7 @@ export async function processAssets(inputDir: string, outputDir: string, _width:
 
     if (entry.isDirectory()) {
       await fsExtra.ensureDir(outputPath);
-      await processAssets(inputDir, outputPath, width);
+      await processAssets(inputDir, outputPath, width, excludeVideo);
     } else if (entry.name.startsWith('.')) {
       // Ignore
     } else {
@@ -31,7 +31,7 @@ export async function processAssets(inputDir: string, outputDir: string, _width:
       }
       if (isImage(ext)) {
         await processImageAsset(inputPath, outputPath, ext, w, quality);
-      } else {
+      } else if (!excludeVideo) {
         await processVideoAsset(inputPath, outputPath, w, config.compressVideos, config.videoOutputFormat);
       }
     }

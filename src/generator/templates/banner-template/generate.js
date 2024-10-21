@@ -22,7 +22,7 @@ export default async function generate(_data, outputAdDir, templateDir, width) {
     const outputAdAssetsDir = path.join(outputAdDir, 'assets');
     await fsExtra.ensureDir(outputAdAssetsDir);
 
-    await processAssets(path.join(config.tempDownloadDir, data.collection_handle), outputAdAssetsDir, width);
+    await processAssets(path.join(config.tempDownloadDir, data.collection_handle), outputAdAssetsDir, width, true);
 
     console.log('Rendering template...');
     const html = renderTemplate(path.join(templateDir, 'index.html'), { ...data, formatPrice, showDiscount, getDiscountPercentage });
