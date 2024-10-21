@@ -14,9 +14,9 @@ export default async function generate(_data, outputAdDir, templateDir, width) {
     // Use only first since it's a single moduleData template
 
     const moduleData = data.moduleData[0];
-    data.moduleData.slice(1).forEach((mData) => {
-      moduleData.products = moduleData.products.concat(mData.products);
-    });
+    // data.moduleData.slice(1).forEach((mData) => {
+    //   moduleData.products = moduleData.products.concat(mData.products);
+    // });
     data = { ...data, moduleData: moduleData };
 
     const outputAdAssetsDir = path.join(outputAdDir, 'assets');

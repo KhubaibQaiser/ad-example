@@ -1978,18 +1978,12 @@
 
     <script>
       function initEmbed() {
-        if (window && window.ShopsenseEmbeds && window.ShopsenseEmbeds.EmbedInjector) {
-          try {
-            window.ShopsenseEmbeds.EmbedInjector.loadAd({
-              containerId: 'tools', // required
-              embedId: 'shop-the-shorts', // required
-              template: window.ShopsenseEmbeds.EmbedInjector.SupportedTemplates.Banner, // required
-              variation: window.ShopsenseEmbeds.EmbedInjector.SupportedVariations.Banner,
-            });
-          } catch (e) {
-            console.error(e);
-          }
-        }
+        window.ShopsenseEmbeds.EmbedInjector.loadAd({
+          containerId: 'tools', // required
+          embedId: 'shop-the-shorts', // required
+          template: window.ShopsenseEmbeds.EmbedInjector.SupportedTemplates.Banner, // required
+          variation: window.ShopsenseEmbeds.EmbedInjector.SupportedVariations.Banner, // Optional
+        });
       }
 
       document.addEventListener('DOMContentLoaded', initEmbed);
