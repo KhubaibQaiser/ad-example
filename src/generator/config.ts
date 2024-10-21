@@ -61,7 +61,7 @@ export const config = {
   isProduction,
   rootDir,
   imageCompressionQuality: 80,
-  compressVideos: true,
+  compressVideos: false,
   tempDownloadDir: path.join(rootDir, 'downloads'),
   outputRootDir: path.join(rootDir, 'output'),
   supportedTemplates: {
