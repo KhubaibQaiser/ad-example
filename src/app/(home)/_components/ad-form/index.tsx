@@ -10,7 +10,7 @@ import { FeatureLookCollectionAdDataType } from '@/generator/types';
 import { loadEnv } from '@/generator/utils/env-utils';
 import { AdFormSchema, options, OptionSchema, useFormDef } from './form';
 
-function AdFormBase({ handleRefresh }: { handleRefresh: () => void }) {
+function AdFormBase() {
   const [isSubmitting, setSubmitting] = useState(false);
   const [loadingOptions, setLoadingOptions] = useState(false);
   const [storeHandles, setCollectionHandles] = useState<OptionSchema[]>([]);
@@ -34,10 +34,17 @@ function AdFormBase({ handleRefresh }: { handleRefresh: () => void }) {
           meta: values.meta,
         }),
       });
-      const result = await response.json();
-      if (result && 'data' in result) {
-        handleRefresh();
+      if (!response.ok) {
+        throw new Error('Failed to generate files.');
       }
+
+      const blob = await response.blob();
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'embeds.zip';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     } catch (e) {
       console.error(e);
       alert('There were errors generating the ads. Please check the console for more information.');
