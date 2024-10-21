@@ -56,13 +56,12 @@ const envFile = `.env.${isProduction ? 'production' : 'development'}`;
 dotenv.config({ path: envFile });
 
 const rootDir = path.join('/tmp', 'shopsense-embeds');
-// const rootDir = process.cwd();
 
 export const config = {
   isProduction,
   rootDir,
   imageCompressionQuality: 80,
-  compressVideos: false,
+  compressVideos: true,
   tempDownloadDir: path.join(rootDir, 'downloads'),
   outputRootDir: path.join(rootDir, 'output'),
   supportedTemplates: {

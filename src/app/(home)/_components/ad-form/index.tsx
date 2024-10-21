@@ -35,7 +35,7 @@ function AdFormBase() {
         }),
       });
       if (!response.ok) {
-        throw new Error('Failed to generate files.');
+        throw new Error('Failed to generate ads.');
       }
 
       const blob = await response.blob();
