@@ -21,7 +21,7 @@ async function _getFeatureLookData({ publisher, storeHandle, meta }: { publisher
 
   if (response.data) {
     // Temp write to data.json for debugging
-    fs.writeFileSync(path.join(config.tempDownloadDir, '..', 'data.json'), JSON.stringify(response.data));
+    // fs.writeFileSync(path.join(config.tempDownloadDir, '..', 'data.json'), JSON.stringify(response.data));
 
     let stores = response.data.sub_stores;
     if (storeHandle) {
