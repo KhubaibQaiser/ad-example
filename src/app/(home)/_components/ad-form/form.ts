@@ -13,6 +13,9 @@ export type OptionSchema<T = string> = Omit<z.infer<typeof optionSchema>, 'value
   value: T;
 };
 
+const hasCuratedTemplate = (templates: OptionSchema[]) =>
+  templates.some((template: OptionSchema) => template.value.toLowerCase().includes('curated'));
+
 const adFormSchema = z
   .object({
     publisher: optionSchema,
@@ -32,8 +35,7 @@ const adFormSchema = z
   })
   .refine(
     (data) => {
-      const hasCuratedTemplate = data.templates.some((template) => template.value === config.supportedTemplates.CuratedProductsTemplate);
-      if (hasCuratedTemplate) {
+      if (hasCuratedTemplate(data.templates)) {
         return !!data.meta;
       }
       return true;
@@ -45,8 +47,7 @@ const adFormSchema = z
   )
   .refine(
     (data) => {
-      const hasCuratedTemplate = data.templates.some((template) => template.value === config.supportedTemplates.CuratedProductsTemplate);
-      if (hasCuratedTemplate) {
+      if (hasCuratedTemplate(data.templates)) {
         return !!data.meta && data.meta.logo;
       }
       return true;
@@ -58,8 +59,7 @@ const adFormSchema = z
   )
   .refine(
     (data) => {
-      const hasCuratedTemplate = data.templates.some((template) => template.value === config.supportedTemplates.CuratedProductsTemplate);
-      if (hasCuratedTemplate) {
+      if (hasCuratedTemplate(data.templates)) {
         return !!data.meta && data.meta.subTitle;
       }
       return true;
@@ -71,8 +71,7 @@ const adFormSchema = z
   )
   .refine(
     (data) => {
-      const hasCuratedTemplate = data.templates.some((template) => template.value === config.supportedTemplates.CuratedProductsTemplate);
-      if (hasCuratedTemplate) {
+      if (hasCuratedTemplate(data.templates)) {
         return !!data.meta && data.meta.footerText;
       }
       return true;
