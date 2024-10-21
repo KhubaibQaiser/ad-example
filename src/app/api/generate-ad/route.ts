@@ -13,12 +13,14 @@ export async function POST(request: NextRequest) {
     for (const publisher of publisherHandles) {
       for (const storeHandle of storeHandles) {
         const data = await getFeatureLookData({ publisher, storeHandle, meta });
-        const localReferenceData = await downloadDataToTemp(data);
-        // TODO: Compress and place assets in the compressed_assets directory
-        for (const template of templates) {
-          const [width, height] = size.split('x').map(Number);
-          const response = await generateAd(localReferenceData, template, width, height);
-          responses.push(response);
+        if (data) {
+          const localReferenceData = await downloadDataToTemp(data);
+          // TODO: Compress and place assets in the compressed_assets directory
+          for (const template of templates) {
+            const [width, height] = size.split('x').map(Number);
+            const response = await generateAd(localReferenceData, template, width, height);
+            responses.push(response);
+          }
         }
       }
     }
