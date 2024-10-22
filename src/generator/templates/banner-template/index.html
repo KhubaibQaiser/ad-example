@@ -10,6 +10,7 @@
   </head>
   <body>
     <main class="shopsense-ad">
+      <%- include(__dirname + '/../shared/sponsored-label.ejs', { isSponsored: true }) %>
       <article class="card main-container no-shadow">
         <header class="header">
           <section class="logo-container">
@@ -47,12 +48,12 @@
             </button>
           </section>
         </header>
-        <div class="products-container">
+        <section class="products-container">
           <div class="products-list">
             <% data.moduleData.products.forEach((product, index) => { %> <%- include(__dirname + '/product-card.ejs', { product: product, formatPrice:
             data.formatPrice, showDiscount: data.showDiscount, getDiscountPercentage: data.getDiscountPercentage, index: index }) %> <% }) %>
           </div>
-        </div>
+        </section>
       </article>
     </main>
 

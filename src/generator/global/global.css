@@ -63,6 +63,17 @@ body {
   scrollbar-color: rgba(0, 0, 0, 0.5) transparent; /* Dark thumb with transparent track */
 }
 
+.shopsense-ad .sponsored-label {
+  position: absolute;
+  z-index: 2;
+  left: 0.5rem;
+  top: 0.5rem;
+  font-size: calc(var(--base-height) * 0.02);
+  color: #9ca3af;
+  letter-spacing: -0.01rem;
+  text-transform: uppercase;
+}
+
 .shopsense-ad a {
   text-decoration: none;
 }
