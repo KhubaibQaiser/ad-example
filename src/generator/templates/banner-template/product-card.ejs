@@ -4,7 +4,7 @@
     <% if (product.retailer_data?.thumbnail_url) { %>
     <img src="<%= product.retailer_data.thumbnail_url %>" alt="<%= product.retailer_data.name %>" class="retail-logo" />
     <% } %> <% if (data.showDiscount(product.discountable, getDiscountPercentage(product.base_price, product.price))) { %>
-    <div class="chip chip-small indicator text-semibold bg-negative"><%= getDiscountPercentage(product.base_price, product.price) %>%</div>
+    <div class="chip chip-small indicator text-semibold bg-negative">-<%= getDiscountPercentage(product.base_price, product.price) %>%</div>
     <% } %>
   </div>
   <div class="product-card-content">
