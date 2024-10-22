@@ -27,6 +27,30 @@ body {
   box-sizing: border-box;
 }
 
+.shopsense-ad ::-webkit-scrollbar {
+  width: 4px; /* Width of vertical scrollbar */
+  height: 4px; /* Height of horizontal scrollbar */
+}
+
+.shopsense-ad ::-webkit-scrollbar-track {
+  background: transparent; /* Transparent background for the track */
+}
+
+.shopsense-ad ::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5); /* Dark thumb with some transparency */
+  border-radius: 4px; /* Rounded corners for the thumb */
+}
+
+.shopsense-ad ::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.7); /* Slightly darker thumb on hover */
+}
+
+/* For Firefox */
+.shopsense-ad * {
+  scrollbar-width: thin; /* Thin scrollbar */
+  scrollbar-color: rgba(0, 0, 0, 0.5) transparent; /* Dark thumb with transparent track */
+}
+
 .shopsense-ad * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -126,6 +150,14 @@ body {
   line-height: normal;
   letter-spacing: -0.03em;
   text-align: left;
+}
+
+.shopsense-ad .bg-negative {
+  background-color: hsl(347 77% 50%);
+}
+
+.shopsense-ad .text-white {
+  color: #fff;
 }
 
 .shopsense-ad .divider {

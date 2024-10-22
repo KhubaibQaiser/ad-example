@@ -105,6 +105,7 @@ main *.text-semibold {
   display: flex;
   flex-direction: column;
   width: calc(var(--base-width) * 0.185);
+  min-width: 10rem;
 }
 .product-card-header {
   flex: 1;
@@ -169,6 +170,10 @@ main *.text-semibold {
 
 .product-card .base-price {
   font-family: 'Inter';
+}
+
+.product-card .product-title {
+  font-weight: 400 !important;
 }
 
 /* Container queries for responsiveness */

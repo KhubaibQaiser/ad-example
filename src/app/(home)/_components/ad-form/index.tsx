@@ -4,11 +4,12 @@ import { memo, useEffect, useState } from 'react';
 import axios from 'axios';
 import { FormProvider } from 'react-hook-form';
 
-import { Button, Card, FormField, FormSvgInputInput, FormInput, FormSelectInput, Label } from '@/components';
+import { Button, Card, FormField, FormSelectInput, Label } from '@/components';
 
 import { FeatureLookCollectionAdDataType } from '@/generator/types';
 import { loadEnv } from '@/generator/utils/env-utils';
 import { AdFormSchema, options, OptionSchema, useFormDef } from './form';
+import { MetaFields } from './meta-fields';
 
 function AdFormBase() {
   const [isSubmitting, setSubmitting] = useState(false);
@@ -28,7 +29,7 @@ function AdFormBase() {
         },
         body: JSON.stringify({
           templates: values.templates.map((t) => t.value),
-          size: values.size.value,
+          size: values.size?.value,
           publisherHandles: [values.publisher.value],
           storeHandles: values.selectedStores.map((ch) => ch.value),
           meta: values.meta,
@@ -82,7 +83,7 @@ function AdFormBase() {
   const isLoading = isSubmitting || loadingOptions;
 
   console.log(form.formState.errors);
-  console.log('Form Values', form.getValues().meta);
+  console.log('Form Values', form.getValues());
 
   return (
     <Card>
@@ -142,28 +143,7 @@ function AdFormBase() {
             )}
           />
 
-          <section className='border-t pt-6 !mt-6 border-dashed'>
-            <Label size='xl' className='text-center block'>
-              Meta
-            </Label>
-            <div className='flex flex-col gap-3 mt-2'>
-              <FormField
-                control={form.control}
-                name='meta.logo'
-                render={({ field }) => <FormSvgInputInput {...field} label='Logo' disabled={isSubmitting} />}
-              />
-              <FormField
-                control={form.control}
-                name='meta.subTitle'
-                render={({ field }) => <FormInput {...field} label='Subtitle' disabled={isSubmitting} />}
-              />
-              <FormField
-                control={form.control}
-                name='meta.footerText'
-                render={({ field }) => <FormInput {...field} label='Footer Text' disabled={isSubmitting} />}
-              />
-            </div>
-          </section>
+          <MetaFields form={form} isSubmitting={isSubmitting} />
 
           <Button type='submit' disabled={isLoading} isLoading={isSubmitting}>
             Generate Embeds
