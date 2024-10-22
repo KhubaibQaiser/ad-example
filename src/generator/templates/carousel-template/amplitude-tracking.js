@@ -15,7 +15,7 @@
   const init = (e) => {
     const container = e?.detail?.container || document;
 
-    window.ShopsenseEmbeds.analytics.logEvent('Page Loaded');
+    window.ShopsenseEmbeds.analytics.logEvent('Embed Loaded');
 
     const slides = container.querySelectorAll('.product-section');
 

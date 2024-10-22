@@ -1,4 +1,4 @@
-<a class="card product-card scale-on-hover shadow-on-hover" href="<%= product.handle %>" target="_blank">
+<a class="card product-card scale-on-hover shadow-on-hover" href="<%= product.handle %>" target="_blank" data-item="<%= JSON.stringify({product_id: product.id, product_name: product.productTitle, retailer_name: product.retailer_data?.name, retailer_id: product.retailer_data?.id, embed_uuid: "some-uuid" }) %>">
   <div class="product-card-header">
     <img src="<%= product.image %>" alt="<%= product.title %>" class="product-image" loading="lazy" />
     <% if (product.retailer_data?.thumbnail_url) { %>
