@@ -27,6 +27,17 @@ body {
   box-sizing: border-box;
 }
 
+.shopsense-ad * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .shopsense-ad ::-webkit-scrollbar {
   width: 4px; /* Width of vertical scrollbar */
   height: 4px; /* Height of horizontal scrollbar */
@@ -49,15 +60,6 @@ body {
 .shopsense-ad * {
   scrollbar-width: thin; /* Thin scrollbar */
   scrollbar-color: rgba(0, 0, 0, 0.5) transparent; /* Dark thumb with transparent track */
-}
-
-.shopsense-ad * {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  -o-box-sizing: border-box;
-  box-sizing: border-box;
-  margin: 0;
 }
 
 .shopsense-ad a {
