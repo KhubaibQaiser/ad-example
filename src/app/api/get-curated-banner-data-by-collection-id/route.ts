@@ -1,5 +1,4 @@
 import { FeatureLookCollectionAdDataType } from '@/generator/types';
-import { parseCollectionToGeneratorData } from '@/generator/utils/data-parser-utils';
 import { supabase } from '@/services';
 import { Product, Retailer } from '@/services/_types';
 import { NextRequest, NextResponse } from 'next/server';
@@ -18,11 +17,10 @@ function getLogoThumbnailUrl(logos: Retailer['logos']) {
 
 export async function GET(req: NextRequest) {
   try {
-    // Get the product ID from the request query parameters
     const { searchParams } = new URL(req.url);
-    const collectionId = searchParams.get('collection_id'); // comma separated
+    const collectionId = searchParams.get('collection_id');
 
-    if (!collectionId) {
+    if (!Number(collectionId)) {
       return NextResponse.json({ error: 'Collection ID is required' }, { status: 400 });
     }
 
