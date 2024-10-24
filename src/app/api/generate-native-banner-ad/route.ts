@@ -3,7 +3,6 @@ import { generateAd } from '@/generator/generateAd';
 import { downloadAssetsAndParseReferences } from '@/generator/modules/file';
 import fsExtra from 'fs-extra';
 import { NextRequest, NextResponse } from 'next/server';
-import archiver from 'archiver';
 import path from 'path';
 import fs from 'fs';
 import { FeatureLookCollectionAdDataType } from '@/generator/types';
@@ -14,9 +13,7 @@ export const maxDuration = 60;
 export async function POST(request: NextRequest) {
   const { data }: { data: FeatureLookCollectionAdDataType } = await request.json();
 
-  console.log('RECEIVED DATA FOR NATIVE BANNER AD', data);
   try {
-    // await clearOutputDir();
     const localReferenceData = await downloadAssetsAndParseReferences([data]);
 
     const [width, height] = config.sizes.BannerTemplate.split('x').map(Number);

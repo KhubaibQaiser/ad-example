@@ -22,7 +22,7 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const productIds = searchParams.get('productIds'); // comma separated
     const title = searchParams.get('title');
-    const limit = parseInt(searchParams.get('limit') ?? '5');
+    const limit = searchParams.get('limit');
 
     if (!productIds) {
       return NextResponse.json({ error: 'Product ID is required' }, { status: 400 });
@@ -58,11 +58,11 @@ export async function GET(req: NextRequest) {
       .not('display_name', 'is', null)
       .not('base_price', 'is', null)
       .not('retailer_id', 'is', null)
-      .limit(limit);
+      .limit(limit ? Number(limit) : 100);
 
     const products = (data || []) as unknown as Product[];
 
-    if (products.length < limit) {
+    if (limit && products.length < Number(limit)) {
       throw new Error('Insufficient number of products found in the db');
     }
 
@@ -73,6 +73,7 @@ export async function GET(req: NextRequest) {
       base_price: p.base_price,
       discountable: !!p.sale_price,
       url: p.product_url,
+      // url: p.affiliate_url,
       retailer: {
         id: p.retailer.id,
         name: p.retailer.name,

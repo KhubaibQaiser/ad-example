@@ -131,6 +131,15 @@ main *.text-semibold {
   height: calc(var(--base-width) * 0.0265);
   border-radius: calc(var(--base-width) * 0.005);
   z-index: 5;
+  object-fit: contain;
+  background: #fff;
+  padding: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 6px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0 6px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 6px 0px rgba(0, 0, 0, 0.1);
 }
 .product-card-header .indicator {
   position: absolute;
