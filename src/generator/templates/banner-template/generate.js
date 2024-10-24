@@ -21,7 +21,7 @@ export default async function generate(_data, outputAdDir, templateDir, width) {
     await processAssets(
       path.join(config.tempDownloadDir, data.collection_handle),
       outputAdAssetsDir,
-      Math.ceil(width / moduleData.products.length) * 1.5,
+      Math.max(200, Math.ceil(width / moduleData.products.length) * 1.5),
       true
     );
 

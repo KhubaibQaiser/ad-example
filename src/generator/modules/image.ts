@@ -5,11 +5,10 @@ export async function processImageAsset(inputPath: string, outputPath: string, e
   try {
     if (ext.includes('svg')) {
       await fsExtra.copy(inputPath, outputPath);
+    } else if (ext.includes('png')) {
+      await sharp(inputPath).resize(width, undefined, { withoutEnlargement: true }).png({ quality, progressive: true }).toFile(outputPath);
     } else {
-      await sharp(inputPath)
-        .resize(width, undefined, { withoutEnlargement: true }) // Resize to the specified width, maintaining aspect ratio
-        .jpeg({ quality }) // Convert to jpeg format with the specified quality
-        .toFile(outputPath.replace(ext, '.jpeg'));
+      await sharp(inputPath).resize(width, undefined, { withoutEnlargement: true }).jpeg({ quality, progressive: true }).toFile(outputPath);
     }
   } catch (error) {
     console.error(`Error processing file ${inputPath}:`, error);

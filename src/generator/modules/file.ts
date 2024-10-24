@@ -24,8 +24,6 @@ export async function downloadAndPlaceAsset({
   extensionFromAsset = extensionFromAsset.startsWith('.') ? extensionFromAsset.slice(1) : extensionFromAsset;
   if (isVideo(extensionFromAsset)) {
     extensionFromAsset = config.videoOutputFormat;
-  } else if (isImage(extensionFromAsset)) {
-    extensionFromAsset = extensionFromAsset === 'svg' ? 'svg' : 'jpeg';
   }
   const extension = ext ?? extensionFromAsset;
   await fsExtra.ensureDir(path.join(config.tempDownloadDir, dirName));
