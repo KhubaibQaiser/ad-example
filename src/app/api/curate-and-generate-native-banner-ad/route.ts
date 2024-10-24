@@ -1,6 +1,8 @@
 // app/api/curate-and-generate-banner/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 
+export const maxDuration = 60;
+
 export async function GET(request: NextRequest) {
   try {
     // Call the first API route to get curated banner data
