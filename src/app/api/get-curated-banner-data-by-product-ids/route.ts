@@ -79,7 +79,7 @@ export async function GET(req: NextRequest) {
         thumbnail_url: getLogoThumbnailUrl(p.retailer.logos),
       },
       image: p.thumbnail_url,
-    }));
+    })) as unknown as FeatureLookCollectionAdDataType['moduleData'][number]['products'];
 
     const adData: FeatureLookCollectionAdDataType = {
       title,
