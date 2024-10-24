@@ -1,9 +1,10 @@
 import { Product, ProductCollection } from '@medusajs/medusa';
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 
-export type ProductPreview = Product & {
-  price: string;
-  base_price: string;
+export type ProductPreview = Omit<Product, 'id'> & {
+  id: number;
+  price: number;
+  base_price: number;
   url: string;
   retailer: ProductRetailer;
   order: number;
@@ -12,6 +13,7 @@ export type ProductPreview = Product & {
 };
 
 export type ProductRetailer = {
+  id: number;
   name: string;
   description: string;
   handle: string;
@@ -239,6 +241,7 @@ export type ModuleData = {
   media: 'image' | 'video';
   title: string;
   srcURL: string;
+  logoURL?: string;
   duration: number;
   products: ProductPreview[];
 };

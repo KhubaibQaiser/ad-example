@@ -1,10 +1,10 @@
-<a class="card product-card scale-on-hover shadow-on-hover" href="<%= product.handle %>" target="_blank" data-item="<%= JSON.stringify({product_id: product.id, product_name: product.productTitle, retailer_name: product.retailer_data?.name, retailer_id: product.retailer_data?.id, embed_uuid: "some-uuid" }) %>">
+<a class="card product-card scale-on-hover shadow-on-hover" href="<%= product.handle %>" target="_blank" data-item="<%= JSON.stringify({product_id: product.id, product_name: product.productTitle, retailer_name: product.retailer?.name, retailer_id: product.retailer?.id, embed_uuid: "some-uuid" }) %>">
   <div class="product-card-header">
     <img src="<%= product.image %>" alt="<%= product.title %>" class="product-image" loading="lazy" />
-    <% if (product.retailer_data?.thumbnail_url) { %>
-    <img src="<%= product.retailer_data.thumbnail_url %>" alt="<%= product.retailer_data.name %>" class="retail-logo" />
+    <% if (product.retailer?.thumbnail_url) { %>
+    <img src="<%= product.retailer.thumbnail_url %>" alt="<%= product.retailer.name %>" class="retail-logo" />
     <% } %> <% if (data.showDiscount(product.discountable, getDiscountPercentage(product.base_price, product.price))) { %>
-    <div class="chip chip-small indicator text-semibold bg-negative"><%= getDiscountPercentage(product.base_price, product.price) %>%</div>
+    <div class="chip chip-small indicator text-semibold bg-negative">-<%= getDiscountPercentage(product.base_price, product.price) %>%</div>
     <% } %>
   </div>
   <div class="product-card-content">
@@ -12,6 +12,6 @@
     <%- include(__dirname + '/../shared/price-label.ejs', { product: product, formatPrice: formatPrice, showDiscount: showDiscount,
     getDiscountPercentage: getDiscountPercentage, index: index }) %>
     <div class="divider"></div>
-    <p class="text-xxs text-fg-muted"><%= product.retailer %></p>
+    <p class="text-xxs text-fg-muted"><%= product.retailer.name %></p>
   </div>
 </a>

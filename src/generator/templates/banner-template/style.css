@@ -118,11 +118,11 @@ main *.text-semibold {
   overflow: hidden;
 }
 .product-card-header .product-image {
-  width: 90%;
-  height: auto;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  max-height: 100%;
 }
+
 .product-card-header .retail-logo {
   position: absolute;
   left: calc(var(--base-width) * 0.009);

@@ -1,0 +1,81 @@
+{
+  "data": {
+    "title": "Recipe Recommended Cookware",
+    "collection_handle": "recipe-recommended-cookware",
+    "description": "",
+    "moduleData": [
+      {
+        "logoURL": "",
+        "title": "Module Title",
+        "products": [
+          {
+            "id": 1,
+            "name": "Lady-Like Top Handle Handbag - A New Day™",
+            "price": 25,
+            "base_price": 25,
+            "url": "https://www.target.com/p/lady-like-top-handle-handbag-a-new-day/-/A-90646281?preselect=90573556#lnk=sametab",
+            "retailer": {
+              "id": 353,
+              "name": "Target",
+              "thumbnail_url": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/advertiser-logos/59720/idjO1D3FAx.jpeg"
+            },
+            "image": "https://ocivgiwadguuhikubjgp.supabase.co/storage/v1/object/public/images/1725654991606-Red%20Bag%201.png"
+          },
+          {
+            "id": 2,
+            "name": "Lady-Like Top Handle Handbag - A New Day™",
+            "price": 25,
+            "base_price": 25,
+            "url": "https://www.target.com/p/lady-like-top-handle-handbag-a-new-day-8482-black/-/A-90573558?preselect=90573558#lnk=sametab",
+            "retailer": {
+              "id": 353,
+              "name": "Target",
+              "thumbnail_url": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/advertiser-logos/59720/idjO1D3FAx.jpeg"
+            },
+            "image": "https://ocivgiwadguuhikubjgp.supabase.co/storage/v1/object/public/images/1726638788034-Test.png"
+          },
+          {
+            "id": 3,
+            "name": "Seven Times Six Harry Potter Purse Designer Handbag Hogwarts Houses Womens Top Handle Shoulder",
+            "price": 59.95,
+            "base_price": 59.95,
+            "url": "https://www.target.com/p/harry-potter-purse-designer-handbag-hogwarts-houses-womens-top-handle-shoulder/-/A-87877367#lnk=sametab",
+            "retailer": {
+              "id": 353,
+              "name": "Target",
+              "thumbnail_url": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/advertiser-logos/59720/idjO1D3FAx.jpeg"
+            },
+            "image": "https://ocivgiwadguuhikubjgp.supabase.co/storage/v1/object/public/images/1726638742945-Green%20bag.png"
+          },
+          {
+            "id": 4,
+            "name": "Seven Times Six Harry Potter Purse Designer Handbag Hogwarts Houses Womens Top Handle Shoulder",
+            "price": 59.95,
+            "base_price": 59.95,
+            "url": "https://www.target.com/p/harry-potter-purse-handbag-slytherin-house-womens-shoulder-satchel-bag-green/-/A-87877370?preselect=87877370#lnk=sametab",
+            "retailer": {
+              "id": 353,
+              "name": "Target",
+              "thumbnail_url": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/advertiser-logos/59720/idjO1D3FAx.jpeg"
+            },
+            "image": "https://ocivgiwadguuhikubjgp.supabase.co/storage/v1/object/public/images/1725850878924-Green%20bag.png"
+          },
+          {
+            "id": 5,
+            "name": "Seven Times Six Harry Potter Purse Designer Handbag Hogwarts Houses Womens Top Handle Shoulder",
+            "price": 59.95,
+            "base_price": 59.95,
+            "url": "https://www.target.com/p/harry-potter-purse-handbag-hufflepuff-house-womens-shoulder-satchel-bag-yellow/-/A-87877369?preselect=87877369#lnk=sametab",
+            "retailer": {
+              "id": 353,
+              "name": "Target",
+              "thumbnail_url": "https://xqorccyezmzhzdqmtsaj.supabase.co/storage/v1/object/public/advertiser-logos/59720/idjO1D3FAx.jpeg"
+            },
+            "image": "https://ocivgiwadguuhikubjgp.supabase.co/storage/v1/object/public/images/1725852433842-Yellow%20HP%20Bag.png"
+          }
+        ]
+      }
+    ]
+  },
+  "error": null
+}

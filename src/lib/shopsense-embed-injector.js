@@ -46,32 +46,6 @@
       Object.assign(element.style, styles);
     };
 
-    // const injectLoaderContainer = (container, id, width, height) => {
-    //   const loaderContainer = document.createElement('div');
-    //   loaderContainer.id = id;
-    //   applyStyles(loaderContainer, {
-    //     width,
-    //     height,
-    //     backgroundColor: 'rgba(0,0,0,1)',
-    //     position: 'absolute',
-    //     left: 0,
-    //     top: 0,
-    //     opacity: 1,
-    //     transition: 'opacity 0.5s ease',
-    //     zIndex: 10,
-    //   });
-    //   container.appendChild(loaderContainer);
-
-    //   const hideLoader = () => {
-    //     loaderContainer.style.opacity = 0;
-    //     setTimeout(() => {
-    //       loaderContainer.remove();
-    //     }, 500);
-    //   };
-
-    //   return hideLoader;
-    // };
-
     const injectAdContainer = (container, id, width, height) => {
       const adContainer = document.createElement('div');
       adContainer.id = id;
@@ -83,21 +57,6 @@
       container.appendChild(adContainer);
       return adContainer;
     };
-
-    // const injectScript = (url) => {
-    //   return fetch(url)
-    //     .then((response) => {
-    //       if (!response.ok) throw new Error('Network response was not ok');
-    //       return response.text();
-    //     })
-    //     .then((scriptContent) => {
-    //       const script = document.createElement('script');
-    //       script.textContent = scriptContent;
-    //       document.body.appendChild(script);
-    //       console.log('Script loaded successfully');
-    //     })
-    //     .catch((error) => console.error('Error loading script:', error));
-    // };
 
     /**
      * Load an Embed into the specified container.
@@ -144,7 +103,6 @@
           transition: 'all 0.5s ease', // Added transition on height and opacity
         });
 
-        // const hideLoader = injectLoaderContainer(adParentContainer, embedLoaderContainerId, width, height);
         const adContainer = injectAdContainer(adParentContainer, embedContainerId, width, height);
 
         const response = await fetch(indexUrl);
@@ -161,8 +119,6 @@
         const links = tempDiv.querySelectorAll('link');
         const images = tempDiv.querySelectorAll('img');
         const videos = tempDiv.querySelectorAll('video');
-
-        console.log('FOUND', { scripts, links, images, videos });
 
         links.forEach((link) => {
           const newLink = link.cloneNode(true);
@@ -219,7 +175,7 @@
           newScript.src = scriptUrl;
           newScript.type = 'text/javascript';
           newScript.onload = onScriptLoaded(adParentContainer, filteredScripts.length);
-          /* Generate the HASH by: openssl dgst -sha256 -binary your-script.js | openssl base64 -A */
+          /* TODO: Generate the HASH by: openssl dgst -sha256 -binary your-script.js | openssl base64 -A */
           // newScript.integrity = 'sha256-abcdef'; // Add Proper SRI hash
           // newScript.crossOrigin = 'anonymous';
           document.body.appendChild(newScript);

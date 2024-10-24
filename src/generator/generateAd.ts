@@ -52,6 +52,7 @@ export async function generateAd(flData: FeatureLookCollectionAdDataType[], temp
   const templatesDir = path.join(process.cwd(), 'src', 'generator', 'templates');
   const templateDirName = config.supportedTemplates[template as keyof typeof config.supportedTemplates];
   const templateDir = path.join(templatesDir, templateDirName);
+
   await fsExtra.ensureDir(config.tempDownloadDir);
   await fsExtra.ensureDir(config.outputRootDir);
   const adsPromises: Promise<AdGenerationResponse>[] = [];

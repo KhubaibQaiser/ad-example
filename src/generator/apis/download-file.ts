@@ -6,7 +6,7 @@ export async function downloadFile(url: string, outputPath: string) {
     url,
     method: 'GET',
     responseType: 'stream',
-    timeout: 60000, // Add timeout value in milliseconds (1 minute)
+    timeout: 0, // Set timeout to 0 for no timeout
     onDownloadProgress: (progressEvent) => {
       const percentCompleted = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 100));
       console.group();
