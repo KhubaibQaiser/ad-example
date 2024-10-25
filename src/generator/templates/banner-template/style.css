@@ -148,8 +148,8 @@ main.shopsense-ad *.text-semibold {
 }
 .shopsense-ad .product-card .chip {
   border-radius: calc(var(--shopsense-base-width) * 0.015) !important;
-  padding: calc(var(--shopsense-base-width) * 0.009) calc(var(--shopsense-base-width) * 0.009) !important;
-  font-size: calc(var(--shopsense-base-width) * 0.01) !important;
+  padding: calc(var(--shopsense-base-width) * 0.005) calc(var(--shopsense-base-width) * 0.006) !important;
+  font-size: calc(var(--shopsense-base-width) * 0.011) !important;
 }
 .shopsense-ad .product-card-content {
   padding: calc(var(--shopsense-base-width) * 0.011);

@@ -6,13 +6,8 @@ export const maxDuration = 60;
 
 export async function POST(request: NextRequest) {
   try {
-    const formData = await request.formData();
-    const collection_id = formData.get('collection_id');
-    const ad_id = formData.get('ad_id');
-    const campaign_id = formData.get('campaign_id');
-    const utms = formData.get('utms');
+    const { collection_id, ad_id, campaign_id, utms } = await request.json();
 
-    // Call the first API route to get curated banner data
     const curatedResponse = await fetch(`${request.nextUrl.origin}/api/get-curated-banner-data-by-collection-id?collection_id=${collection_id}`);
     const curatedData: { data: FeatureLookCollectionAdDataType; error: string } = await curatedResponse.json();
 
@@ -26,7 +21,7 @@ export async function POST(request: NextRequest) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ data: curatedData.data, tracking: { ad_id, campaign_id, utms: typeof utms === 'string' ? JSON.parse(utms) : {} } }),
+      body: JSON.stringify({ data: curatedData.data, tracking: { ad_id, campaign_id, utms } }),
     });
 
     if (!generateResponse.ok) {

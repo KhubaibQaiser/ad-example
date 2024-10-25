@@ -206,6 +206,10 @@ body {
   overflow: hidden;
 }
 
+.shopsense-ad .mt-1 {
+  margin-top: 0.25rem;
+}
+
 .shopsense-ad .text-compact-small {
   font-family: Inter;
   font-size: 13px;
