@@ -11,7 +11,7 @@
   const init = (e) => {
     const container = e?.detail?.container || document;
 
-    window.ShopsenseEmbeds.analytics.logEvent('Page Loaded');
+    window.ShopsenseEmbeds.analytics.logEvent('Embed Loaded');
 
     const products = container.querySelectorAll('.product-card');
     products.forEach((element) => {

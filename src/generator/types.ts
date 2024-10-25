@@ -266,3 +266,17 @@ export type GenerateTemplateHandler = (
   templateDir: string,
   width: number
 ) => Promise<void>;
+
+export type UtmType = {
+  utm_source: string;
+  utm_medium: string;
+  utm_campaign: string;
+  utm_content: string;
+  utm_term: string;
+};
+
+export type TrackingPayloadType = {
+  ad_id: string;
+  campaign_id: string;
+  utms: UtmType;
+};

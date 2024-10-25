@@ -5,19 +5,19 @@ import fsExtra from 'fs-extra';
 import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
 import fs from 'fs';
-import { FeatureLookCollectionAdDataType } from '@/generator/types';
+import { FeatureLookCollectionAdDataType, TrackingPayloadType, UtmType } from '@/generator/types';
 import { zipDirectory } from '@/generator/utils/file';
 
 export const maxDuration = 60;
 
 export async function POST(request: NextRequest) {
-  const { data }: { data: FeatureLookCollectionAdDataType } = await request.json();
+  const { data, tracking }: { data: FeatureLookCollectionAdDataType; tracking: TrackingPayloadType } = await request.json();
 
   try {
     const localReferenceData = await downloadAssetsAndParseReferences([data]);
 
     const [width, height] = config.sizes.BannerTemplate.split('x').map(Number);
-    await generateAd(localReferenceData, 'BannerTemplate', width, height);
+    await generateAd(localReferenceData, 'BannerTemplate', width, height, tracking);
 
     const outputRootDir = path.join(config.outputRootDir, localReferenceData[0].collection_handle, 'banner-template');
     console.log('Create Zip file at:', outputRootDir);

@@ -7,7 +7,7 @@ import generateCarousel from './templates/carousel-template/generate';
 import generateCuratedProduct from './templates/curated-products-template/generate';
 import generateBanner from './templates/banner-template/generate';
 import { AdGenerationResponse } from '@/types';
-import { FeatureLookCollectionAdDataType, GenerateTemplateHandler } from './types';
+import { FeatureLookCollectionAdDataType, GenerateTemplateHandler, TrackingPayloadType, UtmType } from './types';
 
 const TEMPLATE_GENERATOR_MAP: Record<keyof typeof config.supportedTemplates, GenerateTemplateHandler> = {
   CarouselTemplate: generateCarousel,
@@ -15,7 +15,7 @@ const TEMPLATE_GENERATOR_MAP: Record<keyof typeof config.supportedTemplates, Gen
   BannerTemplate: generateBanner,
 };
 
-async function copyGlobalFiles(outputDir: string): Promise<void> {
+async function copyGlobalFiles(outputDir: string, data: FeatureLookCollectionAdDataType, tracking?: TrackingPayloadType): Promise<void> {
   const globalDir = path.join(process.cwd(), 'src', 'generator', 'global');
   await fsExtra.ensureDir(globalDir);
   const files = fs.readdirSync(globalDir);
@@ -41,12 +41,29 @@ async function copyGlobalFiles(outputDir: string): Promise<void> {
     if (file === 'amplitude-wrapper.min.js') {
       minifiedContent = minifiedContent.replace('{{AMPLITUDE_API_KEY}}', process.env.AMPLITUDE_API_KEY || '');
       minifiedContent = minifiedContent.replace('{{ENV_PLACEHOLDER}}', process.env.ENVIRONMENT || 'development');
+
+      if (tracking) {
+        minifiedContent = minifiedContent.replace('{{AD_ID_PLACEHOLDER}}', tracking.ad_id || '');
+        minifiedContent = minifiedContent.replace('{{CAMPAIGN_ID_PLACEHOLDER}}', tracking.campaign_id || '');
+        if (tracking.utms) {
+          const utmKeys = Object.keys(tracking.utms) as (keyof typeof tracking.utms)[];
+          utmKeys.forEach((key) => {
+            minifiedContent = minifiedContent.replace(`{{${key.toUpperCase()}_PLACEHOLDER}}`, tracking.utms[key] || '');
+          });
+        }
+      }
     }
     fs.writeFileSync(outputFilePath, minifiedContent);
   }
 }
 
-export async function generateAd(flData: FeatureLookCollectionAdDataType[], template: string, width: number, height: number) {
+export async function generateAd(
+  flData: FeatureLookCollectionAdDataType[],
+  template: string,
+  width: number,
+  height: number,
+  tracking?: TrackingPayloadType
+) {
   let outputAdRootDir = '';
 
   const templatesDir = path.join(process.cwd(), 'src', 'generator', 'templates');
@@ -71,7 +88,7 @@ export async function generateAd(flData: FeatureLookCollectionAdDataType[], temp
           console.log('TEMPLATE', templateDirName);
           const generateAd = TEMPLATE_GENERATOR_MAP[template as keyof typeof TEMPLATE_GENERATOR_MAP];
           await generateAd(data, outputAdDir, templateDir, width);
-          await copyGlobalFiles(outputAdDir);
+          await copyGlobalFiles(outputAdDir, data, tracking);
           const adHtml = renderTemplate(path.join(templatesDir, 'ad.html'), { title: data.title, width, height });
           const minifiedAdHtml = await minifyHtml(adHtml);
           const adIndexPath = path.join(outputAdRootDir, 'index.html');
