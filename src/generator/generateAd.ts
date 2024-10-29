@@ -15,7 +15,7 @@ const TEMPLATE_GENERATOR_MAP: Record<keyof typeof config.supportedTemplates, Gen
   BannerTemplate: generateBanner,
 };
 
-async function copyGlobalFiles(outputDir: string, data: FeatureLookCollectionAdDataType, tracking?: TrackingPayloadType): Promise<void> {
+async function copyGlobalFiles(outputDir: string, tracking?: TrackingPayloadType): Promise<void> {
   const globalDir = path.join(process.cwd(), 'src', 'generator', 'global');
   await fsExtra.ensureDir(globalDir);
   const files = fs.readdirSync(globalDir);
@@ -85,10 +85,9 @@ export async function generateAd(
           await fsExtra.ensureDir(outputAdRootDir);
           const outputAdDir = path.join(outputAdRootDir, 'ad');
           await fsExtra.ensureDir(outputAdDir);
-          console.log('TEMPLATE', templateDirName);
           const generateAd = TEMPLATE_GENERATOR_MAP[template as keyof typeof TEMPLATE_GENERATOR_MAP];
           await generateAd(data, outputAdDir, templateDir, width);
-          await copyGlobalFiles(outputAdDir, data, tracking);
+          await copyGlobalFiles(outputAdDir, tracking);
           const adHtml = renderTemplate(path.join(templatesDir, 'ad.html'), { title: data.title, width, height });
           const minifiedAdHtml = await minifyHtml(adHtml);
           const adIndexPath = path.join(outputAdRootDir, 'index.html');

@@ -8,7 +8,7 @@ const productSchema = z.object({
   retailer: z.string(),
   affiliate: z.string(),
   collectionID: z.string(),
-  productTitle: z.string(),
+  display_name: z.string(),
   retailerHandle: z.string(),
   affiliateHandle: z.string(),
   collectionTitle: z.string(),

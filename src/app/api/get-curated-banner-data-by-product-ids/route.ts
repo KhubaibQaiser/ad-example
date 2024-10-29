@@ -68,7 +68,7 @@ export async function GET(req: NextRequest) {
 
     const nProducts: FeatureLookCollectionAdDataType['moduleData'][number]['products'] = products.map((p) => ({
       id: p.id,
-      productTitle: p.display_name,
+      display_name: p.display_name,
       price: p.sale_price ?? p.base_price,
       base_price: p.base_price,
       discountable: !!p.sale_price,

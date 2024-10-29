@@ -34,6 +34,7 @@
     "sharp": "^0.33.5",
     "tailwind-merge": "^2.5.2",
     "terser": "^5.33.0",
+    "ulidx": "^2.4.1",
     "zod": "^3.23.8"
   },
   "devDependencies": {

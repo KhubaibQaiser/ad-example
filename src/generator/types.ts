@@ -3,12 +3,14 @@ import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 
 export type ProductPreview = Omit<Product, 'id'> & {
   id: number;
+  display_name: string;
   price: number;
   base_price: number;
   url: string;
   retailer: ProductRetailer;
   order: number;
   non_affiliate_url?: string;
+  ad_click_event_tracking_id: string;
   image?: string;
 };
 
