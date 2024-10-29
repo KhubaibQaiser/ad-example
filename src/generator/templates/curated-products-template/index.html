@@ -26,9 +26,9 @@
       <section class="collection-container">
         <div class="collection">
           <% data.moduleData.products.forEach(product => { %>
-          <a href="javascript:void(0);" onclick="window.open('<%= product.handle %>', '_blank')" data-item="<%= JSON.stringify({ productTitle: product.productTitle }) %>" class="product"
-            ><img src="<%= product.image %>" alt="<%= product.productTitle %>" class="product-image" />
-            <p class="product-title"><%= product.productTitle %></p>
+          <a href="javascript:void(0);" onclick="window.open('<%= product.handle %>', '_blank')" data-item="<%= JSON.stringify({ display_name: product.display_name }) %>" class="product"
+            ><img src="<%= product.image %>" alt="<%= product.display_name %>" class="product-image" />
+            <p class="product-title"><%= product.display_name %></p>
             <p class="product-price">$<%= product.price %></p></a
           >
           <% }) %>

@@ -1,17 +1,21 @@
 import { Product, ProductCollection } from '@medusajs/medusa';
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
 
-export type ProductPreview = Product & {
-  price: string;
-  base_price: string;
+export type ProductPreview = Omit<Product, 'id'> & {
+  id: number;
+  display_name: string;
+  price: number;
+  base_price: number;
   url: string;
   retailer: ProductRetailer;
   order: number;
   non_affiliate_url?: string;
+  ad_click_event_tracking_id: string;
   image?: string;
 };
 
 export type ProductRetailer = {
+  id: number;
   name: string;
   description: string;
   handle: string;
@@ -239,6 +243,7 @@ export type ModuleData = {
   media: 'image' | 'video';
   title: string;
   srcURL: string;
+  logoURL?: string;
   duration: number;
   products: ProductPreview[];
 };
@@ -263,3 +268,17 @@ export type GenerateTemplateHandler = (
   templateDir: string,
   width: number
 ) => Promise<void>;
+
+export type UtmType = {
+  utm_source: string;
+  utm_medium: string;
+  utm_campaign: string;
+  utm_content: string;
+  utm_term: string;
+};
+
+export type TrackingPayloadType = {
+  ad_id: string;
+  campaign_id: string;
+  utms: UtmType;
+};

@@ -1,13 +1,13 @@
 import { getFeatureLookData } from '@/generator/apis/get-feature-look';
 import { config } from '@/generator/config';
 import { generateAd } from '@/generator/generateAd';
-import { downloadDataToTemp } from '@/generator/modules/file';
+import { downloadAssetsAndParseReferences } from '@/generator/modules/file';
 import { AdGenerationResponse } from '@/types';
 import fsExtra from 'fs-extra';
 import { NextRequest, NextResponse } from 'next/server';
-import archiver from 'archiver';
 import path from 'path';
 import fs from 'fs';
+import { zipDirectory } from '@/generator/utils/file';
 
 export const maxDuration = 60;
 
@@ -29,7 +29,7 @@ async function generateAds(
     for (const storeHandle of storeHandles) {
       const data = await getFeatureLookData({ publisher, storeHandle, meta });
       if (data) {
-        const localReferenceData = await downloadDataToTemp(data);
+        const localReferenceData = await downloadAssetsAndParseReferences(data);
         for (const template of templates) {
           const [width, height] = size.split('x').map(Number);
           const response = await generateAd(localReferenceData, template, width, height);
@@ -39,39 +39,6 @@ async function generateAds(
     }
   }
   return responses.flat();
-}
-
-async function zipDirectory(sourceDir: string, outPath: string): Promise<void> {
-  console.log('Zipping output...');
-  const output = fs.createWriteStream(outPath);
-  console.log('Created output stream');
-  const archive = archiver('zip', { zlib: { level: 5 } });
-  console.log('Created archive');
-
-  return new Promise((resolve, reject) => {
-    output.on('finish', () => {
-      console.log('Archive closed');
-      resolve();
-    });
-    archive.on('error', (err) => {
-      console.error('Error while archiving:', err);
-      reject(err);
-    });
-    archive.on('warning', (err) => {
-      if (err.code === 'ENOENT') {
-        console.warn(err);
-      } else {
-        console.error('Archive warning:', err);
-        throw err;
-      }
-    });
-    archive.pipe(output);
-    console.log('Piped archive to output stream');
-    archive.directory(sourceDir, false);
-    console.log('Added directory to archive');
-    archive.finalize();
-    console.log('Finalized archive');
-  });
 }
 
 export async function POST(request: NextRequest) {

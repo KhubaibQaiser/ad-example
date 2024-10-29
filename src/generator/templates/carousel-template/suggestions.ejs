@@ -5,7 +5,7 @@
       href="javascript:void(0);"
       onclick="window.open('<%= product.handle %>', '_blank')"
       class="suggestion-item"
-      data-item="<%= JSON.stringify({ productTitle: product.productTitle, index }) %>"
+      data-item="<%= JSON.stringify({ display_name: product.display_name, index }) %>"
     >
       <img src="<%= product.image %>" alt="Product <%= product.id %>" loading="lazy" class="suggestion" />
     </a>

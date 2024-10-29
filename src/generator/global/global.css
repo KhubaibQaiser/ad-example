@@ -1,5 +1,5 @@
 :root {
-  --parent-width: 160px;
+  --shopsense-parent-width: 160px;
 }
 
 html,
@@ -68,7 +68,7 @@ body {
   z-index: 2;
   left: 0.5rem;
   top: 0.5rem;
-  font-size: calc(var(--base-height) * 0.02);
+  font-size: calc(var(--shopsense-base-height) * 0.02);
   color: #9ca3af;
   letter-spacing: -0.01rem;
   text-transform: uppercase;
@@ -120,11 +120,11 @@ body {
   top: 40%;
   transform: translate(-50%, -40%);
   z-index: -1;
-  -webkit-border-radius: calc(var(--parent-width) * 0.058);
-  -moz-border-radius: calc(var(--parent-width) * 0.058);
-  -ms-border-radius: calc(var(--parent-width) * 0.058);
-  -o-border-radius: calc(var(--parent-width) * 0.058);
-  border-radius: calc(var(--parent-width) * 0.058);
+  -webkit-border-radius: calc(var(--shopsense-parent-width) * 0.058);
+  -moz-border-radius: calc(var(--shopsense-parent-width) * 0.058);
+  -ms-border-radius: calc(var(--shopsense-parent-width) * 0.058);
+  -o-border-radius: calc(var(--shopsense-parent-width) * 0.058);
+  border-radius: calc(var(--shopsense-parent-width) * 0.058);
 }
 
 .shopsense-ad .card {
@@ -188,6 +188,14 @@ body {
   letter-spacing: -0.03em;
 }
 
+.shopsense-ad .text-xs {
+  font-family: Inter;
+  font-size: 10px;
+  /* line-height: 12.1px; */
+  line-height: normal;
+  letter-spacing: -0.03em;
+}
+
 .shopsense-ad .text-semibold {
   font-weight: 700;
 }
@@ -204,6 +212,10 @@ body {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.shopsense-ad .mt-1 {
+  margin-top: 0.25rem;
 }
 
 .shopsense-ad .text-compact-small {

@@ -80,6 +80,18 @@ function AdFormBase() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    const fetchSupabaseData = async () => {
+      const response = await fetch(`/api/get-product-detail?productId=1234`, {
+        method: 'GET',
+      });
+      const product = await response.json();
+      console.log('PRODUCT', product);
+    };
+
+    fetchSupabaseData();
+  }, []);
+
   const isLoading = isSubmitting || loadingOptions;
 
   console.log(form.formState.errors);

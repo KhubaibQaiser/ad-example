@@ -12,17 +12,18 @@ export default async function generate(_data, outputAdDir, templateDir, width) {
   try {
     let data = JSON.parse(JSON.stringify(_data));
     // Use only first since it's a single moduleData template
-
     const moduleData = data.moduleData[0];
-    // data.moduleData.slice(1).forEach((mData) => {
-    //   moduleData.products = moduleData.products.concat(mData.products);
-    // });
     data = { ...data, moduleData: moduleData };
 
     const outputAdAssetsDir = path.join(outputAdDir, 'assets');
     await fsExtra.ensureDir(outputAdAssetsDir);
 
-    await processAssets(path.join(config.tempDownloadDir, data.collection_handle), outputAdAssetsDir, width, true);
+    await processAssets(
+      path.join(config.tempDownloadDir, data.collection_handle),
+      outputAdAssetsDir,
+      Math.max(200, Math.ceil(width / moduleData.products.length) * 1.5),
+      true
+    );
 
     console.log('Rendering template...');
     const html = renderTemplate(path.join(templateDir, 'index.html'), { ...data, formatPrice, showDiscount, getDiscountPercentage });

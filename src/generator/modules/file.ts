@@ -1,6 +1,6 @@
 import path from 'path';
 import fsExtra from 'fs-extra';
-import { isVideo } from '@/generator/utils/generator-utils';
+import { isImage, isVideo } from '@/generator/utils/generator-utils';
 import { downloadFile } from '../apis/download-file';
 import { config } from '../config';
 import { FeatureLookCollectionAdDataType } from '../types';
@@ -22,7 +22,9 @@ export async function downloadAndPlaceAsset({
 }) {
   let extensionFromAsset = path.extname(assetUrl).toLowerCase();
   extensionFromAsset = extensionFromAsset.startsWith('.') ? extensionFromAsset.slice(1) : extensionFromAsset;
-  extensionFromAsset = isVideo(extensionFromAsset) ? config.videoOutputFormat : 'jpeg';
+  if (isVideo(extensionFromAsset)) {
+    extensionFromAsset = config.videoOutputFormat;
+  }
   const extension = ext ?? extensionFromAsset;
   await fsExtra.ensureDir(path.join(config.tempDownloadDir, dirName));
   const downloadPath = path.join(config.tempDownloadDir, dirName, `${outAssetName ?? assetName}.${extension}`);
@@ -30,11 +32,11 @@ export async function downloadAndPlaceAsset({
   return path.join('', 'assets', `${outAssetName ?? assetName}.${extension}`);
 }
 
-export async function downloadDataToTemp(flDataArr: FeatureLookCollectionAdDataType[]) {
+export async function downloadAssetsAndParseReferences(flDataArr: FeatureLookCollectionAdDataType[]): Promise<FeatureLookCollectionAdDataType[]> {
   const downloadPromises: Promise<unknown>[] = [];
   const modifiedData = JSON.parse(JSON.stringify(flDataArr));
 
-  console.log('Downloading assets...');
+  console.log('Downloading assets...', modifiedData);
   for (let fl = 0; fl < modifiedData.length; fl++) {
     const data = modifiedData[fl];
     // Download and process image_url
@@ -71,6 +73,7 @@ export async function downloadDataToTemp(flDataArr: FeatureLookCollectionAdDataT
 
       for (let j = 0; j < moduleData.products.length; j++) {
         const product = moduleData.products[j];
+        product.handle = product.url ? product.url : `${data.product_base_url}${product.handle ? product.handle : ''}`;
 
         if (product.image) {
           product.image = await downloadAndPlaceAsset({
@@ -80,14 +83,13 @@ export async function downloadDataToTemp(flDataArr: FeatureLookCollectionAdDataT
             dirName: data.collection_handle,
             downloadPromises,
           });
-
-          product.handle = `${data.product_base_url}${product.handle}`;
         }
 
         // TODO: Need to fix the 'retailer' object and then switch 'retailer_data' with 'retailer'
-        if (product.retailer_data && product.retailer_data.thumbnail_url) {
-          product.retailer_data.thumbnail_url = await downloadAndPlaceAsset({
-            assetUrl: product.retailer_data.thumbnail_url,
+        const retailerData = product.retailer;
+        if (retailerData && retailerData.thumbnail_url) {
+          retailerData.thumbnail_url = await downloadAndPlaceAsset({
+            assetUrl: retailerData.thumbnail_url,
             assetName: `retailer_thumbnail_${i}_${j}`,
             outAssetName: `retailer_thumbnail_${i}_${j}`,
             dirName: data.collection_handle,

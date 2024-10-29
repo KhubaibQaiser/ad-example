@@ -11,66 +11,66 @@
   src: url('./assets/fonts/LiberationSans-Bold.woff') format('woff');
 }
 :root {
-  --base-width: 912px;
-  --base-height: 385px;
+  --shopsense-base-width: 912px;
+  --shopsense-base-height: 385px;
 }
-main {
+main.shopsense-ad {
   width: 100%;
   height: 100%;
 }
-main * {
+main.shopsense-ad * {
   font-family: 'Inter';
 }
-main *.text-semibold {
+main.shopsense-ad *.text-semibold {
   font-family: 'Inter-SemiBold' !important;
 }
-.main-container {
+.shopsense-ad .main-container {
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
   position: relative;
   overflow: hidden;
-  padding: calc(var(--base-width) * 0.033);
+  padding: calc(var(--shopsense-base-width) * 0.033);
   padding-right: 0;
-  border-radius: calc(var(--base-width) * 0.011) !important;
+  border-radius: calc(var(--shopsense-base-width) * 0.011) !important;
   z-index: 1;
   transition: opacity 0.3s ease-in-out;
 }
-.header {
-  padding-right: calc(var(--base-width) * 0.0275);
-  flex: 0 0 calc(var(--base-height) * 0.1351);
+.shopsense-ad .header {
+  padding-right: calc(var(--shopsense-base-width) * 0.0275);
+  flex: 0 0 calc(var(--shopsense-base-height) * 0.1351);
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
 }
-.logo-container {
+.shopsense-ad .logo-container {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-.logo {
-  width: calc(var(--base-width) * 0.063);
-  height: calc(var(--base-height) * 0.096);
-  margin-right: calc(var(--base-width) * 0.011);
+.shopsense-ad .logo {
+  width: calc(var(--shopsense-base-width) * 0.063);
+  height: calc(var(--shopsense-base-height) * 0.096);
+  margin-right: calc(var(--shopsense-base-width) * 0.011);
 }
-.logo-label {
+.shopsense-ad .logo-label {
   font-family: 'LiberationSans-SemiBold' !important;
   font-size: calc(var(--font-size) * 0.85);
   font-weight: 700;
-  /* line-height: calc(var(--base-height) * 0.039); */
+  /* line-height: calc(var(--shopsense-base-height) * 0.039); */
   line-height: normal;
   color: #1d1e1f;
 }
-.control-container {
+.shopsense-ad .control-container {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: calc(var(--base-width) * 0.011);
+  gap: calc(var(--shopsense-base-width) * 0.011);
 }
-.control-button {
+.shopsense-ad .control-button {
   display: flex;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -81,98 +81,106 @@ main *.text-semibold {
   background-color: transparent;
   cursor: pointer;
 }
-.control-button.left {
+.shopsense-ad .control-button.left {
   transform: rotate(180deg);
 }
-.control-button:disabled {
+.shopsense-ad .control-button:disabled {
   opacity: 0.3;
   cursor: not-allowed;
 }
-.products-container {
-  padding: calc(var(--base-height) * 0.045) calc(var(--base-width) * 0.014);
+.shopsense-ad .products-container {
+  padding: calc(var(--shopsense-base-height) * 0.045) calc(var(--shopsense-base-width) * 0.014);
   max-width: 100%;
   overflow: auto;
   display: flex;
   flex: 1;
 }
-.products-list {
+.shopsense-ad .products-list {
   flex: 1;
   display: flex;
   flex-direction: row;
-  gap: calc(var(--base-width) * 0.02);
+  gap: calc(var(--shopsense-base-width) * 0.02);
 }
-.product-card {
+.shopsense-ad .product-card {
   display: flex;
   flex-direction: column;
-  width: calc(var(--base-width) * 0.185);
+  width: calc(var(--shopsense-base-width) * 0.185);
   min-width: 10rem;
 }
-.product-card-header {
+.shopsense-ad .product-card-header {
   flex: 1;
   position: relative;
   width: 100%;
-  background-color: #eaeaea;
+  background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
-.product-card-header .product-image {
-  width: 90%;
-  height: auto;
+.shopsense-ad .product-card-header .product-image {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  max-height: 100%;
 }
-.product-card-header .retail-logo {
+.shopsense-ad .product-card-header .retail-logo {
   position: absolute;
-  left: calc(var(--base-width) * 0.009);
-  top: calc(var(--base-width) * 0.009);
-  width: calc(var(--base-width) * 0.0265);
-  height: calc(var(--base-width) * 0.0265);
-  border-radius: calc(var(--base-width) * 0.005);
+  left: calc(var(--shopsense-base-width) * 0.009);
+  top: calc(var(--shopsense-base-width) * 0.009);
+  width: calc(var(--shopsense-base-width) * 0.0265);
+  height: calc(var(--shopsense-base-width) * 0.0265);
+  border-radius: calc(var(--shopsense-base-width) * 0.005);
+  z-index: 5;
+  object-fit: contain;
+  background: #fff;
+  padding: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 6px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0 6px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 6px 0px rgba(0, 0, 0, 0.1);
+}
+.shopsense-ad .product-card-header .indicator {
+  position: absolute;
+  right: calc(var(--shopsense-base-width) * 0.009);
+  top: calc(var(--shopsense-base-width) * 0.009);
   z-index: 5;
 }
-.product-card-header .indicator {
-  position: absolute;
-  right: calc(var(--base-width) * 0.009);
-  top: calc(var(--base-width) * 0.009);
-  z-index: 5;
+.shopsense-ad .product-card .chip {
+  border-radius: calc(var(--shopsense-base-width) * 0.015) !important;
+  padding: calc(var(--shopsense-base-width) * 0.005) calc(var(--shopsense-base-width) * 0.006) !important;
+  font-size: calc(var(--shopsense-base-width) * 0.011) !important;
 }
-.product-card .chip {
-  border-radius: calc(var(--base-width) * 0.015) !important;
-  padding: calc(var(--base-width) * 0.009) calc(var(--base-width) * 0.009) !important;
-  font-size: calc(var(--base-width) * 0.01) !important;
-}
-.product-card-content {
-  padding: calc(var(--base-width) * 0.011);
-  padding-bottom: calc(var(--base-width) * 0.007);
+.shopsense-ad .product-card-content {
+  padding: calc(var(--shopsense-base-width) * 0.011);
+  padding-bottom: calc(var(--shopsense-base-width) * 0.007);
   display: flex;
   flex-direction: column;
 }
-.product-card .divider-container {
-  padding: 0 calc(var(--base-width) * 0.011);
+.shopsense-ad .product-card .divider-container {
+  padding: 0 calc(var(--shopsense-base-width) * 0.011);
 }
-.product-card .divider {
-  margin-top: calc(var(--base-height) * 0.015);
-  margin-bottom: calc(var(--base-height) * 0.015);
+.shopsense-ad .product-card .divider {
+  margin-top: calc(var(--shopsense-base-height) * 0.015);
+  margin-bottom: calc(var(--shopsense-base-height) * 0.015);
 }
 .shopsense-ad .text-xxs {
-  font-size: calc(var(--base-width) * 0.011) !important;
+  font-size: calc(var(--shopsense-base-width) * 0.011) !important;
+}
+.shopsense-ad .text-xs {
+  font-size: calc(var(--shopsense-base-width) * 0.015) !important;
 }
 .shopsense-ad .text-compact-small {
-  font-size: calc(var(--base-width) * 0.0143) !important;
+  font-size: calc(var(--shopsense-base-width) * 0.014) !important;
 }
-
-.product-card .text-price-label,
-.product-card .text-price-label * {
+.shopsense-ad .product-card .text-price-label,
+.shopsense-ad .product-card .text-price-label * {
   font-family: 'Inter-SemiBold';
 }
-
-.product-card .base-price {
+.shopsense-ad .product-card .base-price {
   font-family: 'Inter';
 }
-
-.product-card .product-title {
+.shopsense-ad .product-card .product-title {
   font-weight: 400 !important;
 }
 
@@ -183,7 +191,7 @@ main *.text-semibold {
 }
 
 .shopsense-ad .card {
-  border-radius: calc(var(--base-width) * 0.011) !important;
+  border-radius: calc(var(--shopsense-base-width) * 0.011) !important;
 }
 
 .shopsense-ad .sponsored-label {
@@ -193,22 +201,22 @@ main *.text-semibold {
 }
 
 @container shopsenseembed (max-width: 768px) {
-  .main-container {
-    --base-width: 688px;
-    --base-height: calc(var(--base-width) * 0.4953);
+  .shopsense-ad .main-container {
+    --shopsense-base-width: 688px;
+    --shopsense-base-height: calc(var(--shopsense-base-width) * 0.4953);
   }
 }
 
 @container shopsenseembed (min-width: 769px) and (max-width: 911px) {
-  .main-container {
-    --base-width: 768px;
-    --base-height: calc(var(--base-width) * 0.422);
+  .shopsense-ad .main-container {
+    --shopsense-base-width: 768px;
+    --shopsense-base-height: calc(var(--shopsense-base-width) * 0.422);
   }
 }
 
 @container shopsenseembed (min-width: 912px) {
-  .main-container {
-    --base-width: 912px;
-    --base-height: calc(var(--base-width) * 0.422); /* Maintain aspect ratio 912/385 (BASE DESIGN DIMENSIONS) */
+  .shopsense-ad .main-container {
+    --shopsense-base-width: 912px;
+    --shopsense-base-height: calc(var(--shopsense-base-width) * 0.422); /* Maintain aspect ratio 912/385 (BASE DESIGN DIMENSIONS) */
   }
 }

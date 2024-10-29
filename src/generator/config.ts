@@ -20,5 +20,9 @@ export const config = {
     CarouselTemplate: 'carousel-template',
     BannerTemplate: 'banner-template',
   },
+  sizes: {
+    Skyscraper: '160x600',
+    BannerTemplate: '912x384',
+  },
   videoOutputFormat: 'mp4', // '.avi', '.mov', '.mp4', '.m4v', '.mpeg', '.mpg', '.webm', '.wmv' or 'gif'
 };
