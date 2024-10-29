@@ -3,27 +3,6 @@
   global.ShopsenseEmbeds = global.ShopsenseEmbeds || {};
 
   global.ShopsenseEmbeds.EmbedInjector = (function () {
-    const SupportedTemplates = {
-      CuratedProducts: 'curated-products-template',
-      Carousel: 'carousel-template',
-      Banner: 'banner-template',
-    };
-
-    const SupportedVariations = {
-      Skyscraper: 'Skyscraper',
-      Banner: 'Banner',
-      Leaderboard: 'Leaderboard',
-      // Add more IAB standard variations as needed
-    };
-
-    const AdVariations = {
-      Skyscraper: { width: '160px', height: '600px' },
-      Banner: { width: '912px', height: '384px' }, // 912x384 || 468x60
-      Leaderboard: { width: '728px', height: '90px' },
-      // Add more IAB standard variations as needed
-    };
-
-    const embedLoaderContainerId = 'shopsense-embed-loader';
     const embedContainerId = 'shopsense-embed-ad';
     let scriptsLoaded = 0;
 
@@ -46,12 +25,10 @@
       Object.assign(element.style, styles);
     };
 
-    const injectAdContainer = (container, id, width, height) => {
+    const injectAdContainer = (container, id) => {
       const adContainer = document.createElement('div');
       adContainer.id = id;
       applyStyles(adContainer, {
-        // width,
-        // height,
         zIndex: 1,
       });
       container.appendChild(adContainer);
@@ -63,8 +40,6 @@
      * @param {Object} config - Configuration object for loading the embed. (required)
      * @param {string} config.containerId - The ID of the HTML element where the embed will be injected. (required)
      * @param {string} config.embedId - The ID of the embed embed to load. (required)
-     * @param {string} config.template - The embed template to use. Must be one of ShopsenseEmbeds.SupportedTemplates. (required)
-     * @param {Object} [config.variation] - The embed variation to use. Must be one of ShopsenseEmbeds.SupportedVariations. (optional)
      */
     async function loadAd(config) {
       if (!config.containerId) {
@@ -75,16 +50,7 @@
         throw new Error('embedId must be provided.');
       }
 
-      if (!config.template) {
-        throw new Error('template must be provided.');
-      }
-
-      config.variation = config.variation || SupportedVariations.Skyscraper;
-
-      const dimensions = config.variation ? AdVariations[config.variation] || AdVariations.Skyscraper : AdVariations.Skyscraper;
-      const width = dimensions.width;
-      const height = dimensions.height;
-      const BASE_URL = `https://ad-example.vercel.app/ads/${config.embedId}/${config.template}/ad`;
+      const BASE_URL = `https://ad-example-git-staging-khubaibs-projects-260e5789.vercel.app/ads/native-ads/${config.embedId}/ad`;
       const indexUrl = `${BASE_URL}/index.html`;
       const assetsUrl = `${BASE_URL}/assets`;
 
@@ -96,14 +62,13 @@
 
         applyStyles(adParentContainer, {
           position: 'relative',
-          // width,
           height: 0, // Initially hidden
           overflow: 'hidden',
           opacity: 0,
           transition: 'all 0.5s ease', // Added transition on height and opacity
         });
 
-        const adContainer = injectAdContainer(adParentContainer, embedContainerId, width, height);
+        const adContainer = injectAdContainer(adParentContainer, embedContainerId);
 
         const response = await fetch(indexUrl);
         if (!response.ok) {
@@ -187,8 +152,6 @@
 
     return {
       loadAd: loadAd,
-      SupportedTemplates: SupportedTemplates,
-      SupportedVariations: SupportedVariations,
     };
   })();
 })(window);
