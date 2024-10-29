@@ -31,6 +31,7 @@ export type Retailer = {
 export type ProductCollection = {
   collection_id: number;
   display_name: string;
+  name: string;
   handle: string;
 };
 export type Product = {

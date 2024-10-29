@@ -31,7 +31,8 @@ export async function GET(req: NextRequest) {
         collection (
           id,
           handle,
-          display_name
+          display_name,
+          name
         ),
         product (
           id,
@@ -96,7 +97,7 @@ export async function GET(req: NextRequest) {
       return nProduct;
     });
 
-    const title = products[0].collection.display_name;
+    const title = products[0].collection.name;
 
     const adData: FeatureLookCollectionAdDataType = {
       title,
