@@ -50,7 +50,7 @@
         throw new Error('embedId must be provided.');
       }
 
-      const BASE_URL = `https://ad-example-git-staging-khubaibs-projects-260e5789.vercel.app/ads/native-ads/${config.embedId}/ad`;
+      const BASE_URL = `https://embeds.dev.shopsense.ai/tastemade/${config.embedId}/ad`;
       const indexUrl = `${BASE_URL}/index.html`;
       const assetsUrl = `${BASE_URL}/assets`;
 
