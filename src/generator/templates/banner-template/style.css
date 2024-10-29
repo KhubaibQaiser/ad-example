@@ -111,7 +111,7 @@ main.shopsense-ad *.text-semibold {
   flex: 1;
   position: relative;
   width: 100%;
-  background-color: #eaeaea;
+  background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -167,8 +167,11 @@ main.shopsense-ad *.text-semibold {
 .shopsense-ad .text-xxs {
   font-size: calc(var(--shopsense-base-width) * 0.011) !important;
 }
+.shopsense-ad .text-xs {
+  font-size: calc(var(--shopsense-base-width) * 0.015) !important;
+}
 .shopsense-ad .text-compact-small {
-  font-size: calc(var(--shopsense-base-width) * 0.0143) !important;
+  font-size: calc(var(--shopsense-base-width) * 0.014) !important;
 }
 .shopsense-ad .product-card .text-price-label,
 .shopsense-ad .product-card .text-price-label * {

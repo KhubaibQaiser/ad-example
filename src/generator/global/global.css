@@ -188,6 +188,14 @@ body {
   letter-spacing: -0.03em;
 }
 
+.shopsense-ad .text-xs {
+  font-family: Inter;
+  font-size: 10px;
+  /* line-height: 12.1px; */
+  line-height: normal;
+  letter-spacing: -0.03em;
+}
+
 .shopsense-ad .text-semibold {
   font-weight: 700;
 }

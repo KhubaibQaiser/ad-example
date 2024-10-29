@@ -13,7 +13,7 @@
     <% } %>
   </div>
   <div class="product-card-content">
-    <p class="text-xxs text-semibold text-fg-subtle text-clip-1"><%= product.display_name %></p>
+    <p class="text-xs text-semibold text-fg-subtle text-clip-1"><%= product.display_name %></p>
     <%- include(__dirname + '/../shared/price-label.ejs', { product: product, formatPrice: formatPrice, showDiscount: showDiscount,
     getDiscountPercentage: getDiscountPercentage, index: index }) %>
     <div class="divider"></div>
