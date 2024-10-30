@@ -1,4 +1,4 @@
-import { getTrackingUrl } from '@/generator/utils/tracking';
+import { getTrackingUrl } from '@/generator/utils/tracking-utils';
 import { supabase } from '@/services';
 import { FeatureLookCollectionAdDataType, Product, Retailer } from '@/services/_types';
 import { NextRequest, NextResponse } from 'next/server';

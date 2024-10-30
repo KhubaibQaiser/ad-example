@@ -1,12 +1,51 @@
 import { Product } from '@/services/_types';
 import { ulid as generateUlid } from 'ulidx';
 
+const AFFILIATE_PARAMS_MAP = {
+  Awin: {
+    params: ['clickref'],
+    subParams: '{"clickref2"}',
+  },
+  CJ: {
+    params: ['sid'],
+    subParams: '{"aid"}',
+  },
+  Ebay: {
+    params: ['customid'],
+    subParams: '{}',
+  },
+  Impact: {
+    params: ['subId1'],
+    subParams: '{"subId2"}',
+  },
+  Partnerize: {
+    params: ['pubref'],
+    subParams: '{"p_id"}',
+  },
+  Rakuten: {
+    params: ['u1'],
+    subParams: '{"subId"}',
+  },
+  Sovrn: {
+    params: ['cuid'],
+    subParams: '',
+  },
+  ShareASale: {
+    params: ['afftrack'],
+    subParams: '',
+  },
+  Ascend: {
+    params: ['clid'],
+    subParams: '{"website"}',
+  },
+};
+
 export const getTrackingUrl = ({ product }: { product: Product }) => {
   const ulid = generateUlid();
   const storeHandle = 'embed'; // store.handle
 
   const affiliate = product.retailer.affiliate?.name;
-  const params = product.retailer.affiliate?.params;
+  const params = affiliate ? AFFILIATE_PARAMS_MAP[affiliate as keyof typeof AFFILIATE_PARAMS_MAP]?.params : null;
 
   if (process.env.ENVIRONMENT !== 'production') {
     return product.non_affiliate_url ? product.non_affiliate_url : product.url;
