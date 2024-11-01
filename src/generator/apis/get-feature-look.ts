@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { FeatureLookCollectionAdDataType, FLMeta, ModuleData, PublisherStore } from '../types';
+import { FeatureLookCollectionAdDataType, PublisherStore } from '../types';
 import { loadEnv } from '../utils/env-utils';
 import { cache } from 'react';
 // import dummyResponseData from '@/generator/templates/banner-template/dummy-data.json';
 import { parseCollectionToGeneratorData } from '../utils/data-parser-utils';
 
-async function _getFeatureLookData({ publisher, storeHandle, meta }: { publisher: string; storeHandle?: string; meta: FLMeta }) {
+async function _getFeatureLookData({ publisher, storeHandle }: { publisher: string; storeHandle?: string }) {
   // const handle = storeHandle ?? 'superstore';
   loadEnv(publisher);
 
@@ -27,9 +27,13 @@ async function _getFeatureLookData({ publisher, storeHandle, meta }: { publisher
     }
 
     const featureLookCollections = stores.reduce((collections: FeatureLookCollectionAdDataType[], subStore: PublisherStore) => {
-      const flCollections = subStore.collections.filter((collection) => collection.moduleType === 'featureLook').map(parseCollectionToGeneratorData);
+      const flCollections = subStore.collections
+        .filter((collection) => collection.moduleType === 'featureLook')
+        .map((v) => parseCollectionToGeneratorData(v, subStore.handle));
       return [...collections, ...flCollections];
     }, []);
+
+    console.log('Feature look collections:', featureLookCollections);
 
     return featureLookCollections;
   }

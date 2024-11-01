@@ -8,6 +8,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
 import fs from 'fs';
 import { zipDirectory } from '@/generator/utils/file';
+import { FLMeta } from '@/generator/types';
 
 export const maxDuration = 60;
 
@@ -21,18 +22,18 @@ async function generateAds(
   size: string,
   publisherHandles: string[],
   storeHandles: string[],
-  meta: any
+  meta: FLMeta
 ): Promise<AdGenerationResponse[]> {
   await clearOutputDir();
   const responses: AdGenerationResponse[][] = [];
   for (const publisher of publisherHandles) {
     for (const storeHandle of storeHandles) {
-      const data = await getFeatureLookData({ publisher, storeHandle, meta });
+      const data = await getFeatureLookData({ publisher, storeHandle });
       if (data) {
         const localReferenceData = await downloadAssetsAndParseReferences(data);
         for (const template of templates) {
           const [width, height] = size.split('x').map(Number);
-          const response = await generateAd(localReferenceData, template, width, height);
+          const response = await generateAd(localReferenceData, template, width, height, undefined, meta);
           responses.push(response);
         }
       }

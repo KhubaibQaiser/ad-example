@@ -1,7 +1,7 @@
 import { FeatureLookCollectionAdDataType, ModuleData, ProductCollectionExtended } from '../types';
 
-export function parseCollectionToGeneratorData(collection: ProductCollectionExtended): FeatureLookCollectionAdDataType {
-  const storeHandle = 'todo-store-handle';
+export function parseCollectionToGeneratorData(collection: ProductCollectionExtended, storeHandle: string): FeatureLookCollectionAdDataType {
+  // const storeHandle = collection.handle;
   const flData: FeatureLookCollectionAdDataType = {
     title: collection.title,
     image_url: collection.imageUrl,

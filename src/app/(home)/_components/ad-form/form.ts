@@ -28,6 +28,7 @@ export const options = {
   publisherHandles: [
     { value: 'tastemade', label: 'Tastemade' },
     { value: 'paramount', label: 'Paramount' },
+    { value: 'cw', label: 'CW' },
   ],
 };
 

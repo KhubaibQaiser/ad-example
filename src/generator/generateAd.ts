@@ -7,7 +7,7 @@ import generateCarousel from './templates/carousel-template/generate';
 import generateCuratedProduct from './templates/curated-products-template/generate';
 import generateBanner from './templates/banner-template/generate';
 import { AdGenerationResponse } from '@/types';
-import { FeatureLookCollectionAdDataType, GenerateTemplateHandler, TrackingPayloadType, UtmType } from './types';
+import { FeatureLookCollectionAdDataType, FLMeta, GenerateTemplateHandler, TrackingPayloadType, UtmType } from './types';
 
 const TEMPLATE_GENERATOR_MAP: Record<keyof typeof config.supportedTemplates, GenerateTemplateHandler> = {
   CarouselTemplate: generateCarousel,
@@ -62,7 +62,8 @@ export async function generateAd(
   template: string,
   width: number,
   height: number,
-  tracking?: TrackingPayloadType
+  tracking?: TrackingPayloadType,
+  meta?: FLMeta
 ) {
   let outputAdRootDir = '';
 
@@ -86,7 +87,7 @@ export async function generateAd(
           const outputAdDir = path.join(outputAdRootDir, 'ad');
           await fsExtra.ensureDir(outputAdDir);
           const generateAd = TEMPLATE_GENERATOR_MAP[template as keyof typeof TEMPLATE_GENERATOR_MAP];
-          await generateAd(data, outputAdDir, templateDir, width);
+          await generateAd({ ...data, meta }, outputAdDir, templateDir, width);
           await copyGlobalFiles(outputAdDir, tracking);
           const adHtml = renderTemplate(path.join(templatesDir, 'ad.html'), { title: data.title, width, height });
           const minifiedAdHtml = await minifyHtml(adHtml);
