@@ -1,0 +1,205 @@
+:root {
+  --shopsense-base-width: 300px;
+  --shopsense-base-height: 600px;
+  --shopsense-color-primary: #004bd6;
+  --shopsense-color-on-primary: #fff;
+  --shopsense-color-secondary: #000000;
+  --shopsense-color-on-secondary: #fff;
+}
+
+main.shopsense-ad {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: opacity 0.3s ease-in-out;
+  background: radial-gradient(71.56% 71.56% at 50% 28.44%, #ffffff 0%, #edf2fc 100%);
+}
+
+.shopsense-ad .product-backdrop {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -52%;
+  z-index: -1;
+  background: url(./assets/main-bg.png);
+  background-repeat: no-repeat !important;
+  background-size: cover;
+  background-position-x: center;
+  width: 100%;
+  height: 100%;
+}
+
+.shopsense-ad .store-title {
+  width: calc(var(--parent-width) * 0.825);
+  height: auto;
+}
+
+.shopsense-ad .store-subtitle {
+  width: calc(var(--parent-width) * 0.825);
+  height: auto;
+}
+
+.shopsense-ad .header {
+  position: absolute;
+  width: 100%;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.shopsense-ad .logo {
+  width: 70%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem auto 1.5rem;
+  color: var(--shopsense-color-primary);
+}
+
+.shopsense-ad .title {
+  font-family: RobotoCondensed-ExtraBold;
+  font-weight: 800;
+  font-size: 3.5rem;
+  text-align: center;
+  color: #000;
+  line-height: 3rem;
+  word-break: break-word;
+  letter-spacing: -0.05em;
+  width: 83%;
+  margin: 0 auto;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.shopsense-ad .subTitle {
+  font-family: RobotoCondensed-SemiBold;
+  width: 85%;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 0.875rem;
+  text-align: center;
+  color: #000;
+  letter-spacing: -0.04em;
+  margin: 0 auto;
+}
+
+.shopsense-ad .footer {
+  position: absolute;
+  width: 75%;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.shopsense-ad .collection-container {
+  position: absolute;
+  z-index: 3;
+  bottom: 20%;
+  left: 0;
+  right: 0;
+  padding: 2.5rem 1.5rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.shopsense-ad .collection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+  column-gap: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.shopsense-ad .product-card {
+  transform: scale(1);
+  z-index: 1;
+  height: 10rem;
+}
+.shopsense-ad .product-card.active {
+  transform: scale(1.5) !important;
+  z-index: 2 !important;
+}
+.shopsense-ad .product-card.small.active {
+  transform: scale(1.2) !important;
+}
+
+.shopsense-ad .product-card .button {
+  font-family: RobotoCondensed-SemiBold;
+  background-color: var(--shopsense-color-secondary);
+  color: var(--shopsense-color-on-secondary);
+  border-radius: 1rem;
+  width: 90%;
+  margin: 0 auto;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.6rem !important;
+  height: auto !important;
+  line-height: normal !important;
+}
+
+.shopsense-ad .collection-cta-button {
+  font-family: RobotoCondensed;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.2rem;
+  letter-spacing: -0.04em;
+  background-color: var(--shopsense-color-primary);
+  color: var(--shopsense-color-on-primary);
+  height: auto;
+}
+
+.shopsense-ad .button.small {
+  font-size: 0.875rem;
+  line-height: 1rem;
+}
+
+@container shopsenseembed (max-width: 160px) and (max-height: 600px) {
+  .shopsense-ad .logo.top {
+    display: flex;
+    color: var(--shopsense-color-primary);
+    margin-top: 1rem;
+    margin-bottom: 0;
+  }
+
+  .shopsense-ad .collection-cta-button {
+    margin-bottom: 2rem;
+  }
+
+  .shopsense-ad .title {
+    font-size: 2.25rem;
+    line-height: 2rem;
+    letter-spacing: -0.05em;
+  }
+
+  .shopsense-ad .subTitle {
+    font-size: 1rem;
+    line-height: 1.125rem;
+  }
+
+  .shopsense-ad .collection-container {
+    bottom: 18%;
+  }
+
+  .shopsense-ad .collection-cta-button {
+    font-size: 0.875rem;
+    line-height: 1rem;
+    letter-spacing: -0.04em;
+  }
+
+  .shopsense-ad .footer {
+    width: 85%;
+  }
+}
+
+@container shopsenseembed (min-width: 300px) and (min-height: 600px) {
+  .shopsense-ad .logo.bottom {
+    display: flex;
+    color: var(--shopsense-color-on-primary);
+  }
+}

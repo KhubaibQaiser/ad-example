@@ -48,7 +48,7 @@ export type Product = {
   non_affiliate_url: string; // TODO: Fix it; For now, it's the same as 'product_url'
   affiliate_url: string;
   kirby_id?: any;
-  retailer: Retailer;
+  retailer?: Retailer;
   image: string;
   ad_click_event_tracking_id: string;
   collection: ProductCollection;

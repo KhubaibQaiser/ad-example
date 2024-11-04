@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="displayheight" content="600" />
+    <title><%= data.title %></title>
+    <link rel="stylesheet" href="global.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      var clickTag = '<%= data.clickTag %>';
+    </script>
+  </head>
+  <body>
+    <main class="shopsense-ad">
+      <div class="product-backdrop"></div>
+      <div class="header">
+        <div class="logo top"><%- data.meta.logo %></div>
+        <h3 class="title"><%= data.meta.subTitle %></h3>
+        <h2 class="subTitle"><%= data.meta.footerText %></h2>
+      </div>
+      <section class="collection-container">
+        <div class="collection">
+          <% data.moduleData.products.forEach(product => { %> <%- include(__dirname + '/../shared/product-card-small.ejs', { product: product,
+          formatPrice: data.utils?.formatPrice, showDiscount: data.utils?.showDiscount, getDiscountPercentage: data.utils?.getDiscountPercentage, })
+          %> <% }) %>
+        </div>
+      </section>
+      <div class="footer">
+        <a
+          class="collection-cta-button button"
+          href="<%= data.clickTag %>"
+          target="_blank"
+          onclick="window.open(clickTag, '_blank')"
+          data-item="<%= JSON.stringify({ title: data.title, url: data.clickTag }) %>"
+          >Shop the Collections</a
+        >
+        <div class="logo bottom"><%- data.meta.logo %></div>
+      </div>
+    </main>
+
+    <script src="amplitude.min.js"></script>
+    <script src="observer.js"></script>
+    <script src="script.js" defer></script>
+    <script src="amplitude-wrapper.min.js"></script>
+    <script src="amplitude-tracking.min.js" defer></script>
+    <script src="lazy-load-videos.js" defer></script>
+  </body>
+</html>

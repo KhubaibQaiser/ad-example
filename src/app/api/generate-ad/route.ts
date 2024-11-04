@@ -18,7 +18,7 @@ async function clearOutputDir() {
 }
 
 async function generateAds(
-  templates: string[],
+  templates: (keyof typeof config.supportedTemplates)[],
   size: string,
   publisherHandles: string[],
   storeHandles: string[],

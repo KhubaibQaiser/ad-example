@@ -4,6 +4,8 @@ import { isImage, isVideo } from '@/generator/utils/generator-utils';
 import { downloadFile } from '../apis/download-file';
 import { config } from '../config';
 import { FeatureLookCollectionAdDataType } from '../types';
+import { processAssets } from './asset-compression';
+import { processImageAsset } from './image';
 
 export async function downloadAndPlaceAsset({
   assetUrl,
@@ -105,8 +107,30 @@ export async function downloadAssetsAndParseReferences(flDataArr: FeatureLookCol
   return modifiedData;
 }
 
-export async function copyFolderRecursive(srcPath: string, destPath: string) {
+export async function copyFolderRecursive(srcPath: string, destPath: string, width = 160, quality = config.imageCompressionQuality) {
   await fsExtra.ensureDir(destPath);
-  await fsExtra.copy(srcPath, destPath, { overwrite: true });
+
+  const items = await fsExtra.readdir(srcPath);
+
+  for (const item of items) {
+    const srcItemPath = path.join(srcPath, item);
+    const destItemPath = path.join(destPath, item);
+
+    const stats = await fsExtra.stat(srcItemPath);
+
+    if (stats.isDirectory()) {
+      // Recursively copy the folder
+      await copyFolderRecursive(srcItemPath, destItemPath);
+    } else {
+      // Copy the file
+      await fsExtra.copy(srcItemPath, destItemPath, { overwrite: true });
+
+      // Check if the file is an image and process it
+      if (isImage(path.extname(item))) {
+        await processImageAsset(srcItemPath, destItemPath, path.extname(item), width, quality); // Compress the image
+      }
+    }
+  }
+
   console.log('Copied assets successfully!');
 }

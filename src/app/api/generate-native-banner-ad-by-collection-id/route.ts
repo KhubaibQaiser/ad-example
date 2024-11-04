@@ -6,9 +6,11 @@ export const maxDuration = 60;
 
 export async function POST(request: NextRequest) {
   try {
-    const { collection_id, ad_id, campaign_id, utms } = await request.json();
+    const { collection_id, ad_id, campaign_id, utms, width, height, template, meta, limit, store_url } = await request.json();
 
-    const curatedResponse = await fetch(`${request.nextUrl.origin}/api/get-curated-banner-data-by-collection-id?collection_id=${collection_id}`);
+    const curatedResponse = await fetch(
+      `${request.nextUrl.origin}/api/get-curated-banner-data-by-collection-id?collection_id=${collection_id}&limit=${limit}&store_url=${store_url}`
+    );
     const curatedData: { data: FeatureLookCollectionAdDataType; error: string } = await curatedResponse.json();
 
     if (!curatedResponse.ok) {
@@ -21,7 +23,7 @@ export async function POST(request: NextRequest) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ data: curatedData.data, tracking: { ad_id, campaign_id, utms } }),
+      body: JSON.stringify({ data: curatedData.data, tracking: { ad_id, campaign_id, utms }, width, height, template, meta }),
     });
 
     if (!generateResponse.ok) {

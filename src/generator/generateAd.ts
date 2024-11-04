@@ -3,16 +3,19 @@ import path from 'path';
 import fsExtra from 'fs-extra';
 import { config } from './config';
 import { getSlug, minifyCss, minifyHtml, minifyJs, renderTemplate } from '@/generator/utils/generator-utils';
+import { formatPrice, getDiscountPercentage, showDiscount } from '@/generator/utils/price';
 import generateCarousel from './templates/carousel-template/generate';
 import generateCuratedProduct from './templates/curated-products-template/generate';
 import generateBanner from './templates/banner-template/generate';
+import generateCBSVertical from './templates/cbs-template-vertical/generate';
 import { AdGenerationResponse } from '@/types';
-import { FeatureLookCollectionAdDataType, FLMeta, GenerateTemplateHandler, TrackingPayloadType, UtmType } from './types';
+import { FeatureLookCollectionAdDataType, FLMeta, GenerateTemplateHandler, TrackingPayloadType } from './types';
 
 const TEMPLATE_GENERATOR_MAP: Record<keyof typeof config.supportedTemplates, GenerateTemplateHandler> = {
   CarouselTemplate: generateCarousel,
   CuratedProductsTemplate: generateCuratedProduct,
   BannerTemplate: generateBanner,
+  CBSVerticalTemplate: generateCBSVertical,
 };
 
 async function copyGlobalFiles(outputDir: string, tracking?: TrackingPayloadType): Promise<void> {
@@ -59,12 +62,13 @@ async function copyGlobalFiles(outputDir: string, tracking?: TrackingPayloadType
 
 export async function generateAd(
   flData: FeatureLookCollectionAdDataType[],
-  template: string,
+  template: keyof typeof config.supportedTemplates,
   width: number,
   height: number,
   tracking?: TrackingPayloadType,
   meta?: FLMeta
 ) {
+  console.log('Generating ad...', { flData, template, width, height, tracking, meta });
   let outputAdRootDir = '';
 
   const templatesDir = path.join(process.cwd(), 'src', 'generator', 'templates');
@@ -87,7 +91,7 @@ export async function generateAd(
           const outputAdDir = path.join(outputAdRootDir, 'ad');
           await fsExtra.ensureDir(outputAdDir);
           const generateAd = TEMPLATE_GENERATOR_MAP[template as keyof typeof TEMPLATE_GENERATOR_MAP];
-          await generateAd({ ...data, meta }, outputAdDir, templateDir, width);
+          await generateAd({ ...data, meta, utils: { formatPrice, showDiscount, getDiscountPercentage } }, outputAdDir, templateDir, width);
           await copyGlobalFiles(outputAdDir, tracking);
           const adHtml = renderTemplate(path.join(templatesDir, 'ad.html'), { title: data.title, width, height });
           const minifiedAdHtml = await minifyHtml(adHtml);

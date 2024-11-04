@@ -14,7 +14,7 @@ main {
   top: 0;
   bottom: 0;
   z-index: -1;
-  background: url('./assets/main-bg.jpeg');
+  background: url('./assets/main-bg.jpg');
   background-repeat: no-repeat !important;
   background-position: left top !important;
   background-size: 100% 100% !important;

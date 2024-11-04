@@ -1,15 +1,3 @@
-@font-face {
-  font-family: 'Inter';
-  src: url('./assets/fonts/Inter.woff') format('woff');
-}
-@font-face {
-  font-family: 'Inter-SemiBold';
-  src: url('./assets/fonts/Inter-SemiBold.woff') format('woff');
-}
-@font-face {
-  font-family: 'LiberationSans-SemiBold';
-  src: url('./assets/fonts/LiberationSans-Bold.woff') format('woff');
-}
 :root {
   --shopsense-base-width: 912px;
   --shopsense-base-height: 385px;
@@ -101,69 +89,6 @@ main.shopsense-ad *.text-semibold {
   flex-direction: row;
   gap: calc(var(--shopsense-base-width) * 0.02);
 }
-.shopsense-ad .product-card {
-  display: flex;
-  flex-direction: column;
-  width: calc(var(--shopsense-base-width) * 0.185);
-  min-width: 10rem;
-}
-.shopsense-ad .product-card-header {
-  flex: 1;
-  position: relative;
-  width: 100%;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-.shopsense-ad .product-card-header .product-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-.shopsense-ad .product-card-header .retail-logo {
-  position: absolute;
-  left: calc(var(--shopsense-base-width) * 0.009);
-  top: calc(var(--shopsense-base-width) * 0.009);
-  width: calc(var(--shopsense-base-width) * 0.0265);
-  height: calc(var(--shopsense-base-width) * 0.0265);
-  border-radius: calc(var(--shopsense-base-width) * 0.005);
-  z-index: 5;
-  object-fit: contain;
-  background: #fff;
-  padding: 1px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 6px 0px rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0 0 6px 0px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0 0 6px 0px rgba(0, 0, 0, 0.1);
-}
-.shopsense-ad .product-card-header .indicator {
-  position: absolute;
-  right: calc(var(--shopsense-base-width) * 0.009);
-  top: calc(var(--shopsense-base-width) * 0.009);
-  z-index: 5;
-}
-.shopsense-ad .product-card .chip {
-  border-radius: calc(var(--shopsense-base-width) * 0.015) !important;
-  padding: calc(var(--shopsense-base-width) * 0.005) calc(var(--shopsense-base-width) * 0.006) !important;
-  font-size: calc(var(--shopsense-base-width) * 0.011) !important;
-}
-.shopsense-ad .product-card-content {
-  padding: calc(var(--shopsense-base-width) * 0.011);
-  padding-bottom: calc(var(--shopsense-base-width) * 0.007);
-  display: flex;
-  flex-direction: column;
-}
-.shopsense-ad .product-card .divider-container {
-  padding: 0 calc(var(--shopsense-base-width) * 0.011);
-}
-.shopsense-ad .product-card .divider {
-  margin-top: calc(var(--shopsense-base-height) * 0.015);
-  margin-bottom: calc(var(--shopsense-base-height) * 0.015);
-}
 .shopsense-ad .text-xxs {
   font-size: calc(var(--shopsense-base-width) * 0.011) !important;
 }
@@ -172,22 +97,6 @@ main.shopsense-ad *.text-semibold {
 }
 .shopsense-ad .text-compact-small {
   font-size: calc(var(--shopsense-base-width) * 0.014) !important;
-}
-.shopsense-ad .product-card .text-price-label,
-.shopsense-ad .product-card .text-price-label * {
-  font-family: 'Inter-SemiBold';
-}
-.shopsense-ad .product-card .base-price {
-  font-family: 'Inter';
-}
-.shopsense-ad .product-card .product-title {
-  font-weight: 400 !important;
-}
-
-/* Container queries for responsiveness */
-.shopsense-ad {
-  container-type: inline-size !important;
-  container-name: shopsenseembed !important;
 }
 
 .shopsense-ad .card {

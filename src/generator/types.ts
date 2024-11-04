@@ -1,5 +1,6 @@
 import { Product, ProductCollection } from '@medusajs/medusa';
 import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
+import { formatPrice, getDiscountPercentage, showDiscount } from './utils/price';
 
 export type ProductPreview = Omit<Product, 'id'> & {
   id: number;
@@ -260,6 +261,11 @@ export type FeatureLookCollectionAdDataType = {
   product_base_url: string;
   meta?: FLMeta;
   clickTag: string;
+  utils?: {
+    formatPrice: typeof formatPrice;
+    showDiscount: typeof showDiscount;
+    getDiscountPercentage: typeof getDiscountPercentage;
+  };
 };
 
 export type GenerateTemplateHandler = (

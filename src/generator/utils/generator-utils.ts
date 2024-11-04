@@ -6,7 +6,10 @@ import CleanCSS from 'clean-css';
 import * as Terser from 'terser';
 
 export function isImage(ext: string) {
-  return ['.jpg', '.jpeg', '.png', '.webp', '.tiff', '.svg', 'avif'].includes(ext.startsWith('.') ? ext : `.${ext}`);
+  if (!ext) {
+    return false;
+  }
+  return ['.jpg', '.jpeg', '.png', '.webp', '.svg'].includes(ext.startsWith('.') ? ext : `.${ext}`);
 }
 
 export function isVideo(ext: string) {

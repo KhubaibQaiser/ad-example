@@ -8,6 +8,7 @@ import { processVideoAsset } from './video';
 
 // Function to process images
 export async function processAssets(inputDir: string, outputDir: string, _width: number, excludeVideo = false) {
+  console.log('Processing assets...', { inputDir, outputDir, _width, excludeVideo });
   const width = parseInt(`${_width}`);
   const quality = parseInt(`${config.imageCompressionQuality}`);
 

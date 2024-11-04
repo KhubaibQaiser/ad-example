@@ -1,0 +1,14 @@
+<div class="card product-card small scale-on-hover shadow-on-hover">
+  <div class="product-card-header">
+    <img src="<%= product.image %>" alt="<%= product.title %>" class="product-image" loading="lazy" />
+  </div>
+  <div class="product-card-content">
+    <button
+      onclick="window.open('<%= product.handle %>', '_blank')"
+      class="button small secondary"
+      data-item="<%= JSON.stringify({ product_id: product.id, product_name: product.display_name, retailer_name: product.retailer?.name, retailer_id: product.retailer?.id, ad_click_event_tracking_id: product.ad_click_event_tracking_id }) %>"
+    >
+      Shop Now
+    </button>
+  </div>
+</div>

@@ -5,21 +5,36 @@ import fsExtra from 'fs-extra';
 import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
 import fs from 'fs';
-import { FeatureLookCollectionAdDataType, TrackingPayloadType, UtmType } from '@/generator/types';
+import { FeatureLookCollectionAdDataType, TrackingPayloadType, FLMeta } from '@/generator/types';
 import { zipDirectory } from '@/generator/utils/file';
 
 export const maxDuration = 60;
 
 export async function POST(request: NextRequest) {
-  const { data, tracking }: { data: FeatureLookCollectionAdDataType; tracking: TrackingPayloadType } = await request.json();
+  const {
+    data,
+    tracking,
+    width: w,
+    height: h,
+    template,
+    meta,
+  }: {
+    data: FeatureLookCollectionAdDataType;
+    tracking: TrackingPayloadType;
+    width?: number;
+    height?: number;
+    template?: keyof typeof config.supportedTemplates;
+    meta?: FLMeta;
+  } = await request.json();
 
   try {
     const localReferenceData = await downloadAssetsAndParseReferences([data]);
 
-    const [width, height] = config.sizes.BannerTemplate.split('x').map(Number);
-    await generateAd(localReferenceData, 'BannerTemplate', width, height, tracking);
+    const [width, height] = typeof w === 'number' && typeof h === 'number' ? [w, h] : config.sizes.BannerTemplate.split('x').map(Number);
+    const _template = template ?? 'BannerTemplate';
+    await generateAd(localReferenceData, _template, width, height, tracking, meta);
 
-    const outputRootDir = path.join(config.outputRootDir, localReferenceData[0].collection_handle, 'banner-template');
+    const outputRootDir = path.join(config.outputRootDir, localReferenceData[0].collection_handle, config.supportedTemplates[_template]);
     console.log('Create Zip file at:', outputRootDir);
     await fsExtra.ensureDir(outputRootDir);
     // Assuming the generateAd function already saves files in the outputRootDir

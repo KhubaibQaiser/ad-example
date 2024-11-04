@@ -17,12 +17,14 @@ const templateOptions: OptionSchema<keyof typeof config.supportedTemplates>[] = 
   { value: 'CuratedProductsTemplate', label: 'Curated Products Template' },
   { value: 'CarouselTemplate', label: 'Carousel Template' },
   { value: 'BannerTemplate', label: 'Banner Template' },
+  { value: 'CBSVerticalTemplate', label: 'CBS Vertical Template' },
 ];
 
 export const options = {
   templates: templateOptions,
   sizes: [
     { value: '160x600', label: 'Skyscraper (160x600)' },
+    { value: '300x600', label: 'Skyscraper (300x600)' },
     { value: '912x384', label: 'Banner (912x384)' },
   ],
   publisherHandles: [
@@ -32,8 +34,8 @@ export const options = {
   ],
 };
 
-export const hasCuratedTemplate = (templates: OptionSchema[]) =>
-  templates.some((template: OptionSchema) => template.value.toLowerCase().includes('curated'));
+export const templateRequiresMeta = (templates: OptionSchema[]) =>
+  templates.some((template: OptionSchema) => template.value.toLowerCase().includes('curated') || template.value.toLowerCase().includes('cbs'));
 
 const adFormSchema = z
   .object({
@@ -62,7 +64,7 @@ const adFormSchema = z
     }
   )
   .superRefine((data, ctx) => {
-    const hasCurated = hasCuratedTemplate(data.templates);
+    const hasCurated = templateRequiresMeta(data.templates);
     if (hasCurated) {
       if (!data.meta) {
         ctx.addIssue({

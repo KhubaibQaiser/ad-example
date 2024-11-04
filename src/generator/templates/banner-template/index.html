@@ -51,7 +51,8 @@
         <section class="products-container">
           <div class="products-list">
             <% data.moduleData.products.forEach((product, index) => { %> <%- include(__dirname + '/product-card.ejs', { product: product, formatPrice:
-            data.formatPrice, showDiscount: data.showDiscount, getDiscountPercentage: data.getDiscountPercentage, index: index }) %> <% }) %>
+            data.utils?.formatPrice, showDiscount: data.utils?.showDiscount, getDiscountPercentage: data.utils?.getDiscountPercentage, index: index })
+            %> <% }) %>
           </div>
         </section>
       </article>

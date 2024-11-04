@@ -1,5 +1,4 @@
 import { FeatureLookCollectionAdDataType } from '@/generator/types';
-import { parseCollectionToGeneratorData } from '@/generator/utils/data-parser-utils';
 import { supabase } from '@/services';
 import { Product, Retailer } from '@/services/_types';
 import { NextRequest, NextResponse } from 'next/server';
