@@ -44,7 +44,7 @@ export const getTrackingUrl = ({ product }: { product: Product }) => {
   const ulid = generateUlid();
   const storeHandle = 'embed'; // store.handle
 
-  const affiliate = product.retailer.affiliate?.name;
+  const affiliate = product.retailer?.affiliate?.name;
   const params = affiliate ? AFFILIATE_PARAMS_MAP[affiliate as keyof typeof AFFILIATE_PARAMS_MAP]?.params : null;
 
   if (process.env.ENVIRONMENT !== 'production') {

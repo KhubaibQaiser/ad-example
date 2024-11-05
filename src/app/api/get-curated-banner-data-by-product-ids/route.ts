@@ -73,11 +73,13 @@ export async function GET(req: NextRequest) {
       discountable: !!p.sale_price,
       url: p.product_url,
       // url: p.affiliate_url,
-      retailer: {
-        id: p.retailer.id,
-        name: p.retailer.name,
-        thumbnail_url: getLogoThumbnailUrl(p.retailer.logos),
-      },
+      retailer: p.retailer
+        ? {
+            id: p.retailer.id,
+            name: p.retailer.name,
+            thumbnail_url: getLogoThumbnailUrl(p.retailer.logos),
+          }
+        : null,
       image: p.thumbnail_url,
     })) as unknown as FeatureLookCollectionAdDataType['moduleData'][number]['products'];
 
