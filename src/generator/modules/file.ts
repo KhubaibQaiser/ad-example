@@ -39,7 +39,7 @@ export async function downloadAssetsAndParseReferences(flDataArr: FeatureLookCol
   const modifiedData = JSON.parse(JSON.stringify(flDataArr));
 
   console.log('Downloading assets...', modifiedData);
-  for (let fl = 0; fl < modifiedData.length; fl++) {
+  for (let fl = 0; fl < modifiedData.length; fl++) {  
     const data = modifiedData[fl];
     // Download and process image_url
     if (data.image_url) {
