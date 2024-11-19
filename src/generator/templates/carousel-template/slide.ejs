@@ -1,6 +1,0 @@
-<section class="product-section" data-item="<%= JSON.stringify({ title: module.title, media: module.media, index }) %>">
-  <div class="product-backdrop"></div>
-  <% if (module.media === 'video') { %> <%- include(__dirname + '/../shared/video-media.ejs', { srcURL: module.srcURL, index: index }) %> <% } else if
-  (module.media === 'image') { %> <%- include(__dirname + '/../shared/picture-media.ejs', { srcURL: module.srcURL, name: module.title, index: index })
-  %> <% } %> <%- include(__dirname + '/suggestions.ejs', { products: module.products, index: index }) %>
-</section>
