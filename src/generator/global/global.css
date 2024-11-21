@@ -389,6 +389,9 @@ body {
 .shopsense-ad .product-card .product-title {
   font-weight: 400 !important;
 }
+.shopsense-ad .bg-color-inherit {
+  background-color: inherit;
+}
 
 /* Skyscraper */
 @container shopsenseembed (max-width: 160px) and (max-height: 600px) {

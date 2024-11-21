@@ -10,14 +10,14 @@
   </head>
   <body>
     <main class="shopsense-ad">
-      <%- include(__dirname + '/../shared/sponsored-label.ejs', { isSponsored: true }) %>
-      <article class="card main-container no-shadow">
+      <%- include(__dirname + '/../shared/sponsored-label.ejs', { isSponsored: data.meta?.showSponsoredLabel ?? false }) %>
+      <article class="card main-container no-shadow bg-color-inherit">
         <header class="header">
           <section class="logo-container">
             <% if (data.logoURL) { %>
             <img src="<%= data.logoURL %>" alt="logo" class="logo" />
             <% } %>
-            <p class="logo-label"><%= data.title %></p>
+            <p class="logo-label"><%= data.meta?.title ? data.meta.title : data.title %></p>
           </section>
           <section class="control-container">
             <button class="control-button left" title="left-arrow" disabled>

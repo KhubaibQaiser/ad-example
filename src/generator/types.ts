@@ -238,6 +238,7 @@ export type FLMeta = {
   title: string;
   subTitle: string;
   footerText: string;
+  showSponsoredLabel?: boolean;
 };
 
 export type ModuleData = {
