@@ -78,7 +78,7 @@ export async function GET(req: NextRequest) {
           price: p.sale_price ?? p.base_price,
           base_price: p.base_price,
           discountable: !!p.sale_price,
-          url: process.env.ENVIRONMENT === 'development' ? p.product_url : p.affiliate_url,
+          url: process.env.ENVIRONMENT === 'production' ? p.affiliate_url : p.product_url,
           affiliate_url: p.affiliate_url,
           product_url: p.product_url,
           non_affiliate_url: p.product_url,
