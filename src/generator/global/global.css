@@ -333,16 +333,33 @@ body {
   overflow: hidden;
 }
 .shopsense-ad .product-card-header .product-image {
+  position: relative;
   width: 100%;
   height: 100%;
   object-fit: contain;
+  padding: 2px;
+  z-index: 1;
 }
 .shopsense-ad .product-card-header .product-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.shopsense-ad .product-card-header .product-image.product-image-placeholder {
+  position: absolute;
   width: 105%;
   height: 105%;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+  filter: blur(2px);
+  object-fit: contain;
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -ms-filter: blur(2px);
+  -o-filter: blur(2px);
+  z-index: 0;
+  padding: 0;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 .shopsense-ad .product-card-header .retail-logo {
   position: absolute;
