@@ -5,8 +5,7 @@
   data-item="<%= JSON.stringify({ product_id: product.id, product_name: product.display_name, retailer_name: product.retailer?.name, retailer_id: product.retailer?.id, ad_click_event_tracking_id: product.ad_click_event_tracking_id }) %>"
 >
   <div class="product-card-header">
-    <div class="product-image-container">
-      <img src="<%= product.image %>" alt="<%= product.title %>-placeholder" class="product-image product-image-placeholder" loading="lazy" />
+    <div class="product-image-container" style="background-image: url(<%= product.image %>);">
       <img src="<%= product.image %>" alt="<%= product.title %>" class="product-image" loading="lazy" />
     </div>
     <% if (product.retailer?.thumbnail_url) { %>

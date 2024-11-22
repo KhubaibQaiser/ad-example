@@ -146,7 +146,8 @@
           document.body.appendChild(newScript);
         });
       } catch (error) {
-        console.error('Error loading ad:', error);
+        // TODO: Log to shopsense-embeds-error-log
+        // console.error('Error loading ad:', error);
       }
     }
 
