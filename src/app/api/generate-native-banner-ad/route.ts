@@ -1,6 +1,5 @@
 import { config } from '@/generator/config';
 import { generateAd } from '@/generator/generateAd';
-import { downloadAssetsAndParseReferences } from '@/generator/modules/file';
 import fsExtra from 'fs-extra';
 import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
@@ -12,7 +11,7 @@ export const maxDuration = 60;
 
 export async function POST(request: NextRequest) {
   const {
-    data,
+    data: _data,
     tracking,
     width: w,
     height: h,
@@ -28,17 +27,16 @@ export async function POST(request: NextRequest) {
   } = await request.json();
 
   try {
-    const localReferenceData = await downloadAssetsAndParseReferences([data]);
-
+    const data = [_data];
     const [width, height] = typeof w === 'number' && typeof h === 'number' ? [w, h] : config.sizes.BannerTemplate.split('x').map(Number);
     const _template = template ?? 'BannerTemplate';
-    await generateAd(localReferenceData, _template, width, height, tracking, meta);
+    await generateAd(data, _template, width, height, tracking, meta);
 
-    const outputRootDir = path.join(config.outputRootDir, localReferenceData[0].collection_handle, config.supportedTemplates[_template]);
+    const outputRootDir = path.join(config.outputRootDir, data[0].collection_handle, config.supportedTemplates[_template]);
     console.log('Create Zip file at:', outputRootDir);
     await fsExtra.ensureDir(outputRootDir);
     // Assuming the generateAd function already saves files in the outputRootDir
-    const zipFilePath = path.join(outputRootDir, '..', `${localReferenceData[0].collection_handle}.zip`);
+    const zipFilePath = path.join(outputRootDir, '..', `${data[0].collection_handle}.zip`);
     // await fsExtra.ensureDir(zipFilePath);
     await zipDirectory(outputRootDir, zipFilePath);
     console.log('Zip file created:', zipFilePath);
@@ -55,7 +53,7 @@ export async function POST(request: NextRequest) {
 
     return new NextResponse(stream, {
       headers: {
-        'Content-Disposition': `attachment; filename=${localReferenceData[0].collection_handle}.zip`,
+        'Content-Disposition': `attachment; filename=${data[0].collection_handle}.zip`,
         'Content-Type': 'application/zip',
       },
     });

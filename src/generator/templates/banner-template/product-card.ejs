@@ -5,7 +5,9 @@
   data-item="<%= JSON.stringify({ product_id: product.id, product_name: product.display_name, retailer_name: product.retailer?.name, retailer_id: product.retailer?.id, ad_click_event_tracking_id: product.ad_click_event_tracking_id }) %>"
 >
   <div class="product-card-header">
-    <img src="<%= product.image %>" alt="<%= product.title %>" class="product-image" loading="lazy" />
+    <div class="product-image-container" style="background-image: url(<%= product.image %>);">
+      <img src="<%= product.image %>" alt="<%= product.title %>" class="product-image" loading="lazy" />
+    </div>
     <% if (product.retailer?.thumbnail_url) { %>
     <img src="<%= product.retailer.thumbnail_url %>" alt="<%= product.retailer.name %>" class="retail-logo" />
     <% } %> <% if (showDiscount(product.discountable, getDiscountPercentage(product.base_price, product.price))) { %>

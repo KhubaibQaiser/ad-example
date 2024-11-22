@@ -10,6 +10,7 @@ import generateBanner from './templates/banner-template/generate';
 import generateCBSVertical from './templates/cbs-template-vertical/generate';
 import { AdGenerationResponse } from '@/types';
 import { FeatureLookCollectionAdDataType, FLMeta, GenerateTemplateHandler, TrackingPayloadType } from './types';
+import { downloadAssetsAndParseReferences } from './modules/file';
 
 const TEMPLATE_GENERATOR_MAP: Record<keyof typeof config.supportedTemplates, GenerateTemplateHandler> = {
   CarouselTemplate: generateCarousel,
@@ -61,13 +62,15 @@ async function copyGlobalFiles(outputDir: string, tracking?: TrackingPayloadType
 }
 
 export async function generateAd(
-  flData: FeatureLookCollectionAdDataType[],
+  remoteData: FeatureLookCollectionAdDataType[],
   template: keyof typeof config.supportedTemplates,
   width: number,
   height: number,
   tracking?: TrackingPayloadType,
   meta?: FLMeta
 ) {
+  const flData = await downloadAssetsAndParseReferences(remoteData);
+
   console.log('Generating ad...', { flData, template, width, height, tracking, meta });
   let outputAdRootDir = '';
 

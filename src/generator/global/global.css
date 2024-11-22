@@ -337,6 +337,13 @@ body {
   height: 100%;
   object-fit: contain;
 }
+.shopsense-ad .product-card-header .product-image-container {
+  width: 105%;
+  height: 105%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 .shopsense-ad .product-card-header .retail-logo {
   position: absolute;
   left: calc(var(--shopsense-base-width) * 0.009);
