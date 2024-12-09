@@ -7,7 +7,8 @@
     "build": "next build",
     "build-embed-injector": "terser --compress --mangle --output ./public/shopsense-embed-injector.min.js -- ./src/lib/shopsense-embed-injector.js",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cdk": "cdk"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -48,6 +49,9 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "aws-cdk": "^2.164.1",
+    "aws-cdk-lib": "^2.164.1",
+    "constructs": "^10.4.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.13",
     "postcss": "^8",
