@@ -27,6 +27,13 @@ export class S3CloudfrontStack extends Stack {
     this.bucket = new s3.Bucket(this, "EmbedsBucket", {
       publicReadAccess: false,
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
+      cors: [
+        {
+          allowedOrigins: ['*'],
+          allowedMethods: [s3.HttpMethods.GET, s3.HttpMethods.HEAD],
+          allowedHeaders: ['*']
+        }
+      ]
     });
 
     new BucketDeployment(this, 'DeployEmbeds', {
@@ -48,8 +55,6 @@ export class S3CloudfrontStack extends Stack {
       domainName: hostedZoneDomain,
       validation: CertificateValidation.fromDns(hostedZone),
     });
-
-    Role.fromRoleName
 
     const delegationZoneArn = this.formatArn({
       account: configEnvironment.zoneDelegation.delegationAccount,
@@ -82,7 +87,7 @@ export class S3CloudfrontStack extends Stack {
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
         allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
         cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
-        responseHeadersPolicy: new cloudfront.ResponseHeadersPolicy(this, 'AlloCORSHeaders', {
+        responseHeadersPolicy: new cloudfront.ResponseHeadersPolicy(this, 'AllowCORSHeaders', {
           corsBehavior: {
             accessControlAllowOrigins: ['*'],
             accessControlAllowHeaders: ['*'],
