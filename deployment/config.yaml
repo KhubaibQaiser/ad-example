@@ -8,13 +8,10 @@ environments:
       delegationAccount: "637423660218"
 
   test:
-    rootHostedZoneDomain: test.shopsense.ai
-    hostedZoneSubdomain: embeds
-    zoneDelegation:
-      delegationRoleName: TestShopsenseAIHostedZoneDelegationRole
-      delegationAccount: "637423660218"
+    account: "851725378064"
 
   prod:
+    account: "992382665902"
     rootHostedZoneDomain: prod.shopsense.ai
     hostedZoneSubdomain: embeds
     zoneDelegation:

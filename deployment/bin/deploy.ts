@@ -7,7 +7,7 @@ const app = new cdk.App();
 const config = loadConfig();
 
 new PipelineStack(app, 'PipelineStack', {
-  env: { region: 'us-west-2' },
+  env: { account: '975050244567', region: 'us-east-1' },
   config: config,
   githubOrgName: 'shopsense',
   repoName: 'embeds',

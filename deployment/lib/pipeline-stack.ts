@@ -41,6 +41,7 @@ export class PipelineStack extends Stack {
       const configEnvironment = props.config.environments[key]
 
       pipeline.addStage(new BucketDeploymentStage(this, `${key}-BucketDeploymentStage`, {
+        env: { account: configEnvironment.account, region: 'us-west-2' },
         environment: key,
         configEnvironment: configEnvironment
       }))
@@ -58,12 +59,7 @@ class BucketDeploymentStage extends Stage {
 
     new S3CloudfrontStack(this, 'S3CloudfrontStack', {
       environment: props.environment,
-      configEnvironment: props.configEnvironment,
-      env: {
-        account: this.account,
-        region: 'us-west-2'
-      }
+      configEnvironment: props.configEnvironment
     })
-
   }
 }
