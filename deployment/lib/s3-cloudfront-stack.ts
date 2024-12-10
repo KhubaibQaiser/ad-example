@@ -49,8 +49,11 @@ export class S3CloudfrontStack extends Stack {
       validation: CertificateValidation.fromDns(hostedZone),
     });
 
+    Role.fromRoleName
+
     const delegationZoneArn = this.formatArn({
       account: configEnvironment.zoneDelegation.delegationAccount,
+      region: '',
       service: "iam",
       resource: "role",
       resourceName: configEnvironment.zoneDelegation.delegationRoleName,
