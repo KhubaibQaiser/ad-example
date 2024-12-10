@@ -1,5 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
+# aws 
+/cdk.out
+/deployment/node_modules
 # dependencies
 /node_modules
 /.pnp
