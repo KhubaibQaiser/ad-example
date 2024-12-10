@@ -92,21 +92,13 @@ export class S3CloudfrontStack extends Stack {
             accessControlAllowOrigins: ['*'],
             accessControlAllowHeaders: ['*'],
             accessControlAllowCredentials: false,
-            accessControlAllowMethods: ['GET', 'HEAD', 'OPTION'],
+            accessControlAllowMethods: ['GET', 'HEAD', 'OPTIONS'],
             originOverride: true,
           }
         })
       },
-      defaultRootObject: "index.html",
       domainNames: [hostedZoneDomain],
       certificate: certificate,
-      errorResponses: [
-        {
-          httpStatus: 403,
-          responseHttpStatus: 403,
-          responsePagePath: "/error.html",
-        },
-      ],
     });
 
     new route53.ARecord(this, "AliasRecord", {
