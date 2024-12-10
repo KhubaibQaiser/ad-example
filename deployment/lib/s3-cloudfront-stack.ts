@@ -106,7 +106,7 @@ export class S3CloudfrontStack extends Stack {
       target: route53.RecordTarget.fromAlias(
         new route53Targets.CloudFrontTarget(distribution)
       ),
-      recordName: "Embeds CDN",
+      recordName: "",
     });
 
     new CfnOutput(this, "DistributionId", {
