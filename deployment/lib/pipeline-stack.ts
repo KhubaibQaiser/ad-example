@@ -1,7 +1,7 @@
 import { Stack, StackProps, Stage } from "aws-cdk-lib";
 import { Construct } from "constructs";
 import { Config, ConfigEnvironment } from "./config-loader";
-import { CodePipeline, CodePipelineSource, ShellStep } from "aws-cdk-lib/pipelines";
+import { CodePipeline, CodePipelineSource, ManualApprovalStep, ShellStep } from "aws-cdk-lib/pipelines";
 import { S3CloudfrontStack } from "./s3-cloudfront-stack";
 
 export type PipelineStackProps = StackProps & {
@@ -44,7 +44,9 @@ export class PipelineStack extends Stack {
         env: { account: configEnvironment.account, region: this.region },
         environment: key,
         configEnvironment: configEnvironment
-      }))
+      }), {
+        ...(key === 'prod' ? { pre: [new ManualApprovalStep("ReleaseProdApproval")] } : {})
+      })
     })
   }
 }

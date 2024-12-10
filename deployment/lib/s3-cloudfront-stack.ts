@@ -51,7 +51,6 @@ export class S3CloudfrontStack extends Stack {
 
     const delegationZoneArn = this.formatArn({
       account: configEnvironment.zoneDelegation.delegationAccount,
-      region: "us-west-2",
       service: "iam",
       resource: "role",
       resourceName: configEnvironment.zoneDelegation.delegationRoleName,
