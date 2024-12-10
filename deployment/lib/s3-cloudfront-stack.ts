@@ -36,90 +36,88 @@ export class S3CloudfrontStack extends Stack {
 
     new CfnOutput(this, "BucketName", { value: this.bucket.bucketName });
 
-    if (props.environment === 'prod') {
-      const configEnvironment = props.configEnvironment
-      const hostedZoneDomain = `${configEnvironment.hostedZoneSubdomain}.${configEnvironment.rootHostedZoneDomain}`;
+    const configEnvironment = props.configEnvironment
+    const hostedZoneDomain = `${configEnvironment.hostedZoneSubdomain}.${configEnvironment.rootHostedZoneDomain}`;
 
-      // Create hosted zone
-      const hostedZone = new PublicHostedZone(this, "HostedZone", {
-        zoneName: hostedZoneDomain,
-      });
+    // Create hosted zone
+    const hostedZone = new PublicHostedZone(this, "HostedZone", {
+      zoneName: hostedZoneDomain,
+    });
 
-      const certificate = new Certificate(this, "Certificate", {
-        domainName: hostedZoneDomain,
-        validation: CertificateValidation.fromDns(hostedZone),
-      });
+    const certificate = new Certificate(this, "Certificate", {
+      domainName: hostedZoneDomain,
+      validation: CertificateValidation.fromDns(hostedZone),
+    });
 
-      const delegationZoneArn = this.formatArn({
-        account: configEnvironment.zoneDelegation.delegationAccount,
-        region: "us-west-2",
-        service: "iam",
-        resource: "role",
-        resourceName: configEnvironment.zoneDelegation.delegationRoleName,
-      });
+    const delegationZoneArn = this.formatArn({
+      account: configEnvironment.zoneDelegation.delegationAccount,
+      region: "us-west-2",
+      service: "iam",
+      resource: "role",
+      resourceName: configEnvironment.zoneDelegation.delegationRoleName,
+    });
 
-      const delegationRole = Role.fromRoleArn(
-        this,
-        "DelegationRole",
-        delegationZoneArn
-      );
+    const delegationRole = Role.fromRoleArn(
+      this,
+      "DelegationRole",
+      delegationZoneArn
+    );
 
-      new CrossAccountZoneDelegationRecord(
-        this,
-        "CrossAccountZoneDelegationRecord",
+    new CrossAccountZoneDelegationRecord(
+      this,
+      "CrossAccountZoneDelegationRecord",
+      {
+        delegationRole,
+        parentHostedZoneName: configEnvironment.rootHostedZoneDomain,
+        delegatedZone: hostedZone
+      }
+    );
+
+    // Create CloudFront distribution
+    const distribution = new Distribution(this, "Distribution", {
+      defaultBehavior: {
+        origin: origins.S3BucketOrigin.withOriginAccessControl(this.bucket),
+        viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+        allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
+        cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
+        responseHeadersPolicy: new cloudfront.ResponseHeadersPolicy(this, 'AlloCORSHeaders', {
+          corsBehavior: {
+            accessControlAllowOrigins: ['*'],
+            accessControlAllowHeaders: ['*'],
+            accessControlAllowCredentials: false,
+            accessControlAllowMethods: ['GET', 'HEAD', 'OPTION'],
+            originOverride: true,
+          }
+        })
+      },
+      defaultRootObject: "index.html",
+      domainNames: [hostedZoneDomain],
+      certificate: certificate,
+      errorResponses: [
         {
-          delegationRole,
-          parentHostedZoneName: configEnvironment.rootHostedZoneDomain,
-          delegatedZone: hostedZone
-        }
-      );
-
-      // Create CloudFront distribution
-      const distribution = new Distribution(this, "Distribution", {
-        defaultBehavior: {
-          origin: origins.S3BucketOrigin.withOriginAccessControl(this.bucket),
-          viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-          allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
-          cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
-          responseHeadersPolicy: new cloudfront.ResponseHeadersPolicy(this, 'AlloCORSHeaders', {
-            corsBehavior: {
-              accessControlAllowOrigins: ['*'],
-              accessControlAllowHeaders: ['*'],
-              accessControlAllowCredentials: false,
-              accessControlAllowMethods: ['GET', 'HEAD', 'OPTION'],
-              originOverride: true,
-            }
-          })
+          httpStatus: 403,
+          responseHttpStatus: 403,
+          responsePagePath: "/error.html",
         },
-        defaultRootObject: "index.html",
-        domainNames: [hostedZoneDomain],
-        certificate: certificate,
-        errorResponses: [
-          {
-            httpStatus: 403,
-            responseHttpStatus: 403,
-            responsePagePath: "/error.html",
-          },
-        ],
-      });
+      ],
+    });
 
-      new route53.ARecord(this, "AliasRecord", {
-        zone: hostedZone,
-        target: route53.RecordTarget.fromAlias(
-          new route53Targets.CloudFrontTarget(distribution)
-        ),
-        recordName: "Embeds CDN",
-      });
+    new route53.ARecord(this, "AliasRecord", {
+      zone: hostedZone,
+      target: route53.RecordTarget.fromAlias(
+        new route53Targets.CloudFrontTarget(distribution)
+      ),
+      recordName: "Embeds CDN",
+    });
 
-      new CfnOutput(this, "DistributionId", {
-        value: distribution.distributionId,
-      });
-      new CfnOutput(this, "DistributionDomain", {
-        value: distribution.distributionDomainName,
-      });
-      new CfnOutput(this, "HostedZoneId", {
-        value: hostedZone.hostedZoneId,
-      });
-    }
+    new CfnOutput(this, "DistributionId", {
+      value: distribution.distributionId,
+    });
+    new CfnOutput(this, "DistributionDomain", {
+      value: distribution.distributionDomainName,
+    });
+    new CfnOutput(this, "HostedZoneId", {
+      value: hostedZone.hostedZoneId,
+    });
   }
 }
