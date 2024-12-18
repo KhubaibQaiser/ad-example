@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Embeds</title>
+    <style>
+      .container {
+        width: 900px;
+        height: 345px;
+      }
+
+      .container > * {
+        width: 100%;
+        height: 100% !important;
+        transition: 0s !important;
+        opacity: 1 !important;
+      }
+
+      .container > * > * {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="embeds"></div>
+
+      <script src="https://embeds.dev.shopsense.ai/shopsense-embed-injector.min.js" defer></script>
+      <script>
+        let startTime = performance.now();
+
+        function convertToSeconds(milliseconds) {
+          return (milliseconds / 1000).toFixed(2);
+        }
+
+        function initEmbed() {
+          console.log({ step: "start_loading", message: "Initializing embed loading..." });
+
+          window.ShopsenseEmbeds.EmbedInjector.loadAd({
+            containerId: "embeds", // required
+            embedId: "chicken-pot-pie-biscuits", // required
+          });
+
+          const embedsDiv = document.getElementById("embeds");
+
+          const observer = new MutationObserver((mutationsList) => {
+            console.log({ step: "mutation_detected", mutations: mutationsList });
+
+            for (const mutation of mutationsList) {
+              if (mutation.type === "childList" || mutation.type === "subtree") {
+                let endTime = performance.now();
+                let loadingTime = endTime - startTime;
+
+                console.log({
+                  step: "end_loading",
+                  message: "Content has been rendered.",
+                  loadingTime: `${convertToSeconds(loadingTime)} seconds`,
+                });
+
+                observer.disconnect(); // Stop observing after content is loaded
+                break; // Exit the loop after logging
+              }
+            }
+          });
+
+          console.log({ step: "observe_start", message: "Starting to observe the embeds div for changes." });
+          observer.observe(embedsDiv, { childList: true, subtree: true });
+        }
+
+        document.addEventListener("DOMContentLoaded", initEmbed);
+      </script>
+    </div>
+  </body>
+</html>
