@@ -29,28 +29,67 @@
       <script src="https://embeds.dev.shopsense.ai/shopsense-embed-injector.min.js" defer></script>
       <script>
         let startTime = performance.now();
+        let resourceLoadTimes = [];
 
         function convertToSeconds(milliseconds) {
           return (milliseconds / 1000).toFixed(2);
         }
 
-        function initEmbed() {
+        function getCurrentTimestamp() {
+          return new Date().toISOString();
+        }
+
+        function logResourceLoadTimes(resources) {
+          resources.forEach((resource) => {
+            const loadTime = convertToSeconds(resource.duration);
+            resourceLoadTimes.push({
+              type: "Resource Loading",
+              resource: resource.name,
+              duration: loadTime,
+              timestamp: getCurrentTimestamp(),
+            });
+          });
+        }
+
+        function logInteractiveTime() {
+          const performanceData = window.performance.timing;
+          const interactiveTime = performanceData.domInteractive - performanceData.navigationStart;
+          resourceLoadTimes.push({
+            type: "Interactive Time",
+            resource: "Interactive Time",
+            duration: convertToSeconds(interactiveTime),
+            timestamp: getCurrentTimestamp(),
+          });
+        }
+
+        function initializeEmbed() {
           console.log({ step: "start_loading", message: "Initializing embed loading..." });
 
           window.ShopsenseEmbeds.EmbedInjector.loadAd({
             containerId: "embeds", // required
             embedId: "chicken-pot-pie-biscuits", // required
           });
+        }
 
-          const embedsDiv = document.getElementById("embeds");
-
+        function setupMutationObserver(embedsDiv) {
           const observer = new MutationObserver((mutationsList) => {
             console.log({ step: "mutation_detected", mutations: mutationsList });
 
             for (const mutation of mutationsList) {
               if (mutation.type === "childList" || mutation.type === "subtree") {
-                let endTime = performance.now();
-                let loadingTime = endTime - startTime;
+                const endTime = performance.now();
+                const loadingTime = endTime - startTime;
+                resourceLoadTimes.push({
+                  type: "Embed Loading",
+                  resource: "Loading Time",
+                  duration: convertToSeconds(loadingTime),
+                  timestamp: getCurrentTimestamp(),
+                });
+
+                logInteractiveTime();
+
+                console.log("Load Times:");
+                console.table(resourceLoadTimes);
 
                 console.log({
                   step: "end_loading",
@@ -68,7 +107,15 @@
           observer.observe(embedsDiv, { childList: true, subtree: true });
         }
 
-        document.addEventListener("DOMContentLoaded", initEmbed);
+        function onLoad() {
+          const resources = window.performance.getEntriesByType("resource");
+          logResourceLoadTimes(resources);
+          initializeEmbed();
+          const embedsDiv = document.getElementById("embeds");
+          setupMutationObserver(embedsDiv);
+        }
+
+        document.addEventListener("DOMContentLoaded", onLoad);
       </script>
     </div>
   </body>
