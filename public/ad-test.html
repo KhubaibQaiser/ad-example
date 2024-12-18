@@ -20,11 +20,32 @@
       .container > * > * {
         height: 100%;
       }
+
+      .log-container {
+        margin-top: 20px;
+        padding: 10px;
+        font-family: Arial, sans-serif;
+      }
+
+      .log-container ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .log-container li {
+        margin: 5px 0;
+        padding: 5px;
+        border-left: 4px solid #007bff;
+        background-color: #e9ecef;
+      }
     </style>
   </head>
   <body>
     <div class="container">
       <div id="embeds"></div>
+      <div class="log-container" id="logContainer">
+        <ul id="logList"></ul>
+      </div>
 
       <script src="https://embeds.dev.shopsense.ai/shopsense-embed-injector.min.js" defer></script>
       <script>
@@ -88,8 +109,13 @@
 
                 logInteractiveTime();
 
-                console.log("Load Times:");
-                console.table(resourceLoadTimes);
+                const logList = document.getElementById("logList");
+                logList.innerHTML = ""; // Clear previous logs
+                resourceLoadTimes.forEach((log) => {
+                  const logEntry = document.createElement("li");
+                  logEntry.textContent = `${log.timestamp} - ${log.type}: ${log.resource} took ${log.duration} seconds`;
+                  logList.appendChild(logEntry);
+                });
 
                 console.log({
                   step: "end_loading",
@@ -98,6 +124,8 @@
                 });
 
                 observer.disconnect(); // Stop observing after content is loaded
+
+                console.table(resourceLoadTimes);
                 break; // Exit the loop after logging
               }
             }
