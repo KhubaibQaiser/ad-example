@@ -3,7 +3,7 @@
   global.ShopsenseEmbeds = global.ShopsenseEmbeds || {};
 
   global.ShopsenseEmbeds.EmbedInjector = (function () {
-    const embedContainerId = 'shopsense-embed-ad';
+    const embedContainerId = "shopsense-embed-ad";
     let scriptsLoaded = 0;
 
     const onScriptLoaded =
@@ -11,8 +11,8 @@
       () => {
         scriptsLoaded++;
         if (scriptsLoaded === scriptsCount) {
-          console.log('All scripts loaded successfully');
-          const event = new CustomEvent('ShopsenseEmbedInjected', { detail: { container: adContainer } });
+          console.log("All scripts loaded successfully");
+          const event = new CustomEvent("ShopsenseEmbedInjected", { detail: { container: adContainer } });
           document.dispatchEvent(event);
         }
       };
@@ -20,13 +20,13 @@
     const applyStyles = (element, styles, forceOverride = false) => {
       if (forceOverride) {
         // Clear existing styles
-        element.style.cssText = '';
+        element.style.cssText = "";
       }
       Object.assign(element.style, styles);
     };
 
     const injectAdContainer = (container, id) => {
-      const adContainer = document.createElement('div');
+      const adContainer = document.createElement("div");
       adContainer.id = id;
       applyStyles(adContainer, {
         zIndex: 1,
@@ -43,11 +43,11 @@
      */
     async function loadAd(config) {
       if (!config.containerId) {
-        throw new Error('containerId must be provided.');
+        throw new Error("containerId must be provided.");
       }
 
       if (!config.embedId) {
-        throw new Error('embedId must be provided.');
+        throw new Error("embedId must be provided.");
       }
 
       const BASE_URL = `https://embeds.dev.shopsense.ai/tastemade/${config.embedId}/ad`;
@@ -61,84 +61,84 @@
         }
 
         applyStyles(adParentContainer, {
-          position: 'relative',
+          position: "relative",
           height: 0, // Initially hidden
-          overflow: 'hidden',
+          overflow: "hidden",
           opacity: 0,
-          transition: 'all 0.5s ease', // Added transition on height and opacity
+          transition: "all 0.5s ease", // Added transition on height and opacity
         });
 
         const adContainer = injectAdContainer(adParentContainer, embedContainerId);
 
         const response = await fetch(indexUrl);
         if (!response.ok) {
-          throw new Error('Unable to fetch the ad content.');
+          throw new Error("Unable to fetch the ad content.");
         }
 
         const adContent = await response.text();
 
-        const tempDiv = document.createElement('div');
+        const tempDiv = document.createElement("div");
         tempDiv.innerHTML = adContent;
 
-        const scripts = tempDiv.querySelectorAll('script');
-        const links = tempDiv.querySelectorAll('link');
-        const images = tempDiv.querySelectorAll('img');
-        const videos = tempDiv.querySelectorAll('video');
+        const scripts = tempDiv.querySelectorAll("script");
+        const links = tempDiv.querySelectorAll("link");
+        const images = tempDiv.querySelectorAll("img");
+        const videos = tempDiv.querySelectorAll("video");
 
         links.forEach((link) => {
           const newLink = link.cloneNode(true);
-          const assetName = newLink.href.split('/').pop();
+          const assetName = newLink.href.split("/").pop();
           newLink.href = `${BASE_URL}/${assetName}`;
           document.head.appendChild(newLink);
         });
 
         // Update the src of original images
         images.forEach((img) => {
-          const assetName = img.src.split('/').pop();
+          const assetName = img.src.split("/").pop();
           img.src = `${assetsUrl}/${assetName}`;
         });
 
         // Update the src or data-src of original videos
         videos.forEach((video) => {
-          const assetName = (video.getAttribute('data-src') || video.src).split('/').pop();
+          const assetName = (video.getAttribute("data-src") || video.src).split("/").pop();
           const videoSrc = `${assetsUrl}/${assetName}`;
-          if (video.hasAttribute('data-src')) {
-            video.setAttribute('data-src', videoSrc);
+          if (video.hasAttribute("data-src")) {
+            video.setAttribute("data-src", videoSrc);
           } else {
             video.src = videoSrc;
           }
           video.controls = false; // Set video controls
-          video.setAttribute('src', videoSrc);
-          video.classList.remove('hidden');
+          video.setAttribute("src", videoSrc);
+          video.classList.remove("hidden");
         });
 
-        const adContentContainer = tempDiv.getElementsByTagName('main')[0];
+        const adContentContainer = tempDiv.getElementsByTagName("main")[0];
         if (!adContentContainer) {
-          throw new Error('Main content not found in the ad.');
+          throw new Error("Main content not found in the ad.");
         }
-        adContentContainer.classList.add('shopsense-ad');
+        adContentContainer.classList.add("shopsense-ad");
         adContainer.innerHTML = adContentContainer.outerHTML;
         setTimeout(() => {
-          applyStyles(adParentContainer, { height: adContainer.clientHeight + 'px', opacity: 1 });
+          applyStyles(adParentContainer, { height: adContainer.clientHeight + "px", opacity: 1 });
           setTimeout(() => {
-            applyStyles(adParentContainer, { height: 'auto' });
+            applyStyles(adParentContainer, { height: "auto" });
           }, 500);
         }, 1000);
 
         // Append JS files to the body
         let filteredScripts = [];
         scripts.forEach((script) => {
-          if (script.src && script.src.includes('.js')) {
+          if (script.src && script.src.includes(".js")) {
             filteredScripts.push(script);
           }
         });
         filteredScripts.forEach((script) => {
           let scriptUrl = script.src;
-          scriptUrl = scriptUrl.split('/').pop();
+          scriptUrl = scriptUrl.split("/").pop();
           scriptUrl = `${BASE_URL}/${scriptUrl}`;
-          const newScript = document.createElement('script');
+          const newScript = document.createElement("script");
           newScript.src = scriptUrl;
-          newScript.type = 'text/javascript';
+          newScript.type = "text/javascript";
           newScript.onload = onScriptLoaded(adParentContainer, filteredScripts.length);
           /* TODO: Generate the HASH by: openssl dgst -sha256 -binary your-script.js | openssl base64 -A */
           // newScript.integrity = 'sha256-abcdef'; // Add Proper SRI hash

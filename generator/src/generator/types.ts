@@ -1,8 +1,8 @@
-import { Product, ProductCollection } from '@medusajs/medusa';
-import { PricedProduct } from '@medusajs/medusa/dist/types/pricing';
-import { formatPrice, getDiscountPercentage, showDiscount } from './utils/price';
+import { Product, ProductCollection } from "@medusajs/medusa";
+import { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
+import { formatPrice, getDiscountPercentage, showDiscount } from "./utils/price";
 
-export type ProductPreview = Omit<Product, 'id'> & {
+export type ProductPreview = Omit<Product, "id"> & {
   id: number;
   display_name: string;
   price: number;
@@ -39,13 +39,13 @@ export type LensConfig = {
   inclusiveFilterValues: Record<string, string>; // Example: {"product_type": "Pants"}
 };
 
-export type ProductCollectionWithPreviews = Omit<ProductCollection, 'products'> & {
+export type ProductCollectionWithPreviews = Omit<ProductCollection, "products"> & {
   products: ProductPreview[];
   imageUrl: string;
   thumbnailUrl: string;
   description: string;
   is_sponsored?: boolean;
-  moduleType?: 'featureLook' | string;
+  moduleType?: "featureLook" | string;
 };
 
 export type ProductCollectionExtended = ProductCollection & {
@@ -67,10 +67,10 @@ type BaseStoreHero = {
 };
 
 export type DefaultHero = BaseStoreHero & {
-  type: 'DEFAULT';
+  type: "DEFAULT";
 };
 export type LensHero = BaseStoreHero & {
-  type: 'LENS';
+  type: "LENS";
   lensCTA?: {
     ctaBackdropImage: string;
     ctaBackdropImageAlt: string;
@@ -98,7 +98,7 @@ export type LensHero = BaseStoreHero & {
   };
 };
 export type FullSizedHero = BaseStoreHero & {
-  type: 'FULLSIZE';
+  type: "FULLSIZE";
 };
 
 export type StoreHero = DefaultHero | LensHero | FullSizedHero;
@@ -191,13 +191,13 @@ export interface ItemProductSponsor extends PricedProduct {
 export type SponsordImage = { id: number; image: string };
 
 export enum ShuffleMode {
-  Sponsor = 'sponsor',
-  Products = 'products',
+  Sponsor = "sponsor",
+  Products = "products",
 }
 
 export enum CustomCollections {
-  featureLooks = 'featureLook',
-  shuffle = 'shuffle',
+  featureLooks = "featureLook",
+  shuffle = "shuffle",
 }
 
 type BoundingBox = {
@@ -242,7 +242,7 @@ export type FLMeta = {
 };
 
 export type ModuleData = {
-  media: 'image' | 'video';
+  media: "image" | "video";
   title: string;
   srcURL: string;
   logoURL?: string;
@@ -254,10 +254,10 @@ export type FeatureLookCollectionAdDataType = {
   title: string;
   image_url?: string;
   description?: string;
-  moduleType: 'featureLook';
-  collection_handle: PublisherStore['handle'];
+  moduleType: "featureLook";
+  collection_handle: PublisherStore["handle"];
   collection_url: string;
-  store_handle: PublisherStore['handle'];
+  store_handle: PublisherStore["handle"];
   moduleData: ModuleData[];
   product_base_url: string;
   meta?: FLMeta;

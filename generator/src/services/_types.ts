@@ -1,4 +1,4 @@
-import { PublisherStore } from '@/generator/types';
+import { PublisherStore } from "@/generator/types";
 
 export type Format = {
   src: string;
@@ -42,19 +42,19 @@ export type Product = {
   sale_price?: number;
   discountable: boolean;
   thumbnail_url: string;
-  handle?: any;
+  handle?: string;
   product_url: string;
   url: string; // TODO: Fix it; For now, it's the same as 'product_url'
   non_affiliate_url: string; // TODO: Fix it; For now, it's the same as 'product_url'
   affiliate_url: string;
-  kirby_id?: any;
+  affiliate: string;
+  kirby_id?: string;
   retailer?: Retailer;
   image: string;
-  ad_click_event_tracking_id: string;
   collection: ProductCollection;
 };
 export type ModuleData = {
-  media: 'image' | 'video';
+  media: "image" | "video";
   title: string;
   srcURL: string;
   logoURL?: string;
@@ -72,10 +72,10 @@ export type FeatureLookCollectionAdDataType = {
   title: string;
   image_url?: string;
   description?: string;
-  moduleType: 'featureLook';
-  collection_handle: PublisherStore['handle'];
+  moduleType: "featureLook";
+  collection_handle: PublisherStore["handle"];
   collection_url: string;
-  store_handle: PublisherStore['handle'];
+  store_handle: PublisherStore["handle"];
   moduleData: ModuleData[];
   product_base_url: string;
   meta?: FLMeta;

@@ -51,3 +51,5 @@ certificates
 
 
 .env
+.next
+node_modules

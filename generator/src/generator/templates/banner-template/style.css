@@ -1,16 +1,16 @@
 :root {
   --shopsense-base-width: 912px;
-  --shopsense-base-height: 385px;
+  --shopsense-base-height: 345px;
 }
 main.shopsense-ad {
   width: 100%;
   height: 100%;
 }
 main.shopsense-ad * {
-  font-family: 'Inter';
+  font-family: "Inter";
 }
 main.shopsense-ad *.text-semibold {
-  font-family: 'Inter-SemiBold' !important;
+  font-family: "Inter-SemiBold" !important;
 }
 .shopsense-ad .main-container {
   display: flex;
@@ -45,7 +45,7 @@ main.shopsense-ad *.text-semibold {
   margin-right: calc(var(--shopsense-base-width) * 0.011);
 }
 .shopsense-ad .logo-label {
-  font-family: 'LiberationSans-SemiBold' !important;
+  font-family: "LiberationSans-SemiBold" !important;
   font-size: calc(var(--font-size) * 0.85);
   font-weight: 700;
   /* line-height: calc(var(--shopsense-base-height) * 0.039); */
@@ -106,7 +106,7 @@ main.shopsense-ad *.text-semibold {
 .shopsense-ad .sponsored-label {
   left: 0.5rem !important;
   top: 0.5rem !important;
-  font-family: 'Inter' !important;
+  font-family: "Inter" !important;
 }
 
 @container shopsenseembed (max-width: 768px) {

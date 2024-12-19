@@ -1,12 +1,11 @@
-import { isImage } from '@/generator/utils/generator-utils';
-import { getTrackingUrl } from '@/generator/utils/tracking-utils';
-import { supabase } from '@/services';
-import { FeatureLookCollectionAdDataType, Product, Retailer } from '@/services/_types';
-import { NextRequest, NextResponse } from 'next/server';
+import { isImage } from "@/generator/utils/generator-utils";
+import { supabase } from "@/services";
+import { FeatureLookCollectionAdDataType, Product, Retailer } from "@/services/_types";
+import { NextRequest, NextResponse } from "next/server";
 
-function getLogoThumbnailUrl(logos: Retailer['logos']) {
+function getLogoThumbnailUrl(logos: Retailer["logos"]) {
   const darkTheme = logos.find((logo) => {
-    return logo.theme === 'dark';
+    return logo.theme === "dark";
   });
 
   if (darkTheme) {
@@ -19,16 +18,16 @@ function getLogoThumbnailUrl(logos: Retailer['logos']) {
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
-    const collectionId = searchParams.get('collection_id');
-    const limit = searchParams.get('limit');
-    const storeUrl = searchParams.get('store_url');
+    const collectionId = searchParams.get("collection_id");
+    const limit = searchParams.get("limit");
+    const storeUrl = searchParams.get("store_url");
 
     if (!Number(collectionId)) {
-      return NextResponse.json({ error: 'Collection ID is required' }, { status: 400 });
+      return NextResponse.json({ error: "Collection ID is required" }, { status: 400 });
     }
 
     const { data, error } = await supabase
-      .from('collection_product')
+      .from("collection_product")
       .select(
         `
         collection (
@@ -59,30 +58,30 @@ export async function GET(req: NextRequest) {
           )
         )`
       )
-      .eq('collection_id', Number(collectionId));
+      .eq("collection_id", Number(collectionId));
 
     if (error) {
       throw new Error(error.message);
     }
 
-    const products = (data || []) as unknown as { collection: Product['collection']; product: Product }[];
+    const products = (data || []) as unknown as { collection: Product["collection"]; product: Product }[];
 
-    const nProducts: FeatureLookCollectionAdDataType['moduleData'][number]['products'] = products
+    const nProducts: FeatureLookCollectionAdDataType["moduleData"][number]["products"] = products
       .map(({ product: p }) => {
-        if (!p.retailer || !p.display_name || !p.base_price || !isImage(p.thumbnail_url?.split('.').pop() || '')) {
+        if (!p.retailer || !p.display_name || !p.base_price || !isImage(p.thumbnail_url?.split(".").pop() || "")) {
           return null;
         }
-        const nProduct: FeatureLookCollectionAdDataType['moduleData'][number]['products'][number] = {
+        const nProduct: FeatureLookCollectionAdDataType["moduleData"][number]["products"][number] = {
           id: p.id,
           display_name: p.display_name,
           price: p.sale_price ?? p.base_price,
           base_price: p.base_price,
           discountable: !!p.sale_price,
-          url: process.env.ENVIRONMENT === 'production' ? p.affiliate_url : p.product_url,
+          url: process.env.ENVIRONMENT === "production" ? p.affiliate_url : p.product_url,
           affiliate_url: p.affiliate_url,
+          affiliate: p.retailer?.affiliate?.name,
           product_url: p.product_url,
           non_affiliate_url: p.product_url,
-          ad_click_event_tracking_id: '',
           retailer: {
             id: p.retailer.id,
             retailer_id: p.retailer.retailer_id,
@@ -100,7 +99,6 @@ export async function GET(req: NextRequest) {
           collection: p.collection,
         };
 
-        nProduct.ad_click_event_tracking_id = getTrackingUrl({ product: nProduct });
         return nProduct;
       })
       .filter((p) => p !== null)
@@ -111,28 +109,28 @@ export async function GET(req: NextRequest) {
 
     const adData: FeatureLookCollectionAdDataType = {
       title,
-      collection_handle: title.toLowerCase().replace(/ /g, '-'),
-      description: '',
+      collection_handle: title.toLowerCase().replace(/ /g, "-"),
+      description: "",
       moduleData: [
         {
-          media: 'image',
-          logoURL: '',
-          srcURL: '',
+          media: "image",
+          logoURL: "",
+          srcURL: "",
           duration: 5000,
-          title: 'Module Title',
+          title: "Module Title",
           products: nProducts,
         },
       ],
-      moduleType: 'featureLook',
+      moduleType: "featureLook",
       collection_url: collectionUrl,
-      store_handle: '',
-      product_base_url: '',
+      store_handle: "",
+      product_base_url: "",
       clickTag: collectionUrl,
     };
 
     return NextResponse.json({ data: adData, error });
   } catch (error: any) {
-    console.error('Error:', error);
+    console.error("Error:", error);
     return NextResponse.json({ data: null, error: error?.message }, { status: 500 });
   }
 }
