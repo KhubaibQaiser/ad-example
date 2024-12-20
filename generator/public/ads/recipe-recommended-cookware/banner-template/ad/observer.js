@@ -1,0 +1,1 @@
+!function(){window.ShopsenseEmbeds=window.ShopsenseEmbeds||{};window.ShopsenseEmbeds.getObserverInstance=(e,n,s,o={})=>{var r;new IntersectionObserver((r=s,(e,n)=>{e.forEach((e=>{e.isIntersecting&&(r(e.target),n.unobserve(e.target))}))}),{root:e??null,rootMargin:"0px",threshold:1,...o}).observe(n)}}();

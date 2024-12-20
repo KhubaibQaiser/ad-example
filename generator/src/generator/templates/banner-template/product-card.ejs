@@ -1,0 +1,24 @@
+<a
+  class="card product-card scale-on-hover shadow-on-hover"
+  href="<%= product.handle %>"
+  target="_blank"
+  data-item="<%= JSON.stringify({ product }) %>"
+>
+  <div class="product-card-header">
+    <div class="product-image-container" style="background-image: url(<%= product.image %>);">
+      <img src="<%= product.image %>" alt="<%= product.title %>" class="product-image" loading="lazy" />
+    </div>
+    <% if (product.retailer?.thumbnail_url) { %>
+    <img src="<%= product.retailer.thumbnail_url %>" alt="<%= product.retailer.name %>" class="retail-logo" />
+    <% } %> <% if (showDiscount(product.discountable, getDiscountPercentage(product.base_price, product.price))) { %>
+    <div class="chip chip-small indicator text-semibold bg-negative">-<%= getDiscountPercentage(product.base_price, product.price) %>%</div>
+    <% } %>
+  </div>
+  <div class="product-card-content">
+    <p class="text-xs text-semibold text-fg-subtle text-clip-1"><%= product.display_name %></p>
+    <%- include(__dirname + '/../shared/price-label.ejs', { product: product, formatPrice: formatPrice, showDiscount: showDiscount,
+    getDiscountPercentage: getDiscountPercentage, index: index }) %>
+    <div class="divider"></div>
+    <p class="text-xxs text-fg-muted"><%= product.retailer.name %></p>
+  </div>
+</a>

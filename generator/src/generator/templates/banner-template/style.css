@@ -1,0 +1,131 @@
+:root {
+  --shopsense-base-width: 912px;
+  --shopsense-base-height: 345px;
+}
+main.shopsense-ad {
+  width: 100%;
+  height: 100%;
+}
+main.shopsense-ad * {
+  font-family: "Inter";
+}
+main.shopsense-ad *.text-semibold {
+  font-family: "Inter-SemiBold" !important;
+}
+.shopsense-ad .main-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  padding: calc(var(--shopsense-base-width) * 0.033);
+  padding-right: 0;
+  border-radius: calc(var(--shopsense-base-width) * 0.011) !important;
+  z-index: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+.shopsense-ad .header {
+  padding-right: calc(var(--shopsense-base-width) * 0.0275);
+  flex: 0 0 calc(var(--shopsense-base-height) * 0.1351);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.shopsense-ad .logo-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.shopsense-ad .logo {
+  width: calc(var(--shopsense-base-width) * 0.063);
+  height: calc(var(--shopsense-base-height) * 0.096);
+  margin-right: calc(var(--shopsense-base-width) * 0.011);
+}
+.shopsense-ad .logo-label {
+  font-family: "LiberationSans-SemiBold" !important;
+  font-size: calc(var(--font-size) * 0.85);
+  font-weight: 700;
+  /* line-height: calc(var(--shopsense-base-height) * 0.039); */
+  line-height: normal;
+  color: #1d1e1f;
+}
+.shopsense-ad .control-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: calc(var(--shopsense-base-width) * 0.011);
+}
+.shopsense-ad .control-button {
+  display: flex;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+.shopsense-ad .control-button.left {
+  transform: rotate(180deg);
+}
+.shopsense-ad .control-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.shopsense-ad .products-container {
+  padding: calc(var(--shopsense-base-height) * 0.045) calc(var(--shopsense-base-width) * 0.014);
+  max-width: 100%;
+  overflow: auto;
+  display: flex;
+  flex: 1;
+}
+.shopsense-ad .products-list {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  gap: calc(var(--shopsense-base-width) * 0.02);
+}
+.shopsense-ad .text-xxs {
+  font-size: calc(var(--shopsense-base-width) * 0.011) !important;
+}
+.shopsense-ad .text-xs {
+  font-size: calc(var(--shopsense-base-width) * 0.015) !important;
+}
+.shopsense-ad .text-compact-small {
+  font-size: calc(var(--shopsense-base-width) * 0.014) !important;
+}
+
+.shopsense-ad .card {
+  border-radius: calc(var(--shopsense-base-width) * 0.011) !important;
+}
+
+.shopsense-ad .sponsored-label {
+  left: 0.5rem !important;
+  top: 0.5rem !important;
+  font-family: "Inter" !important;
+}
+
+@container shopsenseembed (max-width: 768px) {
+  .shopsense-ad .main-container {
+    --shopsense-base-width: 688px;
+    --shopsense-base-height: calc(var(--shopsense-base-width) * 0.4953);
+  }
+}
+
+@container shopsenseembed (min-width: 769px) and (max-width: 911px) {
+  .shopsense-ad .main-container {
+    --shopsense-base-width: 768px;
+    --shopsense-base-height: calc(var(--shopsense-base-width) * 0.422);
+  }
+}
+
+@container shopsenseembed (min-width: 912px) {
+  .shopsense-ad .main-container {
+    --shopsense-base-width: 912px;
+    --shopsense-base-height: calc(var(--shopsense-base-width) * 0.422); /* Maintain aspect ratio 912/385 (BASE DESIGN DIMENSIONS) */
+  }
+}
