@@ -11,14 +11,19 @@ import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
 import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
 import * as route53 from "aws-cdk-lib/aws-route53";
 import * as route53Targets from "aws-cdk-lib/aws-route53-targets";
+import * as lambda from "aws-cdk-lib/aws-lambda";
+import * as nodejs from "aws-cdk-lib/aws-lambda-nodejs";
+import * as iam from "aws-cdk-lib/aws-iam";
+import * as s3n from "aws-cdk-lib/aws-s3-notifications";
+import * as path from "path";
 
 export type S3CloudfronStackProps = StackProps & {
-  environment: string,
-  configEnvironment: ConfigEnvironment,
-}
+  environment: string;
+  configEnvironment: ConfigEnvironment;
+};
 
 export class S3CloudfrontStack extends Stack {
-  readonly bucket: s3.Bucket
+  readonly bucket: s3.Bucket;
 
   constructor(scope: Construct, id: string, props: S3CloudfronStackProps) {
     super(scope, id, props);
@@ -29,21 +34,14 @@ export class S3CloudfrontStack extends Stack {
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       cors: [
         {
-          allowedOrigins: ['*'],
+          allowedOrigins: ["*"],
           allowedMethods: [s3.HttpMethods.GET, s3.HttpMethods.HEAD],
-          allowedHeaders: ['*']
-        }
-      ]
+          allowedHeaders: ["*"],
+        },
+      ],
     });
 
-    new BucketDeployment(this, 'DeployEmbeds', {
-      sources: [Source.asset(`embeds/${props.environment}`)],
-      destinationBucket: this.bucket
-    })
-
-    new CfnOutput(this, "BucketName", { value: this.bucket.bucketName });
-
-    const configEnvironment = props.configEnvironment
+    const configEnvironment = props.configEnvironment;
     const hostedZoneDomain = `${configEnvironment.hostedZoneSubdomain}.${configEnvironment.rootHostedZoneDomain}`;
 
     // Create hosted zone
@@ -58,27 +56,19 @@ export class S3CloudfrontStack extends Stack {
 
     const delegationZoneArn = this.formatArn({
       account: configEnvironment.zoneDelegation.delegationAccount,
-      region: '',
+      region: "",
       service: "iam",
       resource: "role",
       resourceName: configEnvironment.zoneDelegation.delegationRoleName,
     });
 
-    const delegationRole = Role.fromRoleArn(
-      this,
-      "DelegationRole",
-      delegationZoneArn
-    );
+    const delegationRole = Role.fromRoleArn(this, "DelegationRole", delegationZoneArn);
 
-    new CrossAccountZoneDelegationRecord(
-      this,
-      "CrossAccountZoneDelegationRecord",
-      {
-        delegationRole,
-        parentHostedZoneName: configEnvironment.rootHostedZoneDomain,
-        delegatedZone: hostedZone
-      }
-    );
+    new CrossAccountZoneDelegationRecord(this, "CrossAccountZoneDelegationRecord", {
+      delegationRole,
+      parentHostedZoneName: configEnvironment.rootHostedZoneDomain,
+      delegatedZone: hostedZone,
+    });
 
     // Create CloudFront distribution
     const distribution = new Distribution(this, "Distribution", {
@@ -87,25 +77,54 @@ export class S3CloudfrontStack extends Stack {
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
         allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
         cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
-        responseHeadersPolicy: new cloudfront.ResponseHeadersPolicy(this, 'AllowCORSHeaders', {
+        responseHeadersPolicy: new cloudfront.ResponseHeadersPolicy(this, "AllowCORSHeaders", {
           corsBehavior: {
-            accessControlAllowOrigins: ['*'],
-            accessControlAllowHeaders: ['*'],
+            accessControlAllowOrigins: ["*"],
+            accessControlAllowHeaders: ["*"],
             accessControlAllowCredentials: false,
-            accessControlAllowMethods: ['GET', 'HEAD', 'OPTIONS'],
+            accessControlAllowMethods: ["GET", "HEAD", "OPTIONS"],
             originOverride: true,
-          }
-        })
+          },
+        }),
       },
       domainNames: [hostedZoneDomain],
       certificate: certificate,
     });
 
+    // Create Lambda function for cache invalidation
+    const invalidateCFCacheFunction = new nodejs.NodejsFunction(this, "InvalidateCFCacheFunction", {
+      runtime: lambda.Runtime.NODEJS_20_X,
+      handler: "handler",
+      entry: path.join(__dirname, "functions", "invalidate-cache.ts"),
+      environment: {
+        DISTRIBUTION_ID: distribution.distributionId,
+      },
+    });
+
+    // Grant CloudFront invalidation permissions to Lambda
+    invalidateCFCacheFunction.addToRolePolicy(
+      new iam.PolicyStatement({
+        actions: ["cloudfront:CreateInvalidation"],
+        resources: [`arn:aws:cloudfront::${this.account}:distribution/${distribution.distributionId}`],
+      })
+    );
+
+    // Add S3 triggers for the Lambda function
+    this.bucket.addEventNotification(s3.EventType.OBJECT_CREATED, new s3n.LambdaDestination(invalidateCFCacheFunction));
+    this.bucket.addEventNotification(s3.EventType.OBJECT_REMOVED, new s3n.LambdaDestination(invalidateCFCacheFunction));
+
+    new BucketDeployment(this, "DeployEmbeds", {
+      sources: [Source.asset(`embeds/${props.environment}`)],
+      destinationBucket: this.bucket,
+      distribution,
+      distributionPaths: ["/*"],
+    });
+
+    new CfnOutput(this, "BucketName", { value: this.bucket.bucketName });
+
     new route53.ARecord(this, "AliasRecord", {
       zone: hostedZone,
-      target: route53.RecordTarget.fromAlias(
-        new route53Targets.CloudFrontTarget(distribution)
-      ),
+      target: route53.RecordTarget.fromAlias(new route53Targets.CloudFrontTarget(distribution)),
       recordName: "",
     });
 
